@@ -92,6 +92,9 @@ english__helper_EXTERNAL_OBJECTS =
 
 english-helper: CMakeFiles/english-helper.dir/src/english-helper.cpp.o
 english-helper: CMakeFiles/english-helper.dir/build.make
+english-helper: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
+english-helper: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
+english-helper: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
 english-helper: CMakeFiles/english-helper.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kde/Desktop/Practice-of-Projects/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable english-helper"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/english-helper.dir/link.txt --verbose=$(VERBOSE)
