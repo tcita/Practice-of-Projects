@@ -1,0 +1,110 @@
+#include<vector>
+#include<iostream>
+#include <unordered_map>
+#include <map>
+#include<string>
+#include<algorithm>
+
+#include<unordered_set>
+using namespace std;
+
+
+class Solution {
+public:
+    //string paragraph:待處理的英文文章     vector<string>& banned 不納入統計的單字
+    void Wordfrequency(string paragraph, vector<string>& banned) {
+
+        unordered_set<string> b;
+       
+        //頻繁出現的衡量標準
+        const int count = 3;
+        //頻繁出現的單字
+        unordered_map<string,int> maxw;
+
+        //curr:當前考察的單字
+        string curr;
+        //頻繁出現的單字出現次數
+
+        //頻率的結果,使用map儲存後結果會按字母表排序
+        map<string, int> str2cnt;
+        
+        
+        for (string bb : banned)
+        {
+            b.insert(bb);
+        }
+        for (char c : paragraph)
+        {
+            if (isalpha(c))
+            {
+                //tolower將大寫字母轉換為小寫字母
+                curr += tolower(c);
+            }
+            //當排查到的字元不是字母時,視為前面curr是一個單字
+            else if (curr.size() > 0)
+            {
+                // ban掉禁用單字,  以下等式成立的條件是當前考察單字不為禁用單字
+                if (b.find(curr) == b.end())
+                {
+                    ++str2cnt[curr];
+
+                    //檢查是否單字經常出現
+                    if (str2cnt[curr] >= count)
+                    {
+                        maxw.insert(pair<string, int>(curr,str2cnt[curr]));
+                    }
+                }
+                //結束了一個單字的解析,格式化curr為空
+                curr = "";
+            }
+        }
+
+
+         //最後一個單字前不是字元,所以要額外討論,但步驟只需要再重複上面一次即可
+        if (curr.size() > 0)
+        {
+            
+            if (b.find(curr) == b.end())
+            {
+                ++str2cnt[curr];
+                if (str2cnt[curr] >= count)
+                {
+                    maxw.insert(pair<string, int>(curr, str2cnt[curr]));
+                }
+            }
+            curr = "";
+        }
+
+        
+        
+        
+        //結果輸出 
+        cout << "經常出現的單詞為 "<<"\n\n";
+
+              for (auto& t : maxw) {
+
+            cout << t.first << " " << t.second <<"次"<< endl;
+
+        }
+
+        cout << '\n'<<"單字出現頻率\n";
+        
+        for (auto& t : str2cnt) {
+
+            cout << t.first << " " << t.second << "次" << endl;
+
+        }
+
+
+       
+    }
+};
+int main() {
+    //測試
+    vector<string>banned = {"hit"};
+    Solution s;
+  s.Wordfrequency
+    ("Honeybees are characterised by their ability to produce liquefied sugar (honey) and a propensity to construct colonial nests using wax, two tasks that necessitate a significant level of social integration among members. As a result, they maintain strict divisions of labour, based on sex, with all males functioning as drones to fertilize and care for the eggs, and all females, with the exception of the single fertile queen, responsible for fetching nectar for the colony’s progeny. In addition, honeybees have devised a sophisticated system of communication to relay important information from member to member.", banned);
+
+
+}
