@@ -57,10 +57,10 @@ RM = /snap/cmake/936/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kde/Desktop/Practice-of-Projects
+CMAKE_SOURCE_DIR = /home/kde/Practice-of-Projects/ui
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kde/Desktop/Practice-of-Projects/build
+CMAKE_BINARY_DIR = /home/kde/Practice-of-Projects/ui/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Desktop/Practice-of-Projects/build/CMakeFiles /home/kde/Desktop/Practice-of-Projects/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Practice-of-Projects/ui/build/CMakeFiles /home/kde/Practice-of-Projects/ui/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Desktop/Practice-of-Projects/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Practice-of-Projects/ui/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,41 +117,65 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named english-helper
+# Target rules for targets named EnglishTutor
 
 # Build rule for target.
-english-helper: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 english-helper
-.PHONY : english-helper
+EnglishTutor: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 EnglishTutor
+.PHONY : EnglishTutor
 
 # fast build rule for target.
-english-helper/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/english-helper.dir/build.make CMakeFiles/english-helper.dir/build
-.PHONY : english-helper/fast
+EnglishTutor/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/build
+.PHONY : EnglishTutor/fast
 
-src/english-helper.o: src/english-helper.cpp.o
-.PHONY : src/english-helper.o
+src/EnglishTutor.o: src/EnglishTutor.cpp.o
+.PHONY : src/EnglishTutor.o
 
 # target to build an object file
-src/english-helper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/english-helper.dir/build.make CMakeFiles/english-helper.dir/src/english-helper.cpp.o
-.PHONY : src/english-helper.cpp.o
+src/EnglishTutor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o
+.PHONY : src/EnglishTutor.cpp.o
 
-src/english-helper.i: src/english-helper.cpp.i
-.PHONY : src/english-helper.i
+src/EnglishTutor.i: src/EnglishTutor.cpp.i
+.PHONY : src/EnglishTutor.i
 
 # target to preprocess a source file
-src/english-helper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/english-helper.dir/build.make CMakeFiles/english-helper.dir/src/english-helper.cpp.i
-.PHONY : src/english-helper.cpp.i
+src/EnglishTutor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.i
+.PHONY : src/EnglishTutor.cpp.i
 
-src/english-helper.s: src/english-helper.cpp.s
-.PHONY : src/english-helper.s
+src/EnglishTutor.s: src/EnglishTutor.cpp.s
+.PHONY : src/EnglishTutor.s
 
 # target to generate assembly for a file
-src/english-helper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/english-helper.dir/build.make CMakeFiles/english-helper.dir/src/english-helper.cpp.s
-.PHONY : src/english-helper.cpp.s
+src/EnglishTutor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.s
+.PHONY : src/EnglishTutor.cpp.s
+
+src/MainWindow.o: src/MainWindow.cpp.o
+.PHONY : src/MainWindow.o
+
+# target to build an object file
+src/MainWindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o
+.PHONY : src/MainWindow.cpp.o
+
+src/MainWindow.i: src/MainWindow.cpp.i
+.PHONY : src/MainWindow.i
+
+# target to preprocess a source file
+src/MainWindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.i
+.PHONY : src/MainWindow.cpp.i
+
+src/MainWindow.s: src/MainWindow.cpp.s
+.PHONY : src/MainWindow.s
+
+# target to generate assembly for a file
+src/MainWindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.s
+.PHONY : src/MainWindow.cpp.s
 
 # Help Target
 help:
@@ -161,10 +185,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... english-helper"
-	@echo "... src/english-helper.o"
-	@echo "... src/english-helper.i"
-	@echo "... src/english-helper.s"
+	@echo "... EnglishTutor"
+	@echo "... src/EnglishTutor.o"
+	@echo "... src/EnglishTutor.i"
+	@echo "... src/EnglishTutor.s"
+	@echo "... src/MainWindow.o"
+	@echo "... src/MainWindow.i"
+	@echo "... src/MainWindow.s"
 .PHONY : help
 
 

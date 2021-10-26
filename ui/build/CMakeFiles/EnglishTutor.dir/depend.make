@@ -1,2 +1,2 @@
-# Empty dependencies file for english-helper.
+# Empty dependencies file for EnglishTutor.
 # This may be replaced when dependencies are built.

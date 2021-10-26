@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/kde/Desktop/Practice-of-Projects/src/english-helper.cpp" "CMakeFiles/english-helper.dir/src/english-helper.cpp.o" "gcc" "CMakeFiles/english-helper.dir/src/english-helper.cpp.o.d"
+  "/home/kde/Practice-of-Projects/ui/src/EnglishTutor.cpp" "CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o" "gcc" "CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o.d"
+  "/home/kde/Practice-of-Projects/ui/src/MainWindow.cpp" "CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o" "gcc" "CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o.d"
   )
 
 # Targets to which this target links.

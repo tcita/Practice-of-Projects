@@ -1,5 +1,5 @@
-CMakeFiles/english-helper.dir/src/english-helper.cpp.o: \
- /home/kde/Desktop/Practice-of-Projects/src/english-helper.cpp \
+CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o: \
+ /home/kde/Practice-of-Projects/ui/src/EnglishTutor.cpp \
  /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QApplication \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qapplication.h \
@@ -275,4 +275,8 @@ CMakeFiles/english-helper.dir/src/english-helper.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfont.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontmetrics.h \
  /usr/include/x86_64-linux-gnu/qt5/QtGui/qfontinfo.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qsizepolicy.h \
+ /home/kde/Practice-of-Projects/ui/include/MainWindow.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h
