@@ -23,7 +23,7 @@ MainWindow::MainWindow()
   QPushButton *button3 = new QPushButton("button3");
   centralWidgetLayout->addWidget(button3, 1, 1);
 
-  // Connect callback when button clicked
+  // Connect callback to button clicked
   QObject::connect(button0, &QPushButton::clicked, [=](){std::cout << button0->text().toStdString() << "\n";});
   QObject::connect(button1, &QPushButton::clicked, [=](){std::cout << button1->text().toStdString() << "\n";});
   QObject::connect(button2, &QPushButton::clicked, [=](){std::cout << button2->text().toStdString() << "\n";});
