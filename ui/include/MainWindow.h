@@ -1,11 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include <QtWidgets>
 
-class MainWindow : public QMainWindow {
-
+// The application main window
+class MainWindow : public QMainWindow
+{
 public:
+  // Construtor
+  MainWindow();
+
+
 };
 
 #endif
