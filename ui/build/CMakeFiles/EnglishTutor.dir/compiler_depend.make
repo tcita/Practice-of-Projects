@@ -1853,7 +1853,8 @@ CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: ../src/MainWindow.cpp \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwhatsthis.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidgetaction.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwizard.h \
-  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsversion.h
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsversion.h \
+  /usr/include/c++/9/iostream
 
 
 ../src/MainWindow.cpp:
@@ -2771,6 +2772,8 @@ CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: ../src/MainWindow.cpp \
 /usr/include/x86_64-linux-gnu/qt5/QtCore/qmath.h:
 
 /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qradiobutton.h:
+
+/usr/include/c++/9/iostream:
 
 /usr/include/c++/9/cmath:
 

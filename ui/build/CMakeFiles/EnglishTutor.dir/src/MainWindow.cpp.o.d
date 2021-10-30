@@ -866,4 +866,5 @@ CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwhatsthis.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidgetaction.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwizard.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsversion.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsversion.h \
+ /usr/include/c++/9/iostream
