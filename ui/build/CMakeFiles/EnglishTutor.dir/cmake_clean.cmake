@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "../assets/lang/en_us.ts"
   "../assets/lang/zh_cn.ts"
   "../assets/lang/zh_tw.ts"
   "CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o"
@@ -7,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o.d"
   "EnglishTutor"
   "EnglishTutor.pdb"
+  "en_us.qm"
   "zh_cn.qm"
   "zh_tw.qm"
 )

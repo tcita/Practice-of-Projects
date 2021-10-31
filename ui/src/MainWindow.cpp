@@ -4,7 +4,7 @@
 MainWindow::MainWindow()
 {
   // Add menu bar
-  QMenu *settingMenu = menuBar()->addMenu(tr("Setting"));
+  QMenu *settingMenu = menuBar()->addMenu(tr("Setting0"));
 
   // Set icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));

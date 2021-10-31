@@ -926,7 +926,8 @@ CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o: ../src/EnglishTutor.cpp \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwidgetaction.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qwizard.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtwidgetsversion.h \
-  ../include/MainWindow.h
+  ../include/MainWindow.h \
+  /usr/include/c++/9/iostream
 
 CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: ../src/MainWindow.cpp \
   /usr/include/stdc-predef.h \

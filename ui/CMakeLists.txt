@@ -23,6 +23,7 @@ set(
   TS_FILES
   "assets/lang/zh_tw.ts"
   "assets/lang/zh_cn.ts"
+  "assets/lang/en_us.ts"
 )
 
 qt_create_translation(

@@ -4,6 +4,7 @@ cmake_policy(SET CMP0009 NEW)
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.c")
 set(OLD_GLOB
   )
@@ -12,6 +13,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/kde/Practice-of-Projects/ui/build/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.c++")
@@ -24,6 +26,7 @@ endif()
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.cc")
 set(OLD_GLOB
   )
@@ -34,6 +37,7 @@ endif()
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.ch")
 set(OLD_GLOB
   )
@@ -42,6 +46,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/kde/Practice-of-Projects/ui/build/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.cpp")
@@ -57,6 +62,7 @@ endif()
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.cxx")
 set(OLD_GLOB
   )
@@ -65,6 +71,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/kde/Practice-of-Projects/ui/build/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.h")
@@ -78,6 +85,7 @@ endif()
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.h++")
 set(OLD_GLOB
   )
@@ -86,6 +94,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/kde/Practice-of-Projects/ui/build/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.hh")
@@ -98,6 +107,7 @@ endif()
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.hpp")
 set(OLD_GLOB
   )
@@ -106,6 +116,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/kde/Practice-of-Projects/ui/build/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.hxx")
@@ -118,6 +129,7 @@ endif()
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.java")
 set(OLD_GLOB
   )
@@ -126,6 +138,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/kde/Practice-of-Projects/ui/build/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.js")
@@ -138,6 +151,7 @@ endif()
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.jui")
 set(OLD_GLOB
   )
@@ -146,6 +160,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/kde/Practice-of-Projects/ui/build/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.qml")
@@ -158,6 +173,7 @@ endif()
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.qrc")
 set(OLD_GLOB
   )
@@ -168,6 +184,7 @@ endif()
 
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.qs")
 set(OLD_GLOB
   )
@@ -176,6 +193,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "/home/kde/Practice-of-Projects/ui/build/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.ui")
