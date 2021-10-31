@@ -4,7 +4,10 @@
 MainWindow::MainWindow()
 {
   // Add menu bar
-  QMenu *menu1 = menuBar()->addMenu("選單");
+  QMenu *settingMenu = menuBar()->addMenu(tr("Setting"));
+
+  // Set icon
+  this->setWindowIcon(QIcon("assets/image/icon.png"));
 
   // Add central widget
   this->setCentralWidget(new QWidget());
@@ -14,13 +17,13 @@ MainWindow::MainWindow()
   this->centralWidget()->setLayout(centralWidgetLayout);
 
   // Add four buttons in main window
-  QPushButton *button0 = new QPushButton("button0");
+  QPushButton *button0 = new QPushButton(tr("button0"));
   centralWidgetLayout->addWidget(button0, 0, 0);
-  QPushButton *button1 = new QPushButton("button1");
+  QPushButton *button1 = new QPushButton(tr("button1"));
   centralWidgetLayout->addWidget(button1, 0, 1);
-  QPushButton *button2 = new QPushButton("button2");
+  QPushButton *button2 = new QPushButton(tr("button2"));
   centralWidgetLayout->addWidget(button2, 1, 0);
-  QPushButton *button3 = new QPushButton("button3");
+  QPushButton *button3 = new QPushButton(tr("button3"));
   centralWidgetLayout->addWidget(button3, 1, 1);
 
   // Connect callback to button clicked

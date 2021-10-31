@@ -44,10 +44,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/cmake/936/bin/cmake
+CMAKE_COMMAND = /snap/cmake/955/bin/cmake
 
 # The command to remove a file.
-RM = /snap/cmake/936/bin/cmake -E rm -f
+RM = /snap/cmake/955/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -69,10 +69,32 @@ include CMakeFiles/EnglishTutor.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/EnglishTutor.dir/flags.make
 
+zh_tw.qm: ../assets/lang/zh_tw.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating zh_tw.qm"
+	/usr/lib/qt5/bin/lrelease /home/kde/Practice-of-Projects/ui/assets/lang/zh_tw.ts -qm /home/kde/Practice-of-Projects/ui/build/zh_tw.qm
+
+zh_cn.qm: ../assets/lang/zh_cn.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating zh_cn.qm"
+	/usr/lib/qt5/bin/lrelease /home/kde/Practice-of-Projects/ui/assets/lang/zh_cn.ts -qm /home/kde/Practice-of-Projects/ui/build/zh_cn.qm
+
+../assets/lang/zh_tw.ts: CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+../assets/lang/zh_tw.ts: ../include/MainWindow.h
+../assets/lang/zh_tw.ts: ../src/EnglishTutor.cpp
+../assets/lang/zh_tw.ts: ../src/MainWindow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating ../assets/lang/zh_tw.ts"
+	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/CMakeFiles/zh_tw.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/zh_tw.ts
+
+../assets/lang/zh_cn.ts: CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+../assets/lang/zh_cn.ts: ../include/MainWindow.h
+../assets/lang/zh_cn.ts: ../src/EnglishTutor.cpp
+../assets/lang/zh_cn.ts: ../src/MainWindow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating ../assets/lang/zh_cn.ts"
+	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/CMakeFiles/zh_cn.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/zh_cn.ts
+
 CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o: CMakeFiles/EnglishTutor.dir/flags.make
 CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o: ../src/EnglishTutor.cpp
 CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o: CMakeFiles/EnglishTutor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o -MF CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o.d -o CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o -c /home/kde/Practice-of-Projects/ui/src/EnglishTutor.cpp
 
 CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.i: cmake_force
@@ -86,7 +108,7 @@ CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.s: cmake_force
 CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: CMakeFiles/EnglishTutor.dir/flags.make
 CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: ../src/MainWindow.cpp
 CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: CMakeFiles/EnglishTutor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o -MF CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o.d -o CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o -c /home/kde/Practice-of-Projects/ui/src/MainWindow.cpp
 
 CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.i: cmake_force
@@ -112,7 +134,7 @@ EnglishTutor: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
 EnglishTutor: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
 EnglishTutor: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
 EnglishTutor: CMakeFiles/EnglishTutor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable EnglishTutor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable EnglishTutor"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/EnglishTutor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -123,7 +145,10 @@ CMakeFiles/EnglishTutor.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/EnglishTutor.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/EnglishTutor.dir/clean
 
-CMakeFiles/EnglishTutor.dir/depend:
+CMakeFiles/EnglishTutor.dir/depend: ../assets/lang/zh_cn.ts
+CMakeFiles/EnglishTutor.dir/depend: ../assets/lang/zh_tw.ts
+CMakeFiles/EnglishTutor.dir/depend: zh_cn.qm
+CMakeFiles/EnglishTutor.dir/depend: zh_tw.qm
 	cd /home/kde/Practice-of-Projects/ui/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kde/Practice-of-Projects/ui /home/kde/Practice-of-Projects/ui /home/kde/Practice-of-Projects/ui/build /home/kde/Practice-of-Projects/ui/build /home/kde/Practice-of-Projects/ui/build/CMakeFiles/EnglishTutor.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/EnglishTutor.dir/depend
 
