@@ -1,10 +1,54 @@
-cmake_minimum_required(VERSION 3.21.3)
-project(english-helper VERSION 1.0.0 LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.21)
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+project(
+  EnglishTutor
+  VERSION 1.0.0
+  LANGUAGES CXX
+)
 
-add_executable(${CMAKE_PROJECT_NAME}
-               src/english-helper.cpp)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-target_link_libraries(${CMAKE_PROJECT_NAME}
-                      PRIVATE Qt5::Widgets)
+find_package(
+  Qt5
+  COMPONENTS
+    Widgets REQUIRED
+    LinguistTools REQUIRED
+)
+
+#
+# linguist
+#
+set(
+  TS_FILES
+  "assets/lang/zh_tw.ts"
+  "assets/lang/zh_cn.ts"
+  "assets/lang/en_us.ts"
+)
+
+qt_create_translation(
+  QM_FILES
+  ${CMAKE_SOURCE_DIR}
+  ${TS_FILES}
+)
+
+
+#
+# src
+#
+add_executable(
+  ${CMAKE_PROJECT_NAME}
+  ${QM_FILES}
+  src/${CMAKE_PROJECT_NAME}.cpp
+  "src/MainWindow.cpp"
+)
+
+target_include_directories(
+  ${CMAKE_PROJECT_NAME}
+  PRIVATE "include/"
+)
+
+target_link_libraries(
+  ${CMAKE_PROJECT_NAME}
+  PRIVATE Qt5::Widgets
+)

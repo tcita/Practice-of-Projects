@@ -45,25 +45,25 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/cmake/936/bin/cmake
+CMAKE_COMMAND = /snap/cmake/955/bin/cmake
 
 # The command to remove a file.
-RM = /snap/cmake/936/bin/cmake -E rm -f
+RM = /snap/cmake/955/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/kde/Desktop/Practice-of-Projects
+CMAKE_SOURCE_DIR = /home/kde/Practice-of-Projects/ui
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/kde/Desktop/Practice-of-Projects/build
+CMAKE_BINARY_DIR = /home/kde/Practice-of-Projects/ui/build
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/english-helper.dir/all
+all: CMakeFiles/EnglishTutor.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/english-helper.dir/clean
+clean: CMakeFiles/EnglishTutor.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/english-helper.dir
+# Target rules for target CMakeFiles/EnglishTutor.dir
 
 # All Build rule for target.
-CMakeFiles/english-helper.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/english-helper.dir/build.make CMakeFiles/english-helper.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/english-helper.dir/build.make CMakeFiles/english-helper.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kde/Desktop/Practice-of-Projects/build/CMakeFiles --progress-num=1,2 "Built target english-helper"
-.PHONY : CMakeFiles/english-helper.dir/all
+CMakeFiles/EnglishTutor.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target EnglishTutor"
+.PHONY : CMakeFiles/EnglishTutor.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/english-helper.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Desktop/Practice-of-Projects/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/english-helper.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Desktop/Practice-of-Projects/build/CMakeFiles 0
-.PHONY : CMakeFiles/english-helper.dir/rule
+CMakeFiles/EnglishTutor.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Practice-of-Projects/ui/build/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/EnglishTutor.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Practice-of-Projects/ui/build/CMakeFiles 0
+.PHONY : CMakeFiles/EnglishTutor.dir/rule
 
 # Convenience name for target.
-english-helper: CMakeFiles/english-helper.dir/rule
-.PHONY : english-helper
+EnglishTutor: CMakeFiles/EnglishTutor.dir/rule
+.PHONY : EnglishTutor
 
 # clean rule for target.
-CMakeFiles/english-helper.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/english-helper.dir/build.make CMakeFiles/english-helper.dir/clean
-.PHONY : CMakeFiles/english-helper.dir/clean
+CMakeFiles/EnglishTutor.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/clean
+.PHONY : CMakeFiles/EnglishTutor.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
@@ -107,6 +107,7 @@ CMakeFiles/english-helper.dir/clean:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P /home/kde/Practice-of-Projects/ui/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
