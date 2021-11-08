@@ -2,30 +2,23 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>MainWindow</name>
+    <name>QMenu</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="7"/>
-        <source>Setting0</source>
+        <location filename="../../src/MainWindow.cpp" line="9"/>
+        <source>&amp;Setting</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>QPushButton</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="20"/>
+        <location filename="../../src/MainPanel.cpp" line="9"/>
         <source>button0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="22"/>
+        <location filename="../../src/MainPanel.cpp" line="10"/>
         <source>button1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="24"/>
-        <source>button2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="26"/>
-        <source>button3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

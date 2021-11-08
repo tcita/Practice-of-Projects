@@ -6,7 +6,7 @@ project(
   LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(
@@ -39,8 +39,10 @@ qt_create_translation(
 add_executable(
   ${CMAKE_PROJECT_NAME}
   ${QM_FILES}
-  src/${CMAKE_PROJECT_NAME}.cpp
+  src/main.cpp
   "src/MainWindow.cpp"
+  "src/MainPanel.cpp"
+  "src/LearningPanel.cpp"
 )
 
 target_include_directories(

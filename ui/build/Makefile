@@ -130,29 +130,53 @@ EnglishTutor/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/build
 .PHONY : EnglishTutor/fast
 
-src/EnglishTutor.o: src/EnglishTutor.cpp.o
-.PHONY : src/EnglishTutor.o
+src/LearningPanel.o: src/LearningPanel.cpp.o
+.PHONY : src/LearningPanel.o
 
 # target to build an object file
-src/EnglishTutor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o
-.PHONY : src/EnglishTutor.cpp.o
+src/LearningPanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o
+.PHONY : src/LearningPanel.cpp.o
 
-src/EnglishTutor.i: src/EnglishTutor.cpp.i
-.PHONY : src/EnglishTutor.i
+src/LearningPanel.i: src/LearningPanel.cpp.i
+.PHONY : src/LearningPanel.i
 
 # target to preprocess a source file
-src/EnglishTutor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.i
-.PHONY : src/EnglishTutor.cpp.i
+src/LearningPanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.i
+.PHONY : src/LearningPanel.cpp.i
 
-src/EnglishTutor.s: src/EnglishTutor.cpp.s
-.PHONY : src/EnglishTutor.s
+src/LearningPanel.s: src/LearningPanel.cpp.s
+.PHONY : src/LearningPanel.s
 
 # target to generate assembly for a file
-src/EnglishTutor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.s
-.PHONY : src/EnglishTutor.cpp.s
+src/LearningPanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.s
+.PHONY : src/LearningPanel.cpp.s
+
+src/MainPanel.o: src/MainPanel.cpp.o
+.PHONY : src/MainPanel.o
+
+# target to build an object file
+src/MainPanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o
+.PHONY : src/MainPanel.cpp.o
+
+src/MainPanel.i: src/MainPanel.cpp.i
+.PHONY : src/MainPanel.i
+
+# target to preprocess a source file
+src/MainPanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.i
+.PHONY : src/MainPanel.cpp.i
+
+src/MainPanel.s: src/MainPanel.cpp.s
+.PHONY : src/MainPanel.s
+
+# target to generate assembly for a file
+src/MainPanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.s
+.PHONY : src/MainPanel.cpp.s
 
 src/MainWindow.o: src/MainWindow.cpp.o
 .PHONY : src/MainWindow.o
@@ -178,6 +202,30 @@ src/MainWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.s
 .PHONY : src/MainWindow.cpp.s
 
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -187,12 +235,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... EnglishTutor"
-	@echo "... src/EnglishTutor.o"
-	@echo "... src/EnglishTutor.i"
-	@echo "... src/EnglishTutor.s"
+	@echo "... src/LearningPanel.o"
+	@echo "... src/LearningPanel.i"
+	@echo "... src/LearningPanel.s"
+	@echo "... src/MainPanel.o"
+	@echo "... src/MainPanel.i"
+	@echo "... src/MainPanel.s"
 	@echo "... src/MainWindow.o"
 	@echo "... src/MainWindow.i"
 	@echo "... src/MainWindow.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

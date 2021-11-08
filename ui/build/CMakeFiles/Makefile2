@@ -81,12 +81,12 @@ clean: CMakeFiles/EnglishTutor.dir/clean
 CMakeFiles/EnglishTutor.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target EnglishTutor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target EnglishTutor"
 .PHONY : CMakeFiles/EnglishTutor.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/EnglishTutor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Practice-of-Projects/ui/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Practice-of-Projects/ui/build/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/EnglishTutor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kde/Practice-of-Projects/ui/build/CMakeFiles 0
 .PHONY : CMakeFiles/EnglishTutor.dir/rule

@@ -1,6 +1,6 @@
+#include <iostream> //debug
 #include <QtWidgets>
 #include "MainWindow.h"
-#include <iostream> //debug
 
 int main(int argc, char **argv)
 {

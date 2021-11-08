@@ -9,32 +9,56 @@
         <translation type="vanished">設定</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="7"/>
-        <source>Setting0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="20"/>
         <source>button0</source>
         <translatorcomment>按鈕0</translatorcomment>
-        <translation>按鈕0</translation>
+        <translation type="vanished">按鈕0</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="22"/>
         <source>button1</source>
-        <translation>按鈕1</translation>
+        <translation type="vanished">按鈕1</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="24"/>
         <source>button2</source>
         <translatorcomment>按鈕2</translatorcomment>
-        <translation>按鈕2</translation>
+        <translation type="vanished">按鈕2</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="26"/>
         <source>button3</source>
         <translatorcomment>按紐3</translatorcomment>
-        <translation>按鈕3</translation>
+        <translation type="vanished">按鈕3</translation>
+    </message>
+</context>
+<context>
+    <name>QMenu</name>
+    <message>
+        <source>Setting</source>
+        <translation type="obsolete">設定</translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="9"/>
+        <source>&amp;Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QPushButton</name>
+    <message>
+        <location filename="../../src/MainPanel.cpp" line="9"/>
+        <source>button0</source>
+        <translation type="unfinished">按鈕0</translation>
+    </message>
+    <message>
+        <location filename="../../src/MainPanel.cpp" line="10"/>
+        <source>button1</source>
+        <translation type="unfinished">按鈕1</translation>
+    </message>
+    <message>
+        <source>button2</source>
+        <translation type="obsolete">按鈕2</translation>
+    </message>
+    <message>
+        <source>button3</source>
+        <translation type="obsolete">按鈕3</translation>
     </message>
 </context>
 </TS>

@@ -82,39 +82,51 @@ en_us.qm: ../assets/lang/en_us.ts
 	/usr/lib/qt5/bin/lrelease /home/kde/Practice-of-Projects/ui/assets/lang/en_us.ts -qm /home/kde/Practice-of-Projects/ui/build/en_us.qm
 
 ../assets/lang/zh_tw.ts: CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+../assets/lang/zh_tw.ts: ../include/LearningPanel.h
+../assets/lang/zh_tw.ts: ../include/MainPanel.h
 ../assets/lang/zh_tw.ts: ../include/MainWindow.h
-../assets/lang/zh_tw.ts: ../src/EnglishTutor.cpp
+../assets/lang/zh_tw.ts: ../src/LearningPanel.cpp
+../assets/lang/zh_tw.ts: ../src/MainPanel.cpp
 ../assets/lang/zh_tw.ts: ../src/MainWindow.cpp
+../assets/lang/zh_tw.ts: ../src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating ../assets/lang/zh_tw.ts"
 	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/CMakeFiles/zh_tw.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/zh_tw.ts
 
 ../assets/lang/zh_cn.ts: CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+../assets/lang/zh_cn.ts: ../include/LearningPanel.h
+../assets/lang/zh_cn.ts: ../include/MainPanel.h
 ../assets/lang/zh_cn.ts: ../include/MainWindow.h
-../assets/lang/zh_cn.ts: ../src/EnglishTutor.cpp
+../assets/lang/zh_cn.ts: ../src/LearningPanel.cpp
+../assets/lang/zh_cn.ts: ../src/MainPanel.cpp
 ../assets/lang/zh_cn.ts: ../src/MainWindow.cpp
+../assets/lang/zh_cn.ts: ../src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating ../assets/lang/zh_cn.ts"
 	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/CMakeFiles/zh_cn.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/zh_cn.ts
 
 ../assets/lang/en_us.ts: CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+../assets/lang/en_us.ts: ../include/LearningPanel.h
+../assets/lang/en_us.ts: ../include/MainPanel.h
 ../assets/lang/en_us.ts: ../include/MainWindow.h
-../assets/lang/en_us.ts: ../src/EnglishTutor.cpp
+../assets/lang/en_us.ts: ../src/LearningPanel.cpp
+../assets/lang/en_us.ts: ../src/MainPanel.cpp
 ../assets/lang/en_us.ts: ../src/MainWindow.cpp
+../assets/lang/en_us.ts: ../src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating ../assets/lang/en_us.ts"
 	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/CMakeFiles/en_us.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/en_us.ts
 
-CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o: CMakeFiles/EnglishTutor.dir/flags.make
-CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o: ../src/EnglishTutor.cpp
-CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o: CMakeFiles/EnglishTutor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o -MF CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o.d -o CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o -c /home/kde/Practice-of-Projects/ui/src/EnglishTutor.cpp
+CMakeFiles/EnglishTutor.dir/src/main.cpp.o: CMakeFiles/EnglishTutor.dir/flags.make
+CMakeFiles/EnglishTutor.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/EnglishTutor.dir/src/main.cpp.o: CMakeFiles/EnglishTutor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/EnglishTutor.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EnglishTutor.dir/src/main.cpp.o -MF CMakeFiles/EnglishTutor.dir/src/main.cpp.o.d -o CMakeFiles/EnglishTutor.dir/src/main.cpp.o -c /home/kde/Practice-of-Projects/ui/src/main.cpp
 
-CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kde/Practice-of-Projects/ui/src/EnglishTutor.cpp > CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.i
+CMakeFiles/EnglishTutor.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EnglishTutor.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kde/Practice-of-Projects/ui/src/main.cpp > CMakeFiles/EnglishTutor.dir/src/main.cpp.i
 
-CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kde/Practice-of-Projects/ui/src/EnglishTutor.cpp -o CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.s
+CMakeFiles/EnglishTutor.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EnglishTutor.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kde/Practice-of-Projects/ui/src/main.cpp -o CMakeFiles/EnglishTutor.dir/src/main.cpp.s
 
 CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: CMakeFiles/EnglishTutor.dir/flags.make
 CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: ../src/MainWindow.cpp
@@ -130,22 +142,54 @@ CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kde/Practice-of-Projects/ui/src/MainWindow.cpp -o CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.s
 
+CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o: CMakeFiles/EnglishTutor.dir/flags.make
+CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o: ../src/MainPanel.cpp
+CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o: CMakeFiles/EnglishTutor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o -MF CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o.d -o CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o -c /home/kde/Practice-of-Projects/ui/src/MainPanel.cpp
+
+CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kde/Practice-of-Projects/ui/src/MainPanel.cpp > CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.i
+
+CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kde/Practice-of-Projects/ui/src/MainPanel.cpp -o CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.s
+
+CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o: CMakeFiles/EnglishTutor.dir/flags.make
+CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o: ../src/LearningPanel.cpp
+CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o: CMakeFiles/EnglishTutor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o -MF CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o.d -o CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o -c /home/kde/Practice-of-Projects/ui/src/LearningPanel.cpp
+
+CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kde/Practice-of-Projects/ui/src/LearningPanel.cpp > CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.i
+
+CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kde/Practice-of-Projects/ui/src/LearningPanel.cpp -o CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.s
+
 # Object files for target EnglishTutor
 EnglishTutor_OBJECTS = \
-"CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o" \
-"CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o"
+"CMakeFiles/EnglishTutor.dir/src/main.cpp.o" \
+"CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o" \
+"CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o" \
+"CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o"
 
 # External object files for target EnglishTutor
 EnglishTutor_EXTERNAL_OBJECTS =
 
-EnglishTutor: CMakeFiles/EnglishTutor.dir/src/EnglishTutor.cpp.o
+EnglishTutor: CMakeFiles/EnglishTutor.dir/src/main.cpp.o
 EnglishTutor: CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o
+EnglishTutor: CMakeFiles/EnglishTutor.dir/src/MainPanel.cpp.o
+EnglishTutor: CMakeFiles/EnglishTutor.dir/src/LearningPanel.cpp.o
 EnglishTutor: CMakeFiles/EnglishTutor.dir/build.make
 EnglishTutor: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
 EnglishTutor: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
 EnglishTutor: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
 EnglishTutor: CMakeFiles/EnglishTutor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable EnglishTutor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable EnglishTutor"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/EnglishTutor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
