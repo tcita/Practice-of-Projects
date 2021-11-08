@@ -41,8 +41,6 @@ add_executable(
   ${QM_FILES}
   src/main.cpp
   "src/MainWindow.cpp"
-  "src/MainPanel.cpp"
-  "src/LearningPanel.cpp"
 )
 
 target_include_directories(

@@ -4,7 +4,7 @@
 <context>
     <name>QMenu</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="9"/>
+        <location filename="../../src/MainWindow.cpp" line="8"/>
         <source>&amp;Setting</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12,13 +12,13 @@
 <context>
     <name>QPushButton</name>
     <message>
-        <location filename="../../src/MainPanel.cpp" line="9"/>
-        <source>button0</source>
+        <location filename="../../src/MainWindow.cpp" line="22"/>
+        <source>Learning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainPanel.cpp" line="10"/>
-        <source>button1</source>
+        <location filename="../../src/MainWindow.cpp" line="33"/>
+        <source>Typing</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

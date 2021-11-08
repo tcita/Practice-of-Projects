@@ -1,0 +1,7 @@
+# Hashes of file build rules.
+5c3e7d82310a71a861839da396bbf3ae ../../assets/lang/en_us.ts
+2bfef6840b95c6c3cbba000ba26d052e ../../assets/lang/zh_cn.ts
+054153ac6e011b6e61ef8185c7b06eef ../../assets/lang/zh_tw.ts
+e58867c474ed2cccb3cbf81620a98232 en_us.qm
+3d57f263087b14f0cee9ef308c92b7e9 zh_cn.qm
+8c8faa8606e3e9ce6d855c28aee13efe zh_tw.qm
