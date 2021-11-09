@@ -1,3 +1,0 @@
-/home/kde/Desktop/Practice-of-Projects/build/CMakeFiles/rebuild_cache.dir
-/home/kde/Desktop/Practice-of-Projects/build/CMakeFiles/english-helper.dir
-/home/kde/Desktop/Practice-of-Projects/build/CMakeFiles/edit_cache.dir
