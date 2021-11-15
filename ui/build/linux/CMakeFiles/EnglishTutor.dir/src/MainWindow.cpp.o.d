@@ -291,4 +291,6 @@ CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: \
  /home/kde/Practice-of-Projects/ui/include/MainWindow.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtabwidget.h \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/QTranslator \
+ /usr/include/x86_64-linux-gnu/qt5/QtCore/qtranslator.h

@@ -4,7 +4,8 @@
 #include <QPushButton>
 #include "MainWindow.h"
 
-MainWindow::MainWindow()
+MainWindow::MainWindow(QTranslator* translator)
+:translator(translator)
 {
   // Set icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
@@ -13,10 +14,44 @@ MainWindow::MainWindow()
   {
     settingMenu = menuBar()->addMenu(QMenu::tr("&Setting"));
 
+    // language
     {
-      settingMenu->addMenu(QMenu::tr("&Language")); //debug!!
+      QMenu *languageMenu = new QMenu(QMenu::tr("&Language"));
+      settingMenu->addMenu(languageMenu);
 
+      QAction *chineseTraditional = new QAction(QAction::tr("Chinese (Traditional)"));
+      languageMenu->addAction(chineseTraditional);
+      QObject::connect(chineseTraditional, &QAction::triggered,
+        [=]()
+        {
+          std::cout << chineseTraditional->text().toStdString() << " action triggered\n";
+
+          translator->load("zh_tw"); //debug!!
+        }
+      );
+
+      QAction *chineseSimplified = new QAction(QAction::tr("Chinese (Simplified)"));
+      languageMenu->addAction(chineseSimplified);
+      QObject::connect(chineseSimplified, &QAction::triggered,
+        [=]()
+        {
+          std::cout << chineseSimplified->text().toStdString() << " action triggered\n";
+
+          translator->load("zh_cn"); //debug!!
+        }
+      );
     }
+
+    QAction *mainPanelAction = new QAction(QAction::tr("Main Panel"), this);
+    settingMenu->addAction(mainPanelAction);
+    QObject::connect(mainPanelAction, &QAction::triggered,
+      [=, this]()
+      {
+        std::cout << mainPanelAction->text().toStdString() << " action triggered\n";
+
+        this->setCentralWidget(mainPanel);
+      }
+    );
 
     QAction *helloAction = new QAction(QAction::tr("&hello"), this);
     settingMenu->addAction(helloAction);
