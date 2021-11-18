@@ -4,40 +4,30 @@
 <context>
     <name>QAction</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="22"/>
+        <location filename="../../src/MainWindow.cpp" line="16"/>
         <source>Chinese (Traditional)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="33"/>
+        <location filename="../../src/MainWindow.cpp" line="17"/>
         <source>Chinese (Simplified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="44"/>
+        <location filename="../../src/MainWindow.cpp" line="18"/>
         <source>Main Panel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="55"/>
-        <source>&amp;hello</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="65"/>
-        <source>&amp;world</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QMenu</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="15"/>
+        <location filename="../../src/MainWindow.cpp" line="13"/>
         <source>&amp;Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="19"/>
+        <location filename="../../src/MainWindow.cpp" line="14"/>
         <source>&amp;Language</source>
         <translation type="unfinished"></translation>
     </message>
@@ -45,12 +35,12 @@
 <context>
     <name>QPushButton</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="82"/>
+        <location filename="../../src/MainWindow.cpp" line="32"/>
         <source>Learning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="93"/>
+        <location filename="../../src/MainWindow.cpp" line="33"/>
         <source>Typing</source>
         <translation type="unfinished"></translation>
     </message>
