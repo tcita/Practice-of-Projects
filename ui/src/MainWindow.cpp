@@ -10,30 +10,45 @@ MainWindow::MainWindow(QTranslator* translator)
   // Set icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
 
-  QMenu *settingMenu = menuBar()->addMenu(QMenu::tr("&Setting"));
-  QMenu *languageMenu = new QMenu(QMenu::tr("&Language"));
-
-  QAction *zhTwAction = new QAction(QAction::tr("Chinese (Traditional)"), this);
-  QAction *zhCnAction = new QAction(QAction::tr("Chinese (Simplified)"), this);
-  QAction *mainPanelAction = new QAction(QAction::tr("Main Panel"), this);
-
-  settingMenu->addMenu(languageMenu);
-
-  settingMenu->addAction(mainPanelAction);
-  languageMenu->addAction(zhTwAction);
-  languageMenu->addAction(zhCnAction);
-
+  // Init widgets
   QWidget *mainPanel = new QWidget();
   QWidget *healthPanel = new QWidget();
   QWidget *sportPanel = new QWidget();
   QWidget *travelPanel = new QWidget();
   QWidget *worldPanel = new QWidget();
 
+  // Init menu
+  QMenu *settingMenu = menuBar()->addMenu(QMenu::tr("&Setting"));
+  QMenu *languageMenu = new QMenu(QMenu::tr("&Language"));
+
+  // Init menu action
+  QAction *zhTwAction = new QAction(QAction::tr("Chinese (Traditional)"), this);
+  QAction *zhCnAction = new QAction(QAction::tr("Chinese (Simplified)"), this);
+  QAction *mainPanelAction = new QAction(QAction::tr("Main Panel"), this);
+
+  // Init button
   QPushButton *learningPanelButton = new QPushButton(QPushButton::tr("Learning"));
   QPushButton *typingPanelButton = new QPushButton(QPushButton::tr("Typing"));
 
+  // Set central widget of main window
+  this->setCentralWidget(mainPanel);
+
+  // Add sub menu to menu
+  settingMenu->addMenu(languageMenu);
+
+  // Add menu action to menu
+  settingMenu->addAction(mainPanelAction);
+  languageMenu->addAction(zhTwAction);
+  languageMenu->addAction(zhCnAction);
+
+  // Add layout
   QGridLayout *mainPanelLayout = new QGridLayout();
   mainPanelLayout->addWidget(learningPanelButton, 0, 0);
+
+  // Set main panel layout
+  mainPanel->setLayout(mainPanelLayout);
+
+  // 
 
   QObject::connect(zhTwAction, SIGNAL(triggered()), this, SLOT(MainWindow::setLanguageZhTw()));
   QObject::connect(zhCnAction, &QAction::triggered, this, &MainWindow::setLanguageZhCn);
