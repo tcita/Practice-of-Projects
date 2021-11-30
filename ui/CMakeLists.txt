@@ -38,7 +38,7 @@ qt_create_translation(
 #
 add_executable(
   ${CMAKE_PROJECT_NAME}
-  ${QM_FILES}
+#  ${QM_FILES}
   src/main.cpp
   "src/MainWindow.cpp"
 )
