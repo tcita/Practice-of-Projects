@@ -4,17 +4,17 @@
 <context>
     <name>QAction</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="16"/>
+        <location filename="../../src/MainWindow.cpp" line="25"/>
         <source>Chinese (Traditional)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="17"/>
+        <location filename="../../src/MainWindow.cpp" line="26"/>
         <source>Chinese (Simplified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="18"/>
+        <location filename="../../src/MainWindow.cpp" line="27"/>
         <source>Main Panel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -22,12 +22,12 @@
 <context>
     <name>QMenu</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="13"/>
+        <location filename="../../src/MainWindow.cpp" line="21"/>
         <source>&amp;Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="14"/>
+        <location filename="../../src/MainWindow.cpp" line="22"/>
         <source>&amp;Language</source>
         <translation type="unfinished"></translation>
     </message>
@@ -35,12 +35,12 @@
 <context>
     <name>QPushButton</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="32"/>
+        <location filename="../../src/MainWindow.cpp" line="30"/>
         <source>Learning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="33"/>
+        <location filename="../../src/MainWindow.cpp" line="31"/>
         <source>Typing</source>
         <translation type="unfinished"></translation>
     </message>

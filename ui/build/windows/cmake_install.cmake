@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/luste/Documents/GitHub/Practice-of-Projects/ui
+# Install script for directory: C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Qt/Tools/mingw810_64/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/objdump.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/luste/Documents/GitHub/Practice-of-Projects/ui/build/windows/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/build/windows/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
