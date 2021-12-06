@@ -18,10 +18,12 @@ public:
 
   // Init widgets
   QWidget *mainPanel = new QWidget();
+  QWidget *articalPanel = new QWidget();
   QWidget *healthPanel = new QWidget();
   QWidget *sportPanel = new QWidget();
   QWidget *travelPanel = new QWidget();
   QWidget *worldPanel = new QWidget();
+  QWidget *typingPanel = new QWidget();
 
   // Init menu
   QMenu *settingMenu = this->menuBar()->addMenu(QMenu::tr("Setting"));
@@ -32,16 +34,19 @@ public:
   QAction *zhTwAction = languageMenu->addAction(QAction::tr("Chinese (Traditional)"));
   QAction *zhCnAction = languageMenu->addAction(QAction::tr("Chinese (Simplified)"));
   QAction *mainPanelAction = switchToMenu->addAction(QAction::tr("Main Panel"));
-  QAction *healthPanelAction = switchToMenu->addAction(QAction::tr("Health Panel"));
-  QAction *sportPanelAction = switchToMenu->addAction(QAction::tr("Sport Panel"));
-  QAction *travelPanelAction = switchToMenu->addAction(QAction::tr("Travel Panel"));
-  QAction *worldPanelAction = switchToMenu->addAction(QAction::tr("World Panel"));
+  QAction *articalPanelAction = switchToMenu->addAction(QAction::tr("Artical Panel"));
+  QAction *typingPanelAction = switchToMenu->addAction(QAction::tr("Typing Panel"));
+
+  // Init toolbar
+  // QToolBar *articalPanelToolBar = new QToolBar("articalPanelToolBar");
 
   // Init button
+  QPushButton *articalPanelButton = new QPushButton(QPushButton::tr("Artical"));
   QPushButton *healthPanelButton = new QPushButton(QPushButton::tr("Health"));
   QPushButton *sportPanelButton = new QPushButton(QPushButton::tr("Sport"));
   QPushButton *travelPanelButton = new QPushButton(QPushButton::tr("Travel"));
   QPushButton *worldPanelButton = new QPushButton(QPushButton::tr("World"));
+  QPushButton *typingPanelButton = new QPushButton(QPushButton::tr("Typing"));
 
   // Init text edit
   QTextEdit *healthPanelTextEdit = new QTextEdit();
@@ -60,6 +65,10 @@ public:
 
   // Change to main panel
   void changeMainPanel();
+  // Change to typing panel
+  void changeTypingPanel();
+  // Change to artical panel
+  void changeArticalPanel();
   // Change to health panel
   void changeHealthPanel();
   // Change to sport panel
