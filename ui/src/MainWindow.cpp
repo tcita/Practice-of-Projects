@@ -4,8 +4,11 @@
 #include <QGridLayout>
 #include <QVBoxLayout>
 
-MainWindow::MainWindow()
+MainWindow::MainWindow(QTranslator *translator)
 {
+  // Set translator
+  this->translator = translator;
+
   // Set icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
 
@@ -69,7 +72,7 @@ void MainWindow::setLanguageZhTw(int n)
 {
   // std::cout << "MainWindow::setLanguageZhTw()\n";
   std::cout << "MainWindow::setLanguageZhTw()" << n << "\n";
-  this->removeTranslator(translator);
+  // this->removeTranslator(translator);
 }
 
 void MainWindow::setLanguageZhCn()

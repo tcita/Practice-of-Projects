@@ -52,6 +52,7 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.cpp")
 set(OLD_GLOB
   "/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+  "/home/kde/Practice-of-Projects/ui/build/windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "/home/kde/Practice-of-Projects/ui/src/MainWindow.cpp"
   "/home/kde/Practice-of-Projects/ui/src/main.cpp"
   )

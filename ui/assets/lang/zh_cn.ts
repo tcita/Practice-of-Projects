@@ -4,44 +4,79 @@
 <context>
     <name>QAction</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="25"/>
+        <location filename="../../include/MainWindow.h" line="32"/>
         <source>Chinese (Traditional)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="26"/>
+        <location filename="../../include/MainWindow.h" line="33"/>
         <source>Chinese (Simplified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="27"/>
+        <location filename="../../include/MainWindow.h" line="34"/>
         <source>Main Panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="35"/>
+        <source>Health Panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="36"/>
+        <source>Sport Panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="37"/>
+        <source>Travel Panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="38"/>
+        <source>World Panel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QMenu</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="21"/>
-        <source>&amp;Setting</source>
+        <location filename="../../include/MainWindow.h" line="27"/>
+        <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="22"/>
-        <source>&amp;Language</source>
+        <location filename="../../include/MainWindow.h" line="28"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="29"/>
+        <source>Switch To</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QPushButton</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="30"/>
-        <source>Learning</source>
+        <location filename="../../include/MainWindow.h" line="41"/>
+        <source>Health</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="31"/>
-        <source>Typing</source>
+        <location filename="../../include/MainWindow.h" line="42"/>
+        <source>Sport</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="43"/>
+        <source>Travel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="44"/>
+        <source>World</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

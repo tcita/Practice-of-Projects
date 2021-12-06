@@ -50,7 +50,7 @@ public:
   QTextEdit *worldPanelTextEdit = new QTextEdit();
 
   // Construtor
-  MainWindow();
+  MainWindow(QTranslator *translator);
 
   // Set language to zh_tw
   // void setLanguageZhTw();
