@@ -1,96 +1,114 @@
-#include <iostream> //debug
-#include <QMenuBar>
-#include <QGridLayout>
-#include <QPushButton>
 #include "MainWindow.h"
 
-MainWindow::MainWindow(QTranslator* translator)
-:translator(translator)
+#include <iostream> //debug
+#include <QGridLayout>
+#include <QVBoxLayout>
+
+MainWindow::MainWindow(QTranslator *translator)
 {
-  // Set icon
+  // Set translator
+  this->translator = translator;
+
+  // Setup icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
 
-  // Init widgets
-  QWidget *mainPanel = new QWidget();
-  QWidget *healthPanel = new QWidget();
-  QWidget *sportPanel = new QWidget();
-  QWidget *travelPanel = new QWidget();
-  QWidget *worldPanel = new QWidget();
+  // Setup language
+  translator->load("zh_tw");
 
-  // Init menu
-  QMenu *settingMenu = menuBar()->addMenu(QMenu::tr("&Setting"));
-  QMenu *languageMenu = new QMenu(QMenu::tr("&Language"));
+  // Setup menu bar
+  mainMenuBar->addMenu(settingMenu);
+  settingMenu->addMenu(languageMenu);
+  mainMenuBar->addMenu(switchMenu);
+  languageMenu->addAction(enUsAction);
+  languageMenu->addAction(zhCnAction);
+  languageMenu->addAction(zhTwAction);
+  switchMenu->addAction(mainPanelAction);
+  switchMenu->addAction(articalTypeSelectPanelAction);
+  switchMenu->addAction(typingPanelAction);
 
-  // Init menu action
-  QAction *zhTwAction = new QAction(QAction::tr("Chinese (Traditional)"), this);
-  QAction *zhCnAction = new QAction(QAction::tr("Chinese (Simplified)"), this);
-  QAction *mainPanelAction = new QAction(QAction::tr("Main Panel"), this);
-
-  // Init button
-  QPushButton *learningPanelButton = new QPushButton(QPushButton::tr("Learning"));
-  QPushButton *typingPanelButton = new QPushButton(QPushButton::tr("Typing"));
-
-  // Set central widget of main window
+  // Set central widget
   this->setCentralWidget(mainPanel);
 
-  // Add sub menu to menu
-  settingMenu->addMenu(languageMenu);
-
-  // Add menu action to menu
-  settingMenu->addAction(mainPanelAction);
-  languageMenu->addAction(zhTwAction);
-  languageMenu->addAction(zhCnAction);
-
-  // Add layout
+  // Setup main panel
   QGridLayout *mainPanelLayout = new QGridLayout();
-  mainPanelLayout->addWidget(learningPanelButton, 0, 0);
-
-  // Set main panel layout
   mainPanel->setLayout(mainPanelLayout);
+  mainPanelLayout->addWidget(articalTypeSelectPanelButton, 0, 0);
+  mainPanelLayout->addWidget(typingPanelButton, 0, 1);
 
-  // 
+  // Setup artical type select panel
+  QGridLayout *articalTypeSelectPanelLayout = new QGridLayout();
+  articalTypeSelectPanel->setLayout(articalTypeSelectPanelLayout);
+  articalTypeSelectPanelLayout-> addWidget(articalPanelHealthButton, 0, 0);
+  articalTypeSelectPanelLayout-> addWidget(articalPanelSportButton, 1, 0);
+  articalTypeSelectPanelLayout-> addWidget(articalPanelTravelButton, 0, 1);
+  articalTypeSelectPanelLayout-> addWidget(articalPanelWorldButton, 1, 1);
 
-  QObject::connect(zhTwAction, SIGNAL(triggered()), this, SLOT(MainWindow::setLanguageZhTw()));
-  QObject::connect(zhCnAction, &QAction::triggered, this, &MainWindow::setLanguageZhCn);
-  // QObject::connect(mainPanelAction, &QAction::triggered, changeMainPanel);
-  // QObject::connect(learningPanelButton, &QPushButton::clicked, changeHealthPanel);
-  // QObject::connect(learningPanelButton, &QPushButton::clicked, changeSportPanel);
-  // QObject::connect(learningPanelButton, &QPushButton::clicked, changeTravelPanel);
-  // QObject::connect(learningPanelButton, &QPushButton::clicked, changeWorldPanel);
+
+  // Setup artical panel
+  QGridLayout *articalPanelLayout = new QGridLayout();
+  articalPanel->setLayout(articalPanelLayout);
+  articalPanelLayout->setColumnMinimumWidth(0, 200);
+  articalPanelLayout->addWidget(articalPanelTextBrowser, 1, 0);
+
+  // Setup typing panel
+  QGridLayout *typingPanelLayout = new QGridLayout();
+  typingPanel->setLayout(typingPanelLayout);
+
+  // Connect action callback
+  // QObject::connect(zhTwAction, SIGNAL(triggered()), this, SLOT(MainWindow::setLanguageZhTw()));
+  // QObject::connect(zhTwAction, &QAction::triggered, this, &MainWindow::setLanguageZhTw, 100);
+  QObject::connect(enUsAction, &QAction::triggered, [this]{this->setLanguage("en_us");});
+  QObject::connect(zhCnAction, &QAction::triggered, [this]{this->setLanguage("zh_cn");});
+  QObject::connect(zhTwAction, &QAction::triggered, [this]{this->setLanguage("zh_tw");});
+  QObject::connect(mainPanelAction, &QAction::triggered, [this]{this->switchToMainPanel();});
+  QObject::connect(articalTypeSelectPanelAction, &QAction::triggered, [this]{this->switchToArticalTypeSelectPanel();});
+  QObject::connect(typingPanelAction, &QAction::triggered, [this]{this->switchToTypingPanel();});
+
+  // Connect button callback
+  QObject::connect(articalTypeSelectPanelButton, &QPushButton::clicked, [this]{this->switchToArticalTypeSelectPanel();});
+  QObject::connect(articalPanelHealthButton, &QPushButton::clicked, [this]{this->switchToArticalPanel("health");});
+  QObject::connect(articalPanelSportButton, &QPushButton::clicked, [this]{this->switchToArticalPanel("sport");});
+  QObject::connect(articalPanelTravelButton, &QPushButton::clicked, [this]{this->switchToArticalPanel("travel");});
+  QObject::connect(articalPanelWorldButton, &QPushButton::clicked, [this]{this->switchToArticalPanel("world");});
+  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{this->switchToTypingPanel();});
 }
 
-void MainWindow::setLanguageZhTw(int n) //debug!!
+void MainWindow::setLanguage(const std::string &languageType)
 {
-  // std::cout << "MainWindow::setLanguageZhTw()\n";
-  std::cout << "MainWindow::setLanguageZhTw()" << n << "\n";
+  std::cout << "MainWindow::setLanguage(\"" << languageType << "\")\n";
+  // this->removeTranslator(translator);
 }
 
-void MainWindow::setLanguageZhCn()
+void MainWindow::switchToMainPanel()
 {
-  std::cout << "MainWindow::setLanguageZhCn()\n";
+  std::cout << "MainWindow::switchToMainPanel()\n";
+  this->centralWidget()->setParent(nullptr);
+  this->setCentralWidget(mainPanel);
 }
 
-void MainWindow::changeMainPanel()
+void MainWindow::switchToArticalTypeSelectPanel()
 {
-  std::cout << "MainWindow::changeMainPanel()\n";
+  std::cout << "MainWindow::switchToArticalTypeSelectPanel()\n";
+  this->centralWidget()->setParent(nullptr);
+  this->setCentralWidget(articalTypeSelectPanel);
 }
 
-void MainWindow::changeHealthPanel()
+void MainWindow::switchToArticalPanel(const std::string &articalType)
 {
-  std::cout << "MainWindow::changeHealthPanel()\n";
+  std::cout << "MainWindow::switchToArticalPanel(\"" << articalType << "\")\n";
+  this->centralWidget()->setParent(nullptr);
+  this->setCentralWidget(articalPanel);
+  if(articalType == "health") {
+    articalPanelTextBrowser->setText("test string");
+  }
+  else {
+    articalPanelTextBrowser->setText("");
+  }
 }
 
-void MainWindow::changeSportPanel()
+void MainWindow::switchToTypingPanel()
 {
-  std::cout << "MainWindow::changeSportPanel()\n";
-}
-
-void MainWindow::changeTravelPanel()
-{
-  std::cout << "MainWindow::changeTravelPanel()\n";
-}
-
-void MainWindow::changeWorldPanel()
-{
-  std::cout << "MainWindow::changeWorldPanel()\n";
+  std::cout << "MainWindow::switchToTypingPanel()\n";
+  this->centralWidget()->setParent(nullptr);
+  this->setCentralWidget(typingPanel);
 }

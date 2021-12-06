@@ -82,6 +82,7 @@ en_us.qm: ../../assets/lang/en_us.ts
 	/usr/lib/qt5/bin/lrelease /home/kde/Practice-of-Projects/ui/assets/lang/en_us.ts -qm /home/kde/Practice-of-Projects/ui/build/linux/en_us.qm
 
 ../../assets/lang/zh_tw.ts: CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+../../assets/lang/zh_tw.ts: ../windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp
 ../../assets/lang/zh_tw.ts: ../../include/MainWindow.h
 ../../assets/lang/zh_tw.ts: ../../src/MainWindow.cpp
 ../../assets/lang/zh_tw.ts: ../../src/main.cpp
@@ -89,6 +90,7 @@ en_us.qm: ../../assets/lang/en_us.ts
 	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/zh_tw.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/zh_tw.ts
 
 ../../assets/lang/zh_cn.ts: CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+../../assets/lang/zh_cn.ts: ../windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp
 ../../assets/lang/zh_cn.ts: ../../include/MainWindow.h
 ../../assets/lang/zh_cn.ts: ../../src/MainWindow.cpp
 ../../assets/lang/zh_cn.ts: ../../src/main.cpp
@@ -96,6 +98,7 @@ en_us.qm: ../../assets/lang/en_us.ts
 	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/zh_cn.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/zh_cn.ts
 
 ../../assets/lang/en_us.ts: CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp
+../../assets/lang/en_us.ts: ../windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp
 ../../assets/lang/en_us.ts: ../../include/MainWindow.h
 ../../assets/lang/en_us.ts: ../../src/MainWindow.cpp
 ../../assets/lang/en_us.ts: ../../src/main.cpp

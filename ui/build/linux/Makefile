@@ -118,24 +118,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named EnglishTutor
+# Target rules for targets named EnglishAssistant
 
 # Build rule for target.
-EnglishTutor: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 EnglishTutor
-.PHONY : EnglishTutor
+EnglishAssistant: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 EnglishAssistant
+.PHONY : EnglishAssistant
 
 # fast build rule for target.
-EnglishTutor/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/build
-.PHONY : EnglishTutor/fast
+EnglishAssistant/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/build
+.PHONY : EnglishAssistant/fast
 
 src/MainWindow.o: src/MainWindow.cpp.o
 .PHONY : src/MainWindow.o
 
 # target to build an object file
 src/MainWindow.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o
 .PHONY : src/MainWindow.cpp.o
 
 src/MainWindow.i: src/MainWindow.cpp.i
@@ -143,7 +143,7 @@ src/MainWindow.i: src/MainWindow.cpp.i
 
 # target to preprocess a source file
 src/MainWindow.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.i
 .PHONY : src/MainWindow.cpp.i
 
 src/MainWindow.s: src/MainWindow.cpp.s
@@ -151,7 +151,7 @@ src/MainWindow.s: src/MainWindow.cpp.s
 
 # target to generate assembly for a file
 src/MainWindow.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.s
 .PHONY : src/MainWindow.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -159,7 +159,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -167,7 +167,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -175,7 +175,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishTutor.dir/build.make CMakeFiles/EnglishTutor.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -186,7 +186,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... EnglishTutor"
+	@echo "... EnglishAssistant"
 	@echo "... src/MainWindow.o"
 	@echo "... src/MainWindow.i"
 	@echo "... src/MainWindow.s"

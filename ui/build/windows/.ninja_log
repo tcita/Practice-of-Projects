@@ -1,0 +1,22 @@
+# ninja log v5
+11	1348	6604124295438681	CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.obj	34a912ae32b9c022
+9	766	6604127019838026	CMakeFiles/EnglishTutor.dir/src/main.cpp.obj	e2d3f6bb11697fa8
+766	906	6604127021228336	EnglishTutor.exe	235ba016abdd8462
+5	52	6604077474447693	../../assets/lang/zh_tw.ts	8edca1e837d6a7cd
+5	52	6604077474447693	CMakeFiles/zh_tw.ts_lst_file	8edca1e837d6a7cd
+5	52	6604077474447693	C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/assets/lang/zh_tw.ts	8edca1e837d6a7cd
+5	52	6604077474447693	C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/build/windows/CMakeFiles/zh_tw.ts_lst_file	8edca1e837d6a7cd
+17	56	6604077474447693	../../assets/lang/en_us.ts	15b6228e28d083a8
+17	56	6604077474447693	CMakeFiles/en_us.ts_lst_file	15b6228e28d083a8
+17	56	6604077474447693	C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/assets/lang/en_us.ts	15b6228e28d083a8
+17	56	6604077474447693	C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/build/windows/CMakeFiles/en_us.ts_lst_file	15b6228e28d083a8
+15	59	6604077474447693	../../assets/lang/zh_cn.ts	a49f6a1e9d216a9f
+15	59	6604077474447693	CMakeFiles/zh_cn.ts_lst_file	a49f6a1e9d216a9f
+15	59	6604077474447693	C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/assets/lang/zh_cn.ts	a49f6a1e9d216a9f
+15	59	6604077474447693	C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/build/windows/CMakeFiles/zh_cn.ts_lst_file	a49f6a1e9d216a9f
+53	89	6604134232975521	zh_tw.qm	4468ad573e9e37fe
+53	89	6604134232975521	C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/build/windows/zh_tw.qm	4468ad573e9e37fe
+60	90	6604134232975521	zh_cn.qm	13d17c1b18879383
+60	90	6604134232975521	C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/build/windows/zh_cn.qm	13d17c1b18879383
+57	92	6604134232995526	en_us.qm	f7fd699d5489fd56
+57	92	6604134232995526	C:/Users/kde/Documents/GitHub/Practice-of-Projects/ui/build/windows/en_us.qm	f7fd699d5489fd56
