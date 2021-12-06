@@ -15,7 +15,7 @@ int main(int argc, char **argv)
   // translator.load("zh_cn");
   translator.load("zh_tw");
   std::cout << "isEmpty() " << translator.isEmpty() << "\n"; //debug
-  // std::cout << "language() " << translator.language().toStdString() << "\n"; //debug
+  std::cout << "language() " << translator.language().toStdString() << "\n"; //debug
   app.installTranslator(&translator);
 
   // Init main window
