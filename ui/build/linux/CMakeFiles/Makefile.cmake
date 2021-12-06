@@ -84,5 +84,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/EnglishTutor.dir/DependInfo.cmake"
+  "CMakeFiles/EnglishAssistant.dir/DependInfo.cmake"
   )

@@ -8,7 +8,8 @@
 #include <QMenuBar>
 #include <QAction>
 #include <QPushButton>
-#include <QTextEdit>
+#include <QTextBrowser>
+#include <QToolBar>
 
 // The application main window
 class MainWindow : public QMainWindow
@@ -16,67 +17,54 @@ class MainWindow : public QMainWindow
 public:
   QTranslator *translator = new QTranslator();
 
-  // Init widgets
+  // Init panel & widgets
   QWidget *mainPanel = new QWidget();
+  QWidget *articalTypeSelectPanel = new QWidget();
   QWidget *articalPanel = new QWidget();
-  QWidget *healthPanel = new QWidget();
-  QWidget *sportPanel = new QWidget();
-  QWidget *travelPanel = new QWidget();
-  QWidget *worldPanel = new QWidget();
   QWidget *typingPanel = new QWidget();
 
-  // Init menu
-  QMenu *settingMenu = this->menuBar()->addMenu(QMenu::tr("Setting"));
-  QMenu *languageMenu = settingMenu->addMenu(QMenu::tr("Language"));
-  QMenu *switchToMenu = this->menuBar()->addMenu(QMenu::tr("Switch To"));
+  // Init menu bar
+  QMenuBar *mainMenuBar = this->menuBar();
+  QMenu *settingMenu = new QMenu(QMenu::tr("Setting"));
+  QMenu *languageMenu = new QMenu(QMenu::tr("Language"));
+  QMenu *switchMenu = new QMenu(QMenu::tr("Switch To"));
 
   // Init menu action
-  QAction *zhTwAction = languageMenu->addAction(QAction::tr("Chinese (Traditional)"));
-  QAction *zhCnAction = languageMenu->addAction(QAction::tr("Chinese (Simplified)"));
-  QAction *mainPanelAction = switchToMenu->addAction(QAction::tr("Main Panel"));
-  QAction *articalPanelAction = switchToMenu->addAction(QAction::tr("Artical Panel"));
-  QAction *typingPanelAction = switchToMenu->addAction(QAction::tr("Typing Panel"));
+  QAction *enUsAction = new QAction(QAction::tr("English(US)"));
+  QAction *zhCnAction = new QAction(QAction::tr("Chinese(Simplified)"));
+  QAction *zhTwAction = new QAction(QAction::tr("Chinese(Traditional)"));
+  QAction *mainPanelAction = new QAction(QAction::tr("Main Panel"));
+  QAction *articalTypeSelectPanelAction = new QAction(QAction::tr("Artical Type Select Panel"));
+  QAction *typingPanelAction = new QAction(QAction::tr("Typing Panel"));
 
   // Init toolbar
-  // QToolBar *articalPanelToolBar = new QToolBar("articalPanelToolBar");
+  // QToolBar *articalPanelToolBar = this->addToolBar("articalPanelToolBar");
 
   // Init button
-  QPushButton *articalPanelButton = new QPushButton(QPushButton::tr("Artical"));
-  QPushButton *healthPanelButton = new QPushButton(QPushButton::tr("Health"));
-  QPushButton *sportPanelButton = new QPushButton(QPushButton::tr("Sport"));
-  QPushButton *travelPanelButton = new QPushButton(QPushButton::tr("Travel"));
-  QPushButton *worldPanelButton = new QPushButton(QPushButton::tr("World"));
+  QPushButton *articalTypeSelectPanelButton = new QPushButton(QPushButton::tr("Artical"));
+  QPushButton *articalPanelHealthButton = new QPushButton(QPushButton::tr("Health"));
+  QPushButton *articalPanelSportButton = new QPushButton(QPushButton::tr("Sport"));
+  QPushButton *articalPanelTravelButton = new QPushButton(QPushButton::tr("Travel"));
+  QPushButton *articalPanelWorldButton = new QPushButton(QPushButton::tr("World"));
   QPushButton *typingPanelButton = new QPushButton(QPushButton::tr("Typing"));
 
   // Init text edit
-  QTextEdit *healthPanelTextEdit = new QTextEdit();
-  QTextEdit *sportPanelTextEdit = new QTextEdit();
-  QTextEdit *travelPanelTextEdit = new QTextEdit();
-  QTextEdit *worldPanelTextEdit = new QTextEdit();
+  QTextBrowser *articalPanelTextBrowser = new QTextBrowser();
 
   // Construtor
   MainWindow(QTranslator *translator);
 
-  // Set language to zh_tw
-  // void setLanguageZhTw();
-  void setLanguageZhTw(int n); //debug!!
-  // Set language to zh_cn
-  void setLanguageZhCn();
+  // Set language
+  void setLanguage(const std::string &languageType);
 
-  // Change to main panel
-  void changeMainPanel();
-  // Change to typing panel
-  void changeTypingPanel();
-  // Change to artical panel
-  void changeArticalPanel();
-  // Change to health panel
-  void changeHealthPanel();
-  // Change to sport panel
-  void changeSportPanel();
-  // Change to travel panel
-  void changeTravelPanel();
-  // Change to world panel
-  void changeWorldPanel();
+  // Switch to main panel
+  void switchToMainPanel();
+  // Switch to typing panel
+  void switchToTypingPanel();
+  // Switch to artical type select Panel
+  void switchToArticalTypeSelectPanel();
+  // Switch to artical panel
+  void switchToArticalPanel(const std::string &articalType);
 };
 
 #endif

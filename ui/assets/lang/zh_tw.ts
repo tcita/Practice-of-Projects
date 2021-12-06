@@ -4,13 +4,18 @@
 <context>
     <name>QAction</name>
     <message>
+        <location filename="../../include/MainWindow.h" line="33"/>
+        <source>English(US)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../include/MainWindow.h" line="34"/>
-        <source>Chinese (Traditional)</source>
+        <source>Chinese(Simplified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="35"/>
-        <source>Chinese (Simplified)</source>
+        <source>Chinese(Traditional)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -20,7 +25,7 @@
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="37"/>
-        <source>Artical Panel</source>
+        <source>Artical Type Select Panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -36,33 +41,23 @@
         <translation type="obsolete">設定</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="29"/>
+        <location filename="../../include/MainWindow.h" line="28"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="30"/>
+        <location filename="../../include/MainWindow.h" line="29"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="31"/>
+        <location filename="../../include/MainWindow.h" line="30"/>
         <source>Switch To</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QPushButton</name>
-    <message>
-        <location filename="../../include/MainWindow.h" line="49"/>
-        <source>Typing</source>
-        <translation type="unfinished">打字</translation>
-    </message>
-    <message>
-        <location filename="../../include/MainWindow.h" line="44"/>
-        <source>Artical</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../../include/MainWindow.h" line="45"/>
         <source>Health</source>
@@ -81,6 +76,16 @@
     <message>
         <location filename="../../include/MainWindow.h" line="48"/>
         <source>World</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="49"/>
+        <source>Typing</source>
+        <translation type="unfinished">打字</translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="44"/>
+        <source>Artical</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

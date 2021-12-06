@@ -1,4 +1,4 @@
-CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: \
+CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o: \
  /home/kde/Practice-of-Projects/ui/src/MainWindow.cpp \
  /usr/include/stdc-predef.h \
  /home/kde/Practice-of-Projects/ui/include/MainWindow.h \
@@ -296,7 +296,8 @@ CMakeFiles/EnglishTutor.dir/src/MainWindow.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h \
- /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTextEdit \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTextBrowser \
+ /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtextbrowser.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qtextedit.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractscrollarea.h \
  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \

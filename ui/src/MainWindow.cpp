@@ -9,131 +9,106 @@ MainWindow::MainWindow(QTranslator *translator)
   // Set translator
   this->translator = translator;
 
-  // Set icon
+  // Setup icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
 
-  // Set language
+  // Setup language
   translator->load("zh_tw");
 
-  // Set central widget of main window
+  // Setup menu bar
+  mainMenuBar->addMenu(settingMenu);
+  settingMenu->addMenu(languageMenu);
+  mainMenuBar->addMenu(switchMenu);
+  languageMenu->addAction(enUsAction);
+  languageMenu->addAction(zhCnAction);
+  languageMenu->addAction(zhTwAction);
+  switchMenu->addAction(mainPanelAction);
+  switchMenu->addAction(articalTypeSelectPanelAction);
+  switchMenu->addAction(typingPanelAction);
+
+  // Set central widget
   this->setCentralWidget(mainPanel);
 
-  // Add menu action to menu
-  settingMenu->addAction(mainPanelAction);
-  languageMenu->addAction(zhTwAction);
-  languageMenu->addAction(zhCnAction);
-
-  // main panel layout
+  // Setup main panel
   QGridLayout *mainPanelLayout = new QGridLayout();
   mainPanel->setLayout(mainPanelLayout);
-  mainPanelLayout->addWidget(articalPanelButton, 0, 0);
+  mainPanelLayout->addWidget(articalTypeSelectPanelButton, 0, 0);
   mainPanelLayout->addWidget(typingPanelButton, 0, 1);
 
-  // artical panel layout
+  // Setup artical type select panel
+  QGridLayout *articalTypeSelectPanelLayout = new QGridLayout();
+  articalTypeSelectPanel->setLayout(articalTypeSelectPanelLayout);
+  articalTypeSelectPanelLayout-> addWidget(articalPanelHealthButton, 0, 0);
+  articalTypeSelectPanelLayout-> addWidget(articalPanelSportButton, 1, 0);
+  articalTypeSelectPanelLayout-> addWidget(articalPanelTravelButton, 0, 1);
+  articalTypeSelectPanelLayout-> addWidget(articalPanelWorldButton, 1, 1);
+
+
+  // Setup artical panel
   QGridLayout *articalPanelLayout = new QGridLayout();
   articalPanel->setLayout(articalPanelLayout);
-  articalPanelLayout->addWidget(healthPanelButton, 0, 0);
-  articalPanelLayout->addWidget(sportPanelButton, 0, 1);
-  articalPanelLayout->addWidget(travelPanelButton, 1, 0);
-  articalPanelLayout->addWidget(worldPanelButton, 1, 1);
+  articalPanelLayout->setColumnMinimumWidth(0, 200);
+  articalPanelLayout->addWidget(articalPanelTextBrowser, 1, 0);
 
+  // Setup typing panel
   QGridLayout *typingPanelLayout = new QGridLayout();
   typingPanel->setLayout(typingPanelLayout);
 
-  // health panel layout
-  QVBoxLayout *healthPanelLayout = new QVBoxLayout();
-  healthPanel->setLayout(healthPanelLayout);
-  healthPanelLayout->addWidget(healthPanelTextEdit);
-
-  // sport panel layout
-  QVBoxLayout *sportPanelLayout = new QVBoxLayout();
-  sportPanel->setLayout(sportPanelLayout);
-  sportPanelLayout->addWidget(sportPanelTextEdit);
-
-  // travel panel layout
-  QVBoxLayout *travelPanelLayout = new QVBoxLayout();
-  travelPanel->setLayout(travelPanelLayout);
-  travelPanelLayout->addWidget(travelPanelTextEdit);
-
-  // world panel layout
-  QVBoxLayout *worldPanelLayout = new QVBoxLayout();
-  worldPanel->setLayout(worldPanelLayout);
-  worldPanelLayout->addWidget(worldPanelTextEdit);
-
-  // Action callback
+  // Connect action callback
   // QObject::connect(zhTwAction, SIGNAL(triggered()), this, SLOT(MainWindow::setLanguageZhTw()));
-  QObject::connect(zhTwAction, &QAction::triggered, this, &MainWindow::setLanguageZhTw);
-  QObject::connect(zhCnAction, &QAction::triggered, this, &MainWindow::setLanguageZhCn);
-  QObject::connect(mainPanelAction, &QAction::triggered, this, &MainWindow::changeMainPanel);
-  QObject::connect(articalPanelAction, &QAction::triggered, this, &MainWindow::changeArticalPanel);
-  QObject::connect(typingPanelAction, &QAction::triggered, this, &MainWindow::changeTypingPanel);
+  // QObject::connect(zhTwAction, &QAction::triggered, this, &MainWindow::setLanguageZhTw, 100);
+  QObject::connect(enUsAction, &QAction::triggered, [this]{this->setLanguage("en_us");});
+  QObject::connect(zhCnAction, &QAction::triggered, [this]{this->setLanguage("zh_cn");});
+  QObject::connect(zhTwAction, &QAction::triggered, [this]{this->setLanguage("zh_tw");});
+  QObject::connect(mainPanelAction, &QAction::triggered, [this]{this->switchToMainPanel();});
+  QObject::connect(articalTypeSelectPanelAction, &QAction::triggered, [this]{this->switchToArticalTypeSelectPanel();});
+  QObject::connect(typingPanelAction, &QAction::triggered, [this]{this->switchToTypingPanel();});
 
-  // Button callback
-  QObject::connect(articalPanelButton, &QPushButton::clicked, this, &MainWindow::changeArticalPanel);
-  QObject::connect(healthPanelButton, &QPushButton::clicked, this, &MainWindow::changeHealthPanel);
-  QObject::connect(sportPanelButton, &QPushButton::clicked, this, &MainWindow::changeSportPanel);
-  QObject::connect(travelPanelButton, &QPushButton::clicked, this, &MainWindow::changeTravelPanel);
-  QObject::connect(worldPanelButton, &QPushButton::clicked, this, &MainWindow::changeWorldPanel);
-  QObject::connect(typingPanelButton, &QPushButton::clicked, this, &MainWindow::changeTypingPanel);
+  // Connect button callback
+  QObject::connect(articalTypeSelectPanelButton, &QPushButton::clicked, [this]{this->switchToArticalTypeSelectPanel();});
+  QObject::connect(articalPanelHealthButton, &QPushButton::clicked, [this]{this->switchToArticalPanel("health");});
+  QObject::connect(articalPanelSportButton, &QPushButton::clicked, [this]{this->switchToArticalPanel("sport");});
+  QObject::connect(articalPanelTravelButton, &QPushButton::clicked, [this]{this->switchToArticalPanel("travel");});
+  QObject::connect(articalPanelWorldButton, &QPushButton::clicked, [this]{this->switchToArticalPanel("world");});
+  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{this->switchToTypingPanel();});
 }
 
-void MainWindow::setLanguageZhTw(int n)
+void MainWindow::setLanguage(const std::string &languageType)
 {
-  // std::cout << "MainWindow::setLanguageZhTw()\n";
-  std::cout << "MainWindow::setLanguageZhTw()" << n << "\n";
+  std::cout << "MainWindow::setLanguage(\"" << languageType << "\")\n";
   // this->removeTranslator(translator);
 }
 
-void MainWindow::setLanguageZhCn()
+void MainWindow::switchToMainPanel()
 {
-  std::cout << "MainWindow::setLanguageZhCn()\n";
-}
-
-void MainWindow::changeMainPanel()
-{
-  std::cout << "MainWindow::changeMainPanel()\n";
+  std::cout << "MainWindow::switchToMainPanel()\n";
   this->centralWidget()->setParent(nullptr);
   this->setCentralWidget(mainPanel);
 }
 
-void MainWindow::changeTypingPanel()
+void MainWindow::switchToArticalTypeSelectPanel()
 {
-  std::cout << "MainWindow::changeTypingPanel()\n";
+  std::cout << "MainWindow::switchToArticalTypeSelectPanel()\n";
   this->centralWidget()->setParent(nullptr);
-  this->setCentralWidget(typingPanel);
+  this->setCentralWidget(articalTypeSelectPanel);
 }
 
-void MainWindow::changeArticalPanel()
+void MainWindow::switchToArticalPanel(const std::string &articalType)
 {
-  std::cout << "MainWindow::changeArticalPanel()\n";
+  std::cout << "MainWindow::switchToArticalPanel(\"" << articalType << "\")\n";
   this->centralWidget()->setParent(nullptr);
   this->setCentralWidget(articalPanel);
+  if(articalType == "health") {
+    articalPanelTextBrowser->setText("test string");
+  }
+  else {
+    articalPanelTextBrowser->setText("");
+  }
 }
 
-void MainWindow::changeHealthPanel()
+void MainWindow::switchToTypingPanel()
 {
-  std::cout << "MainWindow::changeHealthPanel()\n";
+  std::cout << "MainWindow::switchToTypingPanel()\n";
   this->centralWidget()->setParent(nullptr);
-  this->setCentralWidget(healthPanel);
-}
-
-void MainWindow::changeSportPanel()
-{
-  std::cout << "MainWindow::changeSportPanel()\n";
-  this->centralWidget()->setParent(nullptr);
-  this->setCentralWidget(sportPanel);
-}
-
-void MainWindow::changeTravelPanel()
-{
-  std::cout << "MainWindow::changeTravelPanel()\n";
-  this->centralWidget()->setParent(nullptr);
-  this->setCentralWidget(travelPanel);
-}
-
-void MainWindow::changeWorldPanel()
-{
-  std::cout << "MainWindow::changeWorldPanel()\n";
-  this->centralWidget()->setParent(nullptr);
-  this->setCentralWidget(worldPanel);
+  this->setCentralWidget(typingPanel);
 }

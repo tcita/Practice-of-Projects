@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-  EnglishTutor
+  EnglishAssistant
   VERSION 1.0.0
   LANGUAGES CXX
 )
