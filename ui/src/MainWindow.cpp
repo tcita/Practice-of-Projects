@@ -98,10 +98,12 @@ void MainWindow::switchToArticalPanel(const std::string &articalType)
   std::cout << "MainWindow::switchToArticalPanel(\"" << articalType << "\")\n";
   this->centralWidget()->setParent(nullptr);
   this->setCentralWidget(articalPanel);
-  if(articalType == "health") {
-    articalPanelTextBrowser->setText("test string");
+  if(articalType == "health")
+  {
+    articalPanelTextBrowser->setText(crawler.getArtical().c_str());
   }
-  else {
+  else
+  {
     articalPanelTextBrowser->setText("");
   }
 }

@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "Crawler.h"
 #include <QMainWindow>
 #include <QTranslator>
 #include <QWidget>
@@ -15,6 +16,7 @@
 class MainWindow : public QMainWindow
 {
 public:
+  Crawler crawler;
   QTranslator *translator = new QTranslator();
 
   // Init panel & widgets

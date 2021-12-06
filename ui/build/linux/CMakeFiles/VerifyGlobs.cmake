@@ -53,6 +53,7 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Project
 set(OLD_GLOB
   "/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/3.21.4/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "/home/kde/Practice-of-Projects/ui/build/windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+  "/home/kde/Practice-of-Projects/ui/src/Crawler.cpp"
   "/home/kde/Practice-of-Projects/ui/src/MainWindow.cpp"
   "/home/kde/Practice-of-Projects/ui/src/main.cpp"
   )
@@ -77,6 +78,7 @@ endif()
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Projects/ui/*.h")
 set(OLD_GLOB
+  "/home/kde/Practice-of-Projects/ui/include/Crawler.h"
   "/home/kde/Practice-of-Projects/ui/include/MainWindow.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")

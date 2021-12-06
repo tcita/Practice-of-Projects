@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "../../assets/lang/en_us.ts"
   "../../assets/lang/zh_cn.ts"
   "../../assets/lang/zh_tw.ts"
+  "CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o"
+  "CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o.d"
   "CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o"
   "CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o.d"
   "CMakeFiles/EnglishAssistant.dir/src/main.cpp.o"

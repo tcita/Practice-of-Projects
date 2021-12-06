@@ -4,32 +4,32 @@
 <context>
     <name>QAction</name>
     <message>
-        <location filename="../../include/MainWindow.h" line="33"/>
+        <location filename="../../include/MainWindow.h" line="35"/>
         <source>English(US)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="34"/>
+        <location filename="../../include/MainWindow.h" line="36"/>
         <source>Chinese(Simplified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="35"/>
+        <location filename="../../include/MainWindow.h" line="37"/>
         <source>Chinese(Traditional)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="36"/>
+        <location filename="../../include/MainWindow.h" line="38"/>
         <source>Main Panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="37"/>
+        <location filename="../../include/MainWindow.h" line="39"/>
         <source>Artical Type Select Panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="38"/>
+        <location filename="../../include/MainWindow.h" line="40"/>
         <source>Typing Panel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -41,17 +41,17 @@
         <translation type="obsolete">設定</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="28"/>
+        <location filename="../../include/MainWindow.h" line="30"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="29"/>
+        <location filename="../../include/MainWindow.h" line="31"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="30"/>
+        <location filename="../../include/MainWindow.h" line="32"/>
         <source>Switch To</source>
         <translation type="unfinished"></translation>
     </message>
@@ -59,32 +59,32 @@
 <context>
     <name>QPushButton</name>
     <message>
-        <location filename="../../include/MainWindow.h" line="45"/>
+        <location filename="../../include/MainWindow.h" line="47"/>
         <source>Health</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="46"/>
+        <location filename="../../include/MainWindow.h" line="48"/>
         <source>Sport</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="47"/>
+        <location filename="../../include/MainWindow.h" line="49"/>
         <source>Travel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="48"/>
+        <location filename="../../include/MainWindow.h" line="50"/>
         <source>World</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="49"/>
+        <location filename="../../include/MainWindow.h" line="51"/>
         <source>Typing</source>
         <translation type="unfinished">打字</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="44"/>
+        <location filename="../../include/MainWindow.h" line="46"/>
         <source>Artical</source>
         <translation type="unfinished"></translation>
     </message>

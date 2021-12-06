@@ -130,6 +130,30 @@ EnglishAssistant/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/build
 .PHONY : EnglishAssistant/fast
 
+src/Crawler.o: src/Crawler.cpp.o
+.PHONY : src/Crawler.o
+
+# target to build an object file
+src/Crawler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o
+.PHONY : src/Crawler.cpp.o
+
+src/Crawler.i: src/Crawler.cpp.i
+.PHONY : src/Crawler.i
+
+# target to preprocess a source file
+src/Crawler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.i
+.PHONY : src/Crawler.cpp.i
+
+src/Crawler.s: src/Crawler.cpp.s
+.PHONY : src/Crawler.s
+
+# target to generate assembly for a file
+src/Crawler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.s
+.PHONY : src/Crawler.cpp.s
+
 src/MainWindow.o: src/MainWindow.cpp.o
 .PHONY : src/MainWindow.o
 
@@ -187,6 +211,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... EnglishAssistant"
+	@echo "... src/Crawler.o"
+	@echo "... src/Crawler.i"
+	@echo "... src/Crawler.s"
 	@echo "... src/MainWindow.o"
 	@echo "... src/MainWindow.i"
 	@echo "... src/MainWindow.s"
