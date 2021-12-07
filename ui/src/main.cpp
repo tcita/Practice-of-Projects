@@ -1,5 +1,8 @@
 #include <iostream> //debug
-#include <QtWidgets>
+// #include <QtWidgets>
+#include <QApplication>
+#include <QTranslator>
+#include <QMainWindow>
 #include "MainWindow.h"
 
 int main(int argc, char **argv)
@@ -9,14 +12,14 @@ int main(int argc, char **argv)
 
   // Init translator
   QTranslator translator;
-  std::cout << QDir::currentPath().toStdString() << "\n"; //debug
+  // translator.load("zh_cn");
   translator.load("zh_tw");
   std::cout << "isEmpty() " << translator.isEmpty() << "\n"; //debug
   std::cout << "language() " << translator.language().toStdString() << "\n"; //debug
   app.installTranslator(&translator);
 
   // Init main window
-  MainWindow mainWindow;
+  MainWindow mainWindow(&translator);
   mainWindow.resize(1200, 800);
   mainWindow.show();
 

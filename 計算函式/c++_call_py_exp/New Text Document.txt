@@ -1,0 +1,1 @@
+cl vsc++.cpp -I{pythonpath}\include  {pythonpath}\libs\310.lib
