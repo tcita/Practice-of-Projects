@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #
 # Copy crawler from lib to build directory
 #
-configure_file("lib/crawler.jar" ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+file(COPY "lib/crawler/crawler.jar" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 #
 # Set Qt path for windows

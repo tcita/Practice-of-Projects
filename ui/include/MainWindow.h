@@ -21,9 +21,11 @@ public:
 
   // Init panel & widgets
   QWidget *mainPanel = new QWidget();
-  QWidget *articalTypeSelectPanel = new QWidget();
-  QWidget *articalPanel = new QWidget();
+  QWidget *articleTypeSelectPanel = new QWidget();
+  QWidget *articlePanel = new QWidget();
   QWidget *typingPanel = new QWidget();
+  QWidget *typingPanelStatusWidget = new QWidget();
+  QWidget *typingPanelTypingWidget = new QWidget();
 
   // Init menu bar
   QMenuBar *mainMenuBar = this->menuBar();
@@ -36,22 +38,19 @@ public:
   QAction *zhCnAction = new QAction(QAction::tr("Chinese(Simplified)"));
   QAction *zhTwAction = new QAction(QAction::tr("Chinese(Traditional)"));
   QAction *mainPanelAction = new QAction(QAction::tr("Main Panel"));
-  QAction *articalTypeSelectPanelAction = new QAction(QAction::tr("Artical Type Select Panel"));
+  QAction *articleTypeSelectPanelAction = new QAction(QAction::tr("article Type Select Panel"));
   QAction *typingPanelAction = new QAction(QAction::tr("Typing Panel"));
 
-  // Init toolbar
-  // QToolBar *articalPanelToolBar = this->addToolBar("articalPanelToolBar");
-
   // Init button
-  QPushButton *articalTypeSelectPanelButton = new QPushButton(QPushButton::tr("Artical"));
-  QPushButton *articalPanelHealthButton = new QPushButton(QPushButton::tr("Health"));
-  QPushButton *articalPanelSportButton = new QPushButton(QPushButton::tr("Sport"));
-  QPushButton *articalPanelTravelButton = new QPushButton(QPushButton::tr("Travel"));
-  QPushButton *articalPanelWorldButton = new QPushButton(QPushButton::tr("World"));
+  QPushButton *articleTypeSelectPanelButton = new QPushButton(QPushButton::tr("article"));
+  QPushButton *articlePanelHealthButton = new QPushButton(QPushButton::tr("Health"));
+  QPushButton *articlePanelSportButton = new QPushButton(QPushButton::tr("Sport"));
+  QPushButton *articlePanelTravelButton = new QPushButton(QPushButton::tr("Travel"));
+  QPushButton *articlePanelWorldButton = new QPushButton(QPushButton::tr("World"));
   QPushButton *typingPanelButton = new QPushButton(QPushButton::tr("Typing"));
 
   // Init text edit
-  QTextBrowser *articalPanelTextBrowser = new QTextBrowser();
+  QTextBrowser *articlePanelTextBrowser = new QTextBrowser();
 
   // Construtor
   MainWindow(QTranslator *translator);
@@ -63,10 +62,10 @@ public:
   void switchToMainPanel();
   // Switch to typing panel
   void switchToTypingPanel();
-  // Switch to artical type select Panel
-  void switchToArticalTypeSelectPanel();
-  // Switch to artical panel
-  void switchToArticalPanel(const std::string &articalType);
+  // Switch to article type select Panel
+  void switchToarticleTypeSelectPanel();
+  // Switch to article panel
+  void switchToarticlePanel(const std::string &articleType);
 };
 
 #endif

@@ -4,7 +4,7 @@
 // #include <cstdlib>
 #include <memory>
 
-std::string Crawler::getArtical()
+std::string Crawler::getArticle()
 {
   const char *COMMAND = "java -jar crawler.jar";
   std::unique_ptr<FILE, decltype(&pclose)> dataStream(popen(COMMAND, "r"), pclose);
@@ -15,6 +15,11 @@ std::string Crawler::getArtical()
   {
     data += buffer;
   }
-  
+
   return data;
+}
+
+std::string Crawler::getRandomArticle()
+{
+  return getArticle();
 }

@@ -5,7 +5,8 @@
 
 class Crawler {
 public:
-  std::string getArtical();
+  std::string getArticle();
+  std::string getRandomArticle();
 };
 
 #endif
