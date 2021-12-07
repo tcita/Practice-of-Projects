@@ -26,6 +26,7 @@ public:
   QWidget *typingPanel = new QWidget();
   QWidget *typingPanelStatusWidget = new QWidget();
   QWidget *typingPanelTypingWidget = new QWidget();
+  QWidget *testPanel = new QWidget();
 
   // Init menu bar
   QMenuBar *mainMenuBar = this->menuBar();
@@ -48,6 +49,7 @@ public:
   QPushButton *articlePanelTravelButton = new QPushButton(QPushButton::tr("Travel"));
   QPushButton *articlePanelWorldButton = new QPushButton(QPushButton::tr("World"));
   QPushButton *typingPanelButton = new QPushButton(QPushButton::tr("Typing"));
+  QPushButton *testPanelButton = new QPushButton(QPushButton::tr("Test"));
 
   // Init text edit
   QTextBrowser *articlePanelTextBrowser = new QTextBrowser();
@@ -66,6 +68,8 @@ public:
   void switchToarticleTypeSelectPanel();
   // Switch to article panel
   void switchToarticlePanel(const std::string &articleType);
+  // Switch to test Panel
+  void switchToTestPanel();
 };
 
 #endif
