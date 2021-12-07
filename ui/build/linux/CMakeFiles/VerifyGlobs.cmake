@@ -55,6 +55,7 @@ set(OLD_GLOB
   "/home/kde/Practice-of-Projects/ui/build/windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "/home/kde/Practice-of-Projects/ui/src/Crawler.cpp"
   "/home/kde/Practice-of-Projects/ui/src/MainWindow.cpp"
+  "/home/kde/Practice-of-Projects/ui/src/OnlineTranslator.cpp"
   "/home/kde/Practice-of-Projects/ui/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
@@ -80,6 +81,7 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Practice-of-Project
 set(OLD_GLOB
   "/home/kde/Practice-of-Projects/ui/include/Crawler.h"
   "/home/kde/Practice-of-Projects/ui/include/MainWindow.h"
+  "/home/kde/Practice-of-Projects/ui/include/OnlineTranslator.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

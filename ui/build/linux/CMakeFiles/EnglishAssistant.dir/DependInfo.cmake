@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/kde/Practice-of-Projects/ui/src/Crawler.cpp" "CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o" "gcc" "CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o.d"
   "/home/kde/Practice-of-Projects/ui/src/MainWindow.cpp" "CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o" "gcc" "CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o.d"
+  "/home/kde/Practice-of-Projects/ui/src/OnlineTranslator.cpp" "CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o" "gcc" "CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o.d"
   "/home/kde/Practice-of-Projects/ui/src/main.cpp" "CMakeFiles/EnglishAssistant.dir/src/main.cpp.o" "gcc" "CMakeFiles/EnglishAssistant.dir/src/main.cpp.o.d"
   )
 

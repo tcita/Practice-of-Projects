@@ -1,5 +1,4 @@
 #include "MainWindow.h"
-
 #include <iostream> //debug
 #include <QGridLayout>
 #include <QVBoxLayout>
@@ -42,8 +41,8 @@ MainWindow::MainWindow(QTranslator *translator)
   QGridLayout *articleTypeSelectPanelLayout = new QGridLayout();
   articleTypeSelectPanel->setLayout(articleTypeSelectPanelLayout);
   articleTypeSelectPanelLayout-> addWidget(articlePanelHealthButton, 0, 0);
-  articleTypeSelectPanelLayout-> addWidget(articlePanelSportButton, 1, 0);
-  articleTypeSelectPanelLayout-> addWidget(articlePanelTravelButton, 0, 1);
+  articleTypeSelectPanelLayout-> addWidget(articlePanelSportButton, 0, 1);
+  articleTypeSelectPanelLayout-> addWidget(articlePanelTravelButton, 1, 0);
   articleTypeSelectPanelLayout-> addWidget(articlePanelWorldButton, 1, 1);
 
 
@@ -78,15 +77,15 @@ MainWindow::MainWindow(QTranslator *translator)
   QObject::connect(zhCnAction, &QAction::triggered, [this]{this->setLanguage("zh_cn");});
   QObject::connect(zhTwAction, &QAction::triggered, [this]{this->setLanguage("zh_tw");});
   QObject::connect(mainPanelAction, &QAction::triggered, [this]{this->switchToMainPanel();});
-  QObject::connect(articleTypeSelectPanelAction, &QAction::triggered, [this]{this->switchToarticleTypeSelectPanel();});
+  QObject::connect(articleTypeSelectPanelAction, &QAction::triggered, [this]{this->switchToArticleTypeSelectPanel();});
   QObject::connect(typingPanelAction, &QAction::triggered, [this]{this->switchToTypingPanel();});
 
   // Connect button callback
-  QObject::connect(articleTypeSelectPanelButton, &QPushButton::clicked, [this]{this->switchToarticleTypeSelectPanel();});
-  QObject::connect(articlePanelHealthButton, &QPushButton::clicked, [this]{this->switchToarticlePanel("health");});
-  QObject::connect(articlePanelSportButton, &QPushButton::clicked, [this]{this->switchToarticlePanel("sport");});
-  QObject::connect(articlePanelTravelButton, &QPushButton::clicked, [this]{this->switchToarticlePanel("travel");});
-  QObject::connect(articlePanelWorldButton, &QPushButton::clicked, [this]{this->switchToarticlePanel("world");});
+  QObject::connect(articleTypeSelectPanelButton, &QPushButton::clicked, [this]{this->switchToArticleTypeSelectPanel();});
+  QObject::connect(articlePanelHealthButton, &QPushButton::clicked, [this]{this->switchToArticlePanel("health");});
+  QObject::connect(articlePanelSportButton, &QPushButton::clicked, [this]{this->switchToArticlePanel("sport");});
+  QObject::connect(articlePanelTravelButton, &QPushButton::clicked, [this]{this->switchToArticlePanel("travel");});
+  QObject::connect(articlePanelWorldButton, &QPushButton::clicked, [this]{this->switchToArticlePanel("world");});
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{this->switchToTypingPanel();});
   QObject::connect(testPanelButton, &QPushButton::clicked, [this]{this->switchToTestPanel();});
 }
@@ -104,14 +103,14 @@ void MainWindow::switchToMainPanel()
   this->setCentralWidget(mainPanel);
 }
 
-void MainWindow::switchToarticleTypeSelectPanel()
+void MainWindow::switchToArticleTypeSelectPanel()
 {
   std::cout << "MainWindow::switchToarticleTypeSelectPanel()\n";
   this->centralWidget()->setParent(nullptr);
   this->setCentralWidget(articleTypeSelectPanel);
 }
 
-void MainWindow::switchToarticlePanel(const std::string &articleType)
+void MainWindow::switchToArticlePanel(const std::string &articleType)
 {
   std::cout << "MainWindow::switchToarticlePanel(\"" << articleType << "\")\n";
   this->centralWidget()->setParent(nullptr);
@@ -119,6 +118,10 @@ void MainWindow::switchToarticlePanel(const std::string &articleType)
   if(articleType == "health")
   {
     articlePanelTextBrowser->setText(crawler.getArticle().c_str());
+  }
+  else if(articleType == "sport")
+  {
+    articlePanelTextBrowser->setText(onlineTranslator.translate(crawler.getArticle().c_str(), "zh-TW"));
   }
   else
   {

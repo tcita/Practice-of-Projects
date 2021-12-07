@@ -25,6 +25,7 @@ find_package(
   Qt5
   COMPONENTS
     Widgets REQUIRED
+    Network REQUIRED
     LinguistTools REQUIRED
 )
 
@@ -57,6 +58,7 @@ add_executable(
   "src/main.cpp"
   "src/MainWindow.cpp"
   "src/Crawler.cpp"
+  "src/OnlineTranslator.cpp"
 )
 
 #
@@ -73,4 +75,5 @@ target_include_directories(
 target_link_libraries(
   ${CMAKE_PROJECT_NAME}
   PRIVATE Qt5::Widgets
+  PRIVATE Qt5::Network
 )

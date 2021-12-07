@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o.d"
   "CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o"
   "CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o.d"
+  "CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o"
+  "CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o.d"
   "CMakeFiles/EnglishAssistant.dir/src/main.cpp.o"
   "CMakeFiles/EnglishAssistant.dir/src/main.cpp.o.d"
   "EnglishAssistant"

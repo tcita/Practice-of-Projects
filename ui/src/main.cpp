@@ -4,6 +4,7 @@
 #include <QTranslator>
 #include <QMainWindow>
 #include "MainWindow.h"
+#include "OnlineTranslator.h"
 
 int main(int argc, char **argv)
 {

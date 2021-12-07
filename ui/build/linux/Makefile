@@ -178,6 +178,30 @@ src/MainWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.s
 .PHONY : src/MainWindow.cpp.s
 
+src/OnlineTranslator.o: src/OnlineTranslator.cpp.o
+.PHONY : src/OnlineTranslator.o
+
+# target to build an object file
+src/OnlineTranslator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o
+.PHONY : src/OnlineTranslator.cpp.o
+
+src/OnlineTranslator.i: src/OnlineTranslator.cpp.i
+.PHONY : src/OnlineTranslator.i
+
+# target to preprocess a source file
+src/OnlineTranslator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.i
+.PHONY : src/OnlineTranslator.cpp.i
+
+src/OnlineTranslator.s: src/OnlineTranslator.cpp.s
+.PHONY : src/OnlineTranslator.s
+
+# target to generate assembly for a file
+src/OnlineTranslator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/EnglishAssistant.dir/build.make CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.s
+.PHONY : src/OnlineTranslator.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -217,6 +241,9 @@ help:
 	@echo "... src/MainWindow.o"
 	@echo "... src/MainWindow.i"
 	@echo "... src/MainWindow.s"
+	@echo "... src/OnlineTranslator.o"
+	@echo "... src/OnlineTranslator.i"
+	@echo "... src/OnlineTranslator.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

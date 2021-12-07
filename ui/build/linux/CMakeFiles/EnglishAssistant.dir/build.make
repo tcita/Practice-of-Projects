@@ -85,8 +85,10 @@ en_us.qm: ../../assets/lang/en_us.ts
 ../../assets/lang/zh_tw.ts: ../windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp
 ../../assets/lang/zh_tw.ts: ../../include/Crawler.h
 ../../assets/lang/zh_tw.ts: ../../include/MainWindow.h
+../../assets/lang/zh_tw.ts: ../../include/OnlineTranslator.h
 ../../assets/lang/zh_tw.ts: ../../src/Crawler.cpp
 ../../assets/lang/zh_tw.ts: ../../src/MainWindow.cpp
+../../assets/lang/zh_tw.ts: ../../src/OnlineTranslator.cpp
 ../../assets/lang/zh_tw.ts: ../../src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating ../../assets/lang/zh_tw.ts"
 	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/zh_tw.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/zh_tw.ts
@@ -95,8 +97,10 @@ en_us.qm: ../../assets/lang/en_us.ts
 ../../assets/lang/zh_cn.ts: ../windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp
 ../../assets/lang/zh_cn.ts: ../../include/Crawler.h
 ../../assets/lang/zh_cn.ts: ../../include/MainWindow.h
+../../assets/lang/zh_cn.ts: ../../include/OnlineTranslator.h
 ../../assets/lang/zh_cn.ts: ../../src/Crawler.cpp
 ../../assets/lang/zh_cn.ts: ../../src/MainWindow.cpp
+../../assets/lang/zh_cn.ts: ../../src/OnlineTranslator.cpp
 ../../assets/lang/zh_cn.ts: ../../src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating ../../assets/lang/zh_cn.ts"
 	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/zh_cn.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/zh_cn.ts
@@ -105,8 +109,10 @@ en_us.qm: ../../assets/lang/en_us.ts
 ../../assets/lang/en_us.ts: ../windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp
 ../../assets/lang/en_us.ts: ../../include/Crawler.h
 ../../assets/lang/en_us.ts: ../../include/MainWindow.h
+../../assets/lang/en_us.ts: ../../include/OnlineTranslator.h
 ../../assets/lang/en_us.ts: ../../src/Crawler.cpp
 ../../assets/lang/en_us.ts: ../../src/MainWindow.cpp
+../../assets/lang/en_us.ts: ../../src/OnlineTranslator.cpp
 ../../assets/lang/en_us.ts: ../../src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating ../../assets/lang/en_us.ts"
 	/usr/lib/qt5/bin/lupdate @/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/en_us.ts_lst_file -ts /home/kde/Practice-of-Projects/ui/assets/lang/en_us.ts
@@ -153,11 +159,26 @@ CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kde/Practice-of-Projects/ui/src/Crawler.cpp -o CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.s
 
+CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o: CMakeFiles/EnglishAssistant.dir/flags.make
+CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o: ../../src/OnlineTranslator.cpp
+CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o: CMakeFiles/EnglishAssistant.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o -MF CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o.d -o CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o -c /home/kde/Practice-of-Projects/ui/src/OnlineTranslator.cpp
+
+CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kde/Practice-of-Projects/ui/src/OnlineTranslator.cpp > CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.i
+
+CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kde/Practice-of-Projects/ui/src/OnlineTranslator.cpp -o CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.s
+
 # Object files for target EnglishAssistant
 EnglishAssistant_OBJECTS = \
 "CMakeFiles/EnglishAssistant.dir/src/main.cpp.o" \
 "CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o" \
-"CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o"
+"CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o" \
+"CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o"
 
 # External object files for target EnglishAssistant
 EnglishAssistant_EXTERNAL_OBJECTS =
@@ -165,12 +186,14 @@ EnglishAssistant_EXTERNAL_OBJECTS =
 EnglishAssistant: CMakeFiles/EnglishAssistant.dir/src/main.cpp.o
 EnglishAssistant: CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o
 EnglishAssistant: CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o
+EnglishAssistant: CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o
 EnglishAssistant: CMakeFiles/EnglishAssistant.dir/build.make
 EnglishAssistant: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
+EnglishAssistant: /usr/lib/x86_64-linux-gnu/libQt5Network.so.5.15.3
 EnglishAssistant: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
 EnglishAssistant: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
 EnglishAssistant: CMakeFiles/EnglishAssistant.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable EnglishAssistant"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable EnglishAssistant"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/EnglishAssistant.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include "Crawler.h"
+#include "OnlineTranslator.h"
 #include <QMainWindow>
 #include <QTranslator>
 #include <QWidget>
+#include <QScrollArea>
 #include <QMenu>
 #include <QMenuBar>
 #include <QAction>
@@ -17,6 +19,8 @@ class MainWindow : public QMainWindow
 {
 public:
   Crawler crawler;
+  OnlineTranslator onlineTranslator;
+
   QTranslator *translator = new QTranslator();
 
   // Init panel & widgets
@@ -25,7 +29,8 @@ public:
   QWidget *articlePanel = new QWidget();
   QWidget *typingPanel = new QWidget();
   QWidget *typingPanelStatusWidget = new QWidget();
-  QWidget *typingPanelTypingWidget = new QWidget();
+  // QWidget *typingPanelTypingWidget = new QWidget();
+  QScrollArea *typingPanelTypingWidget = new QScrollArea();
   QWidget *testPanel = new QWidget();
 
   // Init menu bar
@@ -65,9 +70,9 @@ public:
   // Switch to typing panel
   void switchToTypingPanel();
   // Switch to article type select Panel
-  void switchToarticleTypeSelectPanel();
+  void switchToArticleTypeSelectPanel();
   // Switch to article panel
-  void switchToarticlePanel(const std::string &articleType);
+  void switchToArticlePanel(const std::string &articleType);
   // Switch to test Panel
   void switchToTestPanel();
 };
