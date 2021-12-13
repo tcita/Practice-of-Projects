@@ -6,7 +6,7 @@
 
 std::string Crawler::getArticle()
 {
-  const char *COMMAND = "java -jar crawler.jar";
+  const char *COMMAND = "java -jar ./lib/crawler/crawler.jar";
   std::unique_ptr<FILE, decltype(&pclose)> dataStream(popen(COMMAND, "r"), pclose);
 
   std::string data;

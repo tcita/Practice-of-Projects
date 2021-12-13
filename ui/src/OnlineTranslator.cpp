@@ -21,21 +21,13 @@ QString OnlineTranslator::translate(const QString &input, const QString &destLan
   do
   {
     QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+  // } while(!networkReply->isFinished());
   } while(!networkReply->isFinished());
-  networkReply->close();
 
   //Convert to string
   QString replyData = networkReply->readAll();
 
-  // Remove words before translated text
-  // replyData.remove(0, 4);
-
-  // Remove words after translated text
-  // int translatedTextEndIndex = replyData.indexOf("\",\"");
-  // replyData.remove(translatedTextEndIndex, replyData.size()-translatedTextEndIndex);
-
-  //Extract final translated string
-  // translation = translation.mid(0, translation.indexOf(",\"") - 1);
+  networkReply->close();
 
 
   return replyData;
