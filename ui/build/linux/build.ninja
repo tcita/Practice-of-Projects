@@ -42,7 +42,7 @@ cmake_ninja_workdir = /home/kde/Documents/git/Practice-of-Projects/ui/build/linu
 #############################################
 # Order-only phony target for EnglishAssistant
 
-build cmake_object_order_depends_target_EnglishAssistant: phony || ../../assets/lang/en_us.ts ../../assets/lang/zh_cn.ts ../../assets/lang/zh_tw.ts en_us.qm zh_cn.qm zh_tw.qm
+build cmake_object_order_depends_target_EnglishAssistant: phony || ../../assets/lang/en_us.ts ../../assets/lang/zh_cn.ts ../../assets/lang/zh_tw.ts assets/lang/en_us.qm assets/lang/zh_cn.qm assets/lang/zh_tw.qm
 
 build CMakeFiles/EnglishAssistant.dir/src/main.cpp.o: CXX_COMPILER__EnglishAssistant_ /home/kde/Documents/git/Practice-of-Projects/ui/src/main.cpp || cmake_object_order_depends_target_EnglishAssistant
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB
@@ -118,29 +118,29 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 
 #############################################
-# Custom command for en_us.qm
+# Custom command for assets/lang/en_us.qm
 
-build en_us.qm | ${cmake_ninja_workdir}en_us.qm: CUSTOM_COMMAND ../../assets/lang/en_us.ts
-  COMMAND = cd /home/kde/Documents/git/Practice-of-Projects/ui/build/linux && /usr/lib/qt5/bin/lrelease /home/kde/Documents/git/Practice-of-Projects/ui/assets/lang/en_us.ts -qm /home/kde/Documents/git/Practice-of-Projects/ui/build/linux/en_us.qm
-  DESC = Generating en_us.qm
+build assets/lang/en_us.qm | ${cmake_ninja_workdir}assets/lang/en_us.qm: CUSTOM_COMMAND ../../assets/lang/en_us.ts
+  COMMAND = cd /home/kde/Documents/git/Practice-of-Projects/ui/build/linux && /usr/lib/qt5/bin/lrelease /home/kde/Documents/git/Practice-of-Projects/ui/assets/lang/en_us.ts -qm assets/lang/en_us.qm
+  DESC = Generating assets/lang/en_us.qm
   restat = 1
 
 
 #############################################
-# Custom command for zh_cn.qm
+# Custom command for assets/lang/zh_cn.qm
 
-build zh_cn.qm | ${cmake_ninja_workdir}zh_cn.qm: CUSTOM_COMMAND ../../assets/lang/zh_cn.ts
-  COMMAND = cd /home/kde/Documents/git/Practice-of-Projects/ui/build/linux && /usr/lib/qt5/bin/lrelease /home/kde/Documents/git/Practice-of-Projects/ui/assets/lang/zh_cn.ts -qm /home/kde/Documents/git/Practice-of-Projects/ui/build/linux/zh_cn.qm
-  DESC = Generating zh_cn.qm
+build assets/lang/zh_cn.qm | ${cmake_ninja_workdir}assets/lang/zh_cn.qm: CUSTOM_COMMAND ../../assets/lang/zh_cn.ts
+  COMMAND = cd /home/kde/Documents/git/Practice-of-Projects/ui/build/linux && /usr/lib/qt5/bin/lrelease /home/kde/Documents/git/Practice-of-Projects/ui/assets/lang/zh_cn.ts -qm assets/lang/zh_cn.qm
+  DESC = Generating assets/lang/zh_cn.qm
   restat = 1
 
 
 #############################################
-# Custom command for zh_tw.qm
+# Custom command for assets/lang/zh_tw.qm
 
-build zh_tw.qm | ${cmake_ninja_workdir}zh_tw.qm: CUSTOM_COMMAND ../../assets/lang/zh_tw.ts
-  COMMAND = cd /home/kde/Documents/git/Practice-of-Projects/ui/build/linux && /usr/lib/qt5/bin/lrelease /home/kde/Documents/git/Practice-of-Projects/ui/assets/lang/zh_tw.ts -qm /home/kde/Documents/git/Practice-of-Projects/ui/build/linux/zh_tw.qm
-  DESC = Generating zh_tw.qm
+build assets/lang/zh_tw.qm | ${cmake_ninja_workdir}assets/lang/zh_tw.qm: CUSTOM_COMMAND ../../assets/lang/zh_tw.ts
+  COMMAND = cd /home/kde/Documents/git/Practice-of-Projects/ui/build/linux && /usr/lib/qt5/bin/lrelease /home/kde/Documents/git/Practice-of-Projects/ui/assets/lang/zh_tw.ts -qm assets/lang/zh_tw.qm
+  DESC = Generating assets/lang/zh_tw.qm
   restat = 1
 
 

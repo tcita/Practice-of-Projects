@@ -14,7 +14,7 @@ int main(int argc, char **argv)
   // Init translator
   QTranslator translator;
   // translator.load("zh_cn");
-  translator.load("zh_tw");
+  translator.load("assets/lang/zh_tw");
   std::cout << "isEmpty() " << translator.isEmpty() << "\n"; //debug
   std::cout << "language() " << translator.language().toStdString() << "\n"; //debug
   app.installTranslator(&translator);

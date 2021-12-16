@@ -1,94 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>QAction</name>
     <message>
+        <location filename="../../include/MainWindow.h" line="38"/>
         <source>English(US)</source>
-        <translation type="unfinished"></translation>
+        <translation>英文（美國）</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="39"/>
         <source>Chinese(Simplified)</source>
-        <translation type="unfinished"></translation>
+        <translation>中文（中國）</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="40"/>
         <source>Chinese(Traditional)</source>
-        <translation type="unfinished"></translation>
+        <translation>中文（台灣）</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="41"/>
         <source>Main Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>主頁面</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="42"/>
         <source>article Type Select Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>文章選擇頁面</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="43"/>
         <source>Typing Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>打字頁面</translation>
     </message>
 </context>
 <context>
     <name>QMenu</name>
     <message>
-        <source>&amp;Setting</source>
-        <translation type="obsolete">設定</translation>
-    </message>
-    <message>
+        <location filename="../../include/MainWindow.h" line="33"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>設定</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="34"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>語言</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="35"/>
         <source>Switch To</source>
-        <translation type="unfinished"></translation>
+        <translation>切換到</translation>
     </message>
 </context>
 <context>
     <name>QPushButton</name>
     <message>
-        <source>Typing</source>
-        <translation type="unfinished">打字</translation>
-    </message>
-    <message>
+        <location filename="../../include/MainWindow.h" line="46"/>
         <source>article</source>
-        <translation type="unfinished"></translation>
+        <translation>文章</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="47"/>
         <source>Health</source>
-        <translation type="unfinished"></translation>
+        <translation>健康</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="48"/>
         <source>Sport</source>
-        <translation type="unfinished"></translation>
+        <translation>運動</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="49"/>
         <source>Travel</source>
-        <translation type="unfinished"></translation>
+        <translation>旅遊</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="50"/>
         <source>World</source>
-        <translation type="unfinished"></translation>
+        <translation>世界</translation>
     </message>
     <message>
+        <location filename="../../include/MainWindow.h" line="51"/>
+        <source>Typing</source>
+        <translation>打字</translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="52"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>測驗</translation>
     </message>
 </context>
 <context>
     <name>Widget</name>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="14"/>
         <source>Widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="26"/>
         <source>multiple choice questions(Non Exclusive)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="32"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -97,26 +112,34 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="43"/>
         <source>tiger</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="50"/>
         <source>lion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="57"/>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="97"/>
         <source>cat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="64"/>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="104"/>
         <source>dog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="80"/>
         <source>multiple choice(Exclusive)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="86"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -125,26 +148,32 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="111"/>
         <source>fish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="118"/>
         <source>pig</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="134"/>
         <source>Choose the right answer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="146"/>
         <source>True</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="159"/>
         <source>False</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="172"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -154,6 +183,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../lib/tmp/checkbox/widget.ui" line="191"/>
         <source>Upload answer</source>
         <translation type="unfinished"></translation>
     </message>

@@ -45,6 +45,13 @@ set(
   ${CMAKE_SOURCE_DIR}/assets/lang/zh_tw.ts
 )
 
+# From: https://doc.qt.io/qt-5.12//qtlinguist-cmake-qt5-add-translation.html
+set_source_files_properties(
+  ${TS_FILES}
+  PROPERTIES
+    OUTPUT_LOCATION assets/lang
+)
+
 # Compile (.ts) files to (.qm) files (Qt linguist)
 qt5_create_translation(
   QM_FILES
@@ -52,20 +59,9 @@ qt5_create_translation(
   ${TS_FILES}
 )
 
-# # Move ./*.qm to ./assets/lang/*.qm
-# foreach(QM_FILE ${QM_FILES})
-#   string(REPLACE ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/assets/lang TEMP_QM_FILE ${QM_FILE})
-#   # file(RENAME ${QM_FILE} ${TEMP_QM_FILE})
-#   list(APPEND TEMP_QM_FILES ${TEMP_QM_FILE})
-#
-#   # Move (.qm) files to ./assets/lang/
-#   add_custom_command(
-#     TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-#     COMMAND ${CMAKE_COMMAND} -E copy ${QM_FILE} ${TEMP_QM_FILE}
-#     COMMAND ${CMAKE_COMMAND} -E remove ${QM_FILE}
-#   )
-# endforeach()
-# set(QM_FILE ${TEMP_QM_FILES})
+foreach(QM_FILE ${QM_FILES})
+  message(${QM_FILE})
+endforeach()
 
 # src
 target_sources(

@@ -117,6 +117,11 @@ void MainWindow::switchToArticlePanel(const std::string &articleType)
   std::cout << "MainWindow::switchToarticlePanel(\"" << articleType << "\")\n";
   this->centralWidget()->setParent(nullptr);
   this->setCentralWidget(articlePanel);
+
+  // Clear text browser
+  articlePanelTextBrowser->setText("");
+
+  // Put article to text browser
   if(articleType == "health")
   {
     articlePanelTextBrowser->setText(QString::fromStdString(Crawler::getArticle()));
