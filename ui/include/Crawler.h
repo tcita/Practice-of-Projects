@@ -3,10 +3,8 @@
 
 #include <string>
 
-class Crawler {
-public:
-  std::string getArticle();
-  std::string getRandomArticle();
+namespace Crawler {
+  std::string getArticle(const std::string &articleType="");
 };
 
 #endif

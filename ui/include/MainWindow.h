@@ -1,8 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "Crawler.h"
-#include "OnlineTranslator.h"
 #include <QMainWindow>
 #include <QTranslator>
 #include <QWidget>
@@ -18,9 +16,6 @@
 class MainWindow : public QMainWindow
 {
 public:
-  Crawler crawler;
-  OnlineTranslator onlineTranslator;
-
   QTranslator *translator = new QTranslator();
 
   // Init panel & widgets
@@ -29,8 +24,8 @@ public:
   QWidget *articlePanel = new QWidget();
   QWidget *typingPanel = new QWidget();
   QWidget *typingPanelStatusWidget = new QWidget();
-  // QWidget *typingPanelTypingWidget = new QWidget();
-  QScrollArea *typingPanelTypingWidget = new QScrollArea();
+  QWidget *typingPanelTypingWidget = new QWidget();
+  // QScrollArea *typingPanelTypingWidget = new QScrollArea();
   QWidget *testPanel = new QWidget();
 
   // Init menu bar

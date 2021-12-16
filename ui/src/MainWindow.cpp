@@ -1,4 +1,6 @@
 #include "MainWindow.h"
+#include "Crawler.h"
+#include "OnlineTranslator.h"
 #include <iostream> //debug
 #include <QGridLayout>
 #include <QVBoxLayout>
@@ -117,15 +119,15 @@ void MainWindow::switchToArticlePanel(const std::string &articleType)
   this->setCentralWidget(articlePanel);
   if(articleType == "health")
   {
-    articlePanelTextBrowser->setText(crawler.getArticle().c_str());
+    articlePanelTextBrowser->setText(QString::fromStdString(Crawler::getArticle()));
   }
   else if(articleType == "sport")
   {
-    articlePanelTextBrowser->setText(onlineTranslator.translate(crawler.getArticle().c_str(), "zh-TW"));
+    articlePanelTextBrowser->setText(QString::fromStdString(OnlineTranslator::translate(Crawler::getArticle(), "zh-TW")));
   }
   else
   {
-    articlePanelTextBrowser->setText("");
+    articlePanelTextBrowser->setText("Unsupport article type");
   }
 }
 

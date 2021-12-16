@@ -1,11 +1,10 @@
 #ifndef ONLINE_TRANSLATOR_H
 #define ONLINE_TRANSLATOR_H
 
-#include <QString>
+#include <string>
 
-class OnlineTranslator {
-public:
-  QString translate(const QString &input, const QString &destLanguageType, const QString &srcLanguageType="auto");
+namespace OnlineTranslator {
+  std::string translate(const std::string &input, const std::string &destLanguageType, const std::string &srcLanguageType="auto");
 };
 
 #endif
