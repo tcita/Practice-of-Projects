@@ -28,6 +28,6 @@ cmake --build .
 
 ## Library used
 
--nlohmann-json (embedded): https://github.com/nlohmann/json
+- nlohmann-json (embedded): https://github.com/nlohmann/json
 
--Qt: https://www.qt.io/
+- Qt: https://www.qt.io/
