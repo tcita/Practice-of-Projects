@@ -20,6 +20,9 @@ if(WIN32)
 	set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/Qt/5.12.12/mingw73_64/lib/cmake/")
 endif()
 
+# Add subdirectory nlohmann_json
+add_subdirectory(${CMAKE_SOURCE_DIR}/lib/json-develop)
+
 # Find Qt package
 find_package(
   Qt5
@@ -86,4 +89,5 @@ target_link_libraries(
   ${CMAKE_PROJECT_NAME}
   PRIVATE Qt5::Widgets
   PRIVATE Qt5::Network
+  PRIVATE nlohmann_json::nlohmann_json
 )

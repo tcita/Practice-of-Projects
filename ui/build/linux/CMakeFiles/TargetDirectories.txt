@@ -1,3 +1,5 @@
-/home/kde/Documents/git/Practice-of-Projects/ui/build/linux/CMakeFiles/EnglishAssistant.dir
-/home/kde/Documents/git/Practice-of-Projects/ui/build/linux/CMakeFiles/edit_cache.dir
-/home/kde/Documents/git/Practice-of-Projects/ui/build/linux/CMakeFiles/rebuild_cache.dir
+/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/EnglishAssistant.dir
+/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/edit_cache.dir
+/home/kde/Practice-of-Projects/ui/build/linux/CMakeFiles/rebuild_cache.dir
+/home/kde/Practice-of-Projects/ui/build/linux/lib/json-develop/CMakeFiles/edit_cache.dir
+/home/kde/Practice-of-Projects/ui/build/linux/lib/json-develop/CMakeFiles/rebuild_cache.dir

@@ -5,6 +5,7 @@
 #include <QCoreApplication>
 #include <QEventLoop>
 #include <iostream>
+#include <nlohmann/json.hpp>
 
 std::string OnlineTranslator::translate(const std::string &input, const std::string &destLanguageType, const std::string &srcLanguageType)
 {
@@ -23,5 +24,12 @@ std::string OnlineTranslator::translate(const std::string &input, const std::str
   // Put reply data to string
   std::string replyData = networkReply->readAll().toStdString();
 
-  return replyData;
+  auto jsonData = nlohmann::json::parse(replyData);
+  std::string translatedString;
+  for(int i=0; i<jsonData[0].size(); ++i)
+  {
+    translatedString += jsonData[0][i][0];
+  }
+
+  return translatedString;
 }

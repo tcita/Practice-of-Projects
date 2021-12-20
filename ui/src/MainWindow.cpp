@@ -10,9 +10,6 @@
 MainWindow::MainWindow(QTranslator *translator)
 :translator(translator)
 {
-  // Set translator
-  // this->translator = translator;
-
   // Setup icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
 
@@ -98,7 +95,8 @@ void MainWindow::setLanguage(const std::string &languageType)
   std::cout << "MainWindow::setLanguage(\"" << languageType << "\")\n";
   std::string languageFilePath = std::string("assets/lang/") + languageType;
   translator->load(languageFilePath.c_str());
-  
+  std::cout << translator->language().toStdString() << "\n";
+
 }
 
 void MainWindow::switchToMainPanel()
@@ -132,6 +130,10 @@ void MainWindow::switchToArticlePanel(const std::string &articleType)
   else if(articleType == "sport")
   {
     articlePanelTextBrowser->setText(QString::fromStdString(OnlineTranslator::translate(Crawler::getArticle(), "zh-TW")));
+  }
+  else if(articleType == "travel")
+  {
+    articlePanelTextBrowser->setText(QString::fromStdString(OnlineTranslator::translate("hello\nhello", "zh-TW")));
   }
   else
   {

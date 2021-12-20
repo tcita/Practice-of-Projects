@@ -188,4 +188,13 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>hello
+hello</name>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="136"/>
+        <source>zh-TW</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
