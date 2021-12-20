@@ -16,7 +16,7 @@
 class MainWindow : public QMainWindow
 {
 public:
-  QTranslator *translator = new QTranslator();
+  QTranslator *translator = nullptr;
 
   // Init panel & widgets
   QWidget *mainPanel = new QWidget();
@@ -55,6 +55,7 @@ public:
   QTextBrowser *articlePanelTextBrowser = new QTextBrowser();
 
   // Construtor
+  // MainWindow(QTranslator *translator);
   MainWindow(QTranslator *translator);
 
   // Set language

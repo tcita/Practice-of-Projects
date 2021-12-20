@@ -8,9 +8,10 @@
 #include <QLabel>
 
 MainWindow::MainWindow(QTranslator *translator)
+:translator(translator)
 {
   // Set translator
-  this->translator = translator;
+  // this->translator = translator;
 
   // Setup icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
@@ -95,7 +96,9 @@ MainWindow::MainWindow(QTranslator *translator)
 void MainWindow::setLanguage(const std::string &languageType)
 {
   std::cout << "MainWindow::setLanguage(\"" << languageType << "\")\n";
-  // this->removeTranslator(translator);
+  std::string languageFilePath = std::string("assets/lang/") + languageType;
+  translator->load(languageFilePath.c_str());
+  
 }
 
 void MainWindow::switchToMainPanel()
