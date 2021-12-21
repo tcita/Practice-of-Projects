@@ -36,6 +36,7 @@ MainWindow::MainWindow(QTranslator *translator)
   mainPanelLayout->addWidget(articleTypeSelectPanelButton, 0, 0);
   mainPanelLayout->addWidget(typingPanelButton, 0, 1);
   mainPanelLayout->addWidget(testPanelButton, 1, 0);
+  mainPanelLayout->addWidget(translatePanelButton, 1, 1);
 
   // Setup article type select panel
   QGridLayout *articleTypeSelectPanelLayout = new QGridLayout();
@@ -88,6 +89,7 @@ MainWindow::MainWindow(QTranslator *translator)
   QObject::connect(articlePanelWorldButton, &QPushButton::clicked, [this]{this->switchToArticlePanel("world");});
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{this->switchToTypingPanel();});
   QObject::connect(testPanelButton, &QPushButton::clicked, [this]{this->switchToTestPanel();});
+  QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{this->switchToTranslatePanel();});
 }
 
 void MainWindow::setLanguage(const std::string &languageType)
@@ -153,4 +155,11 @@ void MainWindow::switchToTestPanel()
   std::cout << "MainWindow::switchToTypingPanel()\n";
   this->centralWidget()->setParent(nullptr);
   this->setCentralWidget(testPanel);
+}
+
+void MainWindow::switchToTranslatePanel()
+{
+  std::cout << "MainWindow::switchToTranslatePanel()\n";
+  this->centralWidget()->setParent(nullptr);
+  this->setCentralWidget(translatePanel);
 }

@@ -27,6 +27,7 @@ public:
   QWidget *typingPanelTypingWidget = new QWidget();
   // QScrollArea *typingPanelTypingWidget = new QScrollArea();
   QWidget *testPanel = new QWidget();
+  QWidget *translatePanel = new QWidget();
 
   // Init menu bar
   QMenuBar *mainMenuBar = this->menuBar();
@@ -50,6 +51,7 @@ public:
   QPushButton *articlePanelWorldButton = new QPushButton(QPushButton::tr("World"));
   QPushButton *typingPanelButton = new QPushButton(QPushButton::tr("Typing"));
   QPushButton *testPanelButton = new QPushButton(QPushButton::tr("Test"));
+  QPushButton *translatePanelButton = new QPushButton(QPushButton::tr("Translate"));
 
   // Init text edit
   QTextBrowser *articlePanelTextBrowser = new QTextBrowser();
@@ -69,8 +71,10 @@ public:
   void switchToArticleTypeSelectPanel();
   // Switch to article panel
   void switchToArticlePanel(const std::string &articleType);
-  // Switch to test Panel
+  // Switch to test panel
   void switchToTestPanel();
+  // Switch to translate panel
+  void switchToTranslatePanel();
 };
 
 #endif

@@ -2,34 +2,97 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="149"/>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="150"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="151"/>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="152"/>
+        <source>Cut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="153"/>
+        <source>Paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="154"/>
+        <source>Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="155"/>
+        <source>Redo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="156"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="157"/>
+        <source>About Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="158"/>
+        <source>File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="159"/>
+        <source>Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/tmp/translator/ui_mainwindow.h" line="160"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QAction</name>
     <message>
-        <location filename="../../include/MainWindow.h" line="38"/>
+        <location filename="../../include/MainWindow.h" line="39"/>
         <source>English(US)</source>
         <translation>英文（美國）</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="39"/>
+        <location filename="../../include/MainWindow.h" line="40"/>
         <source>Chinese(Simplified)</source>
         <translation>中文（中國）</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="40"/>
+        <location filename="../../include/MainWindow.h" line="41"/>
         <source>Chinese(Traditional)</source>
         <translation>中文（台灣）</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="41"/>
+        <location filename="../../include/MainWindow.h" line="42"/>
         <source>Main Panel</source>
         <translation>主頁面</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="42"/>
+        <location filename="../../include/MainWindow.h" line="43"/>
         <source>article Type Select Panel</source>
         <translation>文章選擇頁面</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="43"/>
+        <location filename="../../include/MainWindow.h" line="44"/>
         <source>Typing Panel</source>
         <translation>打字頁面</translation>
     </message>
@@ -37,17 +100,17 @@
 <context>
     <name>QMenu</name>
     <message>
-        <location filename="../../include/MainWindow.h" line="33"/>
+        <location filename="../../include/MainWindow.h" line="34"/>
         <source>Setting</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="34"/>
+        <location filename="../../include/MainWindow.h" line="35"/>
         <source>Language</source>
         <translation>語言</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="35"/>
+        <location filename="../../include/MainWindow.h" line="36"/>
         <source>Switch To</source>
         <translation>切換到</translation>
     </message>
@@ -55,39 +118,44 @@
 <context>
     <name>QPushButton</name>
     <message>
-        <location filename="../../include/MainWindow.h" line="46"/>
+        <location filename="../../include/MainWindow.h" line="47"/>
         <source>article</source>
         <translation>文章</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="47"/>
+        <location filename="../../include/MainWindow.h" line="48"/>
         <source>Health</source>
         <translation>健康</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="48"/>
+        <location filename="../../include/MainWindow.h" line="49"/>
         <source>Sport</source>
         <translation>運動</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="49"/>
+        <location filename="../../include/MainWindow.h" line="50"/>
         <source>Travel</source>
         <translation>旅遊</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="50"/>
+        <location filename="../../include/MainWindow.h" line="51"/>
         <source>World</source>
         <translation>世界</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="51"/>
+        <location filename="../../include/MainWindow.h" line="52"/>
         <source>Typing</source>
         <translation>打字</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="52"/>
+        <location filename="../../include/MainWindow.h" line="53"/>
         <source>Test</source>
         <translation>測驗</translation>
+    </message>
+    <message>
+        <location filename="../../include/MainWindow.h" line="54"/>
+        <source>Translate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -192,7 +260,7 @@ p, li { white-space: pre-wrap; }
     <name>hello
 hello</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="136"/>
+        <location filename="../../src/MainWindow.cpp" line="138"/>
         <source>zh-TW</source>
         <translation type="unfinished"></translation>
     </message>
