@@ -16,7 +16,7 @@ An English learning app.
 
 ### 1. Go to build directory.
 
-cd build/linux
+cd build/windows
 
 ### 2. Generate build system files
 
