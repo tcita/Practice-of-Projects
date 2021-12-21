@@ -1,11 +1,13 @@
 #include "MainWindow.h"
 #include "Crawler.h"
 #include "OnlineTranslator.h"
+#include "LanguageTypes.h"
 #include <iostream> //debug
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QLineEdit>
 #include <QLabel>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QTranslator *translator)
 :translator(translator)
@@ -14,7 +16,7 @@ MainWindow::MainWindow(QTranslator *translator)
   this->setWindowIcon(QIcon("assets/image/icon.png"));
 
   // Setup language
-  translator->load("zh_tw");
+  translator->load(LanguageTypes::zh_TW);
 
   // Setup menu bar
   mainMenuBar->addMenu(settingMenu);
@@ -73,9 +75,9 @@ MainWindow::MainWindow(QTranslator *translator)
   // Connect action callback
   // QObject::connect(zhTwAction, SIGNAL(triggered()), this, SLOT(MainWindow::setLanguageZhTw()));
   // QObject::connect(zhTwAction, &QAction::triggered, this, &MainWindow::setLanguageZhTw, 100);
-  QObject::connect(enUsAction, &QAction::triggered, [this]{this->setLanguage("en_us");});
-  QObject::connect(zhCnAction, &QAction::triggered, [this]{this->setLanguage("zh_cn");});
-  QObject::connect(zhTwAction, &QAction::triggered, [this]{this->setLanguage("zh_tw");});
+  QObject::connect(enUsAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::en_US);});
+  QObject::connect(zhCnAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::zh_CN);});
+  QObject::connect(zhTwAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::zh_TW);});
   QObject::connect(mainPanelAction, &QAction::triggered, [this]{this->switchToMainPanel();});
   QObject::connect(articleTypeSelectPanelAction, &QAction::triggered, [this]{this->switchToArticleTypeSelectPanel();});
   QObject::connect(typingPanelAction, &QAction::triggered, [this]{this->switchToTypingPanel();});
@@ -92,11 +94,24 @@ MainWindow::MainWindow(QTranslator *translator)
 
 void MainWindow::setLanguage(const std::string &languageType)
 {
+  // Check if it is different with current language
+  if(translator->language().toStdString() == languageType)
+  {
+    std::cout << languageType << " is the current language\n";
+    return;
+  }
+
   std::cout << "MainWindow::setLanguage(\"" << languageType << "\")\n";
   std::string languageFilePath = std::string("assets/lang/") + languageType;
   translator->load(languageFilePath.c_str());
   std::cout << translator->language().toStdString() << "\n";
 
+  int clickedButtonId = QMessageBox::information(this, tr("EnglishAssistant"), tr("Application restart is needed, do you want to restart now?"), QMessageBox::Yes | QMessageBox::No);
+  if(clickedButtonId == QMessageBox::Yes)
+  {
+    // Application restart
+    std::cout << "Application restart\n";
+  }
 }
 
 void MainWindow::switchToMainPanel()
@@ -129,11 +144,11 @@ void MainWindow::switchToArticlePanel(const std::string &articleType)
   }
   else if(articleType == "sport")
   {
-    articlePanelTextBrowser->setText(QString::fromStdString(OnlineTranslator::translate(Crawler::getArticle(), "zh-TW")));
+    articlePanelTextBrowser->setText(QString::fromStdString(OnlineTranslator::translate(Crawler::getArticle(), LanguageTypes::zh_TW)));
   }
   else if(articleType == "travel")
   {
-    articlePanelTextBrowser->setText(QString::fromStdString(OnlineTranslator::translate("hello\nhello", "zh-TW")));
+    articlePanelTextBrowser->setText(QString::fromStdString(OnlineTranslator::translate("hello\nhello", LanguageTypes::zh_TW)));
   }
   else
   {

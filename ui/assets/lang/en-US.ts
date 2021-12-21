@@ -1,37 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_TW">
+<TS version="2.1">
+<context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="108"/>
+        <source>EnglishAssistant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="108"/>
+        <source>Application restart is needed, do you want to restart now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>QAction</name>
     <message>
         <location filename="../../include/MainWindow.h" line="38"/>
         <source>English(US)</source>
-        <translation>英文（美國）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="39"/>
         <source>Chinese(Simplified)</source>
-        <translation>中文（中國）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="40"/>
         <source>Chinese(Traditional)</source>
-        <translation>中文（台灣）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="41"/>
         <source>Main Panel</source>
-        <translation>主頁面</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="42"/>
         <source>article Type Select Panel</source>
-        <translation>文章選擇頁面</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="43"/>
         <source>Typing Panel</source>
-        <translation>打字頁面</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -39,17 +52,17 @@
     <message>
         <location filename="../../include/MainWindow.h" line="33"/>
         <source>Setting</source>
-        <translation>設定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="34"/>
         <source>Language</source>
-        <translation>語言</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="35"/>
         <source>Switch To</source>
-        <translation>切換到</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -57,37 +70,37 @@
     <message>
         <location filename="../../include/MainWindow.h" line="46"/>
         <source>article</source>
-        <translation>文章</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="47"/>
         <source>Health</source>
-        <translation>健康</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="48"/>
         <source>Sport</source>
-        <translation>運動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="49"/>
         <source>Travel</source>
-        <translation>旅遊</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="50"/>
         <source>World</source>
-        <translation>世界</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="51"/>
         <source>Typing</source>
-        <translation>打字</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../include/MainWindow.h" line="52"/>
         <source>Test</source>
-        <translation>測驗</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -192,7 +205,7 @@ p, li { white-space: pre-wrap; }
     <name>hello
 hello</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="136"/>
+        <location filename="../../src/MainWindow.cpp" line="150"/>
         <source>zh-TW</source>
         <translation type="unfinished"></translation>
     </message>

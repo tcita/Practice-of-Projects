@@ -1,4 +1,4 @@
-# Install script for directory: /home/kde/Practice-of-Projects/ui
+# Install script for directory: /home/kde/Documents/git/Practice-of-Projects/ui
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/kde/Practice-of-Projects/ui/build/linux/lib/json-develop/cmake_install.cmake")
+  include("/home/kde/Documents/git/Practice-of-Projects/ui/build/linux/lib/json-develop/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -55,5 +55,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/kde/Practice-of-Projects/ui/build/linux/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/kde/Documents/git/Practice-of-Projects/ui/build/linux/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

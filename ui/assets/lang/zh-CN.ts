@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="108"/>
+        <source>EnglishAssistant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="108"/>
+        <source>Application restart is needed, do you want to restart now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QAction</name>
     <message>
         <location filename="../../include/MainWindow.h" line="38"/>
@@ -192,7 +205,7 @@ p, li { white-space: pre-wrap; }
     <name>hello
 hello</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="136"/>
+        <location filename="../../src/MainWindow.cpp" line="150"/>
         <source>zh-TW</source>
         <translation type="unfinished"></translation>
     </message>
