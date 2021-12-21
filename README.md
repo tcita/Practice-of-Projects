@@ -31,3 +31,5 @@ cmake --build .
 - nlohmann-json (embedded): https://github.com/nlohmann/json
 
 - Qt: https://www.qt.io/
+
+- Google translate: https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en-US&dt=t&q=helloworld

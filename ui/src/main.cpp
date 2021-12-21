@@ -1,5 +1,6 @@
 #include <iostream> //debug
 // #include <QtWidgets>
+#include <QDir>
 #include <QApplication>
 #include <QTranslator>
 #include <QMainWindow>
@@ -13,8 +14,14 @@ int main(int argc, char **argv)
 
   // Init translator
   QTranslator translator;
-  translator.load("assets/lang/zh_tw");
-  translator.load("assets/lang/zh_cn");
+  // translator.load("assets/lang/zh_cn.qm");
+  // translator.load("assets/lang/zh_tw.qm");
+  QString langPath = "assets/lang";
+  QDir langDir(langPath);
+  for(QString langFileName : langDir.entryList(QStringList("*.qm")))
+  {
+    std::cout << langPath.toStdString() + langFileName.toStdString() << "\n";
+  }
   std::cout << "isEmpty() " << translator.isEmpty() << "\n"; //debug
   std::cout << "language() " << translator.language().toStdString() << "\n"; //debug
   app.installTranslator(&translator);
