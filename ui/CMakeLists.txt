@@ -62,10 +62,6 @@ qt5_create_translation(
   ${TS_FILES}
 )
 
-foreach(QM_FILE ${QM_FILES})
-  message(${QM_FILE})
-endforeach()
-
 # src
 target_sources(
   ${CMAKE_PROJECT_NAME}
