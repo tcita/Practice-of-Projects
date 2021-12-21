@@ -1,4 +1,4 @@
-# Install script for directory: /home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop
+# Install script for directory: /home/kde/Practice-of-Projects/ui/lib/json-develop
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
