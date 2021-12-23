@@ -4,7 +4,7 @@ An English learning app.
 
 ## How to build (There are many ways to build, this is just an example)
 
-### 0. Install needed tools, skip this step if you have already installed them.
+### 0. Install needed tools, don't forget to set the environment path.
 
 - GCC: https://www.mingw-w64.org/downloads/
 

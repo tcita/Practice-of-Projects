@@ -9,7 +9,7 @@ std::string Crawler::getArticle(const std::string &articleType)
   std::unique_ptr<FILE, decltype(&pclose)> dataStream(popen(command.c_str(), "r"), &pclose);
 
   std::string data;
-  
+
   // FILE to std::string: https://stackoverflow.com/questions/10667972/c-popens-output-to-a-string
   const int BUFFER_SIZE = 5000;
   char buffer[BUFFER_SIZE];
@@ -18,5 +18,6 @@ std::string Crawler::getArticle(const std::string &articleType)
     data += buffer;
   }
 
+  std::cout << "Size of data: " << data.size() << "\n";
   return data;
 }
