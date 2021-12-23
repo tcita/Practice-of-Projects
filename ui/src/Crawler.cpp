@@ -18,6 +18,5 @@ std::string Crawler::getArticle(const std::string &articleType)
     data += buffer;
   }
 
-  std::cout << "Size of data: " << data.size() << "\n";
   return data;
 }

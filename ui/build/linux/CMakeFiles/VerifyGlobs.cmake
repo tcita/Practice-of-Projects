@@ -53,6 +53,7 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Documents/git/Practice-of-Projects/ui/*.cpp")
 set(OLD_GLOB
   "/home/kde/Documents/git/Practice-of-Projects/ui/build/linux/CMakeFiles/3.22.1/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+  "/home/kde/Documents/git/Practice-of-Projects/ui/build/windows/CMakeFiles/3.21.1/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "/home/kde/Documents/git/Practice-of-Projects/ui/build/windows/CMakeFiles/3.22.0/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/benchmarks/src/benchmarks.cpp"
   "/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/doc/examples/README.cpp"
@@ -347,8 +348,6 @@ set(OLD_GLOB
   "/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/test/thirdparty/Fuzzer/test/TraceMallocTest.cpp"
   "/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/test/thirdparty/Fuzzer/test/UninstrumentedTest.cpp"
   "/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/third_party/macro_builder/main.cpp"
-  "/home/kde/Documents/git/Practice-of-Projects/ui/lib/tmp/checkbox/main.cpp"
-  "/home/kde/Documents/git/Practice-of-Projects/ui/lib/tmp/checkbox/widget.cpp"
   "/home/kde/Documents/git/Practice-of-Projects/ui/src/Crawler.cpp"
   "/home/kde/Documents/git/Practice-of-Projects/ui/src/MainWindow.cpp"
   "/home/kde/Documents/git/Practice-of-Projects/ui/src/OnlineTranslator.cpp"
@@ -375,6 +374,7 @@ endif()
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Documents/git/Practice-of-Projects/ui/*.h")
 set(OLD_GLOB
+  "/home/kde/Documents/git/Practice-of-Projects/ui/include/ConfigHandler.h"
   "/home/kde/Documents/git/Practice-of-Projects/ui/include/Crawler.h"
   "/home/kde/Documents/git/Practice-of-Projects/ui/include/LanguageTypes.h"
   "/home/kde/Documents/git/Practice-of-Projects/ui/include/MainWindow.h"
@@ -396,7 +396,6 @@ set(OLD_GLOB
   "/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/test/thirdparty/Fuzzer/FuzzerValueBitMap.h"
   "/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/test/thirdparty/doctest/doctest.h"
   "/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/test/thirdparty/doctest/doctest_compatibility.h"
-  "/home/kde/Documents/git/Practice-of-Projects/ui/lib/tmp/checkbox/widget.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -564,7 +563,6 @@ endif()
 # _directory_contents at /usr/lib/x86_64-linux-gnu/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake:78 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/kde/Documents/git/Practice-of-Projects/ui/*.ui")
 set(OLD_GLOB
-  "/home/kde/Documents/git/Practice-of-Projects/ui/lib/tmp/checkbox/widget.ui"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

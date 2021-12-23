@@ -15,54 +15,63 @@
 // The application main window
 class MainWindow : public QMainWindow
 {
+private:
+  // Translater
+  QTranslator *translator;
+
+  // Menu
+  QMenuBar *mainMenuBar;
+  QMenu *settingMenu;
+  QMenu *languageMenu;
+  QAction *enUsAction;
+  QAction *zhCnAction;
+  QAction *zhTwAction;
+  QMenu *switchToMenu;
+  QAction *mainPanelAction;
+  QAction *articleTypeSelectPanelAction;
+  QAction *typingPanelAction;
+
+  // Main panel
+  QWidget *mainPanel;
+  QPushButton *articleTypeSelectPanelButton;
+  QPushButton *typingPanelButton;
+  QPushButton *testPanelButton;
+  QPushButton *translatePanelButton;
+
+  // Artical type select panel
+  QWidget *articleTypeSelectPanel;
+  QPushButton *articlePanelHealthButton;
+  QPushButton *articlePanelSportButton;
+  QPushButton *articlePanelTravelButton;
+  QPushButton *articlePanelWorldButton;
+
+  // Artical panel
+  QWidget *articlePanel;
+  QTextBrowser *articlePanelTextBrowser;
+
+  // Typing panel
+  QWidget *typingPanel;
+  QWidget *typingPanelStatusWidget;
+  QWidget *typingPanelTypingWidget;
+
+  // Test panel
+  QWidget *testPanel;
+
+  // Translate panel
+  QWidget *translatePanel;
+
+  /****************************************************************************************************
+  * Functions
+  ****************************************************************************************************/
 public:
-  QTranslator *translator = nullptr;
-
-  // Init panel & widgets
-  QWidget *mainPanel = new QWidget();
-  QWidget *articleTypeSelectPanel = new QWidget();
-  QWidget *articlePanel = new QWidget();
-  QWidget *typingPanel = new QWidget();
-  QWidget *typingPanelStatusWidget = new QWidget();
-  QWidget *typingPanelTypingWidget = new QWidget();
-  // QScrollArea *typingPanelTypingWidget = new QScrollArea();
-  QWidget *testPanel = new QWidget();
-  QWidget *translatePanel = new QWidget();
-
-  // Init menu bar
-  QMenuBar *mainMenuBar = this->menuBar();
-  QMenu *settingMenu = new QMenu(QMenu::tr("Setting"));
-  QMenu *languageMenu = new QMenu(QMenu::tr("Language"));
-  QMenu *switchMenu = new QMenu(QMenu::tr("Switch To"));
-
-  // Init menu action
-  QAction *enUsAction = new QAction(QAction::tr("English(US)"));
-  QAction *zhCnAction = new QAction(QAction::tr("Chinese(Simplified)"));
-  QAction *zhTwAction = new QAction(QAction::tr("Chinese(Traditional)"));
-  QAction *mainPanelAction = new QAction(QAction::tr("Main Panel"));
-  QAction *articleTypeSelectPanelAction = new QAction(QAction::tr("article Type Select Panel"));
-  QAction *typingPanelAction = new QAction(QAction::tr("Typing Panel"));
-
-  // Init button
-  QPushButton *articleTypeSelectPanelButton = new QPushButton(QPushButton::tr("article"));
-  QPushButton *articlePanelHealthButton = new QPushButton(QPushButton::tr("Health"));
-  QPushButton *articlePanelSportButton = new QPushButton(QPushButton::tr("Sport"));
-  QPushButton *articlePanelTravelButton = new QPushButton(QPushButton::tr("Travel"));
-  QPushButton *articlePanelWorldButton = new QPushButton(QPushButton::tr("World"));
-  QPushButton *typingPanelButton = new QPushButton(QPushButton::tr("Typing"));
-  QPushButton *testPanelButton = new QPushButton(QPushButton::tr("Test"));
-  QPushButton *translatePanelButton = new QPushButton(QPushButton::tr("Translate"));
-
-  // Init text edit
-  QTextBrowser *articlePanelTextBrowser = new QTextBrowser();
-
-  // Construtor
   // MainWindow(QTranslator *translator);
   MainWindow(QTranslator *translator);
 
+private:
+  // Translate all widgets
+  void retranslate();
   // Set language
   void setLanguage(const std::string &languageType);
-
   // Switch to main panel
   void switchToMainPanel();
   // Switch to typing panel

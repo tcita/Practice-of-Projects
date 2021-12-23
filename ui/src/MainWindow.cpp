@@ -12,6 +12,56 @@
 MainWindow::MainWindow(QTranslator *translator)
 :translator(translator)
 {
+  /******************************************************************************************
+  * Init member
+  ******************************************************************************************/
+  // Menu
+  mainMenuBar = this->menuBar();
+  settingMenu = new QMenu();
+  languageMenu = new QMenu();
+  enUsAction = new QAction();
+  zhCnAction = new QAction();
+  zhTwAction = new QAction();
+  switchToMenu = new QMenu();
+  mainPanelAction = new QAction();
+  articleTypeSelectPanelAction = new QAction();
+  typingPanelAction = new QAction();
+
+  // Main panel
+  mainPanel = new QWidget();
+  articleTypeSelectPanelButton = new QPushButton();
+  typingPanelButton = new QPushButton();
+  testPanelButton = new QPushButton();
+  translatePanelButton = new QPushButton();
+
+  // Artical type select panel
+  articleTypeSelectPanel = new QWidget();
+  articlePanelHealthButton = new QPushButton();
+  articlePanelSportButton = new QPushButton();
+  articlePanelTravelButton = new QPushButton();
+  articlePanelWorldButton = new QPushButton();
+
+  // Artical panel
+  articlePanel = new QWidget();
+  articlePanelTextBrowser = new QTextBrowser();
+
+  // Typing panel
+  typingPanel = new QWidget();
+  typingPanelStatusWidget = new QWidget();
+  typingPanelTypingWidget = new QWidget();
+
+  // Test panel
+  testPanel = new QWidget();
+
+  // Translate panel
+  translatePanel = new QWidget();
+
+  /******************************************************************************************
+  * Set member information
+  ******************************************************************************************/
+  // Translate all widgets
+  this->retranslate();
+
   // Setup icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
 
@@ -21,13 +71,13 @@ MainWindow::MainWindow(QTranslator *translator)
   // Setup menu bar
   mainMenuBar->addMenu(settingMenu);
   settingMenu->addMenu(languageMenu);
-  mainMenuBar->addMenu(switchMenu);
+  mainMenuBar->addMenu(switchToMenu);
   languageMenu->addAction(enUsAction);
   languageMenu->addAction(zhCnAction);
   languageMenu->addAction(zhTwAction);
-  switchMenu->addAction(mainPanelAction);
-  switchMenu->addAction(articleTypeSelectPanelAction);
-  switchMenu->addAction(typingPanelAction);
+  switchToMenu->addAction(mainPanelAction);
+  switchToMenu->addAction(articleTypeSelectPanelAction);
+  switchToMenu->addAction(typingPanelAction);
 
   // Set central widget
   this->setCentralWidget(mainPanel);
@@ -94,6 +144,32 @@ MainWindow::MainWindow(QTranslator *translator)
   QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{this->switchToTranslatePanel();});
 }
 
+void MainWindow::retranslate()
+{
+  // Translate menu bar
+  settingMenu -> setTitle(QMenu::tr("Setting"));
+  languageMenu -> setTitle(QMenu::tr("Language"));
+  switchToMenu -> setTitle(QMenu::tr("Switch To"));
+
+  // Init menu action
+  enUsAction -> setText(QAction::tr("English(US)"));
+  zhCnAction -> setText(QAction::tr("Chinese(Simplified)"));
+  zhTwAction -> setText(QAction::tr("Chinese(Traditional)"));
+  mainPanelAction -> setText(QAction::tr("Main Panel"));
+  articleTypeSelectPanelAction -> setText(QAction::tr("article Type Select Panel"));
+  typingPanelAction -> setText(QAction::tr("Typing Panel"));
+
+  // Init button
+  articleTypeSelectPanelButton -> setText(QPushButton::tr("article"));
+  articlePanelHealthButton -> setText(QPushButton::tr("Health"));
+  articlePanelSportButton -> setText(QPushButton::tr("Sport"));
+  articlePanelTravelButton -> setText(QPushButton::tr("Travel"));
+  articlePanelWorldButton -> setText(QPushButton::tr("World"));
+  typingPanelButton -> setText(QPushButton::tr("Typing"));
+  testPanelButton -> setText(QPushButton::tr("Test"));
+  translatePanelButton -> setText(QPushButton::tr("Translate"));
+}
+
 void MainWindow::setLanguage(const std::string &languageType)
 {
   // Check if it is different with current language
@@ -108,12 +184,13 @@ void MainWindow::setLanguage(const std::string &languageType)
   translator->load(languageFilePath.c_str());
   std::cout << translator->language().toStdString() << "\n";
 
-  int clickedButtonId = QMessageBox::information(this, tr("EnglishAssistant"), tr("Application restart is needed, do you want to restart now?"), QMessageBox::Yes | QMessageBox::No);
-  if(clickedButtonId == QMessageBox::Yes)
-  {
-    // Application restart
-    std::cout << "Application restart\n";
-  }
+  this->retranslate();
+  // int clickedButtonId = QMessageBox::information(this, tr("EnglishAssistant"), tr("Application restart is needed, do you want to restart now?"), QMessageBox::Yes | QMessageBox::No);
+  // if(clickedButtonId == QMessageBox::Yes)
+  // {
+  //   // Application restart
+  //   std::cout << "Application restart\n";
+  // }
 }
 
 void MainWindow::switchToMainPanel()

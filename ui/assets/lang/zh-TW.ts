@@ -2,47 +2,34 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_TW">
 <context>
-    <name>MainWindow</name>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="108"/>
-        <source>EnglishAssistant</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="108"/>
-        <source>Application restart is needed, do you want to restart now?</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>QAction</name>
     <message>
-        <location filename="../../include/MainWindow.h" line="39"/>
+        <location filename="../../src/MainWindow.cpp" line="155"/>
         <source>English(US)</source>
         <translation>英文（美國）</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="40"/>
+        <location filename="../../src/MainWindow.cpp" line="156"/>
         <source>Chinese(Simplified)</source>
         <translation>中文（中國）</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="41"/>
+        <location filename="../../src/MainWindow.cpp" line="157"/>
         <source>Chinese(Traditional)</source>
         <translation>中文（台灣）</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="42"/>
+        <location filename="../../src/MainWindow.cpp" line="158"/>
         <source>Main Panel</source>
         <translation>主頁面</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="43"/>
+        <location filename="../../src/MainWindow.cpp" line="159"/>
         <source>article Type Select Panel</source>
         <translation>文章選擇頁面</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="44"/>
+        <location filename="../../src/MainWindow.cpp" line="160"/>
         <source>Typing Panel</source>
         <translation>打字頁面</translation>
     </message>
@@ -50,17 +37,17 @@
 <context>
     <name>QMenu</name>
     <message>
-        <location filename="../../include/MainWindow.h" line="34"/>
+        <location filename="../../src/MainWindow.cpp" line="150"/>
         <source>Setting</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="35"/>
+        <location filename="../../src/MainWindow.cpp" line="151"/>
         <source>Language</source>
         <translation>語言</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="36"/>
+        <location filename="../../src/MainWindow.cpp" line="152"/>
         <source>Switch To</source>
         <translation>切換到</translation>
     </message>
@@ -68,151 +55,44 @@
 <context>
     <name>QPushButton</name>
     <message>
-        <location filename="../../include/MainWindow.h" line="47"/>
+        <location filename="../../src/MainWindow.cpp" line="163"/>
         <source>article</source>
         <translation>文章</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="48"/>
+        <location filename="../../src/MainWindow.cpp" line="164"/>
         <source>Health</source>
         <translation>健康</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="49"/>
+        <location filename="../../src/MainWindow.cpp" line="165"/>
         <source>Sport</source>
         <translation>運動</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="50"/>
+        <location filename="../../src/MainWindow.cpp" line="166"/>
         <source>Travel</source>
         <translation>旅遊</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="51"/>
+        <location filename="../../src/MainWindow.cpp" line="167"/>
         <source>World</source>
         <translation>世界</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="52"/>
+        <location filename="../../src/MainWindow.cpp" line="168"/>
         <source>Typing</source>
         <translation>打字</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="53"/>
+        <location filename="../../src/MainWindow.cpp" line="169"/>
         <source>Test</source>
         <translation>測驗</translation>
     </message>
     <message>
-        <location filename="../../include/MainWindow.h" line="54"/>
+        <location filename="../../src/MainWindow.cpp" line="170"/>
         <source>Translate</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Widget</name>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="14"/>
-        <source>Widget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="26"/>
-        <source>multiple choice questions(Non Exclusive)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="32"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;PMingLiU&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;which animal should not stay at house&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="43"/>
-        <source>tiger</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="50"/>
-        <source>lion</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="57"/>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="97"/>
-        <source>cat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="64"/>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="104"/>
-        <source>dog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="80"/>
-        <source>multiple choice(Exclusive)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="86"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;PMingLiU&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;which animal is not feline&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="111"/>
-        <source>fish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="118"/>
-        <source>pig</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="134"/>
-        <source>Choose the right answer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="146"/>
-        <source>True</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="159"/>
-        <source>False</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="172"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;PMingLiU&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;every dog has a tail&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/tmp/checkbox/widget.ui" line="191"/>
-        <source>Upload answer</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>hello
-hello</name>
-    <message>
-        <location filename="../../src/MainWindow.cpp" line="150"/>
-        <source>zh-TW</source>
-        <translation type="unfinished"></translation>
+        <translation>翻譯</translation>
     </message>
 </context>
 </TS>

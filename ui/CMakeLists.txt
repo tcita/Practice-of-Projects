@@ -1,6 +1,10 @@
 # Set cmake standard
 cmake_minimum_required(VERSION 3.21)
 
+# Set c++ standard
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # Set project information
 project(
   EnglishAssistant
@@ -10,10 +14,6 @@ project(
 
 # Add executable
 add_executable(${PROJECT_NAME})
-
-# Set c++ standard
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Set Qt path for windows
 if(WIN32)
@@ -65,6 +65,7 @@ qt5_create_translation(
 # src
 target_sources(
   ${CMAKE_PROJECT_NAME}
+  PRIVATE ${QM_FILES}
   PRIVATE ${CMAKE_SOURCE_DIR}/src/main.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/MainWindow.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Crawler.cpp
