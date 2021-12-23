@@ -32,12 +32,12 @@ find_package(
     LinguistTools REQUIRED
 )
 
-#
-# Copy crawler from lib to build directory
-#
+# Copy crawler to build directory
+# Copy assets to build directory
 add_custom_command(
   TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/lib/crawler/crawler.jar ${CMAKE_BINARY_DIR}/lib/crawler/crawler.jar
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/crawler ${CMAKE_BINARY_DIR}/lib/crawler
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets/image ${CMAKE_BINARY_DIR}/assets/image
 )
 
 # Setup (.ts) files (Qt linguist)

@@ -63,7 +63,7 @@ MainWindow::MainWindow(QTranslator *translator)
   this->retranslate();
 
   // Setup icon
-  this->setWindowIcon(QIcon("assets/image/icon.png"));
+  this->setWindowIcon(QIcon("assets/image/icon.ico"));
 
   // Setup language
   translator->load(LanguageTypes::zh_TW);
