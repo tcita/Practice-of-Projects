@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 # Set c++ standard
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Set project information
@@ -13,11 +13,17 @@ project(
 )
 
 # Add executable
-add_executable(${PROJECT_NAME})
+add_executable(${CMAKE_PROJECT_NAME})
 
-# Set Qt path for windows
 if(WIN32)
+  # Set Qt path for windows
 	set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/Qt/5.12.12/mingw73_64/lib/cmake/")
+
+  # Copy Qt dll mingw7.3.0_64
+  add_custom_command(
+    TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/Qt/mingw7.3.0_64 ${CMAKE_BINARY_DIR}
+  )
 endif()
 
 # Add subdirectory nlohmann_json

@@ -2,9 +2,9 @@
 
 An English learning app.
 
-## How to build (There are many ways to build, this is just an example)
+## How to build
 
-### 0. Install needed tools, don't forget to set the environment path.
+### 0. Install needed tools & set environment path.
 
 - GCC: https://www.mingw-w64.org/downloads/
 
@@ -12,11 +12,11 @@ An English learning app.
 
 - CMake: https://cmake.org/
 
-- Qt: https://www.qt.io/download-qt-installer?utm_referrer=https%3A%2F%2Fwww.qt.io%2Fdownload-open-source%3Futm_referrer%3Dhttps%253A%252F%252Fwww.qt.io%252F
+- Qt(v5.12.12): https://www.qt.io
 
 ### 1. Go to build directory.
 
-cd build/windows
+cd <PROJECT_ROOT_DIR>/ui/build/windows
 
 ### 2. Generate build system files
 

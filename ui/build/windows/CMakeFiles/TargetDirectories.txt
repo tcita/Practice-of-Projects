@@ -1,5 +1,5 @@
-C:/Users/Alex/Documents/GitHub/Practice-of-Projects/ui/build/windows/CMakeFiles/EnglishAssistant.dir
-C:/Users/Alex/Documents/GitHub/Practice-of-Projects/ui/build/windows/CMakeFiles/edit_cache.dir
-C:/Users/Alex/Documents/GitHub/Practice-of-Projects/ui/build/windows/CMakeFiles/rebuild_cache.dir
-C:/Users/Alex/Documents/GitHub/Practice-of-Projects/ui/build/windows/lib/json-develop/CMakeFiles/edit_cache.dir
-C:/Users/Alex/Documents/GitHub/Practice-of-Projects/ui/build/windows/lib/json-develop/CMakeFiles/rebuild_cache.dir
+C:/Users/luste/Documents/git/Practice-of-Projects/ui/build/windows/CMakeFiles/EnglishAssistant.dir
+C:/Users/luste/Documents/git/Practice-of-Projects/ui/build/windows/CMakeFiles/edit_cache.dir
+C:/Users/luste/Documents/git/Practice-of-Projects/ui/build/windows/CMakeFiles/rebuild_cache.dir
+C:/Users/luste/Documents/git/Practice-of-Projects/ui/build/windows/lib/json-develop/CMakeFiles/edit_cache.dir
+C:/Users/luste/Documents/git/Practice-of-Projects/ui/build/windows/lib/json-develop/CMakeFiles/rebuild_cache.dir

@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Alex/Documents/GitHub/Practice-of-Projects/ui/lib/json-develop
+# Install script for directory: C:/Users/luste/Documents/git/Practice-of-Projects/ui/lib/json-develop
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,6 +34,6 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Qt/Tools/mingw810_64/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Qt/Tools/mingw730_64/bin/objdump.exe")
 endif()
 

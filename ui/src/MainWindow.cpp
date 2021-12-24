@@ -8,6 +8,7 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QMessageBox>
+#include <QTranslator>
 
 MainWindow::MainWindow(QTranslator *translator)
   :translator(translator)
@@ -179,7 +180,6 @@ void MainWindow::retranslate()
 void MainWindow::setLanguage(const std::string &languageType)
 {
   // Check if it is different with current language
-  std::cout << translator->language().toStdString() << "<<<<<\n";
   if(translator->language().toStdString() == languageType)
   {
     std::cout << languageType << " is the current language, nothing changed\n";
