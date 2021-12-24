@@ -3,34 +3,21 @@
 #include <QDir>
 #include <QApplication>
 #include <QTranslator>
-#include <QMainWindow>
-#include <MainWindow.h>
+#include "MainWindow.h"
 #include "OnlineTranslator.h"
 #include "LanguageTypes.h"
 
 int main(int argc, char **argv)
 {
-  // Init app
-  QApplication app(argc, argv);
-
   // Init translator
   QTranslator translator;
 
-  // translator.load(QString("assets/lang/") + QString(LanguageTypes::zh_TW));
-
-  // Load language files
-  QString langPath = "assets/lang/";
-  QDir langDir(langPath);
-  for(QString langFileName : langDir.entryList(QStringList("*.qm")))
-  {
-    // std::cout << (langPath+langFileName).toStdString() << "\n";
-    translator.load(langPath+langFileName);
-  }
-
-  // Print translator info
-  std::cout << "isEmpty() " << translator.isEmpty() << "\n"; //debug
-  std::cout << "language() " << translator.language().toStdString() << "\n"; //debug
+  // Init app
+  QApplication app(argc, argv);
   app.installTranslator(&translator);
+
+  // Set language
+  translator.load(QString("assets/lang/") + QString(LanguageTypes::zh_TW));
 
   // Init main window
   MainWindow mainWindow(&translator);

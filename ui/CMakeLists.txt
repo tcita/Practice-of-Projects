@@ -43,9 +43,9 @@ add_custom_command(
 # Setup (.ts) files (Qt linguist)
 set(
   TS_FILES
-  ${CMAKE_SOURCE_DIR}/assets/lang/en-US.ts
-  ${CMAKE_SOURCE_DIR}/assets/lang/zh-CN.ts
-  ${CMAKE_SOURCE_DIR}/assets/lang/zh-TW.ts
+  ${CMAKE_SOURCE_DIR}/assets/lang/en_US.ts
+  ${CMAKE_SOURCE_DIR}/assets/lang/zh_CN.ts
+  ${CMAKE_SOURCE_DIR}/assets/lang/zh_TW.ts
 )
 
 # From: https://doc.qt.io/qt-5.12//qtlinguist-cmake-qt5-add-translation.html

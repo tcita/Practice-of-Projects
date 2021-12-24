@@ -10,7 +10,7 @@
 #include <QMessageBox>
 
 MainWindow::MainWindow(QTranslator *translator)
-:translator(translator)
+:translator{translator}
 {
   /******************************************************************************************
   * Init member
@@ -171,24 +171,19 @@ void MainWindow::retranslate()
 void MainWindow::setLanguage(const std::string &languageType)
 {
   // Check if it is different with current language
+  std::cout << translator->language().toStdString() << "<<<<<\n";
   if(translator->language().toStdString() == languageType)
   {
-    std::cout << languageType << " is the current language\n";
+    std::cout << languageType << " is the current language, nothing changed\n";
     return;
   }
 
   std::cout << "MainWindow::setLanguage(\"" << languageType << "\")\n";
   std::string languageFilePath = std::string("assets/lang/") + languageType;
-  translator->load(languageFilePath.c_str());
-  std::cout << translator->language().toStdString() << "\n";
+  translator->load(QString::fromStdString(languageFilePath));
+  std::cout << "The language after change is: " << translator->language().toStdString() << "\n"; //debug
 
   this->retranslate();
-  // int clickedButtonId = QMessageBox::information(this, tr("EnglishAssistant"), tr("Application restart is needed, do you want to restart now?"), QMessageBox::Yes | QMessageBox::No);
-  // if(clickedButtonId == QMessageBox::Yes)
-  // {
-  //   // Application restart
-  //   std::cout << "Application restart\n";
-  // }
 }
 
 void MainWindow::switchToMainPanel()

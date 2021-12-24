@@ -10,7 +10,6 @@
 #include <QAction>
 #include <QPushButton>
 #include <QTextBrowser>
-#include <QToolBar>
 
 // The application main window
 class MainWindow : public QMainWindow
