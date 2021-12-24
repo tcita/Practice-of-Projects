@@ -49,6 +49,7 @@ set(
 )
 
 # From: https://doc.qt.io/qt-5.12//qtlinguist-cmake-qt5-add-translation.html
+# Set output directory
 set_source_files_properties(
   ${TS_FILES}
   PROPERTIES
@@ -60,6 +61,8 @@ qt5_create_translation(
   QM_FILES
   ${CMAKE_SOURCE_DIR}
   ${TS_FILES}
+  OPTIONS
+    -no-obsolete
 )
 
 # src

@@ -17,38 +17,38 @@ MainWindow::MainWindow(QTranslator *translator)
   ******************************************************************************************/
   // Menu
   mainMenuBar = this->menuBar();
-  settingMenu = new QMenu();
-  languageMenu = new QMenu();
-  enUsAction = new QAction();
-  zhCnAction = new QAction();
-  zhTwAction = new QAction();
-  switchToMenu = new QMenu();
-  mainPanelAction = new QAction();
-  articleTypeSelectPanelAction = new QAction();
-  typingPanelAction = new QAction();
+  settingMenu = new QMenu(mainMenuBar);
+  languageMenu = new QMenu(settingMenu);
+  enUsAction = new QAction(languageMenu);
+  zhCnAction = new QAction(languageMenu);
+  zhTwAction = new QAction(languageMenu);
+  switchToMenu = new QMenu(mainMenuBar);
+  mainPanelAction = new QAction(switchToMenu);
+  articleTypeSelectPanelAction = new QAction(switchToMenu);
+  typingPanelAction = new QAction(switchToMenu);
 
   // Main panel
   mainPanel = new QWidget();
-  articleTypeSelectPanelButton = new QPushButton();
-  typingPanelButton = new QPushButton();
-  testPanelButton = new QPushButton();
-  translatePanelButton = new QPushButton();
+  articleTypeSelectPanelButton = new QPushButton(mainPanel);
+  typingPanelButton = new QPushButton(mainPanel);
+  testPanelButton = new QPushButton(mainPanel);
+  translatePanelButton = new QPushButton(mainPanel);
 
   // Artical type select panel
   articleTypeSelectPanel = new QWidget();
-  articlePanelHealthButton = new QPushButton();
-  articlePanelSportButton = new QPushButton();
-  articlePanelTravelButton = new QPushButton();
-  articlePanelWorldButton = new QPushButton();
+  articlePanelHealthButton = new QPushButton(articleTypeSelectPanel);
+  articlePanelSportButton = new QPushButton(articleTypeSelectPanel);
+  articlePanelTravelButton = new QPushButton(articleTypeSelectPanel);
+  articlePanelWorldButton = new QPushButton(articleTypeSelectPanel);
 
   // Artical panel
   articlePanel = new QWidget();
-  articlePanelTextBrowser = new QTextBrowser();
+  articlePanelTextBrowser = new QTextBrowser(articlePanel);
 
   // Typing panel
   typingPanel = new QWidget();
-  typingPanelStatusWidget = new QWidget();
-  typingPanelTypingWidget = new QWidget();
+  typingPanelStatusWidget = new QWidget(typingPanel);
+  typingPanelTypingWidget = new QWidget(typingPanel);
 
   // Test panel
   testPanel = new QWidget();
@@ -146,21 +146,19 @@ MainWindow::MainWindow(QTranslator *translator)
 
 void MainWindow::retranslate()
 {
-  // Translate menu bar
+  // Menu
   settingMenu -> setTitle(QMenu::tr("Setting"));
   languageMenu -> setTitle(QMenu::tr("Language"));
-  switchToMenu -> setTitle(QMenu::tr("Switch To"));
-
-  // Init menu action
   enUsAction -> setText(QAction::tr("English(US)"));
   zhCnAction -> setText(QAction::tr("Chinese(Simplified)"));
   zhTwAction -> setText(QAction::tr("Chinese(Traditional)"));
+  switchToMenu -> setTitle(QMenu::tr("Switch To"));
   mainPanelAction -> setText(QAction::tr("Main Panel"));
-  articleTypeSelectPanelAction -> setText(QAction::tr("article Type Select Panel"));
+  articleTypeSelectPanelAction -> setText(QAction::tr("Article Type Select Panel"));
   typingPanelAction -> setText(QAction::tr("Typing Panel"));
 
-  // Init button
-  articleTypeSelectPanelButton -> setText(QPushButton::tr("article"));
+  // Main panel
+  articleTypeSelectPanelButton -> setText(QPushButton::tr("Article"));
   articlePanelHealthButton -> setText(QPushButton::tr("Health"));
   articlePanelSportButton -> setText(QPushButton::tr("Sport"));
   articlePanelTravelButton -> setText(QPushButton::tr("Travel"));
