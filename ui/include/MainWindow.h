@@ -29,6 +29,7 @@ private:
   QAction *mainPanelAction;
   QAction *articleTypeSelectPanelAction;
   QAction *typingPanelAction;
+  QAction *translatePanelAction;
 
   // Main panel
   QWidget *mainPanel;

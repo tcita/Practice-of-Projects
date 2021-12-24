@@ -10,7 +10,7 @@
 #include <QMessageBox>
 
 MainWindow::MainWindow(QTranslator *translator)
-:translator{translator}
+  :translator(translator)
 {
   /******************************************************************************************
   * Init member
@@ -26,6 +26,7 @@ MainWindow::MainWindow(QTranslator *translator)
   mainPanelAction = new QAction(switchToMenu);
   articleTypeSelectPanelAction = new QAction(switchToMenu);
   typingPanelAction = new QAction(switchToMenu);
+  translatePanelAction = new QAction(switchToMenu);
 
   // Main panel
   mainPanel = new QWidget();
@@ -78,6 +79,7 @@ MainWindow::MainWindow(QTranslator *translator)
   switchToMenu->addAction(mainPanelAction);
   switchToMenu->addAction(articleTypeSelectPanelAction);
   switchToMenu->addAction(typingPanelAction);
+  switchToMenu->addAction(translatePanelAction);
 
   // Set central widget
   this->setCentralWidget(mainPanel);
@@ -97,7 +99,6 @@ MainWindow::MainWindow(QTranslator *translator)
   articleTypeSelectPanelLayout-> addWidget(articlePanelSportButton, 0, 1);
   articleTypeSelectPanelLayout-> addWidget(articlePanelTravelButton, 1, 0);
   articleTypeSelectPanelLayout-> addWidget(articlePanelWorldButton, 1, 1);
-
 
   // Setup article panel
   QGridLayout *articlePanelLayout = new QGridLayout();
@@ -132,6 +133,7 @@ MainWindow::MainWindow(QTranslator *translator)
   QObject::connect(mainPanelAction, &QAction::triggered, [this]{this->switchToMainPanel();});
   QObject::connect(articleTypeSelectPanelAction, &QAction::triggered, [this]{this->switchToArticleTypeSelectPanel();});
   QObject::connect(typingPanelAction, &QAction::triggered, [this]{this->switchToTypingPanel();});
+  QObject::connect(translatePanelAction, &QAction::triggered, [this]{this->switchToTranslatePanel();});
 
   // Connect button callback
   QObject::connect(articleTypeSelectPanelButton, &QPushButton::clicked, [this]{this->switchToArticleTypeSelectPanel();});
@@ -146,26 +148,32 @@ MainWindow::MainWindow(QTranslator *translator)
 
 void MainWindow::retranslate()
 {
+  // Main window
+  this->setWindowTitle(QMainWindow::tr("English Assistant"));
+
   // Menu
-  settingMenu -> setTitle(QMenu::tr("Setting"));
-  languageMenu -> setTitle(QMenu::tr("Language"));
-  enUsAction -> setText(QAction::tr("English(US)"));
-  zhCnAction -> setText(QAction::tr("Chinese(Simplified)"));
-  zhTwAction -> setText(QAction::tr("Chinese(Traditional)"));
-  switchToMenu -> setTitle(QMenu::tr("Switch To"));
-  mainPanelAction -> setText(QAction::tr("Main Panel"));
-  articleTypeSelectPanelAction -> setText(QAction::tr("Article Type Select Panel"));
-  typingPanelAction -> setText(QAction::tr("Typing Panel"));
+  settingMenu->setTitle(QMenu::tr("Setting"));
+  languageMenu->setTitle(QMenu::tr("Language"));
+  enUsAction->setText(QAction::tr("English(US)"));
+  zhCnAction->setText(QAction::tr("Chinese(Simplified)"));
+  zhTwAction->setText(QAction::tr("Chinese(Traditional)"));
+  switchToMenu->setTitle(QMenu::tr("Switch To"));
+  mainPanelAction->setText(QAction::tr("Main Panel"));
+  articleTypeSelectPanelAction->setText(QAction::tr("Article Type Select Panel"));
+  typingPanelAction->setText(QAction::tr("Typing Panel"));
+  translatePanelAction->setText(QAction::tr("Translate Panel"));
 
   // Main panel
-  articleTypeSelectPanelButton -> setText(QPushButton::tr("Article"));
-  articlePanelHealthButton -> setText(QPushButton::tr("Health"));
-  articlePanelSportButton -> setText(QPushButton::tr("Sport"));
-  articlePanelTravelButton -> setText(QPushButton::tr("Travel"));
-  articlePanelWorldButton -> setText(QPushButton::tr("World"));
-  typingPanelButton -> setText(QPushButton::tr("Typing"));
-  testPanelButton -> setText(QPushButton::tr("Test"));
-  translatePanelButton -> setText(QPushButton::tr("Translate"));
+  articleTypeSelectPanelButton->setText(QPushButton::tr("Article"));
+  typingPanelButton->setText(QPushButton::tr("Typing"));
+  testPanelButton->setText(QPushButton::tr("Test"));
+  translatePanelButton->setText(QPushButton::tr("Translate"));
+
+  // Article panel
+  articlePanelHealthButton->setText(QPushButton::tr("Health"));
+  articlePanelSportButton->setText(QPushButton::tr("Sport"));
+  articlePanelTravelButton->setText(QPushButton::tr("Travel"));
+  articlePanelWorldButton->setText(QPushButton::tr("World"));
 }
 
 void MainWindow::setLanguage(const std::string &languageType)
@@ -203,6 +211,8 @@ void MainWindow::switchToArticleTypeSelectPanel()
 void MainWindow::switchToArticlePanel(const std::string &articleType)
 {
   std::cout << "MainWindow::switchToarticlePanel(\"" << articleType << "\")\n";
+
+  // Unparent the widget, avoid the panel be deleted
   this->centralWidget()->setParent(nullptr);
   this->setCentralWidget(articlePanel);
 
@@ -222,9 +232,13 @@ void MainWindow::switchToArticlePanel(const std::string &articleType)
   {
     articlePanelTextBrowser->setText(QString::fromStdString(OnlineTranslator::translate("hello\nhello", LanguageTypes::zh_TW)));
   }
+  else if(articleType == "world")
+  {
+
+  }
   else
   {
-    articlePanelTextBrowser->setText("Unsupport article type");
+    articlePanelTextBrowser->setText("Unsupported article type");
   }
 }
 
