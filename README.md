@@ -16,7 +16,7 @@ Provide an simple UI to assist learning English
 
 - CMake: https://cmake.org/
 
-- Qt(v5.12.12): https://www.qt.io
+- Qt(v5.15.2): https://www.qt.io
 
 ### 1. Go to build directory
 
