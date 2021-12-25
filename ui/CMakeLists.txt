@@ -1,3 +1,6 @@
+####################################################################################################
+# Project setting
+####################################################################################################
 # Set cmake standard
 cmake_minimum_required(VERSION 3.21)
 
@@ -12,19 +15,17 @@ project(
   LANGUAGES CXX
 )
 
+# Windows only
+if(WIN32)
+  # Qt cmake config directory
+	set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/Qt/5.15.2/mingw81_64/lib/cmake/")
+endif()
+
+####################################################################################################
+# Build setting
+####################################################################################################
 # Add executable
 add_executable(${CMAKE_PROJECT_NAME})
-
-if(WIN32)
-  # Set Qt path for windows
-	set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/Qt/5.12.12/mingw73_64/lib/cmake/")
-
-  # Copy Qt dll mingw7.3.0_64
-  add_custom_command(
-    TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/Qt/mingw7.3.0_64 ${CMAKE_BINARY_DIR}
-  )
-endif()
 
 # Add subdirectory nlohmann_json
 add_subdirectory(${CMAKE_SOURCE_DIR}/lib/json-develop)
@@ -33,20 +34,13 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/lib/json-develop)
 find_package(
   Qt5
   COMPONENTS
+    Core REQUIRED
     Widgets REQUIRED
     Network REQUIRED
     LinguistTools REQUIRED
 )
 
-# Copy crawler to build directory
-# Copy assets to build directory
-add_custom_command(
-  TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/crawler ${CMAKE_BINARY_DIR}/lib/crawler
-  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets/image ${CMAKE_BINARY_DIR}/assets/image
-)
-
-# Setup (.ts) files (Qt linguist)
+# Setup (.ts) files
 set(
   TS_FILES
   ${CMAKE_SOURCE_DIR}/assets/lang/en_US.ts
@@ -54,14 +48,15 @@ set(
   ${CMAKE_SOURCE_DIR}/assets/lang/zh_TW.ts
 )
 
-# From: https://doc.qt.io/qt-5.12//qtlinguist-cmake-qt5-add-translation.html
 # Set output directory
+# From: https://doc.qt.io/qt-5.12//qtlinguist-cmake-qt5-add-translation.html
 set_source_files_properties(
   ${TS_FILES}
   PROPERTIES
     OUTPUT_LOCATION assets/lang
 )
 
+# If the (.ts) file is missing, automatically create a new one
 # Compile (.ts) files to (.qm) files (Qt linguist)
 qt5_create_translation(
   QM_FILES
@@ -69,6 +64,12 @@ qt5_create_translation(
   ${TS_FILES}
   OPTIONS
     -no-obsolete
+)
+
+# include
+target_include_directories(
+  ${CMAKE_PROJECT_NAME}
+  PRIVATE ${CMAKE_SOURCE_DIR}/include/
 )
 
 # src
@@ -81,18 +82,38 @@ target_sources(
   PRIVATE ${CMAKE_SOURCE_DIR}/src/OnlineTranslator.cpp
 )
 
-# include
-target_include_directories(
-  ${CMAKE_PROJECT_NAME}
-  PRIVATE ${CMAKE_SOURCE_DIR}/include/
-)
-
 #
 # Link libraries
 #
 target_link_libraries(
   ${CMAKE_PROJECT_NAME}
+  PRIVATE Qt5::Core
   PRIVATE Qt5::Widgets
   PRIVATE Qt5::Network
   PRIVATE nlohmann_json::nlohmann_json
+)
+
+####################################################################################################
+# Copy files
+####################################################################################################
+# Copy crawler to build directory
+add_custom_command(
+  TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/crawler ${CMAKE_BINARY_DIR}/lib/crawler
+)
+
+# Copy image to build directory
+add_custom_command(
+  TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets/image ${CMAKE_BINARY_DIR}/assets/image
+)
+
+# Copy Qt dll
+# From: https://riptutorial.com/cmake/example/29468/qt5-dll-copy-example
+add_custom_command(
+  TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Core> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Gui> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Widgets> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Network> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
 )
