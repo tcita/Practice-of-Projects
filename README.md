@@ -1,10 +1,14 @@
 ## English assistant
 
-An English learning app.
+An English learning app
 
-## How to build
+Get specific artical from CNN(https://edition.cnn.com/)
 
-### 0. Install needed tools & set environment path.
+Provide an simple UI to assist learning English
+
+## Build for Windows
+
+### 0. Install needed tools & set environment path
 
 - GCC: https://www.mingw-w64.org/downloads/
 
@@ -14,17 +18,49 @@ An English learning app.
 
 - Qt(v5.12.12): https://www.qt.io
 
-### 1. Go to build directory.
+### 1. Go to build directory
 
-cd <PROJECT_ROOT_DIR>/ui/build/windows
+`cd ui/build/windows`
 
 ### 2. Generate build system files
 
-cmake ../.. -G "Ninja"
+`cmake ../.. -G "Ninja"`
 
 ### 3. Build
 
-cmake --build .
+`cmake --build .`
+
+## Build for Linux (tested on KDE Neon)
+
+### 0. Install needed tools
+
+```bash
+# install gcc
+sudo apt install g++
+
+# install ninja
+sudo apt install ninja
+
+# install cmake
+sudo apt install cmake
+
+# install Qt lib & tools
+sudo apt install qttools5-dev
+
+```
+
+### 1. Go to build directory
+
+`cd ui/build/linux`
+
+### 2. Generate build system files
+
+`cmake ../.. -G "Ninja"`
+
+### 3. Build
+
+`cmake --build .`
+
 
 ## Library used
 

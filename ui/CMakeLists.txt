@@ -2,7 +2,7 @@
 # Project setting
 ####################################################################################################
 # Set cmake standard
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.21.3)
 
 # Set c++ standard
 set(CMAKE_CXX_STANDARD 11)
