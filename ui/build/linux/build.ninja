@@ -70,7 +70,7 @@ build cmake_object_order_depends_target_EnglishAssistant: phony || ../../assets/
 build CMakeFiles/EnglishAssistant.dir/src/main.cpp.o: CXX_COMPILER__EnglishAssistant_ /home/kde/Documents/git/Practice-of-Projects/ui/src/main.cpp || cmake_object_order_depends_target_EnglishAssistant
   DEFINES = -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/EnglishAssistant.dir/src/main.cpp.o.d
-  FLAGS = -fPIC -std=gnu++11
+  FLAGS = -fPIC -std=gnu++17
   INCLUDES = -I/home/kde/Documents/git/Practice-of-Projects/ui/include -I/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/single_include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork
   OBJECT_DIR = CMakeFiles/EnglishAssistant.dir
   OBJECT_FILE_DIR = CMakeFiles/EnglishAssistant.dir/src
@@ -78,7 +78,7 @@ build CMakeFiles/EnglishAssistant.dir/src/main.cpp.o: CXX_COMPILER__EnglishAssis
 build CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o: CXX_COMPILER__EnglishAssistant_ /home/kde/Documents/git/Practice-of-Projects/ui/src/MainWindow.cpp || cmake_object_order_depends_target_EnglishAssistant
   DEFINES = -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o.d
-  FLAGS = -fPIC -std=gnu++11
+  FLAGS = -fPIC -std=gnu++17
   INCLUDES = -I/home/kde/Documents/git/Practice-of-Projects/ui/include -I/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/single_include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork
   OBJECT_DIR = CMakeFiles/EnglishAssistant.dir
   OBJECT_FILE_DIR = CMakeFiles/EnglishAssistant.dir/src
@@ -86,7 +86,7 @@ build CMakeFiles/EnglishAssistant.dir/src/MainWindow.cpp.o: CXX_COMPILER__Englis
 build CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o: CXX_COMPILER__EnglishAssistant_ /home/kde/Documents/git/Practice-of-Projects/ui/src/Crawler.cpp || cmake_object_order_depends_target_EnglishAssistant
   DEFINES = -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o.d
-  FLAGS = -fPIC -std=gnu++11
+  FLAGS = -fPIC -std=gnu++17
   INCLUDES = -I/home/kde/Documents/git/Practice-of-Projects/ui/include -I/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/single_include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork
   OBJECT_DIR = CMakeFiles/EnglishAssistant.dir
   OBJECT_FILE_DIR = CMakeFiles/EnglishAssistant.dir/src
@@ -94,7 +94,7 @@ build CMakeFiles/EnglishAssistant.dir/src/Crawler.cpp.o: CXX_COMPILER__EnglishAs
 build CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o: CXX_COMPILER__EnglishAssistant_ /home/kde/Documents/git/Practice-of-Projects/ui/src/OnlineTranslator.cpp || cmake_object_order_depends_target_EnglishAssistant
   DEFINES = -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/EnglishAssistant.dir/src/OnlineTranslator.cpp.o.d
-  FLAGS = -fPIC -std=gnu++11
+  FLAGS = -fPIC -std=gnu++17
   INCLUDES = -I/home/kde/Documents/git/Practice-of-Projects/ui/include -I/home/kde/Documents/git/Practice-of-Projects/ui/lib/json-develop/single_include -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtNetwork
   OBJECT_DIR = CMakeFiles/EnglishAssistant.dir
   OBJECT_FILE_DIR = CMakeFiles/EnglishAssistant.dir/src

@@ -51,7 +51,7 @@ private:
 
   // Typing panel
   QWidget *typingPanel;
-  QWidget *typingPanelStatusWidget;
+  // QWidget *typingPanelStatusWidget;
   QWidget *typingPanelTypingWidget;
 
   // Test panel

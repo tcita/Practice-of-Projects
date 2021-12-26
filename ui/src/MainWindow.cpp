@@ -49,7 +49,7 @@ MainWindow::MainWindow(QTranslator *translator)
 
   // Typing panel
   typingPanel = new QWidget();
-  typingPanelStatusWidget = new QWidget(typingPanel);
+  // typingPanelStatusWidget = new QWidget(typingPanel);
   typingPanelTypingWidget = new QWidget(typingPanel);
 
   // Test panel
@@ -86,44 +86,66 @@ MainWindow::MainWindow(QTranslator *translator)
   this->setCentralWidget(mainPanel);
 
   // Setup main panel
-  QGridLayout *mainPanelLayout = new QGridLayout();
-  mainPanel->setLayout(mainPanelLayout);
+  QGridLayout *mainPanelLayout = new QGridLayout(mainPanel);
   mainPanelLayout->addWidget(articleTypeSelectPanelButton, 0, 0);
   mainPanelLayout->addWidget(typingPanelButton, 0, 1);
   mainPanelLayout->addWidget(testPanelButton, 1, 0);
   mainPanelLayout->addWidget(translatePanelButton, 1, 1);
 
   // Setup article type select panel
-  QGridLayout *articleTypeSelectPanelLayout = new QGridLayout();
-  articleTypeSelectPanel->setLayout(articleTypeSelectPanelLayout);
-  articleTypeSelectPanelLayout-> addWidget(articlePanelHealthButton, 0, 0);
-  articleTypeSelectPanelLayout-> addWidget(articlePanelSportButton, 0, 1);
-  articleTypeSelectPanelLayout-> addWidget(articlePanelTravelButton, 1, 0);
-  articleTypeSelectPanelLayout-> addWidget(articlePanelWorldButton, 1, 1);
+  QGridLayout *articleTypeSelectPanelLayout = new QGridLayout(articleTypeSelectPanel);
+  articleTypeSelectPanelLayout->addWidget(articlePanelHealthButton, 0, 0);
+  articleTypeSelectPanelLayout->addWidget(articlePanelSportButton, 0, 1);
+  articleTypeSelectPanelLayout->addWidget(articlePanelTravelButton, 1, 0);
+  articleTypeSelectPanelLayout->addWidget(articlePanelWorldButton, 1, 1);
 
   // Setup article panel
-  QGridLayout *articlePanelLayout = new QGridLayout();
-  articlePanel->setLayout(articlePanelLayout);
+  QGridLayout *articlePanelLayout = new QGridLayout(articlePanel);
   articlePanelLayout->setColumnMinimumWidth(0, 200);
   articlePanelLayout->addWidget(articlePanelTextBrowser, 1, 0);
 
+  // Setup test panel
+
+  testPanel->setContentsMargins(0,0,0,0);
+  QWidget *testPanelSubPanel = new QWidget(testPanel);
+
+  // QVBoxLayout *testPanelLayout = new QVBoxLayout(testPanel);
+  // QWidget *testPanelSubPanel = new QWidget();
+  // testPanelLayout->addWidget(testPanelSubPanel);
+
+  QVBoxLayout *testPanelSubPanelLayout = new QVBoxLayout(testPanelSubPanel);
+  testPanelSubPanelLayout->setAlignment(Qt::AlignTop);
+  testPanelSubPanelLayout->addWidget(new QTextBrowser()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
+  QScrollArea *testPanelScrollArea = new QScrollArea(testPanel);
+  testPanelScrollArea->setWidget(testPanelSubPanel);
+
   // Setup typing panel
-  QGridLayout *typingPanelLayout = new QGridLayout();
+  QGridLayout *typingPanelLayout = new QGridLayout(typingPanel);
   typingPanel->setLayout(typingPanelLayout);
-  typingPanelLayout->addWidget(typingPanelStatusWidget, 0, 0);
+  // typingPanelLayout->addWidget(typingPanelStatusWidget, 0, 0);
   typingPanelLayout->addWidget(typingPanelTypingWidget, 0, 1);
 
+  // Setup typing panel status widget
+  // QGridLayout *typingPanelStatusWidgetLayout = new QGridLayout();
+
   // Setup typing panel typing widget
-  QVBoxLayout *typingPanelTypingWidgetLayout = new QVBoxLayout();
-  typingPanelTypingWidget->setLayout(typingPanelTypingWidgetLayout);
+  QVBoxLayout *typingPanelTypingWidgetLayout = new QVBoxLayout(typingPanelTypingWidget);
   typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world1")); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLineEdit()); //debug!!
+  typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
   typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world2")); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLineEdit()); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world3")); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLineEdit()); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world4")); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLineEdit()); //debug!!
+  typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
 
   // Connect action callback
   // QObject::connect(zhTwAction, SIGNAL(triggered()), this, SLOT(MainWindow::setLanguageZhTw()));
