@@ -4,37 +4,37 @@
 <context>
     <name>QAction</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="211"/>
+        <location filename="../../src/MainWindow.cpp" line="238"/>
         <source>English(US)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="212"/>
+        <location filename="../../src/MainWindow.cpp" line="239"/>
         <source>Chinese(Simplified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="213"/>
+        <location filename="../../src/MainWindow.cpp" line="240"/>
         <source>Chinese(Traditional)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="215"/>
+        <location filename="../../src/MainWindow.cpp" line="242"/>
         <source>Main Panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="216"/>
+        <location filename="../../src/MainWindow.cpp" line="243"/>
         <source>Article Type Select Panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="217"/>
+        <location filename="../../src/MainWindow.cpp" line="244"/>
         <source>Typing Panel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="218"/>
+        <location filename="../../src/MainWindow.cpp" line="245"/>
         <source>Translate Panel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -42,7 +42,7 @@
 <context>
     <name>QMainWindow</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="206"/>
+        <location filename="../../src/MainWindow.cpp" line="233"/>
         <source>English Assistant</source>
         <translation type="unfinished"></translation>
     </message>
@@ -50,17 +50,17 @@
 <context>
     <name>QMenu</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="209"/>
+        <location filename="../../src/MainWindow.cpp" line="236"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="210"/>
+        <location filename="../../src/MainWindow.cpp" line="237"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="214"/>
+        <location filename="../../src/MainWindow.cpp" line="241"/>
         <source>Switch To</source>
         <translation type="unfinished"></translation>
     </message>
@@ -68,43 +68,56 @@
 <context>
     <name>QPushButton</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="221"/>
+        <location filename="../../src/MainWindow.cpp" line="248"/>
         <source>Article</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="227"/>
+        <location filename="../../src/MainWindow.cpp" line="254"/>
         <source>Health</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="228"/>
+        <location filename="../../src/MainWindow.cpp" line="255"/>
         <source>Sport</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="229"/>
+        <location filename="../../src/MainWindow.cpp" line="256"/>
         <source>Travel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="230"/>
+        <location filename="../../src/MainWindow.cpp" line="257"/>
         <source>World</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="222"/>
+        <location filename="../../src/MainWindow.cpp" line="249"/>
         <source>Typing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="223"/>
+        <location filename="../../src/MainWindow.cpp" line="250"/>
         <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="224"/>
+        <location filename="../../src/MainWindow.cpp" line="251"/>
         <source>Translate</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QTextEdit</name>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="260"/>
+        <source>Source language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="261"/>
+        <source>Dest language</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -11,6 +11,8 @@
 #include <QPushButton>
 #include <QTextBrowser>
 #include <QStackedLayout>
+#include <QGroupBox>
+#include <QVBoxLayout>
 
 // The application main window
 class MainWindow : public QMainWindow
@@ -63,6 +65,13 @@ private:
 
   // Translate panel
   QWidget *translatePanel;
+  QGroupBox *translatePanelSrcGroupBox;
+  QVBoxLayout *translatePanelSrcGroupBoxLayout;
+  QTextEdit *translatePanelSrcTextEdit;
+  QWidget *translatePanelMidWidget;
+  QGroupBox *translatePanelDestGroupBox;
+  QVBoxLayout *translatePanelDestGroupBoxLayout;
+  QTextEdit *translatePanelDestTextEdit;
 
   /****************************************************************************************************
   * Functions
@@ -88,6 +97,11 @@ private:
   void switchTotestingPanel();
   // Switch to translate panel
   void switchToTranslatePanel();
+
+  // Translate panel translate to destination text edit
+  void translatePanelTranslateToDest();
+  // Translate panel translate to source text edit
+  void translatePanelTranslateToSrc();
 };
 
 #endif

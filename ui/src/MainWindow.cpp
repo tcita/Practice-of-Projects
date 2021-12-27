@@ -62,6 +62,13 @@ MainWindow::MainWindow(QTranslator *translator)
 
   // Translate panel
   translatePanel = new QWidget();
+  translatePanelSrcGroupBox = new QGroupBox();
+  translatePanelSrcGroupBoxLayout = new QVBoxLayout(translatePanelSrcGroupBox);
+  translatePanelSrcTextEdit = new QTextEdit();
+  translatePanelMidWidget = new QWidget();
+  translatePanelDestGroupBox = new QGroupBox();
+  translatePanelDestGroupBoxLayout = new QVBoxLayout(translatePanelDestGroupBox);
+  translatePanelDestTextEdit = new QTextEdit();
 
   /******************************************************************************************
   * Set member information
@@ -70,7 +77,8 @@ MainWindow::MainWindow(QTranslator *translator)
   this->retranslate();
 
   // Setup language
-  translator->load(LanguageTypes::zh_TW);
+  // translator->load(LanguageTypes::zh_TW);
+  this->setLanguage(LanguageTypes::zh_TW);
 
   // Setup icon
   this->setWindowIcon(QIcon("assets/image/icon.ico"));
@@ -119,12 +127,12 @@ MainWindow::MainWindow(QTranslator *translator)
 
 
   // Setup test panel
-  // QWidget *testingPanelSubPanel = new QWidget(testingPanel);
+  QWidget *testingPanelSubPanel = new QWidget(testingPanel);
 
-  QVBoxLayout *testingPanelLayout = new QVBoxLayout(testingPanel);
+  // QVBoxLayout *testingPanelLayout = new QVBoxLayout(testingPanel);
 
-  QWidget *testingPanelSubPanel = new QWidget();
-  testingPanelLayout->addWidget(testingPanelSubPanel);
+  // QWidget *testingPanelSubPanel = new QWidget();
+  // testingPanelLayout->addWidget(testingPanelSubPanel);
 
   QVBoxLayout *testingPanelSubPanelLayout = new QVBoxLayout(testingPanelSubPanel);
   testingPanelSubPanelLayout->setAlignment(Qt::AlignTop);
@@ -177,6 +185,24 @@ MainWindow::MainWindow(QTranslator *translator)
   typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world2")); //debug!!
   typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
 
+  // Setup translate panel
+  QGridLayout *translatePanelLayout = new QGridLayout(translatePanel);
+
+  translatePanelLayout->addWidget(translatePanelSrcGroupBox, 0, 0);
+  translatePanelSrcGroupBoxLayout->addWidget(translatePanelSrcTextEdit);
+
+  translatePanelLayout->addWidget(translatePanelMidWidget, 0, 1);
+  QVBoxLayout *translatePanelMidWidgetLayout = new QVBoxLayout(translatePanelMidWidget);
+  QPushButton *translatePanelToDestButton = new QPushButton(">>");
+  QPushButton *translatePanelToSrcButton = new QPushButton("<<");
+  translatePanelMidWidgetLayout->addWidget(translatePanelToDestButton);
+  translatePanelMidWidgetLayout->addWidget(translatePanelToSrcButton);
+
+  translatePanelLayout->addWidget(translatePanelDestGroupBox, 0, 2);
+  translatePanelDestGroupBoxLayout->addWidget(translatePanelDestTextEdit);
+
+
+
   // Connect action callback
   // QObject::connect(zhTwAction, SIGNAL(triggered()), this, SLOT(MainWindow::setLanguageZhTw()));
   // QObject::connect(zhTwAction, &QAction::triggered, this, &MainWindow::setLanguageZhTw, 100);
@@ -197,6 +223,8 @@ MainWindow::MainWindow(QTranslator *translator)
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{this->switchToTypingPanel();});
   QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{this->switchTotestingPanel();});
   QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{this->switchToTranslatePanel();});
+  QObject::connect(translatePanelToDestButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToDest();});
+  QObject::connect(translatePanelToSrcButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToSrc();});
 }
 
 void MainWindow::retranslate()
@@ -227,6 +255,10 @@ void MainWindow::retranslate()
   articlePanelSportButton->setText(QPushButton::tr("Sport"));
   articlePanelTravelButton->setText(QPushButton::tr("Travel"));
   articlePanelWorldButton->setText(QPushButton::tr("World"));
+
+  // Translate panel
+  translatePanelSrcGroupBox->setTitle(QTextEdit::tr("Source language"));
+  translatePanelDestGroupBox->setTitle(QTextEdit::tr("Dest language"));
 }
 
 void MainWindow::setLanguage(const std::string &languageType)
@@ -307,4 +339,24 @@ void MainWindow::switchToTranslatePanel()
 {
   std::cout << "MainWindow::switchToTranslatePanel()\n";
   centralWidgetLayout->setCurrentWidget(translatePanel);
+}
+
+void MainWindow::translatePanelTranslateToDest()
+{
+  std::cout << "MainWindow::translatePanelTranslateToDest()\n";
+  const std::string &input = translatePanelSrcTextEdit->toPlainText().toStdString();
+  const std::string &destLanguageType = translator->language().toStdString();
+  const std::string &srcLanguageType = LanguageTypes::en_US;
+  const std::string &reply = OnlineTranslator::translate(input, destLanguageType, srcLanguageType);
+  translatePanelDestTextEdit->setText(QString::fromStdString(reply));
+}
+
+void MainWindow::translatePanelTranslateToSrc()
+{
+  std::cout << "MainWindow::translatePanelTranslateToSrc()\n";
+  const std::string &input = translatePanelDestTextEdit->toPlainText().toStdString();
+  const std::string &srcLanguageType = translator->language().toStdString();
+  const std::string &destLanguageType = LanguageTypes::en_US;
+  const std::string &reply = OnlineTranslator::translate(input, destLanguageType, srcLanguageType);
+  translatePanelSrcTextEdit->setText(QString::fromStdString(reply));
 }
