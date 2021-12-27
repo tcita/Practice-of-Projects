@@ -10,6 +10,7 @@
 #include <QAction>
 #include <QPushButton>
 #include <QTextBrowser>
+#include <QStackedLayout>
 
 // The application main window
 class MainWindow : public QMainWindow
@@ -31,11 +32,14 @@ private:
   QAction *typingPanelAction;
   QAction *translatePanelAction;
 
+  // Central widget
+  QStackedLayout *centralWidgetLayout;
+
   // Main panel
   QWidget *mainPanel;
   QPushButton *articleTypeSelectPanelButton;
   QPushButton *typingPanelButton;
-  QPushButton *testPanelButton;
+  QPushButton *testingPanelButton;
   QPushButton *translatePanelButton;
 
   // Artical type select panel
@@ -51,11 +55,11 @@ private:
 
   // Typing panel
   QWidget *typingPanel;
-  QWidget *typingPanelStatusWidget;
+  // QWidget *typingPanelStatusWidget;
   QWidget *typingPanelTypingWidget;
 
   // Test panel
-  QWidget *testPanel;
+  QWidget *testingPanel;
 
   // Translate panel
   QWidget *translatePanel;
@@ -81,7 +85,7 @@ private:
   // Switch to article panel
   void switchToArticlePanel(const std::string &articleType);
   // Switch to test panel
-  void switchToTestPanel();
+  void switchTotestingPanel();
   // Switch to translate panel
   void switchToTranslatePanel();
 };
