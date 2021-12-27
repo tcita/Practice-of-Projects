@@ -1,0 +1,4 @@
+javap -s -p
+-L "jdk/jre/bin/server" 
+include & include/win32
+-cp "class;jar"
