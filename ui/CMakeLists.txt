@@ -17,8 +17,9 @@ project(
 
 # Windows only
 if(WIN32)
+  set(QTDIR "C:/Qt/5.15.2/mingw81_64/")
   # Qt cmake config directory
-	set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/Qt/5.15.2/mingw81_64/lib/cmake/")
+	set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${QTDIR}lib/cmake/")
 endif()
 
 ####################################################################################################
@@ -34,7 +35,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/lib/json-develop)
 find_package(
   Qt5
   COMPONENTS
-    Core REQUIRED
+    # Core REQUIRED
     Widgets REQUIRED
     Network REQUIRED
     LinguistTools REQUIRED
@@ -87,7 +88,8 @@ target_sources(
 #
 target_link_libraries(
   ${CMAKE_PROJECT_NAME}
-  PRIVATE Qt5::Core
+  # PRIVATE Qt5::Core
+  PRIVATE Qt5::Gui
   PRIVATE Qt5::Widgets
   PRIVATE Qt5::Network
   PRIVATE nlohmann_json::nlohmann_json
@@ -108,12 +110,22 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets/image ${CMAKE_BINARY_DIR}/assets/image
 )
 
-# Copy Qt dll
+# Copy Qt binary # Problem: plugin binary didn't copied
 # From: https://riptutorial.com/cmake/example/29468/qt5-dll-copy-example
-add_custom_command(
-  TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Core> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
-  COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Gui> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
-  COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Widgets> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
-  COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Network> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
-)
+# add_custom_command(
+#   TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+#   COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Core> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+#   COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Gui> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+#   COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Widgets> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+#   COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Network> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+# )
+
+
+# Copy Qt dll by windeployqt.cmake
+# https://stackoverflow.com/questions/60854495/qt5-cmake-include-all-libraries-into-executable/60856725#60856725
+if(WIN32)
+  add_custom_command(
+    TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+    COMMAND ${QTDIR}/bin/windeployqt.exe $<TARGET_FILE:${CMAKE_PROJECT_NAME}>
+  )
+endif()
