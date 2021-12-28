@@ -24,7 +24,7 @@ Provide an simple UI to assist learning English
 
 ### 2. Generate build system files
 
-`cmake .. -G "Ninja"`
+`cmake .. -B build -G "Ninja"`
 
 ### 3. Build
 
@@ -55,7 +55,7 @@ sudo apt install qttools5-dev
 
 ### 2. Generate build system files
 
-`cmake .. -G "Ninja"`
+`cmake .. -B build -G "Ninja"`
 
 ### 3. Build
 
