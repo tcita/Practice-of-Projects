@@ -18,17 +18,17 @@ Provide an simple UI to assist learning English
 
 - Qt(v5.15.2): https://www.qt.io
 
-### 1. Go to build directory
+### 1. Go to ui directory
 
-`cd ui/build`
+`cd ui`
 
 ### 2. Generate build system files
 
-`cmake .. -B build -G "Ninja"`
+`cmake . -B build -G "Ninja"`
 
 ### 3. Build
 
-`cmake --build .`
+`cmake --build build`
 
 ## Build for Linux (tested on KDE Neon)
 
@@ -49,17 +49,17 @@ sudo apt install qttools5-dev
 
 ```
 
-### 1. Go to build directory
+### 1. Go to ui directory
 
-`cd ui/build`
+`cd ui`
 
 ### 2. Generate build system files
 
-`cmake .. -B build -G "Ninja"`
+`cmake . -B build -G "Ninja"`
 
 ### 3. Build
 
-`cmake --build .`
+`cmake --build build`
 
 
 ## Library used
