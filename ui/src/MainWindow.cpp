@@ -35,7 +35,9 @@ MainWindow::MainWindow(QTranslator *translator)
   // About dialog
   aboutDialog = new QDialog(this);
   aboutDialogLayout = new QVBoxLayout(aboutDialog);
-  aboutDialogInfoLabel = new QLabel(aboutDialog);
+  aboutDialogInfoLabel1 = new QLabel(aboutDialog);
+  aboutDialogInfoLabel2 = new QLabel(aboutDialog);
+  aboutDialogInfoLabel3 = new QLabel(aboutDialog);
   aboutDialogOkButton = new QPushButton(aboutDialog);
 
   // Central widget
@@ -124,9 +126,12 @@ MainWindow::MainWindow(QTranslator *translator)
   mainMenuBar->addMenu(helpMenu);
   helpMenu->addAction(aboutAction);
 
-  // Setup about dialog
+  // Setup about dialogl
+  aboutDialog->resize(300, 150);
   aboutDialog->setLayout(aboutDialogLayout);
-  aboutDialogLayout->addWidget(aboutDialogInfoLabel);
+  aboutDialogLayout->addWidget(aboutDialogInfoLabel1);
+  aboutDialogLayout->addWidget(aboutDialogInfoLabel2);
+  aboutDialogLayout->addWidget(aboutDialogInfoLabel3);
   aboutDialogLayout->addWidget(aboutDialogOkButton);
 
   // Setup main panel
@@ -232,6 +237,7 @@ MainWindow::MainWindow(QTranslator *translator)
   QObject::connect(aboutAction, &QAction::triggered, [this]{this->popUpAboutWindow();});
 
   // Connect button callback
+  QObject::connect(aboutDialogOkButton, &QPushButton::clicked, [this]{this->aboutDialog->hide();}); //HERE!!
   QObject::connect(articleTypeSelectPanelButton, &QPushButton::clicked, [this]{this->switchToArticleTypeSelectPanel();});
   QObject::connect(articlePanelHealthButton, &QPushButton::clicked, [this]{this->switchToArticlePanel("health");});
   QObject::connect(articlePanelSportButton, &QPushButton::clicked, [this]{this->switchToArticlePanel("sport");});
@@ -264,7 +270,10 @@ void MainWindow::retranslate()
   aboutAction->setText(QMenu::tr("About"));
 
   // About dialog
-  aboutDialogInfoLabel->setText(QDialog::tr("English Assistant") + " " + ProjectInfo::VERSION);
+  aboutDialog->setWindowTitle(QDialog::tr("English Assistant"));
+  aboutDialogInfoLabel1->setText(QDialog::tr("English Assistant") + " " + ProjectInfo::VERSION);
+  aboutDialogInfoLabel2->setText(QDialog::tr("English translate & learning program"));
+  aboutDialogInfoLabel3->setText(QDialog::tr("opensource software published under GPLv3"));
   aboutDialogOkButton->setText(QPushButton::tr("OK"));
 
   // Main panel

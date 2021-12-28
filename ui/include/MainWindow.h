@@ -41,7 +41,9 @@ private:
   // About dialog
   QWidget *aboutDialog;
   QVBoxLayout *aboutDialogLayout;
-  QLabel *aboutDialogInfoLabel;
+  QLabel *aboutDialogInfoLabel1;
+  QLabel *aboutDialogInfoLabel2;
+  QLabel *aboutDialogInfoLabel3;
   QPushButton *aboutDialogOkButton;
 
   // Central widget
