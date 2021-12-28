@@ -13,6 +13,7 @@
 #include <QStackedLayout>
 #include <QGroupBox>
 #include <QVBoxLayout>
+#include <QDialog>
 
 // The application main window
 class MainWindow : public QMainWindow
@@ -33,12 +34,19 @@ private:
   QAction *articleTypeSelectPanelAction;
   QAction *typingPanelAction;
   QAction *translatePanelAction;
+  QMenu *helpMenu;
+  QAction *aboutAction;
+
+  // About dialog
+  QWidget *aboutDialog;
+  QVBoxLayout *aboutDialogLayout;
 
   // Central widget
   QStackedLayout *centralWidgetLayout;
 
   // Main panel
   QWidget *mainPanel;
+  QGridLayout *mainPanelLayout;
   QPushButton *articleTypeSelectPanelButton;
   QPushButton *typingPanelButton;
   QPushButton *testingPanelButton;
@@ -46,6 +54,7 @@ private:
 
   // Artical type select panel
   QWidget *articleTypeSelectPanel;
+  QGridLayout *articleTypeSelectPanelLayout;
   QPushButton *articlePanelHealthButton;
   QPushButton *articlePanelSportButton;
   QPushButton *articlePanelTravelButton;
@@ -53,22 +62,30 @@ private:
 
   // Artical panel
   QWidget *articlePanel;
+  QGridLayout *articlePanelLayout;
   QTextBrowser *articlePanelTextBrowser;
 
   // Typing panel
   QWidget *typingPanel;
+  QGridLayout *typingPanelLayout;
   // QWidget *typingPanelStatusWidget;
   QWidget *typingPanelTypingWidget;
+  QVBoxLayout *typingPanelTypingWidgetLayout;
 
   // Test panel
   QWidget *testingPanel;
+  QWidget *testingPanelSubPanel;
 
   // Translate panel
   QWidget *translatePanel;
+  QGridLayout *translatePanelLayout;
   QGroupBox *translatePanelSrcGroupBox;
   QVBoxLayout *translatePanelSrcGroupBoxLayout;
   QTextEdit *translatePanelSrcTextEdit;
   QWidget *translatePanelMidWidget;
+  QVBoxLayout *translatePanelMidWidgetLayout;
+  QPushButton *translatePanelToDestButton;
+  QPushButton *translatePanelToSrcButton;
   QGroupBox *translatePanelDestGroupBox;
   QVBoxLayout *translatePanelDestGroupBoxLayout;
   QTextEdit *translatePanelDestTextEdit;
@@ -102,6 +119,8 @@ private:
   void translatePanelTranslateToDest();
   // Translate panel translate to source text edit
   void translatePanelTranslateToSrc();
+  // Pop up the about window
+  void popUpAboutWindow();
 };
 
 #endif

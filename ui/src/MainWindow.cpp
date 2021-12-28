@@ -28,6 +28,12 @@ MainWindow::MainWindow(QTranslator *translator)
   articleTypeSelectPanelAction = new QAction(switchToMenu);
   typingPanelAction = new QAction(switchToMenu);
   translatePanelAction = new QAction(switchToMenu);
+  helpMenu = new QMenu(mainMenuBar);
+  aboutAction = new QAction(helpMenu);
+
+  // About dialog
+  aboutDialog = new QDialog(this);
+  // aboutDialogLayout = new QVBoxLayout(aboutDialog);
 
   // Central widget
   this->setCentralWidget(new QWidget(this));
@@ -36,6 +42,7 @@ MainWindow::MainWindow(QTranslator *translator)
 
   // Main panel
   mainPanel = new QWidget();
+  mainPanelLayout = new QGridLayout(mainPanel);
   articleTypeSelectPanelButton = new QPushButton(mainPanel);
   typingPanelButton = new QPushButton(mainPanel);
   testingPanelButton = new QPushButton(mainPanel);
@@ -43,6 +50,7 @@ MainWindow::MainWindow(QTranslator *translator)
 
   // Artical type select panel
   articleTypeSelectPanel = new QWidget();
+  articleTypeSelectPanelLayout = new QGridLayout(articleTypeSelectPanel);
   articlePanelHealthButton = new QPushButton(articleTypeSelectPanel);
   articlePanelSportButton = new QPushButton(articleTypeSelectPanel);
   articlePanelTravelButton = new QPushButton(articleTypeSelectPanel);
@@ -50,22 +58,30 @@ MainWindow::MainWindow(QTranslator *translator)
 
   // Artical panel
   articlePanel = new QWidget();
+  articlePanelLayout = new QGridLayout(articlePanel);
   articlePanelTextBrowser = new QTextBrowser(articlePanel);
 
   // Typing panel
   typingPanel = new QWidget();
+  typingPanelLayout = new QGridLayout(typingPanel);
   // typingPanelStatusWidget = new QWidget(typingPanel);
   typingPanelTypingWidget = new QWidget(typingPanel);
+  typingPanelTypingWidgetLayout = new QVBoxLayout(typingPanelTypingWidget);
 
   // Test panel
   testingPanel = new QWidget();
+  testingPanelSubPanel = new QWidget(testingPanel);
 
   // Translate panel
   translatePanel = new QWidget();
+  translatePanelLayout = new QGridLayout(translatePanel);
   translatePanelSrcGroupBox = new QGroupBox();
   translatePanelSrcGroupBoxLayout = new QVBoxLayout(translatePanelSrcGroupBox);
   translatePanelSrcTextEdit = new QTextEdit();
   translatePanelMidWidget = new QWidget();
+  translatePanelMidWidgetLayout = new QVBoxLayout(translatePanelMidWidget);
+  translatePanelToDestButton = new QPushButton(">>");
+  translatePanelToSrcButton = new QPushButton("<<");
   translatePanelDestGroupBox = new QGroupBox();
   translatePanelDestGroupBoxLayout = new QVBoxLayout(translatePanelDestGroupBox);
   translatePanelDestTextEdit = new QTextEdit();
@@ -81,7 +97,7 @@ MainWindow::MainWindow(QTranslator *translator)
   this->setLanguage(LanguageTypes::zh_TW);
 
   // Setup icon
-  this->setWindowIcon(QIcon("assets/image/icon.ico"));
+  this->setWindowIcon(QIcon("assets/image/icon.png"));
 
   // Setup top level widget
   this->centralWidgetLayout->addWidget(mainPanel);
@@ -94,31 +110,30 @@ MainWindow::MainWindow(QTranslator *translator)
   // Setup menu bar
   mainMenuBar->addMenu(settingMenu);
   settingMenu->addMenu(languageMenu);
-  mainMenuBar->addMenu(switchToMenu);
   languageMenu->addAction(enUsAction);
   languageMenu->addAction(zhCnAction);
   languageMenu->addAction(zhTwAction);
+  mainMenuBar->addMenu(switchToMenu);
   switchToMenu->addAction(mainPanelAction);
   switchToMenu->addAction(articleTypeSelectPanelAction);
   switchToMenu->addAction(typingPanelAction);
   switchToMenu->addAction(translatePanelAction);
+  mainMenuBar->addMenu(helpMenu);
+  helpMenu->addAction(aboutAction);
 
   // Setup main panel
-  QGridLayout *mainPanelLayout = new QGridLayout(mainPanel);
   mainPanelLayout->addWidget(articleTypeSelectPanelButton, 0, 0);
   mainPanelLayout->addWidget(typingPanelButton, 0, 1);
   mainPanelLayout->addWidget(testingPanelButton, 1, 0);
   mainPanelLayout->addWidget(translatePanelButton, 1, 1);
 
   // Setup article type select panel
-  QGridLayout *articleTypeSelectPanelLayout = new QGridLayout(articleTypeSelectPanel);
   articleTypeSelectPanelLayout->addWidget(articlePanelHealthButton, 0, 0);
   articleTypeSelectPanelLayout->addWidget(articlePanelSportButton, 0, 1);
   articleTypeSelectPanelLayout->addWidget(articlePanelTravelButton, 1, 0);
   articleTypeSelectPanelLayout->addWidget(articlePanelWorldButton, 1, 1);
 
   // Setup article panel
-  QGridLayout *articlePanelLayout = new QGridLayout(articlePanel);
   articlePanelLayout->setColumnMinimumWidth(0, 200);
   articlePanelLayout->addWidget(articlePanelTextBrowser, 1, 0);
 
@@ -127,7 +142,6 @@ MainWindow::MainWindow(QTranslator *translator)
 
 
   // Setup test panel
-  QWidget *testingPanelSubPanel = new QWidget(testingPanel);
 
   // QVBoxLayout *testingPanelLayout = new QVBoxLayout(testingPanel);
 
@@ -170,7 +184,6 @@ MainWindow::MainWindow(QTranslator *translator)
 
 
   // Setup typing panel
-  QGridLayout *typingPanelLayout = new QGridLayout(typingPanel);
   typingPanel->setLayout(typingPanelLayout);
   // typingPanelLayout->addWidget(typingPanelStatusWidget, 0, 0);
   typingPanelLayout->addWidget(typingPanelTypingWidget, 0, 1);
@@ -179,25 +192,17 @@ MainWindow::MainWindow(QTranslator *translator)
   // QGridLayout *typingPanelStatusWidgetLayout = new QGridLayout();
 
   // Setup typing panel typing widget
-  QVBoxLayout *typingPanelTypingWidgetLayout = new QVBoxLayout(typingPanelTypingWidget);
   typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world1")); //debug!!
   typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
   typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world2")); //debug!!
   typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
 
   // Setup translate panel
-  QGridLayout *translatePanelLayout = new QGridLayout(translatePanel);
-
   translatePanelLayout->addWidget(translatePanelSrcGroupBox, 0, 0);
   translatePanelSrcGroupBoxLayout->addWidget(translatePanelSrcTextEdit);
-
   translatePanelLayout->addWidget(translatePanelMidWidget, 0, 1);
-  QVBoxLayout *translatePanelMidWidgetLayout = new QVBoxLayout(translatePanelMidWidget);
-  QPushButton *translatePanelToDestButton = new QPushButton(">>");
-  QPushButton *translatePanelToSrcButton = new QPushButton("<<");
   translatePanelMidWidgetLayout->addWidget(translatePanelToDestButton);
   translatePanelMidWidgetLayout->addWidget(translatePanelToSrcButton);
-
   translatePanelLayout->addWidget(translatePanelDestGroupBox, 0, 2);
   translatePanelDestGroupBoxLayout->addWidget(translatePanelDestTextEdit);
 
@@ -213,6 +218,7 @@ MainWindow::MainWindow(QTranslator *translator)
   QObject::connect(articleTypeSelectPanelAction, &QAction::triggered, [this]{this->switchToArticleTypeSelectPanel();});
   QObject::connect(typingPanelAction, &QAction::triggered, [this]{this->switchToTypingPanel();});
   QObject::connect(translatePanelAction, &QAction::triggered, [this]{this->switchToTranslatePanel();});
+  QObject::connect(aboutAction, &QAction::triggered, [this]{this->popUpAboutWindow();});
 
   // Connect button callback
   QObject::connect(articleTypeSelectPanelButton, &QPushButton::clicked, [this]{this->switchToArticleTypeSelectPanel();});
@@ -243,6 +249,8 @@ void MainWindow::retranslate()
   articleTypeSelectPanelAction->setText(QAction::tr("Article Type Select Panel"));
   typingPanelAction->setText(QAction::tr("Typing Panel"));
   translatePanelAction->setText(QAction::tr("Translate Panel"));
+  helpMenu->setTitle(QMenu::tr("Help"));
+  aboutAction->setText(QMenu::tr("About"));
 
   // Main panel
   articleTypeSelectPanelButton->setText(QPushButton::tr("Article"));
@@ -359,4 +367,10 @@ void MainWindow::translatePanelTranslateToSrc()
   const std::string &destLanguageType = LanguageTypes::en_US;
   const std::string &reply = OnlineTranslator::translate(input, destLanguageType, srcLanguageType);
   translatePanelSrcTextEdit->setText(QString::fromStdString(reply));
+}
+
+void MainWindow::popUpAboutWindow()
+{
+  std::cout << "MainWindow::popUpAboutWindow()\n";
+  aboutDialog->show();
 }
