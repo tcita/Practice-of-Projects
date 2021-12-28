@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <vector>
 #include <QMainWindow>
 #include <QTranslator>
 #include <QWidget>
@@ -32,7 +33,7 @@ private:
   QAction *zhTwAction;
   QMenu *switchToMenu;
   QAction *mainPanelAction;
-  QAction *articleTypeSelectPanelAction;
+  QAction *articleTypePanelAction;
   QAction *typingPanelAction;
   QAction *translatePanelAction;
   QMenu *helpMenu;
@@ -52,18 +53,24 @@ private:
   // Main panel
   QWidget *mainPanel;
   QGridLayout *mainPanelLayout;
-  QPushButton *articleTypeSelectPanelButton;
+  QPushButton *articleTypePanelButton;
   QPushButton *typingPanelButton;
   QPushButton *testingPanelButton;
   QPushButton *translatePanelButton;
 
-  // Artical type select panel
-  QWidget *articleTypeSelectPanel;
-  QGridLayout *articleTypeSelectPanelLayout;
-  QPushButton *articlePanelHealthButton;
-  QPushButton *articlePanelSportButton;
-  QPushButton *articlePanelTravelButton;
-  QPushButton *articlePanelWorldButton;
+  // Artical type panel
+  QWidget *articleTypePanel;
+  QGridLayout *articleTypePanelLayout;
+  QPushButton *articleTypePanelWorldButton;
+
+  // World sub type Panel
+  QWidget *worldSubTypePanel;
+  QGridLayout *worldSubTypePanelLayout;
+  QPushButton *worldSubTypePanelAfricaButton;
+
+  // Africa article panel
+  QWidget *africaArticlePanel;
+  QGridLayout *africaArticlePanelLayout;
 
   // Artical panel
   QWidget *articlePanel;
@@ -107,25 +114,18 @@ private:
   void retranslate();
   // Set language
   void setLanguage(const std::string &languageType);
-  // Switch to main panel
-  void switchToMainPanel();
-  // Switch to typing panel
-  void switchToTypingPanel();
-  // Switch to article type select Panel
-  void switchToArticleTypeSelectPanel();
-  // Switch to article panel
-  void switchToArticlePanel(const std::string &articleType);
-  // Switch to test panel
-  void switchTotestingPanel();
-  // Switch to translate panel
-  void switchToTranslatePanel();
-
+  // Get certain sub type article title
+  void africaArticlePanelFetchArticleTitle();
+  // Get certain article and output
+  void articlePanelFetchArticle(const std::string &articleType);
   // Translate panel translate to destination text edit
   void translatePanelTranslateToDest();
   // Translate panel translate to source text edit
   void translatePanelTranslateToSrc();
   // Pop up the about window
   void popUpAboutWindow();
+  //
+  // void typingPanelLayout();
 };
 
 #endif
