@@ -1,0 +1,5 @@
+/home/kde/Documents/git/Practice-of-Projects/ui/build/CMakeFiles/rebuild_cache.dir
+/home/kde/Documents/git/Practice-of-Projects/ui/build/CMakeFiles/edit_cache.dir
+/home/kde/Documents/git/Practice-of-Projects/ui/build/CMakeFiles/EnglishAssistant.dir
+/home/kde/Documents/git/Practice-of-Projects/ui/build/lib/json-develop/CMakeFiles/edit_cache.dir
+/home/kde/Documents/git/Practice-of-Projects/ui/build/lib/json-develop/CMakeFiles/rebuild_cache.dir

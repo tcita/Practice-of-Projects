@@ -20,11 +20,11 @@ Provide an simple UI to assist learning English
 
 ### 1. Go to build directory
 
-`cd ui/build/windows`
+`cd ui/build`
 
 ### 2. Generate build system files
 
-`cmake ../.. -G "Ninja"`
+`cmake .. -G "Ninja"`
 
 ### 3. Build
 
@@ -51,11 +51,11 @@ sudo apt install qttools5-dev
 
 ### 1. Go to build directory
 
-`cd ui/build/linux`
+`cd ui/build`
 
 ### 2. Generate build system files
 
-`cmake ../.. -G "Ninja"`
+`cmake .. -G "Ninja"`
 
 ### 3. Build
 
