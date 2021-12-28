@@ -1,8 +1,6 @@
 #ifndef LANGUAGETYPES_H
 #define LANGUAGETYPES_H
 
-#include <string_view>
-
 namespace LanguageTypes
 {
   inline const char *en_US = "en_US";

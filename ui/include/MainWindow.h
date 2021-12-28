@@ -14,6 +14,7 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QDialog>
+#include <QLabel>
 
 // The application main window
 class MainWindow : public QMainWindow
@@ -40,6 +41,8 @@ private:
   // About dialog
   QWidget *aboutDialog;
   QVBoxLayout *aboutDialogLayout;
+  QLabel *aboutDialogInfoLabel;
+  QPushButton *aboutDialogOkButton;
 
   // Central widget
   QStackedLayout *centralWidgetLayout;

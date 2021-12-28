@@ -2,6 +2,7 @@
 #include "Crawler.h"
 #include "OnlineTranslator.h"
 #include "LanguageTypes.h"
+#include "ProjectInfo.h"
 #include <iostream> //debug
 #include <QGridLayout>
 #include <QVBoxLayout>
@@ -33,7 +34,9 @@ MainWindow::MainWindow(QTranslator *translator)
 
   // About dialog
   aboutDialog = new QDialog(this);
-  // aboutDialogLayout = new QVBoxLayout(aboutDialog);
+  aboutDialogLayout = new QVBoxLayout(aboutDialog);
+  aboutDialogInfoLabel = new QLabel(aboutDialog);
+  aboutDialogOkButton = new QPushButton(aboutDialog);
 
   // Central widget
   this->setCentralWidget(new QWidget(this));
@@ -48,7 +51,7 @@ MainWindow::MainWindow(QTranslator *translator)
   testingPanelButton = new QPushButton(mainPanel);
   translatePanelButton = new QPushButton(mainPanel);
 
-  // Artical type select panel
+  // Article type select panel
   articleTypeSelectPanel = new QWidget();
   articleTypeSelectPanelLayout = new QGridLayout(articleTypeSelectPanel);
   articlePanelHealthButton = new QPushButton(articleTypeSelectPanel);
@@ -56,7 +59,7 @@ MainWindow::MainWindow(QTranslator *translator)
   articlePanelTravelButton = new QPushButton(articleTypeSelectPanel);
   articlePanelWorldButton = new QPushButton(articleTypeSelectPanel);
 
-  // Artical panel
+  // Article panel
   articlePanel = new QWidget();
   articlePanelLayout = new QGridLayout(articlePanel);
   articlePanelTextBrowser = new QTextBrowser(articlePanel);
@@ -121,19 +124,27 @@ MainWindow::MainWindow(QTranslator *translator)
   mainMenuBar->addMenu(helpMenu);
   helpMenu->addAction(aboutAction);
 
+  // Setup about dialog
+  aboutDialog->setLayout(aboutDialogLayout);
+  aboutDialogLayout->addWidget(aboutDialogInfoLabel);
+  aboutDialogLayout->addWidget(aboutDialogOkButton);
+
   // Setup main panel
+  mainPanel->setLayout(mainPanelLayout);
   mainPanelLayout->addWidget(articleTypeSelectPanelButton, 0, 0);
   mainPanelLayout->addWidget(typingPanelButton, 0, 1);
   mainPanelLayout->addWidget(testingPanelButton, 1, 0);
   mainPanelLayout->addWidget(translatePanelButton, 1, 1);
 
   // Setup article type select panel
+  articleTypeSelectPanel->setLayout(articleTypeSelectPanelLayout);
   articleTypeSelectPanelLayout->addWidget(articlePanelHealthButton, 0, 0);
   articleTypeSelectPanelLayout->addWidget(articlePanelSportButton, 0, 1);
   articleTypeSelectPanelLayout->addWidget(articlePanelTravelButton, 1, 0);
   articleTypeSelectPanelLayout->addWidget(articlePanelWorldButton, 1, 1);
 
   // Setup article panel
+  articlePanel->setLayout(articlePanelLayout);
   articlePanelLayout->setColumnMinimumWidth(0, 200);
   articlePanelLayout->addWidget(articlePanelTextBrowser, 1, 0);
 
@@ -183,7 +194,7 @@ MainWindow::MainWindow(QTranslator *translator)
 
 
 
-  // Setup typing panel
+  // Setup typing
   typingPanel->setLayout(typingPanelLayout);
   // typingPanelLayout->addWidget(typingPanelStatusWidget, 0, 0);
   typingPanelLayout->addWidget(typingPanelTypingWidget, 0, 1);
@@ -251,6 +262,10 @@ void MainWindow::retranslate()
   translatePanelAction->setText(QAction::tr("Translate Panel"));
   helpMenu->setTitle(QMenu::tr("Help"));
   aboutAction->setText(QMenu::tr("About"));
+
+  // About dialog
+  aboutDialogInfoLabel->setText(QDialog::tr("English Assistant") + " " + ProjectInfo::VERSION);
+  aboutDialogOkButton->setText(QPushButton::tr("OK"));
 
   // Main panel
   articleTypeSelectPanelButton->setText(QPushButton::tr("Article"));
