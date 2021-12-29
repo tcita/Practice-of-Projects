@@ -54,16 +54,19 @@ std::string Solution::wordFrequency(const std::string &article, std::vector<std:
     return result;
 }
 
-std::string Solution::readFile(const std::string &filePath) {
-  std::cout << "std::string Solution::readFile(const std::string &filePath) " << filePath << "\n"; //debug!!
+std::string Solution::readFile(const std::string &filePath)
+{
   std::ifstream ifs(filePath);
-
+  if(!ifs.is_open())
+  {
+    std::cerr << "Error on Solution::readFile(const std::string &filePath)\nFile \"" << filePath << "\" not found!";
+  }
   std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
-  std::cout << "content is: " << content << "\n"; //debug!!
   return content;
 }
 
-void Solution::writeFile(const std::string &filePath, const std::string &content) {
+void Solution::writeFile(const std::string &filePath, const std::string &content)
+{
   // Create if file is not exist
   std::ofstream fout;
   fout.open(filePath);

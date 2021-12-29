@@ -40,14 +40,12 @@ std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleT
   env->CallVoidMethod(javaCrawler, methodID_1, toJString(articleTypeWithSlash));
   env->CallVoidMethod(javaCrawler, methodID_2, toJString(articleTypeWithSlash));
 
-  // std::cout << Solution::readFile(ARTICLE_TITLE_FILE_PATH) << "\n"; //debug!!
   std::istringstream articleTitlesStringStream = std::istringstream(Solution::readFile(ARTICLE_TITLE_FILE_PATH));
   std::vector<std::string> articleTitles;
   std::string articleTitle;
   while(std::getline(articleTitlesStringStream, articleTitle, '\n'))
   {
     articleTitles.push_back(articleTitle);
-    // std::cout << articleTitle << "\n"; //debug!!
   }
 
   return articleTitles;

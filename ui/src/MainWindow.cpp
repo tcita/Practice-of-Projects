@@ -259,11 +259,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler]{
     centralWidgetLayout->setCurrentWidget(articleTitlePanel);
     std::vector<std::string> articleTitles = crawler->fetchArticleTitles("africa");
-    for(std::string articleTitle : articleTitles)
-    {
-      std::cout << articleTitle << "\n";
-    }
-
+    setArticleTitles(articleTitles);
   });
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(typingPanel);});
   QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(testingPanel);});
@@ -337,17 +333,25 @@ void MainWindow::setLanguage(const std::string &languageType)
 void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
 {
   std::cout << "void MainWindow::setArticleTitles(std::vector<std::string> &articleTitles)\n";
+  // Clear article title panel
+  for(QObject *button : articleTitlePanelLayout->children())
+  {
+    articleTitlePanelLayout->removeWidget(dynamic_cast<QPushButton*>(button));
+    delete button;
+  }
+
   for(std::string articleTitle : articleTitles)
   {
-    QPushButton *flatButton = new QPushButton();
-    flatButton->setFlat(true);
-    flatButton->setText(QString::fromStdString(articleTitle));
-    QObject::connect(flatButton, &QPushButton::clicked, [flatButton]{
-      std::cout << flatButton->text().toStdString() << "\n";
+    QPushButton *button = new QPushButton();
+    // button->setFlat(true);
+    // button->setStyleSheet("QPushButton{ background-color: gray }");
+    button->setText(QString::fromStdString(articleTitle));
+    QObject::connect(button, &QPushButton::clicked, [button]{
+      std::cout << button->text().toStdString() << "\n";
       // std::string article = Crawler::fetchArticle(flatButton.text());
       // this->setArticle(article);
     });
-    articleTitlePanelLayout->addWidget(flatButton);
+    articleTitlePanelLayout->addWidget(button);
   }
 }
 

@@ -7,8 +7,8 @@
 
 class Crawler {
 public:
-  static constexpr const char *ARTICLE_TITLE_FILE_PATH = "./lib/crawler/tmp/article_list.txt";
-  static constexpr const char *ARTICLE_FILE_PATH = "./lib/crawler/tmp/crawed_content.txt";
+  static constexpr const char *ARTICLE_TITLE_FILE_PATH = "./tmp/article_list.txt";
+  static constexpr const char *ARTICLE_FILE_PATH = "./tmp/crawed_content.txt";
 
 private:
   JNIEnv *env;                     /* JNI的環境 */
