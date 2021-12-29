@@ -34,7 +34,11 @@ public class Scraper {
 			article_list.add(e.text());
 		}
 
-		System.out.println("Success");
+		// System.out.println("Success");
+
+		for(String s:article_list){
+			System.out.println(s);
+		}
 	}
 
 	public List<String> getArticle_url_list() {
@@ -45,7 +49,7 @@ public class Scraper {
 		for(Element e:first_view(category)) {
 			concatenate(e.attr("href"));
 		}
-		System.out.println("DONE");
+		// System.out.println("DONE");
 	}
 
 	public String getBase_url() {
