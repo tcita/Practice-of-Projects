@@ -65,7 +65,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
   // Africa article panel
   articleTitlePanel = new QWidget();
-  articleTitlePanelLayout = new QGridLayout(articleTitlePanel);
+  articleTitlePanelLayout = new QVBoxLayout(articleTitlePanel);
 
   // Article panel
   articlePanel = new QWidget();
@@ -332,28 +332,40 @@ void MainWindow::setLanguage(const std::string &languageType)
 
 void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
 {
-  std::cout << "void MainWindow::setArticleTitles(std::vector<std::string> &articleTitles)\n";
+  // std::cout << "void MainWindow::setArticleTitles(std::vector<std::string> &articleTitles)\n";
+
   // Clear article title panel
-  for(QObject *button : articleTitlePanelLayout->children())
-  {
-    articleTitlePanelLayout->removeWidget(dynamic_cast<QPushButton*>(button));
-    delete button;
+  // qDeleteAll(articleTitlePanel->findChild<QPushButton*>("", Qt::FindDirectChildrenOnly));
+  // QPushButton *button;
+  // while(button = articleTitlePanel->findChild<QPushButton*>())
+  // {
+  //   delete button;
+  // }
+
+  // From: https://doc.qt.io/qt-5/qlayout.html#takeAt
+  while (QLayoutItem *child = articleTitlePanelLayout->takeAt(0)) {
+    delete child->widget();
+    delete child;
+    memset(child, 0, sizeof(*child));
   }
 
   for(std::string articleTitle : articleTitles)
   {
-    QPushButton *button = new QPushButton();
+    QPushButton *button = new QPushButton(articleTitlePanel);
     // button->setFlat(true);
     // button->setStyleSheet("QPushButton{ background-color: gray }");
     button->setText(QString::fromStdString(articleTitle));
-    QObject::connect(button, &QPushButton::clicked, [button]{
-      std::cout << button->text().toStdString() << "\n";
-      // std::string article = Crawler::fetchArticle(flatButton.text());
-      // this->setArticle(article);
-    });
+    // QObject::connect(button, &QPushButton::clicked, [button]{
+    //   std::cout << button->text().toStdString() << "\n";
+    //   // delete button;//debug!!
+    //   // std::string article = Crawler::fetchArticle(flatButton.text());
+    //   // this->setArticle(article);
+    // });
     articleTitlePanelLayout->addWidget(button);
   }
 }
+
+void clearArticleTitleButtons(){}
 
 void MainWindow::setArticle(const std::string &article)
 {

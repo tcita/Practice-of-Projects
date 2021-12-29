@@ -72,9 +72,9 @@ private:
   QGridLayout *worldSubTypePanelLayout;
   QPushButton *africaArticleTitlePanelButton;
 
-  // Africa article panel
+  // Article title article panel
   QWidget *articleTitlePanel;
-  QGridLayout *articleTitlePanelLayout;
+  QVBoxLayout *articleTitlePanelLayout;
 
   // Artical panel
   QWidget *articlePanel;
@@ -129,6 +129,8 @@ private:
   void popUpAboutWindow();
   //
   // void typingPanelLayout();
+
+  void clearArticleTitleButtons();
 };
 
 #endif
