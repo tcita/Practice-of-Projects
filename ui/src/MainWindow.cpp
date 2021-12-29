@@ -1,8 +1,8 @@
 #include "MainWindow.h"
-#include "Crawler.h"
 #include "OnlineTranslator.h"
 #include "LanguageTypes.h"
 #include "ProjectInfo.h"
+#include "Solution.h"
 #include <iostream> //debug
 #include <QGridLayout>
 #include <QVBoxLayout>
@@ -11,8 +11,9 @@
 #include <QMessageBox>
 #include <QTranslator>
 
-MainWindow::MainWindow(QTranslator *translator)
+MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   :translator(translator)
+  ,crawler(crawler)
 {
   /******************************************************************************************
   * Init member
@@ -55,16 +56,16 @@ MainWindow::MainWindow(QTranslator *translator)
   // Article type panel
   articleTypePanel = new QWidget();
   articleTypePanelLayout = new QGridLayout(articleTypePanel);
-  articleTypePanelWorldButton = new QPushButton(articleTypePanel);
+  worldSubTypePanelButton = new QPushButton(articleTypePanel);
 
   // World sub type Panel
   worldSubTypePanel = new QWidget();
   worldSubTypePanelLayout = new QGridLayout(worldSubTypePanel);
-  worldSubTypePanelAfricaButton = new QPushButton(worldSubTypePanel);
+  africaArticleTitlePanelButton = new QPushButton(worldSubTypePanel);
 
   // Africa article panel
-  africaArticlePanel = new QWidget();
-  africaArticlePanelLayout = new QGridLayout(africaArticlePanel);
+  articleTitlePanel = new QWidget();
+  articleTitlePanelLayout = new QGridLayout(articleTitlePanel);
 
   // Article panel
   articlePanel = new QWidget();
@@ -117,7 +118,7 @@ MainWindow::MainWindow(QTranslator *translator)
   this->centralWidgetLayout->addWidget(translatePanel);
   this->centralWidgetLayout->addWidget(articleTypePanel);
   this->centralWidgetLayout->addWidget(worldSubTypePanel);
-  this->centralWidgetLayout->addWidget(africaArticlePanel);
+  this->centralWidgetLayout->addWidget(articleTitlePanel);
   this->centralWidgetLayout->addWidget(articlePanel);
 
   // Setup menu bar
@@ -151,18 +152,18 @@ MainWindow::MainWindow(QTranslator *translator)
 
   // Setup article type panel
   articleTypePanel->setLayout(articleTypePanelLayout);
-  articleTypePanelLayout->addWidget(articleTypePanelWorldButton, 1, 1);
+  articleTypePanelLayout->addWidget(worldSubTypePanelButton, 1, 1);
 
   // Setup world sub type panel
   worldSubTypePanel->setLayout(worldSubTypePanelLayout);
-  worldSubTypePanelLayout->addWidget(worldSubTypePanelAfricaButton);
+  worldSubTypePanelLayout->addWidget(africaArticleTitlePanelButton);
 
   // Setup africa article panel
-  africaArticlePanel->setLayout(africaArticlePanelLayout);
+  articleTitlePanel->setLayout(articleTitlePanelLayout);
 
   // Setup article panel
   articlePanel->setLayout(articlePanelLayout);
-  articlePanelLayout->setColumnMinimumWidth(0, 200);
+  // articlePanelLayout->setColumnMinimumWidth(0, 200);
   articlePanelLayout->addWidget(articlePanelTextBrowser, 1, 0);
 
   // Setup test panel
@@ -254,8 +255,16 @@ MainWindow::MainWindow(QTranslator *translator)
   // Connect button callback
   QObject::connect(aboutDialogOkButton, &QPushButton::clicked, [this]{this->aboutDialog->hide();});
   QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(articleTypePanel);});
-  QObject::connect(articleTypePanelWorldButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(worldSubTypePanel);});
-  QObject::connect(worldSubTypePanelAfricaButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(africaArticlePanel);});
+  QObject::connect(worldSubTypePanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(worldSubTypePanel);});
+  QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler]{
+    centralWidgetLayout->setCurrentWidget(articleTitlePanel);
+    std::vector<std::string> articleTitles = crawler->fetchArticleTitles("africa");
+    for(std::string articleTitle : articleTitles)
+    {
+      std::cout << articleTitle << "\n";
+    }
+
+  });
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(typingPanel);});
   QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(testingPanel);});
   QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(translatePanel);});
@@ -286,20 +295,20 @@ void MainWindow::retranslate()
   aboutDialog->setWindowTitle(QDialog::tr("English Assistant"));
   aboutDialogInfoLabel1->setText(QDialog::tr("English Assistant") + " " + ProjectInfo::VERSION);
   aboutDialogInfoLabel2->setText(QDialog::tr("English translate & learning program"));
-  aboutDialogInfoLabel3->setText(QDialog::tr("published under GPLv3"));
+  aboutDialogInfoLabel3->setText(QDialog::tr("Published under GPLv3"));
   aboutDialogOkButton->setText(QPushButton::tr("OK"));
 
   // Main panel
-  articleTypePanelButton->setText(QPushButton::tr("article"));
-  typingPanelButton->setText(QPushButton::tr("typing"));
-  testingPanelButton->setText(QPushButton::tr("test"));
-  translatePanelButton->setText(QPushButton::tr("translate"));
+  articleTypePanelButton->setText(QPushButton::tr("Article"));
+  typingPanelButton->setText(QPushButton::tr("Typing"));
+  testingPanelButton->setText(QPushButton::tr("Testing"));
+  translatePanelButton->setText(QPushButton::tr("Translate"));
 
   // Article type panel
-  articleTypePanelWorldButton->setText(QPushButton::tr("world"));
+  worldSubTypePanelButton->setText(QPushButton::tr("World"));
 
   // World sub type panel
-  worldSubTypePanelAfricaButton->setText(QPushButton::tr("africa"));
+  africaArticleTitlePanelButton->setText(QPushButton::tr("Africa"));
 
   // Translate panel
   translatePanelSrcGroupBox->setTitle(QTextEdit::tr("Source language"));
@@ -325,27 +334,27 @@ void MainWindow::setLanguage(const std::string &languageType)
   this->retranslate();
 }
 
-void MainWindow::africaArticlePanelFetchArticleTitle()
+void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
 {
-  std::cout << "MainWindow::africaArticlePanelFetchArticleTitle()\n";
-  // africaArticlePanelLayout->addWidget();
-
+  std::cout << "void MainWindow::setArticleTitles(std::vector<std::string> &articleTitles)\n";
+  for(std::string articleTitle : articleTitles)
+  {
+    QPushButton *flatButton = new QPushButton();
+    flatButton->setFlat(true);
+    flatButton->setText(QString::fromStdString(articleTitle));
+    QObject::connect(flatButton, &QPushButton::clicked, [flatButton]{
+      std::cout << flatButton->text().toStdString() << "\n";
+      // std::string article = Crawler::fetchArticle(flatButton.text());
+      // this->setArticle(article);
+    });
+    articleTitlePanelLayout->addWidget(flatButton);
+  }
 }
 
-void MainWindow::articlePanelFetchArticle(const std::string &articleType)
+void MainWindow::setArticle(const std::string &article)
 {
-  // Clear text browser
-  articlePanelTextBrowser->setText("");
-
-  // Put article to text browser
-  if(articleType == "world")
-  {
-    
-  }
-  else
-  {
-    articlePanelTextBrowser->setText("Unsupported article type");
-  }
+  std::cout << "void MainWindow::setArticle(const std::string &article)\n";
+  articlePanelTextBrowser->setText(QString::fromStdString(article));
 }
 
 void MainWindow::translatePanelTranslateToDest()

@@ -124,13 +124,30 @@ target_link_libraries(
   PRIVATE ${JNI_LIBRARIES}
 )
 
+# # Compile crawler from (.java) file to (.class) file
+# add_custom_command(
+#   OUTPUT Scraper.class
+#   COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/lib/crawler
+#   COMMAND javac -cp ${CMAKE_SOURCE_DIR}/lib/jsoup/jsoup-1.14.3.jar -encoding UTF-8 ${CMAKE_SOURCE_DIR}/lib/crawler/Scraper.java -d ${CMAKE_BINARY_DIR}/lib/crawler
+#   SOURCE ${CMAKE_SOURCE_DIR}/lib/crawler/Scraper.java
+# )
+# add_custom_target(
+#   JavaCrawler
+#   DEPENDS
+#     ${CMAKE_SOURCE_DIR}/lib/crawler/Scraper.class
+# )
+# add_dependencies(
+#   ${CMAKE_PROJECT_NAME}
+#   JavaCrawler
+# )
+
 ####################################################################################################
 # Copy files
 ####################################################################################################
 # Copy crawler to build directory
 add_custom_command(
   TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/crawler ${CMAKE_BINARY_DIR}/lib/crawler
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/lib/crawler/Scraper.class ${CMAKE_BINARY_DIR}/lib/crawler/Scraper.class
 )
 
 # Copy image to build directory
@@ -139,7 +156,7 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets/image ${CMAKE_BINARY_DIR}/assets/image
 )
 
-# Copy image to build directory
+# Copy jsoup lib to build directory
 add_custom_command(
   TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/jsoup ${CMAKE_BINARY_DIR}/lib/jsoup

@@ -7,9 +7,7 @@
 #include<algorithm>
 #include <fstream>
 
-std::string Solution::wordFrequency(const std::string &paragraph, std::vector<std::string> &bannedWords) {
-    std::unordered_set<std::string> b;
-
+std::string Solution::wordFrequency(const std::string &article, std::vector<std::string> &bannedWords) {
     //頻繁出現的衡量標準
     const int count = 3;
     //頻繁出現的單字
@@ -23,11 +21,12 @@ std::string Solution::wordFrequency(const std::string &paragraph, std::vector<st
     std::map<std::string, int> str2cnt;
 
 
+    std::unordered_set<std::string> bannedWordSet;
     for (const std::string &bannedWord : bannedWords)
     {
-        b.insert(bannedWord);
+        bannedWordSet.insert(bannedWord);
     }
-    for (char c : paragraph)
+    for (char c : article)
     {
         if (std::isalpha(c))
         {
@@ -38,7 +37,7 @@ std::string Solution::wordFrequency(const std::string &paragraph, std::vector<st
         else if (curr.size() > 0)
         {
             // ban掉禁用單字,  以下等式成立的條件是當前考察單字不為禁用單字
-            if (b.find(curr) == b.end())
+            if (bannedWordSet.find(curr) == bannedWordSet.end())
             {
                 ++str2cnt[curr];
             }
@@ -47,73 +46,29 @@ std::string Solution::wordFrequency(const std::string &paragraph, std::vector<st
         }
     }
 
-
-    ////如果文段的結尾單字沒有非字母結尾,如"I hate the sunlight" ,要額外討論,步驟只需要再重複上面一次即可
-    //if (curr.size() > 0)
-    //{
-
-    //    if (b.find(curr) == b.end())
-    //    {
-    //        ++str2cnt[curr];
-    //        if (str2cnt[curr] >= count)
-    //        {
-    //            maxw.insert(pair<string, int>(curr, str2cnt[curr]));
-    //        }
-    //    }
-    //    curr = "";
-    //}
-
-
-
-
-    //結果輸出
-
-    //可能要改為需要的return 類型
-
-    // std::cout << '\n' << "單字出現頻率\n";
-    //
-    // for (auto& t : str2cnt) {
-    //
-    //     //檢查是否單字經常出現
-    //
-    //     re += t.first + " " + std::to_string(t.second) + "次";
-    //     std::cout << t.first << " " << t.second << "次";
-    //
-    //     if (t.second >= count)
-    //     {
-    //
-    //         re += "▲";
-    //         std::cout << "▲";
-    //     }
-    //     re += "\n";
-    //     std::cout << std::endl;
-    // }
-
-    std::vector<std::string> result;
-
+    std::string result;
     for (auto& t : str2cnt) {
-
-        //檢查是否單字經常出現
-        re += t.first + ": " + std::to_string(t.second) + "\n";
+        result += t.first + ": " + std::to_string(t.second) + "\n";
     }
 
-    return re;
+    return result;
 }
 
 std::string Solution::readFile(const std::string &filePath) {
-    // std::ifstream ifs("testfile.txt");
-    std::ifstream ifs(filePath);
+  std::cout << "std::string Solution::readFile(const std::string &filePath) " << filePath << "\n"; //debug!!
+  std::ifstream ifs(filePath);
 
-    std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
-    return content;
+  std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
+  std::cout << "content is: " << content << "\n"; //debug!!
+  return content;
 }
 
 void Solution::writeFile(const std::string &filePath, const std::string &content) {
-    //不存在則新建
-    std::ofstream fout;
-    fout.open(filePath);
+  // Create if file is not exist
+  std::ofstream fout;
+  fout.open(filePath);
 
-    fout << content;
+  fout << content;
 
-    fout.close();
+  fout.close();
 }

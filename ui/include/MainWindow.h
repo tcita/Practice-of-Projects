@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "Crawler.h"
 #include <vector>
 #include <QMainWindow>
 #include <QTranslator>
@@ -23,6 +24,9 @@ class MainWindow : public QMainWindow
 private:
   // Translater
   QTranslator *translator;
+
+  // Crawler
+  Crawler *crawler;
 
   // Menu
   QMenuBar *mainMenuBar;
@@ -61,16 +65,16 @@ private:
   // Artical type panel
   QWidget *articleTypePanel;
   QGridLayout *articleTypePanelLayout;
-  QPushButton *articleTypePanelWorldButton;
+  QPushButton *worldSubTypePanelButton;
 
   // World sub type Panel
   QWidget *worldSubTypePanel;
   QGridLayout *worldSubTypePanelLayout;
-  QPushButton *worldSubTypePanelAfricaButton;
+  QPushButton *africaArticleTitlePanelButton;
 
   // Africa article panel
-  QWidget *africaArticlePanel;
-  QGridLayout *africaArticlePanelLayout;
+  QWidget *articleTitlePanel;
+  QGridLayout *articleTitlePanelLayout;
 
   // Artical panel
   QWidget *articlePanel;
@@ -106,18 +110,17 @@ private:
   * Functions
   ****************************************************************************************************/
 public:
-  // MainWindow(QTranslator *translator);
-  MainWindow(QTranslator *translator);
+  MainWindow(QTranslator *translator, Crawler *crawler);
 
 private:
   // Translate all widgets
   void retranslate();
   // Set language
   void setLanguage(const std::string &languageType);
-  // Get certain sub type article title
-  void africaArticlePanelFetchArticleTitle();
-  // Get certain article and output
-  void articlePanelFetchArticle(const std::string &articleType);
+  // Set article title to article title panel
+  void setArticleTitles(const std::vector<std::string> &articleTitles);
+  // Set article to article text browser
+  void setArticle(const std::string &article);
   // Translate panel translate to destination text edit
   void translatePanelTranslateToDest();
   // Translate panel translate to source text edit

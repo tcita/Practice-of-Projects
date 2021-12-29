@@ -15,15 +15,19 @@
 int main(int argc, char **argv)
 {
   // Init java web crawler
-  Crawler crawler;
-  crawler.fetchArticle();
+  // Crawler crawler;
+  // crawler.fetchArticleTitles("africa");
+  // crawler.fetchArticle("An American teacher held in Libya for 6 weeks is now back home in the United States");
 
-  std::string article = Solution::readFile("./tmp/crawed_content.txt");
-  std::vector<std::string> bannedWords{"a", "is", "the"};
-  std::cout << Solution::wordFrequency(article, bannedWords);
+  // std::string article = Solution::readFile("./tmp/crawed_content.txt");
+  // std::vector<std::string> bannedWords{"a", "is", "the"};
+  // std::cout << Solution::wordFrequency(article, bannedWords);
 
   // Init translator
   QTranslator translator;
+
+  // Init crawler
+  Crawler crawler;
 
   // Init app
   QApplication app(argc, argv);
@@ -33,7 +37,7 @@ int main(int argc, char **argv)
   translator.load(QString("assets/lang/") + QString(LanguageTypes::zh_TW));
 
   // Init main window
-  MainWindow mainWindow(&translator);
+  MainWindow mainWindow(&translator, &crawler);
   mainWindow.resize(1200, 800);
   mainWindow.show();
 
