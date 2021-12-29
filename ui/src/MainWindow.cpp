@@ -340,7 +340,7 @@ void MainWindow::articlePanelFetchArticle(const std::string &articleType)
   // Put article to text browser
   if(articleType == "world")
   {
-    articlePanelTextBrowser->setText(QString::fromStdString(Crawler::getArticle()));
+    
   }
   else
   {

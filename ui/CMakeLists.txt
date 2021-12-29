@@ -8,6 +8,10 @@ cmake_minimum_required(VERSION 3.21.3)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# JNI gcc flag #debug!!
+SET(CMAKE_CXX_FLAGS "-I\"C:/Program Files/Java/jdk1.8.0_202/include\" -I\"C:/Program Files/Java/jdk1.8.0_202/include/win32\"")
+SET(CMAKE_EXE_LINKER_FLAGS "-L \"C:/Program Files/Java/jdk1.8.0_202/jre/bin/server\" -ljvm")
+
 # Set project information
 project(
   EnglishAssistant
@@ -33,9 +37,9 @@ endif()
 # ``JNI_FOUND``
 #   TRUE if JNI headers and libraries were found.
 # Find JNI package
-find_package(
-  JNI REQUIRED
-)
+# find_package(
+#   JNI REQUIRED
+# )
 
 # Find Qt package
 find_package(
@@ -132,6 +136,12 @@ add_custom_command(
 add_custom_command(
   TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets/image ${CMAKE_BINARY_DIR}/assets/image
+)
+
+# Copy image to build directory
+add_custom_command(
+  TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/jsoup ${CMAKE_BINARY_DIR}/lib/jsoup
 )
 
 # Copy Qt binary # Problem: plugin binary didn't copied

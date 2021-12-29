@@ -2,8 +2,13 @@
 #define CRAWLER_H
 
 #include <string>
+#include <jni.h>
 
-namespace Crawler {
+class Crawler {
+public:
+  Crawler();
+
+  static void fetchArticle();
   std::string getArticle(const std::string &articleType="");
 };
 
