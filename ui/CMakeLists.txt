@@ -108,6 +108,7 @@ target_sources(
   PRIVATE ${CMAKE_SOURCE_DIR}/src/MainWindow.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Crawler.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/OnlineTranslator.cpp
+  PRIVATE ${CMAKE_SOURCE_DIR}/src/Solution.cpp
 )
 
 #

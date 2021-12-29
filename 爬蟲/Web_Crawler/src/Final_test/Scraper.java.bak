@@ -44,7 +44,7 @@ public class Scraper {
 				new OutputStreamWriter(new FileOutputStream(f)));
 			
 		for(String a:article_list) {			
-				bfw.write(a+"\n");
+				bfw.write(s+"\n");
 		}
 		
 		bfw.close();

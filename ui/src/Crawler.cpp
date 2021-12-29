@@ -20,7 +20,7 @@ void Crawler::fetchArticle()
 
     vm_args.version = JNI_VERSION_1_6;  /*使用的版本*/
 
-    options[0].optionString = (char*) "-Djava.class.path=.;./lib/jsoup/jsoup-1.14.3.jar";
+    options[0].optionString = (char*) "-Djava.class.path=.;./lib/crawler/Scraper.class;./lib/jsoup/jsoup-1.14.3.jar";
     vm_args.nOptions = 1;
     vm_args.options = options;
     vm_args.ignoreUnrecognized = JNI_FALSE;
@@ -40,12 +40,12 @@ void Crawler::fetchArticle()
     methodID_3 = env->GetMethodID(crawlerClass, "setChosed_doc", "(Ljava/lang/String;)V");
     methodID_4 = env->GetMethodID(crawlerClass, "crawl_article", "()V");
 
-    jstring str_1 = env->NewStringUTF("/africa");
-    jstring str_2 = env->NewStringUTF("Madagascar boat accident kills at least 64; minister swims to safety from helicopter crash at site");
+    jstring articleType = env->NewStringUTF("/africa");
+    jstring articleTitle = env->NewStringUTF("An American teacher held in Libya for 6 weeks is now back home in the United States");
 
-    env -> CallVoidMethod(object, methodID_1, str_1); /*執行此class*/
-    env -> CallVoidMethod(object, methodID_2, str_1);
-    env -> CallVoidMethod(object, methodID_3, str_2);
+    env -> CallVoidMethod(object, methodID_1, articleType); /*執行此class*/
+    env -> CallVoidMethod(object, methodID_2, articleType);
+    env -> CallVoidMethod(object, methodID_3, articleTitle);
     env -> CallVoidMethod(object, methodID_4);
 }
 

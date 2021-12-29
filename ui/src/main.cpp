@@ -8,12 +8,19 @@
 #include "LanguageTypes.h"
 #include <jni.h>
 #include "Crawler.h"
+#include "Solution.h"
+#include <vector>
+#include <string>
 
 int main(int argc, char **argv)
 {
   // Init java web crawler
   Crawler crawler;
   crawler.fetchArticle();
+
+  std::string article = Solution::readFile("./tmp/crawed_content.txt");
+  std::vector<std::string> bannedWords{"a", "is", "the"};
+  std::cout << Solution::wordFrequency(article, bannedWords);
 
   // Init translator
   QTranslator translator;
