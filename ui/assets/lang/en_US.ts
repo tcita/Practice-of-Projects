@@ -54,7 +54,7 @@
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="289"/>
-        <source>opensource software published under GPLv3</source>
+        <source>published under GPLv3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

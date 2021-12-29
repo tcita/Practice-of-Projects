@@ -22,24 +22,46 @@ if(WIN32)
 	set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};${QTDIR}lib/cmake/")
 endif()
 
+
+####################################################################################################
+# Find package
+####################################################################################################
+# ``JNI_INCLUDE_DIRS``
+#   the include dirs to use
+# ``JNI_LIBRARIES``
+#   the libraries to use (JAWT and JVM)
+# ``JNI_FOUND``
+#   TRUE if JNI headers and libraries were found.
+# Find JNI package
+find_package(
+  JNI REQUIRED
+)
+
+# Find Qt package
+find_package(
+  Qt5 REQUIRED
+  COMPONENTS
+    Core
+    Widgets
+    Network
+    LinguistTools
+)
+
+# get_target_property(
+#   dirs
+#   JNI
+#   INTERFACE_INCLUDE_DIRECTORIES
+# )
+# message(">>>>>>>>>>"${dirs})
+
+# Add subdirectory nlohmann_json
+add_subdirectory(${CMAKE_SOURCE_DIR}/lib/json-develop)
+
 ####################################################################################################
 # Build setting
 ####################################################################################################
 # Add executable
 add_executable(${CMAKE_PROJECT_NAME})
-
-# Add subdirectory nlohmann_json
-add_subdirectory(${CMAKE_SOURCE_DIR}/lib/json-develop)
-
-# Find Qt package
-find_package(
-  Qt5
-  COMPONENTS
-    # Core REQUIRED
-    Widgets REQUIRED
-    Network REQUIRED
-    LinguistTools REQUIRED
-)
 
 # Setup (.ts) files
 set(
@@ -71,6 +93,7 @@ qt5_create_translation(
 target_include_directories(
   ${CMAKE_PROJECT_NAME}
   PRIVATE ${CMAKE_SOURCE_DIR}/include/
+  PRIVATE ${JNI_INCLUDE_DIRS}
 )
 
 # src
@@ -88,11 +111,12 @@ target_sources(
 #
 target_link_libraries(
   ${CMAKE_PROJECT_NAME}
-  # PRIVATE Qt5::Core
+  PRIVATE Qt5::Core
   PRIVATE Qt5::Gui
   PRIVATE Qt5::Widgets
   PRIVATE Qt5::Network
-  PRIVATE nlohmann_json::nlohmann_json
+  PRIVATE nlohmann_json
+  PRIVATE ${JNI_LIBRARIES}
 )
 
 ####################################################################################################

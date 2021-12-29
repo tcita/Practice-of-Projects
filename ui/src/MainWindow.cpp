@@ -286,7 +286,7 @@ void MainWindow::retranslate()
   aboutDialog->setWindowTitle(QDialog::tr("English Assistant"));
   aboutDialogInfoLabel1->setText(QDialog::tr("English Assistant") + " " + ProjectInfo::VERSION);
   aboutDialogInfoLabel2->setText(QDialog::tr("English translate & learning program"));
-  aboutDialogInfoLabel3->setText(QDialog::tr("opensource software published under GPLv3"));
+  aboutDialogInfoLabel3->setText(QDialog::tr("published under GPLv3"));
   aboutDialogOkButton->setText(QPushButton::tr("OK"));
 
   // Main panel
@@ -328,7 +328,8 @@ void MainWindow::setLanguage(const std::string &languageType)
 void MainWindow::africaArticlePanelFetchArticleTitle()
 {
   std::cout << "MainWindow::africaArticlePanelFetchArticleTitle()\n";
-  
+  // africaArticlePanelLayout->addWidget();
+
 }
 
 void MainWindow::articlePanelFetchArticle(const std::string &articleType)
