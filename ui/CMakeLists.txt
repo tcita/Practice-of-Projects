@@ -9,8 +9,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # JNI gcc flag #debug!!
-SET(CMAKE_CXX_FLAGS "-I\"C:/Program Files/Java/jdk1.8.0_202/include\" -I\"C:/Program Files/Java/jdk1.8.0_202/include/win32\"")
-SET(CMAKE_EXE_LINKER_FLAGS "-L \"C:/Program Files/Java/jdk1.8.0_202/jre/bin/server\" -ljvm")
+# SET(CMAKE_CXX_FLAGS "-I\"C:/Program Files/Java/jdk1.8.0_202/include\" -I\"C:/Program Files/Java/jdk1.8.0_202/include/win32\"")
+# SET(CMAKE_EXE_LINKER_FLAGS "-L \"C:/Program Files/Java/jdk1.8.0_202/jre/bin/server\" -ljvm")
 
 # Set project information
 project(
@@ -37,9 +37,9 @@ endif()
 # ``JNI_FOUND``
 #   TRUE if JNI headers and libraries were found.
 # Find JNI package
-# find_package(
-#   JNI REQUIRED
-# )
+find_package(
+  JNI REQUIRED
+)
 
 # Find Qt package
 find_package(
@@ -50,13 +50,6 @@ find_package(
     Network
     LinguistTools
 )
-
-# get_target_property(
-#   dirs
-#   JNI
-#   INTERFACE_INCLUDE_DIRECTORIES
-# )
-# message(">>>>>>>>>>"${dirs})
 
 # Add subdirectory nlohmann_json
 add_subdirectory(${CMAKE_SOURCE_DIR}/lib/json-develop)

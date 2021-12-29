@@ -18,6 +18,8 @@ Provide an simple UI to assist learning English
 
 - Qt(v5.15.2): https://www.qt.io
 
+- JDK(>1.8): https://jdk.java.net/17/
+
 ### 1. Go to ui directory
 
 `cd ui`
@@ -47,6 +49,9 @@ sudo apt install cmake
 # install Qt lib & tools
 sudo apt install qttools5-dev
 
+# install jdk & tools
+sudo apt install openjdk-17-jdk
+
 ```
 
 ### 1. Go to ui directory
@@ -69,3 +74,5 @@ sudo apt install qttools5-dev
 - Qt: https://www.qt.io/
 
 - Google translate: https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en-US&dt=t&q=helloworld
+
+- openjdk: https://openjdk.java.net/
