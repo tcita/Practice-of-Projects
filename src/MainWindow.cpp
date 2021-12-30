@@ -57,17 +57,16 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   articleTypePanel = new QWidget();
   articleTypePanelLayout = new QGridLayout(articleTypePanel);
   worldSubTypePanelButton = new QPushButton(articleTypePanel);
+  businessArticlePanelButton = new QPushButton(articleTypePanel);
 
   // World sub type Panel
   worldSubTypePanel = new QWidget();
   worldSubTypePanelLayout = new QGridLayout(worldSubTypePanel);
   africaArticleTitlePanelButton = new QPushButton(worldSubTypePanel);
 
-  // Africa article panel
+  // Article title panel
   articleTitlePanel = new QWidget();
   articleTitlePanelLayout = new QVBoxLayout(articleTitlePanel);
-  
-  // Business article panel
 
   // Article panel
   articlePanel = new QWidget();
@@ -147,7 +146,8 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
   // Setup article type panel
   articleTypePanel->setLayout(articleTypePanelLayout);
-  articleTypePanelLayout->addWidget(worldSubTypePanelButton, 1, 1);
+  articleTypePanelLayout->addWidget(worldSubTypePanelButton, 0, 0);
+  articleTypePanelLayout->addWidget(businessArticlePanelButton, 0, 1);
 
   // Setup world sub type panel
   worldSubTypePanel->setLayout(worldSubTypePanelLayout);
@@ -166,7 +166,6 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // Setup testing panel
   testingPanelScrollArea->setWidget(testingPanel);
   testingPanelScrollArea->setWidgetResizable(true);
-
   testingPanel->setLayout(testingPanelLayout);
 
   testingPanelLayout->setAlignment(Qt::AlignTop);
@@ -272,9 +271,14 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   QObject::connect(aboutDialogOkButton, &QPushButton::clicked, [this]{this->aboutDialog->hide();});
   QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(articleTypePanel);});
   QObject::connect(worldSubTypePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(worldSubTypePanel);});
-  QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler]{
+  QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler] {
     switchCentralWidget(articleTitlePanel);
     std::vector<std::string> articleTitles = crawler->fetchArticleTitles("africa");
+    setArticleTitles(articleTitles);
+  });
+  QObject::connect(businessArticlePanelButton, &QPushButton::clicked, [this, crawler] {
+    switchCentralWidget(articleTitlePanel);
+    std::vector<std::string> articleTitles = crawler->fetchArticleTitles("business");
     setArticleTitles(articleTitles);
   });
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(typingPanel);});
@@ -372,8 +376,6 @@ void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
   for(std::string articleTitle : articleTitles)
   {
     QPushButton *button = new QPushButton(articleTitlePanel);
-    // button->setFlat(true);
-    // button->setStyleSheet("QPushButton{ background-color: gray }");
     button->setText(QString::fromStdString(articleTitle));
     QObject::connect(button, &QPushButton::clicked, [this, button]{
       setArticle("");

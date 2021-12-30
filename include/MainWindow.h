@@ -71,6 +71,7 @@ private:
   QWidget *worldSubTypePanel;
   QGridLayout *worldSubTypePanelLayout;
   QPushButton *africaArticleTitlePanelButton;
+  QPushButton *businessArticlePanelButton;
 
   // Article title article panel
   QWidget *articleTitlePanel;
