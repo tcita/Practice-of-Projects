@@ -21,17 +21,21 @@ Provide an simple UI to assist learning English
 - JDK(>1.8): https://jdk.java.net/17/
   Note: Environment path for "bin" & "server" directory is needed
 
-### 1. Go to ui directory
+### 1. Create and go to build directory
 
-`cd ui`
+```cmd
+mkdir build
+cd build
+
+```
 
 ### 2. Generate build system files
 
-`cmake . -B build -G "Ninja"`
+`cmake .. -G "Ninja"`
 
 ### 3. Build
 
-`cmake --build build`
+`cmake --build .`
 
 ## Build for Linux (tested on KDE Neon)
 
@@ -55,17 +59,21 @@ sudo apt install openjdk-17-jdk
 
 ```
 
-### 1. Go to ui directory
+### 1. Create and go to build directory
 
-`cd ui`
+```bash
+mkdir build
+cd build
+
+```
 
 ### 2. Generate build system files
 
-`cmake . -B build -G "Ninja"`
+`cmake .. -G "Ninja"`
 
 ### 3. Build
 
-`cmake --build build`
+`cmake --build .`
 
 
 ## Library used
