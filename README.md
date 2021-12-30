@@ -41,7 +41,7 @@ cd build
 
 ### 0. Install needed tools
 
-```bash
+```sh
 # install gcc
 sudo apt install g++
 
@@ -61,7 +61,7 @@ sudo apt install openjdk-17-jdk
 
 ### 1. Create and go to build directory
 
-```bash
+```sh
 mkdir build
 cd build
 
