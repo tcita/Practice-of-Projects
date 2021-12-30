@@ -155,6 +155,12 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/jsoup ${CMAKE_BINARY_DIR}/lib/jsoup
 )
 
+# Copy crawler to build directory
+add_custom_command(
+  TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/config ${CMAKE_BINARY_DIR}/config
+)
+
 # Copy Qt binary # Problem: plugin binary didn't copied
 # From: https://riptutorial.com/cmake/example/29468/qt5-dll-copy-example
 # add_custom_command(

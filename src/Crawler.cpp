@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cstdio>
 #include <memory>
-#include <sstream>
 
 Crawler::Crawler()
 {
@@ -40,13 +39,7 @@ std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleT
   env->CallVoidMethod(javaCrawler, methodID_1, toJString(articleTypeWithSlash));
   env->CallVoidMethod(javaCrawler, methodID_2, toJString(articleTypeWithSlash));
 
-  std::istringstream articleTitlesStringStream = std::istringstream(Solution::readFile(ARTICLE_TITLE_FILE_PATH));
-  std::vector<std::string> articleTitles;
-  std::string articleTitle;
-  while(std::getline(articleTitlesStringStream, articleTitle, '\n'))
-  {
-    articleTitles.push_back(articleTitle);
-  }
+  std::vector<std::string> articleTitles = Solution::splitString(Solution::readFile(ARTICLE_TITLE_FILE_PATH), '\n');
 
   return articleTitles;
 }

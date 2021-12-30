@@ -51,9 +51,6 @@ private:
   QLabel *aboutDialogInfoLabel3;
   QPushButton *aboutDialogOkButton;
 
-  // Central widget
-  // QStackedLayout *centralWidgetLayout;
-
   // Main panel
   QWidget *mainPanel;
   QGridLayout *mainPanelLayout;
@@ -90,9 +87,9 @@ private:
   QVBoxLayout *typingPanelTypingWidgetLayout;
 
   // Test panel
-  QScrollArea *testingPanelScrollArea;
-  QWidget *testingPanel;
-  QVBoxLayout *testingPanelLayout;
+  QScrollArea *testingPanel;
+  QWidget *testingInnerPanel;
+  QVBoxLayout *testingInnerPanelLayout;
 
   // Translate panel
   QWidget *translatePanel;
@@ -131,8 +128,11 @@ private:
   void popUpAboutWindow();
   // Switch central widget
   void switchCentralWidget(QWidget *panel);
+
   //
-  // void typingPanelLayout();
+  QGroupBox* createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
+  //
+  QGroupBox* createMultipleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
 };
 
 #endif

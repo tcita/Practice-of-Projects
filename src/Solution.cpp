@@ -6,6 +6,7 @@
 #include <map>
 #include<algorithm>
 #include <fstream>
+#include <sstream>
 
 std::string Solution::wordFrequency(const std::string &article, std::vector<std::string> &bannedWords) {
     //頻繁出現的衡量標準
@@ -74,4 +75,16 @@ void Solution::writeFile(const std::string &filePath, const std::string &content
   fout << content;
 
   fout.close();
+}
+
+std::vector<std::string> Solution::splitString(const std::string &string, const char c) {
+  std::istringstream stringStream = std::istringstream(string);
+  std::vector<std::string> strings;
+  std::string temp;
+  while(std::getline(stringStream, temp, c))
+  {
+    strings.push_back(temp);
+  }
+
+  return strings;
 }

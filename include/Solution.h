@@ -12,6 +12,8 @@ public:
   static std::string readFile(const std::string &filePath);
   // Wirte content to a file
   static void writeFile(const std::string &filePath, const std::string &content);
+  // Split string by given char, return vector of string
+  static std::vector<std::string> splitString(const std::string &string, const char c);
 };
 
 #endif

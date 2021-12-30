@@ -19,9 +19,9 @@ int main(int argc, char **argv)
   // crawler.fetchArticleTitles("africa");
   // crawler.fetchArticle("An American teacher held in Libya for 6 weeks is now back home in the United States");
 
-  // std::string article = Solution::readFile("./tmp/crawed_content.txt");
-  // std::vector<std::string> bannedWords{"a", "is", "the"};
-  // std::cout << Solution::wordFrequency(article, bannedWords);
+  std::string article = Solution::readFile("./tmp/crawed_content.txt");
+  std::vector<std::string> bannedWords{"a", "an", "are", "is", "the"};
+  std::cout << Solution::wordFrequency(article, bannedWords);
 
   // Init translator
   QTranslator translator;

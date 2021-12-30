@@ -10,6 +10,8 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QTranslator>
+#include <QRadioButton>
+#include <QCheckbox>
 
 MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   :translator(translator)
@@ -81,9 +83,9 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   typingPanelTypingWidgetLayout = new QVBoxLayout(typingPanelTypingWidget);
 
   // Test panel
-  testingPanelScrollArea = new QScrollArea();
-  testingPanel = new QWidget();
-  testingPanelLayout = new QVBoxLayout();
+  testingPanel = new QScrollArea();
+  testingInnerPanel = new QWidget();
+  testingInnerPanelLayout = new QVBoxLayout();
 
   // Translate panel
   translatePanel = new QWidget();
@@ -164,63 +166,14 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
 
   // Setup testing panel
-  testingPanelScrollArea->setWidget(testingPanel);
-  testingPanelScrollArea->setWidgetResizable(true);
-  testingPanel->setLayout(testingPanelLayout);
+  testingPanel->setWidget(testingInnerPanel);
+  testingPanel->setWidgetResizable(true);
+  testingInnerPanel->setLayout(testingInnerPanelLayout);
+  testingInnerPanelLayout->setAlignment(Qt::AlignTop);
 
-  testingPanelLayout->setAlignment(Qt::AlignTop);
-  testingPanelLayout->addWidget(new QTextBrowser()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QTextBrowser()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
-
-
+  std::string question("There is _ bell on the top!");
+  std::vector<std::string> candidateAnswers = {{"a"}, {"an"}};
+  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion(question, candidateAnswers));
 
 
 
@@ -282,7 +235,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     setArticleTitles(articleTitles);
   });
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(typingPanel);});
-  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(testingPanelScrollArea);});
+  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(testingPanel);});
   QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(translatePanel);});
   QObject::connect(translatePanelToDestButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToDest();});
   QObject::connect(translatePanelToSrcButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToSrc();});
@@ -322,6 +275,7 @@ void MainWindow::retranslate()
 
   // Article type panel
   worldSubTypePanelButton->setText(QPushButton::tr("World"));
+  businessArticlePanelButton->setText(QPushButton::tr("Business"));
 
   // World sub type panel
   africaArticleTitlePanelButton->setText(QPushButton::tr("Africa"));
@@ -424,4 +378,44 @@ void MainWindow::switchCentralWidget(QWidget *panel)
   std::cout << "MainWindow::switchCentralWidget()\n";
   this->centralWidget()->setParent(nullptr);
   this->setCentralWidget(panel);
+}
+
+QGroupBox* MainWindow::createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)
+{
+  QGroupBox *questionGroupBox = new QGroupBox();
+  QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout();
+
+  // Add question
+  QLabel *questionLabel = new QLabel(questionGroupBox);
+  questionLabel->setText(QString::fromStdString(question));
+
+  // Add candidate answer
+  for(auto candidateAnswer : candidateAnswers)
+  {
+    QRadioButton *button = new QRadioButton(questionGroupBox);
+    button->setText(QString::fromStdString(candidateAnswer));
+    questionGroupBoxLayout->addWidget(button);
+  }
+
+  return questionGroupBox;
+}
+
+QGroupBox* MainWindow::createMultipleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)
+{
+  QGroupBox *questionGroupBox = new QGroupBox();
+  QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout();
+
+  // Add question
+  QLabel *questionLabel = new QLabel(questionGroupBox);
+  questionLabel->setText(QString::fromStdString(question));
+
+  // Add candidate answer
+  for(auto candidateAnswer : candidateAnswers)
+  {
+    QCheckBox *button = new QCheckBox(questionGroupBox);
+    button->setText(QString::fromStdString(candidateAnswer));
+    questionGroupBoxLayout->addWidget(button);
+  }
+
+  return questionGroupBox;
 }
