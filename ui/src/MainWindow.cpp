@@ -66,6 +66,8 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // Africa article panel
   articleTitlePanel = new QWidget();
   articleTitlePanelLayout = new QVBoxLayout(articleTitlePanel);
+  
+  // Business article panel
 
   // Article panel
   articlePanel = new QWidget();
@@ -80,9 +82,9 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   typingPanelTypingWidgetLayout = new QVBoxLayout(typingPanelTypingWidget);
 
   // Test panel
+  testingPanelScrollArea = new QScrollArea();
   testingPanel = new QWidget();
   testingPanelLayout = new QVBoxLayout();
-  testingPanelScrollArea = new QScrollArea();
 
   // Translate panel
   translatePanel = new QWidget();
@@ -162,9 +164,37 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
 
   // Setup testing panel
-  testingPanel->setLayout(testingPanelLayout);
   testingPanelScrollArea->setWidget(testingPanel);
-  // testingPanelSubPanelLayout->setAlignment(Qt::AlignTop);
+  testingPanelScrollArea->setWidgetResizable(true);
+
+  testingPanel->setLayout(testingPanelLayout);
+
+  testingPanelLayout->setAlignment(Qt::AlignTop);
+  testingPanelLayout->addWidget(new QTextBrowser()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
   testingPanelLayout->addWidget(new QTextBrowser()); //debug!!
   testingPanelLayout->addWidget(new QLineEdit()); //debug!!
   testingPanelLayout->addWidget(new QLineEdit()); //debug!!
@@ -248,7 +278,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     setArticleTitles(articleTitles);
   });
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(typingPanel);});
-  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(testingPanel);});
+  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(testingPanelScrollArea);});
   QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(translatePanel);});
   QObject::connect(translatePanelToDestButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToDest();});
   QObject::connect(translatePanelToSrcButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToSrc();});

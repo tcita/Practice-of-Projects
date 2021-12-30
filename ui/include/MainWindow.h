@@ -89,9 +89,9 @@ private:
   QVBoxLayout *typingPanelTypingWidgetLayout;
 
   // Test panel
+  QScrollArea *testingPanelScrollArea;
   QWidget *testingPanel;
   QVBoxLayout *testingPanelLayout;
-  QScrollArea *testingPanelScrollArea;
 
   // Translate panel
   QWidget *translatePanel;
