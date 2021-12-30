@@ -6,6 +6,7 @@
 #include<algorithm>
 #include <fstream>
 #include <sstream>
+#include<string>
 
  std::vector<std::string> Solution:: wordFrequency(const std::string& article, std::vector<std::string>& bannedWords) {
     //頻繁出現的衡量標準
