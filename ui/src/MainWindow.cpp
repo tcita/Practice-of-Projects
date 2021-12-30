@@ -331,23 +331,27 @@ void MainWindow::setLanguage(const std::string &languageType)
 }
 
 void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
-{
+{ //HERE
   // std::cout << "void MainWindow::setArticleTitles(std::vector<std::string> &articleTitles)\n";
-
   // Clear article title panel
-  // qDeleteAll(articleTitlePanel->findChild<QPushButton*>("", Qt::FindDirectChildrenOnly));
-  // QPushButton *button;
-  // while(button = articleTitlePanel->findChild<QPushButton*>())
-  // {
-  //   delete button;
-  // }
 
-  // From: https://doc.qt.io/qt-5/qlayout.html#takeAt
-  while (QLayoutItem *child = articleTitlePanelLayout->takeAt(0)) {
-    delete child->widget();
-    delete child;
-    memset(child, 0, sizeof(*child));
+  // qDeleteAll(articleTitlePanel->findChild<QPushButton*>("", Qt::FindDirectChildrenOnly));
+
+  // for(QPushButton *button : articleTitlePanel->findChild<QPushButton*>())
+  for(QPushButton *button : articleTitlePanel->findChildren<QPushButton*>())
+  {
+    std::cout << static_cast<void*>(button) << "\n";
+    // memcpy(button, 0, sizeof(*button));
+    // delete button;
+    // button->deleteLater();
   }
+
+  // // From: https://doc.qt.io/qt-5/qlayout.html#takeAt
+  // while (QLayoutItem *child = articleTitlePanelLayout->takeAt(0)) {
+  //   // delete child->widget();
+  //   delete child;
+  //   memset(child, 0, sizeof(*child));
+  // }
 
   for(std::string articleTitle : articleTitles)
   {
@@ -355,12 +359,12 @@ void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
     // button->setFlat(true);
     // button->setStyleSheet("QPushButton{ background-color: gray }");
     button->setText(QString::fromStdString(articleTitle));
-    // QObject::connect(button, &QPushButton::clicked, [button]{
-    //   std::cout << button->text().toStdString() << "\n";
-    //   // delete button;//debug!!
-    //   // std::string article = Crawler::fetchArticle(flatButton.text());
-    //   // this->setArticle(article);
-    // });
+    QObject::connect(button, &QPushButton::clicked, [this, button]{
+      this->setArticle("");
+      centralWidgetLayout->setCurrentWidget(articlePanel);
+      std::string article = crawler->fetchArticle(button->text().toStdString());
+      this->setArticle(article);
+    });
     articleTitlePanelLayout->addWidget(button);
   }
 }
