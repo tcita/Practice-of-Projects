@@ -7,7 +7,7 @@
 class Solution {
 public:
   // Count the word appear frequency of the article, the given banned words will be ignored
-  static std::string wordFrequency(const std::string &article, std::vector<std::string> &bannedWords);
+  static std::vector<std::string> wordFrequency(const std::string &article, std::vector<std::string> &bannedWords);
   // Read content of a file
   static std::string readFile(const std::string &filePath);
   // Wirte content to a file

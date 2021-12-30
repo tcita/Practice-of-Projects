@@ -8,22 +8,23 @@
 #include <fstream>
 #include <sstream>
 
-std::string Solution::wordFrequency(const std::string &article, std::vector<std::string> &bannedWords) {
+ std::vector<std::string> Solution:: wordFrequency(const std::string& article, std::vector<std::string>& bannedWords) {
     //頻繁出現的衡量標準
     const int count = 3;
+
     //頻繁出現的單字
     std::unordered_map<std::string, int> maxw;
 
     //curr:當前考察的單字
     std::string curr;
-    //頻繁出現的單字出現次數
+ 
 
     //頻率的結果,使用map儲存後結果會按字母表排序
     std::map<std::string, int> str2cnt;
 
 
     std::unordered_set<std::string> bannedWordSet;
-    for (const std::string &bannedWord : bannedWords)
+    for (const std::string& bannedWord : bannedWords)
     {
         bannedWordSet.insert(bannedWord);
     }
@@ -47,14 +48,23 @@ std::string Solution::wordFrequency(const std::string &article, std::vector<std:
         }
     }
 
-    std::string result;
-    for (auto& t : str2cnt) {
-        result += t.first + ": " + std::to_string(t.second) + "\n";
+//輔助vector
+    std::vector<std::pair<std::string, int> > vec(str2cnt.begin(), str2cnt.end());
+
+//自定義sort
+    sort(vec.begin(), vec.end(), [](std::pair<std::string, int> a, std::pair<std::string, int> b) -> bool { return a.second > b.second; });
+//返回值
+    std::vector<std::string> re;
+
+    for (auto a : vec) {
+        re.push_back(a.first + " "+std::to_string(a.second));
     }
 
-    return result;
+    return re;
 }
 
+
+//////
 std::string Solution::readFile(const std::string &filePath)
 {
   std::ifstream ifs(filePath);
