@@ -26,7 +26,6 @@ Provide an simple UI to assist learning English
 ```cmd
 mkdir build
 cd build
-
 ```
 
 ### 2. Generate build system files
@@ -56,7 +55,6 @@ sudo apt install qttools5-dev
 
 # install jdk & tools
 sudo apt install openjdk-17-jdk
-
 ```
 
 ### 1. Create and go to build directory
@@ -64,7 +62,6 @@ sudo apt install openjdk-17-jdk
 ```sh
 mkdir build
 cd build
-
 ```
 
 ### 2. Generate build system files
