@@ -1,7 +1,7 @@
-#include <deque>
+
 #include<iostream>
 #include <unordered_set>
-#include <unordered_map>
+// #include <unordered_map>
 #include <map>
 #include<algorithm>
 #include<string>
@@ -12,7 +12,7 @@ std::vector<std::string> wordFrequency(const std::string& article, std::vector<s
     const int count = 3;
 
     //頻繁出現的單字
-    std::unordered_map<std::string, int> maxw;
+    // std::unordered_map<std::string, int> maxw;
 
     //curr:當前考察的單字
     std::string curr;
