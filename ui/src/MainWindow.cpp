@@ -42,11 +42,11 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   aboutDialogOkButton = new QPushButton(aboutDialog);
 
   // Central widget
-  this->setCentralWidget(new QWidget(this));
-  centralWidgetLayout = new QStackedLayout(this->centralWidget());
+  // this->setCentralWidget(new QWidget(this));
+  // centralWidgetLayout = new QStackedLayout(this->centralWidget());
 
   // Main panel
-  mainPanel = new QWidget(this);
+  mainPanel = new QWidget();
   mainPanelLayout = new QGridLayout();
   articleTypePanelButton = new QPushButton(mainPanel);
   typingPanelButton = new QPushButton(mainPanel);
@@ -81,7 +81,8 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
   // Test panel
   testingPanel = new QWidget();
-  testingPanelSubPanel = new QWidget(testingPanel);
+  testingPanelLayout = new QVBoxLayout();
+  testingPanelScrollArea = new QScrollArea();
 
   // Translate panel
   translatePanel = new QWidget();
@@ -107,19 +108,11 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // translator->load(LanguageTypes::zh_TW);
   this->setLanguage(LanguageTypes::zh_TW);
 
+  // Set central widget
+  this->setCentralWidget(mainPanel);
+
   // Setup icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
-
-  // Setup top level widget
-  this->centralWidgetLayout->addWidget(mainPanel);
-  this->centralWidgetLayout->addWidget(articlePanel);
-  this->centralWidgetLayout->addWidget(typingPanel);
-  this->centralWidgetLayout->addWidget(testingPanel);
-  this->centralWidgetLayout->addWidget(translatePanel);
-  this->centralWidgetLayout->addWidget(articleTypePanel);
-  this->centralWidgetLayout->addWidget(worldSubTypePanel);
-  this->centralWidgetLayout->addWidget(articleTitlePanel);
-  this->centralWidgetLayout->addWidget(articlePanel);
 
   // Setup menu bar
   mainMenuBar->addMenu(settingMenu);
@@ -166,44 +159,37 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // articlePanelLayout->setColumnMinimumWidth(0, 200);
   articlePanelLayout->addWidget(articlePanelTextBrowser, 1, 0);
 
-  // Setup test panel
 
-  // QVBoxLayout *testingPanelLayout = new QVBoxLayout(testingPanel);
 
-  // QWidget *testingPanelSubPanel = new QWidget();
-  // testingPanelLayout->addWidget(testingPanelSubPanel);
-
-  QVBoxLayout *testingPanelSubPanelLayout = new QVBoxLayout(testingPanelSubPanel);
-  testingPanelSubPanelLayout->setAlignment(Qt::AlignTop);
-  testingPanelSubPanelLayout->addWidget(new QTextBrowser()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-  testingPanelSubPanelLayout->addWidget(new QLineEdit()); //debug!!
-
-  QScrollArea *testingPanelScrollArea = new QScrollArea(testingPanel);
-  testingPanelScrollArea->setWidget(testingPanelSubPanel);
-
+  // Setup testing panel
+  testingPanel->setLayout(testingPanelLayout);
+  testingPanelScrollArea->setWidget(testingPanel);
+  // testingPanelSubPanelLayout->setAlignment(Qt::AlignTop);
+  testingPanelLayout->addWidget(new QTextBrowser()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
+  testingPanelLayout->addWidget(new QLineEdit()); //debug!!
 
 
 
@@ -246,24 +232,24 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   QObject::connect(enUsAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::en_US);});
   QObject::connect(zhCnAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::zh_CN);});
   QObject::connect(zhTwAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::zh_TW);});
-  QObject::connect(mainPanelAction, &QAction::triggered, [this]{centralWidgetLayout->setCurrentWidget(mainPanel);});
-  QObject::connect(articleTypePanelAction, &QAction::triggered, [this]{centralWidgetLayout->setCurrentWidget(articleTypePanel);});
-  QObject::connect(typingPanelAction, &QAction::triggered, [this]{centralWidgetLayout->setCurrentWidget(typingPanel);});
-  QObject::connect(translatePanelAction, &QAction::triggered, [this]{centralWidgetLayout->setCurrentWidget(translatePanel);});
+  QObject::connect(mainPanelAction, &QAction::triggered, [this]{switchCentralWidget(mainPanel);});
+  QObject::connect(articleTypePanelAction, &QAction::triggered, [this]{switchCentralWidget(articleTypePanel);});
+  QObject::connect(typingPanelAction, &QAction::triggered, [this]{switchCentralWidget(typingPanel);});
+  QObject::connect(translatePanelAction, &QAction::triggered, [this]{switchCentralWidget(translatePanel);});
   QObject::connect(aboutAction, &QAction::triggered, [this]{this->popUpAboutWindow();});
 
   // Connect button callback
   QObject::connect(aboutDialogOkButton, &QPushButton::clicked, [this]{this->aboutDialog->hide();});
-  QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(articleTypePanel);});
-  QObject::connect(worldSubTypePanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(worldSubTypePanel);});
+  QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(articleTypePanel);});
+  QObject::connect(worldSubTypePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(worldSubTypePanel);});
   QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler]{
-    centralWidgetLayout->setCurrentWidget(articleTitlePanel);
+    switchCentralWidget(articleTitlePanel);
     std::vector<std::string> articleTitles = crawler->fetchArticleTitles("africa");
     setArticleTitles(articleTitles);
   });
-  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(typingPanel);});
-  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(testingPanel);});
-  QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{centralWidgetLayout->setCurrentWidget(translatePanel);});
+  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(typingPanel);});
+  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(testingPanel);});
+  QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(translatePanel);});
   QObject::connect(translatePanelToDestButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToDest();});
   QObject::connect(translatePanelToSrcButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToSrc();});
 }
@@ -360,16 +346,14 @@ void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
     // button->setStyleSheet("QPushButton{ background-color: gray }");
     button->setText(QString::fromStdString(articleTitle));
     QObject::connect(button, &QPushButton::clicked, [this, button]{
-      this->setArticle("");
-      centralWidgetLayout->setCurrentWidget(articlePanel);
+      setArticle("");
+      switchCentralWidget(articlePanel);
       std::string article = crawler->fetchArticle(button->text().toStdString());
       this->setArticle(article);
     });
     articleTitlePanelLayout->addWidget(button);
   }
 }
-
-void clearArticleTitleButtons(){}
 
 void MainWindow::setArticle(const std::string &article)
 {
@@ -401,4 +385,11 @@ void MainWindow::popUpAboutWindow()
 {
   std::cout << "MainWindow::popUpAboutWindow()\n";
   aboutDialog->show();
+}
+
+void MainWindow::switchCentralWidget(QWidget *panel)
+{
+  std::cout << "MainWindow::switchCentralWidget()\n";
+  this->centralWidget()->setParent(nullptr);
+  this->setCentralWidget(panel);
 }

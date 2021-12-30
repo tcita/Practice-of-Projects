@@ -52,7 +52,7 @@ private:
   QPushButton *aboutDialogOkButton;
 
   // Central widget
-  QStackedLayout *centralWidgetLayout;
+  // QStackedLayout *centralWidgetLayout;
 
   // Main panel
   QWidget *mainPanel;
@@ -90,7 +90,8 @@ private:
 
   // Test panel
   QWidget *testingPanel;
-  QWidget *testingPanelSubPanel;
+  QVBoxLayout *testingPanelLayout;
+  QScrollArea *testingPanelScrollArea;
 
   // Translate panel
   QWidget *translatePanel;
@@ -127,10 +128,10 @@ private:
   void translatePanelTranslateToSrc();
   // Pop up the about window
   void popUpAboutWindow();
+  // Switch central widget
+  void switchCentralWidget(QWidget *panel);
   //
   // void typingPanelLayout();
-
-  void clearArticleTitleButtons();
 };
 
 #endif
