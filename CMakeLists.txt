@@ -8,10 +8,6 @@ cmake_minimum_required(VERSION 3.21.3)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# JNI gcc flag #debug!!
-# SET(CMAKE_CXX_FLAGS "-I\"C:/Program Files/Java/jdk1.8.0_202/include\" -I\"C:/Program Files/Java/jdk1.8.0_202/include/win32\"")
-# SET(CMAKE_EXE_LINKER_FLAGS "-L \"C:/Program Files/Java/jdk1.8.0_202/jre/bin/server\" -ljvm")
-
 # Set project information
 project(
   EnglishAssistant
@@ -34,13 +30,13 @@ endif()
 # From: https://github.com/nlohmann/json
 add_subdirectory(${CMAKE_SOURCE_DIR}/lib/nlohmann_json)
 
+# Find JNI package
 # ``JNI_INCLUDE_DIRS``
 #   the include dirs to use
 # ``JNI_LIBRARIES``
 #   the libraries to use (JAWT and JVM)
 # ``JNI_FOUND``
 #   TRUE if JNI headers and libraries were found.
-# Find JNI package
 find_package(
   JNI REQUIRED
 )
@@ -117,23 +113,6 @@ target_link_libraries(
   PRIVATE Qt5::Network
   PRIVATE ${JNI_LIBRARIES}
 )
-
-# # Compile crawler from (.java) file to (.class) file
-# add_custom_command(
-#   OUTPUT Scraper.class
-#   COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/lib/crawler
-#   COMMAND javac -cp ${CMAKE_SOURCE_DIR}/lib/jsoup/jsoup-1.14.3.jar -encoding UTF-8 ${CMAKE_SOURCE_DIR}/lib/crawler/Scraper.java -d ${CMAKE_BINARY_DIR}/lib/crawler
-#   SOURCE ${CMAKE_SOURCE_DIR}/lib/crawler/Scraper.java
-# )
-# add_custom_target(
-#   JavaCrawler
-#   DEPENDS
-#     ${CMAKE_SOURCE_DIR}/lib/crawler/Scraper.class
-# )
-# add_dependencies(
-#   ${CMAKE_PROJECT_NAME}
-#   JavaCrawler
-# )
 
 ####################################################################################################
 # Copy files
