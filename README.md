@@ -2,7 +2,7 @@
 
 An English learning app (64bit)
 
-Get specific artical from CNN(https://edition.cnn.com/)
+Get specific artical from [CNN](https://edition.cnn.com/)
 
 Provide an simple UI to assist learning English
 
@@ -19,6 +19,7 @@ Provide an simple UI to assist learning English
 - Qt(v5.15.2): https://www.qt.io
 
 - JDK(>1.8): https://jdk.java.net/17/
+
   Note: Environment path for "bin" & "server" directory is needed
 
 ### 1. Create and go to build directory
@@ -81,6 +82,6 @@ cd build
 
 - openjdk: https://openjdk.java.net/
 
-- openssl: https://www.openssl.org/source/ (DLL from: https://slproweb.com/products/Win32OpenSSL.html)
+- openssl: https://www.openssl.org/source/ [DLL](https://slproweb.com/products/Win32OpenSSL.html)
 
 - Qt: https://www.qt.io/
