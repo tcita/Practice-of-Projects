@@ -18,7 +18,7 @@ Provide an simple UI to assist learning English
 
 - Qt(v5.15.2): https://www.qt.io
 
-- JDK(>1.8): https://jdk.java.net/17/
+- JDK(>=8): https://jdk.java.net/17/
 
   Note: Environment path for "bin" & "server" directory is needed
 
