@@ -82,6 +82,6 @@ cd build
 
 - openjdk: https://openjdk.java.net/
 
-- openssl: https://www.openssl.org/source/ [DLL](https://slproweb.com/products/Win32OpenSSL.html)
+- openssl: https://www.openssl.org/source/ ([DLL](https://slproweb.com/products/Win32OpenSSL.html))
 
 - Qt: https://www.qt.io/
