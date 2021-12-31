@@ -1,6 +1,6 @@
 ## English assistant
 
-An English learning app
+An English learning app (64bit)
 
 Get specific artical from CNN(https://edition.cnn.com/)
 
@@ -75,10 +75,12 @@ cd build
 
 ## Library used
 
-- nlohmann-json (embedded): https://github.com/nlohmann/json
-
-- Qt: https://www.qt.io/
-
 - Google translate: https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en-US&dt=t&q=helloworld
 
+- nlohmann-json (embedded): https://github.com/nlohmann/json
+
 - openjdk: https://openjdk.java.net/
+
+- openssl: https://www.openssl.org/source/ (DLL from: https://slproweb.com/products/Win32OpenSSL.html)
+
+- Qt: https://www.qt.io/

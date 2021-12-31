@@ -30,6 +30,7 @@ public class Scraper {
 	
 //	may be print out list
 	public void setArticle_list(String category) throws IOException{		
+		article_list.clear();
 		for(Element e:first_view(category)) {
 			article_list.add(e.text());
 		}
@@ -57,6 +58,7 @@ public class Scraper {
 	}
 	
 	public void setArticle_url_list(String category) throws IOException{
+		article_list.clear();
 		for(Element e:first_view(category)) {
 			concatenate(e.attr("href"));
 		}

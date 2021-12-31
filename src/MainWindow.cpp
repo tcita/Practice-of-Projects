@@ -22,6 +22,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   ******************************************************************************************/
   // Menu
   mainMenuBar = this->menuBar();
+  previousPanelAction = new QAction(mainMenuBar);
   settingMenu = new QMenu(mainMenuBar);
   languageMenu = new QMenu(settingMenu);
   enUsAction = new QAction(languageMenu);
@@ -36,12 +37,12 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   aboutAction = new QAction(helpMenu);
 
   // About dialog
-  aboutDialog = new QDialog(this);
-  aboutDialogLayout = new QVBoxLayout(aboutDialog);
-  aboutDialogInfoLabel1 = new QLabel(aboutDialog);
-  aboutDialogInfoLabel2 = new QLabel(aboutDialog);
-  aboutDialogInfoLabel3 = new QLabel(aboutDialog);
-  aboutDialogOkButton = new QPushButton(aboutDialog);
+  aboutWindow = new QWidget();
+  aboutWindowLayout = new QVBoxLayout(aboutWindow);
+  aboutWindowInfoLabel1 = new QLabel(aboutWindow);
+  aboutWindowInfoLabel2 = new QLabel(aboutWindow);
+  aboutWindowInfoLabel3 = new QLabel(aboutWindow);
+  aboutWindowOkButton = new QPushButton(aboutWindow);
 
   // Central widget
   // this->setCentralWidget(new QWidget(this));
@@ -82,10 +83,17 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   typingPanelTypingWidget = new QWidget(typingPanel);
   typingPanelTypingWidgetLayout = new QVBoxLayout(typingPanelTypingWidget);
 
-  // Test panel
+  // Testing panel
   testingPanel = new QScrollArea();
   testingInnerPanel = new QWidget();
   testingInnerPanelLayout = new QVBoxLayout();
+  testingInnerPanelSubmitButton = new QPushButton();
+
+  // Testing result panel
+  testingResultPanel = new QScrollArea();
+  testingResultInnerPanel = new QWidget();
+  testingResultInnerPanelLayout = new QVBoxLayout();
+  testingResultTitleLabel = new QLabel();
 
   // Translate panel
   translatePanel = new QWidget();
@@ -117,7 +125,9 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // Setup icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
 
-  // Setup menu bar
+  // Setup menu
+  mainMenuBar->addAction(previousPanelAction);
+  previousPanelAction->setEnabled(false);
   mainMenuBar->addMenu(settingMenu);
   settingMenu->addMenu(languageMenu);
   languageMenu->addAction(enUsAction);
@@ -132,12 +142,13 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   helpMenu->addAction(aboutAction);
 
   // Setup about dialogl
-  aboutDialog->resize(300, 150);
-  aboutDialog->setLayout(aboutDialogLayout);
-  aboutDialogLayout->addWidget(aboutDialogInfoLabel1);
-  aboutDialogLayout->addWidget(aboutDialogInfoLabel2);
-  aboutDialogLayout->addWidget(aboutDialogInfoLabel3);
-  aboutDialogLayout->addWidget(aboutDialogOkButton);
+  aboutWindow->setWindowIcon(this->windowIcon());
+  aboutWindow->resize(300, 150);
+  aboutWindow->setLayout(aboutWindowLayout);
+  aboutWindowLayout->addWidget(aboutWindowInfoLabel1);
+  aboutWindowLayout->addWidget(aboutWindowInfoLabel2);
+  aboutWindowLayout->addWidget(aboutWindowInfoLabel3);
+  aboutWindowLayout->addWidget(aboutWindowOkButton);
 
   // Setup main panel
   mainPanel->setLayout(mainPanelLayout);
@@ -163,19 +174,29 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // articlePanelLayout->setColumnMinimumWidth(0, 200);
   articlePanelLayout->addWidget(articlePanelTextBrowser, 1, 0);
 
-
-
   // Setup testing panel
   testingPanel->setWidget(testingInnerPanel);
   testingPanel->setWidgetResizable(true);
   testingInnerPanel->setLayout(testingInnerPanelLayout);
   testingInnerPanelLayout->setAlignment(Qt::AlignTop);
 
-  std::string question("There is _ bell on the top!");
-  std::vector<std::string> candidateAnswers = {{"a"}, {"an"}};
-  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion(question, candidateAnswers));
+  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}));
+  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}));
+  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}));
+  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}));
+  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}));
+  testingInnerPanelLayout->addWidget(createMultipleChoiceQuestion("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}));
+  testingInnerPanelLayout->addWidget(testingInnerPanelSubmitButton);
 
+  // Setup testing result panel
+  testingResultPanel->setWidget(testingResultInnerPanel);
+  testingPanel->setWidgetResizable(true);
+  testingResultInnerPanel->setLayout(testingResultInnerPanelLayout);
+  testingInnerPanelLayout->setAlignment(Qt::AlignTop);
 
+  testingResultInnerPanelLayout->addWidget(testingResultTitleLabel);
+  testingResultInnerPanelLayout->addWidget(new QPushButton());
+  testingResultInnerPanelLayout->addWidget(new QTextBrowser());
 
   // Setup typing
   typingPanel->setLayout(typingPanelLayout);
@@ -211,32 +232,34 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
 
   // Connect action callback
+  QObject::connect(previousPanelAction, &QAction::triggered, [this]{this->switchToPreviousPanel();});
   QObject::connect(enUsAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::en_US);});
   QObject::connect(zhCnAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::zh_CN);});
   QObject::connect(zhTwAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::zh_TW);});
-  QObject::connect(mainPanelAction, &QAction::triggered, [this]{switchCentralWidget(mainPanel);});
-  QObject::connect(articleTypePanelAction, &QAction::triggered, [this]{switchCentralWidget(articleTypePanel);});
-  QObject::connect(typingPanelAction, &QAction::triggered, [this]{switchCentralWidget(typingPanel);});
-  QObject::connect(translatePanelAction, &QAction::triggered, [this]{switchCentralWidget(translatePanel);});
+  QObject::connect(mainPanelAction, &QAction::triggered, [this]{switchToPanel(mainPanel);});
+  QObject::connect(articleTypePanelAction, &QAction::triggered, [this]{switchToPanel(articleTypePanel);});
+  QObject::connect(typingPanelAction, &QAction::triggered, [this]{switchToPanel(typingPanel);});
+  QObject::connect(translatePanelAction, &QAction::triggered, [this]{switchToPanel(translatePanel);});
   QObject::connect(aboutAction, &QAction::triggered, [this]{this->popUpAboutWindow();});
 
   // Connect button callback
-  QObject::connect(aboutDialogOkButton, &QPushButton::clicked, [this]{this->aboutDialog->hide();});
-  QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(articleTypePanel);});
-  QObject::connect(worldSubTypePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(worldSubTypePanel);});
+  QObject::connect(aboutWindowOkButton, &QPushButton::clicked, [this]{this->aboutWindow->hide();});
+  QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{switchToPanel(articleTypePanel);});
+  QObject::connect(worldSubTypePanelButton, &QPushButton::clicked, [this]{switchToPanel(worldSubTypePanel);});
   QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler] {
-    switchCentralWidget(articleTitlePanel);
+    switchToPanel(articleTitlePanel);
     std::vector<std::string> articleTitles = crawler->fetchArticleTitles("africa");
     setArticleTitles(articleTitles);
   });
   QObject::connect(businessArticlePanelButton, &QPushButton::clicked, [this, crawler] {
-    switchCentralWidget(articleTitlePanel);
+    switchToPanel(articleTitlePanel);
     std::vector<std::string> articleTitles = crawler->fetchArticleTitles("business");
     setArticleTitles(articleTitles);
   });
-  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(typingPanel);});
-  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchCentralWidget(testingPanel);});
-  QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchCentralWidget(translatePanel);});
+  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{switchToPanel(typingPanel);});
+  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchToPanel(testingPanel);});
+  QObject::connect(testingInnerPanelSubmitButton, &QPushButton::clicked, [this]{switchToPanel(testingResultPanel);});
+  QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchToPanel(translatePanel);});
   QObject::connect(translatePanelToDestButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToDest();});
   QObject::connect(translatePanelToSrcButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToSrc();});
 }
@@ -247,11 +270,12 @@ void MainWindow::retranslate()
   this->setWindowTitle(QMainWindow::tr("English Assistant"));
 
   // Menu
+  previousPanelAction->setText(QAction::tr("<-"));
   settingMenu->setTitle(QMenu::tr("Setting"));
   languageMenu->setTitle(QMenu::tr("Language"));
   enUsAction->setText(QAction::tr("English(US)"));
-  zhCnAction->setText(QAction::tr("Chinese(Simplified)"));
-  zhTwAction->setText(QAction::tr("Chinese(Traditional)"));
+  zhCnAction->setText(QAction::tr("Chinese(China)"));
+  zhTwAction->setText(QAction::tr("Chinese(Taiwan)"));
   switchToMenu->setTitle(QMenu::tr("Switch To"));
   mainPanelAction->setText(QAction::tr("Main Panel"));
   articleTypePanelAction->setText(QAction::tr("Article Type Select Panel"));
@@ -261,11 +285,11 @@ void MainWindow::retranslate()
   aboutAction->setText(QMenu::tr("About"));
 
   // About dialog
-  aboutDialog->setWindowTitle(QDialog::tr("English Assistant"));
-  aboutDialogInfoLabel1->setText(QDialog::tr("English Assistant") + " " + ProjectInfo::VERSION);
-  aboutDialogInfoLabel2->setText(QDialog::tr("English translate & learning program"));
-  aboutDialogInfoLabel3->setText(QDialog::tr("Published under GPLv3"));
-  aboutDialogOkButton->setText(QPushButton::tr("OK"));
+  aboutWindow->setWindowTitle(QDialog::tr("English Assistant"));
+  aboutWindowInfoLabel1->setText(QDialog::tr("English Assistant") + " " + ProjectInfo::VERSION);
+  aboutWindowInfoLabel2->setText(QDialog::tr("English translate & learning program"));
+  aboutWindowInfoLabel3->setText(QDialog::tr("Published under GPLv3"));
+  aboutWindowOkButton->setText(QPushButton::tr("OK"));
 
   // Main panel
   articleTypePanelButton->setText(QPushButton::tr("Article"));
@@ -279,6 +303,12 @@ void MainWindow::retranslate()
 
   // World sub type panel
   africaArticleTitlePanelButton->setText(QPushButton::tr("Africa"));
+
+  // Testing panel
+  testingInnerPanelSubmitButton->setText(QPushButton::tr("Submit"));
+
+  // Testing result panel
+  testingResultTitleLabel->setText(QPushButton::tr("Testing Result:"));
 
   // Translate panel
   translatePanelSrcGroupBox->setTitle(QTextEdit::tr("Source language"));
@@ -305,35 +335,21 @@ void MainWindow::setLanguage(const std::string &languageType)
 }
 
 void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
-{ //HERE
-  // std::cout << "void MainWindow::setArticleTitles(std::vector<std::string> &articleTitles)\n";
-  // Clear article title panel
-
-  // qDeleteAll(articleTitlePanel->findChild<QPushButton*>("", Qt::FindDirectChildrenOnly));
-
-  // for(QPushButton *button : articleTitlePanel->findChild<QPushButton*>())
-  for(QPushButton *button : articleTitlePanel->findChildren<QPushButton*>())
+{
+  // Delete previous buttons
+  for(const auto button : articleTitlePanel->findChildren<QPushButton*>())
   {
-    std::cout << static_cast<void*>(button) << "\n";
-    // memcpy(button, 0, sizeof(*button));
-    // delete button;
-    // button->deleteLater();
+    delete button;
   }
 
-  // // From: https://doc.qt.io/qt-5/qlayout.html#takeAt
-  // while (QLayoutItem *child = articleTitlePanelLayout->takeAt(0)) {
-  //   // delete child->widget();
-  //   delete child;
-  //   memset(child, 0, sizeof(*child));
-  // }
-
+  // Add article title buttons
   for(std::string articleTitle : articleTitles)
   {
     QPushButton *button = new QPushButton(articleTitlePanel);
     button->setText(QString::fromStdString(articleTitle));
     QObject::connect(button, &QPushButton::clicked, [this, button]{
       setArticle("");
-      switchCentralWidget(articlePanel);
+      switchToPanel(articlePanel);
       std::string article = crawler->fetchArticle(button->text().toStdString());
       this->setArticle(article);
     });
@@ -370,24 +386,48 @@ void MainWindow::translatePanelTranslateToSrc()
 void MainWindow::popUpAboutWindow()
 {
   std::cout << "MainWindow::popUpAboutWindow()\n";
-  aboutDialog->show();
+  aboutWindow->show();
 }
 
-void MainWindow::switchCentralWidget(QWidget *panel)
+void MainWindow::switchToPanel(QWidget *panel)
 {
-  std::cout << "MainWindow::switchCentralWidget()\n";
+  std::cout << "MainWindow::switchToPanel()\n";
+  panelHistory.push(this->centralWidget());
+
   this->centralWidget()->setParent(nullptr);
   this->setCentralWidget(panel);
+
+  previousPanelAction->setEnabled(true);
+}
+
+void MainWindow::switchToPreviousPanel()
+{
+  std::cout << "MainWindow::switchToPreviousPanel()\n";
+  if(panelHistory.size() <= 0)
+  {
+    std::cout << "Error: There are no previous panel\n";
+    return;
+  }
+
+  this->centralWidget()->setParent(nullptr);
+
+  this->setCentralWidget(panelHistory.top());
+  panelHistory.pop();
+
+  if(panelHistory.size() <= 0)
+  {
+    std::cout << "Disable previousPanelAction\n";
+    previousPanelAction->setEnabled(false);
+  }
 }
 
 QGroupBox* MainWindow::createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)
 {
   QGroupBox *questionGroupBox = new QGroupBox();
-  QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout();
+  QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
 
   // Add question
-  QLabel *questionLabel = new QLabel(questionGroupBox);
-  questionLabel->setText(QString::fromStdString(question));
+  questionGroupBox->setTitle(QString::fromStdString(question));
 
   // Add candidate answer
   for(auto candidateAnswer : candidateAnswers)
@@ -403,11 +443,10 @@ QGroupBox* MainWindow::createSingleChoiceQuestion(const std::string &question, c
 QGroupBox* MainWindow::createMultipleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)
 {
   QGroupBox *questionGroupBox = new QGroupBox();
-  QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout();
+  QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
 
   // Add question
-  QLabel *questionLabel = new QLabel(questionGroupBox);
-  questionLabel->setText(QString::fromStdString(question));
+  questionGroupBox->setTitle(QString::fromStdString(question));
 
   // Add candidate answer
   for(auto candidateAnswer : candidateAnswers)

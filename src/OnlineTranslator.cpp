@@ -6,13 +6,26 @@
 #include <QEventLoop>
 #include <iostream>
 #include <nlohmann/json.hpp>
+// #include <httplib.h>
 
 std::string OnlineTranslator::translate(const std::string &input, const std::string &destLanguageType, const std::string &srcLanguageType)
 {
+  std::cout << "OnlineTranslator::translate(" << input << ", " << destLanguageType << ", " << srcLanguageType << ")\n"; //debug!!
+
+  // Create google translate url
   // From: https://stackoverflow.com/questions/8085743/google-translate-vs-translate-api
   // From: https://stackoverflow.com/questions/8550147/how-to-use-google-translate-api-with-c
-  // Use google translate to translate
-  std::string url = std::string("https://translate.googleapis.com/translate_a/single?client=gtx&sl=") + srcLanguageType + std::string("&tl=") + destLanguageType + std::string("&dt=t&q=") + input;
+  // From: https://blog.csdn.net/panshiqu/article/details/104193607
+  std::string clientType = std::string("client=") + std::string("gtx");
+  std::string sourceLanguageType = std::string("sl=") + srcLanguageType;
+  std::string targetLanguageType = std::string("tl=") + destLanguageType;
+  std::string queryText = std::string("q=") + input;
+  std::string onlyReplyTranslateResult = std::string("dt=") + std::string("t");
+
+  std::string url = std::string("https://translate.googleapis.com/translate_a/single");
+  url += "?" + clientType + "&" + sourceLanguageType + "&" + targetLanguageType + "&" + queryText + "&" + onlyReplyTranslateResult;
+
+  // Request and get reply data
   QNetworkAccessManager networkAccessManager;
   QNetworkReply *networkReply = networkAccessManager.get(QNetworkRequest(QString::fromStdString(url)));
 
@@ -24,7 +37,13 @@ std::string OnlineTranslator::translate(const std::string &input, const std::str
   // Put reply data to string
   std::string replyData = networkReply->readAll().toStdString();
 
+  std::cout << "Reply data in OnlineTranslator:\n"; //debug!!
+  std::cout << replyData << "\n"; //debug!!
+
+  // Parse json data by using nlohmann_json api
   auto jsonData = nlohmann::json::parse(replyData);
+
+  // Get translated string
   std::string translatedString;
   for(int i=0; i<jsonData[0].size(); ++i)
   {

@@ -30,6 +30,10 @@ endif()
 ####################################################################################################
 # Find package
 ####################################################################################################
+# Add subdirectory nlohmann_json
+# From: https://github.com/nlohmann/json
+add_subdirectory(${CMAKE_SOURCE_DIR}/lib/nlohmann_json)
+
 # ``JNI_INCLUDE_DIRS``
 #   the include dirs to use
 # ``JNI_LIBRARIES``
@@ -50,9 +54,6 @@ find_package(
     Network
     LinguistTools
 )
-
-# Add subdirectory nlohmann_json
-add_subdirectory(${CMAKE_SOURCE_DIR}/lib/json-develop)
 
 ####################################################################################################
 # Build setting
@@ -109,11 +110,11 @@ target_sources(
 #
 target_link_libraries(
   ${CMAKE_PROJECT_NAME}
+  PRIVATE nlohmann_json
   PRIVATE Qt5::Core
   PRIVATE Qt5::Gui
   PRIVATE Qt5::Widgets
   PRIVATE Qt5::Network
-  PRIVATE nlohmann_json
   PRIVATE ${JNI_LIBRARIES}
 )
 
@@ -173,10 +174,19 @@ add_custom_command(
 
 
 # Copy Qt dll by windeployqt.cmake
-# https://stackoverflow.com/questions/60854495/qt5-cmake-include-all-libraries-into-executable/60856725#60856725
+# From: https://stackoverflow.com/questions/60854495/qt5-cmake-include-all-libraries-into-executable/60856725#60856725
 if(WIN32)
   add_custom_command(
     TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
     COMMAND ${QTDIR}/bin/windeployqt.exe $<TARGET_FILE:${CMAKE_PROJECT_NAME}>
+  )
+endif()
+
+# Copy openssl dll to build directory
+# From: https://blog.csdn.net/m0_47500475/article/details/107745426
+if(WIN32)
+  add_custom_command(
+    TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/openssl ${CMAKE_BINARY_DIR}
   )
 endif()

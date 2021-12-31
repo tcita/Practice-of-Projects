@@ -1,153 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>QAction</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="252"/>
+        <location filename="../../src/MainWindow.cpp" line="273"/>
+        <source>&lt;-</source>
+        <translation>&lt;-</translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="276"/>
         <source>English(US)</source>
-        <translation type="unfinished"></translation>
+        <translation>英文(美國)</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="253"/>
-        <source>Chinese(Simplified)</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/MainWindow.cpp" line="277"/>
+        <source>Chinese(China)</source>
+        <translation>簡體中文(中國)</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="254"/>
-        <source>Chinese(Traditional)</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../src/MainWindow.cpp" line="278"/>
+        <source>Chinese(Taiwan)</source>
+        <translation>繁體中文(台灣)</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="256"/>
+        <location filename="../../src/MainWindow.cpp" line="280"/>
         <source>Main Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>主頁面</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="257"/>
+        <location filename="../../src/MainWindow.cpp" line="281"/>
         <source>Article Type Select Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>文章選擇頁面</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="258"/>
+        <location filename="../../src/MainWindow.cpp" line="282"/>
         <source>Typing Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>打字頁面</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="259"/>
+        <location filename="../../src/MainWindow.cpp" line="283"/>
         <source>Translate Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>翻譯頁面</translation>
     </message>
 </context>
 <context>
     <name>QDialog</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="264"/>
-        <location filename="../../src/MainWindow.cpp" line="265"/>
+        <location filename="../../src/MainWindow.cpp" line="288"/>
+        <location filename="../../src/MainWindow.cpp" line="289"/>
         <source>English Assistant</source>
-        <translation type="unfinished"></translation>
+        <translation>英語助手</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="266"/>
+        <location filename="../../src/MainWindow.cpp" line="290"/>
         <source>English translate &amp; learning program</source>
-        <translation type="unfinished"></translation>
+        <translation>英文翻譯、學習軟體</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="267"/>
+        <location filename="../../src/MainWindow.cpp" line="291"/>
         <source>Published under GPLv3</source>
-        <translation type="unfinished"></translation>
+        <translation>以GPLv3發佈</translation>
     </message>
 </context>
 <context>
     <name>QMainWindow</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="247"/>
+        <location filename="../../src/MainWindow.cpp" line="270"/>
         <source>English Assistant</source>
-        <translation type="unfinished"></translation>
+        <translation>英語助手</translation>
     </message>
 </context>
 <context>
     <name>QMenu</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="250"/>
+        <location filename="../../src/MainWindow.cpp" line="274"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>設定</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="251"/>
+        <location filename="../../src/MainWindow.cpp" line="275"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>語言</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="255"/>
+        <location filename="../../src/MainWindow.cpp" line="279"/>
         <source>Switch To</source>
-        <translation type="unfinished"></translation>
+        <translation>切換到</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="260"/>
+        <location filename="../../src/MainWindow.cpp" line="284"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>幫助</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="261"/>
+        <location filename="../../src/MainWindow.cpp" line="285"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>關於</translation>
     </message>
 </context>
 <context>
     <name>QPushButton</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="268"/>
+        <location filename="../../src/MainWindow.cpp" line="292"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>好的</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="271"/>
+        <location filename="../../src/MainWindow.cpp" line="295"/>
         <source>Article</source>
-        <translation type="unfinished"></translation>
+        <translation>文章</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="272"/>
+        <location filename="../../src/MainWindow.cpp" line="296"/>
         <source>Typing</source>
-        <translation type="unfinished"></translation>
+        <translation>打字</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="273"/>
+        <location filename="../../src/MainWindow.cpp" line="297"/>
         <source>Testing</source>
-        <translation type="unfinished"></translation>
+        <translation>測驗</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="274"/>
+        <location filename="../../src/MainWindow.cpp" line="298"/>
         <source>Translate</source>
-        <translation type="unfinished"></translation>
+        <translation>翻譯</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="277"/>
+        <location filename="../../src/MainWindow.cpp" line="301"/>
         <source>World</source>
-        <translation type="unfinished"></translation>
+        <translation>世界</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="278"/>
+        <location filename="../../src/MainWindow.cpp" line="302"/>
         <source>Business</source>
-        <translation type="unfinished"></translation>
+        <translation>商業</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="281"/>
+        <location filename="../../src/MainWindow.cpp" line="305"/>
         <source>Africa</source>
-        <translation type="unfinished"></translation>
+        <translation>非洲</translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="308"/>
+        <source>Submit</source>
+        <translation>提交</translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="311"/>
+        <source>Testing Result:</source>
+        <translation>測驗結果:</translation>
     </message>
 </context>
 <context>
     <name>QTextEdit</name>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="284"/>
+        <location filename="../../src/MainWindow.cpp" line="314"/>
         <source>Source language</source>
-        <translation type="unfinished"></translation>
+        <translation>英文</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="285"/>
+        <location filename="../../src/MainWindow.cpp" line="315"/>
         <source>Dest language</source>
-        <translation type="unfinished"></translation>
+        <translation>繁體中文</translation>
     </message>
 </context>
 </TS>

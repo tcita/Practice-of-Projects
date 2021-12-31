@@ -14,14 +14,12 @@
 
 int main(int argc, char **argv)
 {
-  // Init java web crawler
-  // Crawler crawler;
-  // crawler.fetchArticleTitles("africa");
-  // crawler.fetchArticle("An American teacher held in Libya for 6 weeks is now back home in the United States");
-
-  std::string article = Solution::readFile("./tmp/crawed_content.txt");
-  std::vector<std::string> bannedWords{"a", "an", "are", "is", "the"};
-  std::cout << Solution::wordFrequency(article, bannedWords);
+  // std::string article = Solution::readFile("./tmp/crawed_content.txt");
+  // std::vector<std::string> bannedWords = Solution::splitString(Solution::readFile("./config/bannedWords.txt"), '\n');
+  // for(auto wordCount : Solution::wordFrequency(article, bannedWords))
+  // {
+  //   std::cout << wordCount.first << " " << wordCount.second << "\n";
+  // }
 
   // Init translator
   QTranslator translator;

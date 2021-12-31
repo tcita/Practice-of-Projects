@@ -3,6 +3,7 @@
 
 #include "Crawler.h"
 #include <vector>
+#include <stack>
 #include <QMainWindow>
 #include <QTranslator>
 #include <QWidget>
@@ -16,6 +17,7 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QDialog>
+#include <QMessageBox>
 #include <QLabel>
 
 // The application main window
@@ -30,6 +32,8 @@ private:
 
   // Menu
   QMenuBar *mainMenuBar;
+  QAction *previousPanelAction;
+  std::stack<QWidget*> panelHistory;
   QMenu *settingMenu;
   QMenu *languageMenu;
   QAction *enUsAction;
@@ -43,13 +47,13 @@ private:
   QMenu *helpMenu;
   QAction *aboutAction;
 
-  // About dialog
-  QWidget *aboutDialog;
-  QVBoxLayout *aboutDialogLayout;
-  QLabel *aboutDialogInfoLabel1;
-  QLabel *aboutDialogInfoLabel2;
-  QLabel *aboutDialogInfoLabel3;
-  QPushButton *aboutDialogOkButton;
+  // About window
+  QWidget *aboutWindow;
+  QVBoxLayout *aboutWindowLayout;
+  QLabel *aboutWindowInfoLabel1;
+  QLabel *aboutWindowInfoLabel2;
+  QLabel *aboutWindowInfoLabel3;
+  QPushButton *aboutWindowOkButton;
 
   // Main panel
   QWidget *mainPanel;
@@ -86,10 +90,17 @@ private:
   QWidget *typingPanelTypingWidget;
   QVBoxLayout *typingPanelTypingWidgetLayout;
 
-  // Test panel
+  // Testing panel
   QScrollArea *testingPanel;
   QWidget *testingInnerPanel;
   QVBoxLayout *testingInnerPanelLayout;
+  QPushButton *testingInnerPanelSubmitButton;
+
+  // Testing result panel
+  QScrollArea *testingResultPanel;
+  QWidget *testingResultInnerPanel;
+  QVBoxLayout *testingResultInnerPanelLayout;
+  QLabel *testingResultTitleLabel;
 
   // Translate panel
   QWidget *translatePanel;
@@ -126,9 +137,12 @@ private:
   void translatePanelTranslateToSrc();
   // Pop up the about window
   void popUpAboutWindow();
-  // Switch central widget
-  void switchCentralWidget(QWidget *panel);
+  // Switch central widget to given widget
+  void switchToPanel(QWidget *panel);
+  // Switch panel back accroding to the panel history
+  void switchToPreviousPanel();
 
+private:
   //
   QGroupBox* createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
   //
