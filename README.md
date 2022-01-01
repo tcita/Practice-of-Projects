@@ -37,7 +37,7 @@ cd build
 
 `cmake --build .`
 
-## Build for Linux (tested on KDE Neon)
+## Build for Linux (libjvm.so not working yet)
 
 ### 0. Install needed tools
 
