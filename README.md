@@ -10,15 +10,15 @@ Provide an simple UI to assist learning English
 
 ### 0. Install needed tools & set environment path
 
-- GCC: https://www.mingw-w64.org/downloads/
+- GCC (>9.3.0): https://www.mingw-w64.org/downloads/
 
-- Ninja: https://ninja-build.org/
+- Ninja (1.10.0): https://ninja-build.org/
 
-- CMake: https://cmake.org/
+- CMake (=3.21.3): https://cmake.org/
 
-- Qt(v5.15.2): https://www.qt.io
+- Qt (=5.15.2): https://www.qt.io
 
-- JDK(>=8): https://jdk.java.net/17/
+- JDK (=11.0.2): https://jdk.java.net/archive/
 
   Note: Environment path for "bin" & "server" directory is needed
 
@@ -37,7 +37,7 @@ cd build
 
 `cmake --build .`
 
-## Build for Linux (tested on KDE Neon)
+## Build for Linux (libjvm.so not working yet)
 
 ### 0. Install needed tools
 
@@ -55,7 +55,7 @@ sudo apt install cmake
 sudo apt install qttools5-dev
 
 # install jdk & tools
-sudo apt install openjdk-17-jdk
+sudo apt install openjdk-11-jdk
 ```
 
 ### 1. Create and go to build directory

@@ -3,7 +3,7 @@
 
 namespace ProjectInfo
 {
-  inline const char *VERSION = "v1.0.0";
+  inline constexpr const char *VERSION = "v1.0.0";
 }
 
 #endif
