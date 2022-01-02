@@ -81,7 +81,13 @@ private:
   // Artical panel
   QWidget *articlePanel;
   QGridLayout *articlePanelLayout;
+  QWidget *articlePanelLeftPanel;
+  QGridLayout *articlePanelLeftPanelLayout;
   QTextBrowser *articlePanelTextBrowser;
+  QTextBrowser *articlePanelTranslateTextBrowser;
+  QWidget *articlePanelRightPanel;
+  QGridLayout *articlePanelRightPanelLayout;
+  QTextBrowser *articlePanelStatisticsTextBrowser;
 
   // Typing panel
   QWidget *typingPanel;

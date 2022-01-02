@@ -74,7 +74,13 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // Article panel
   articlePanel = new QWidget();
   articlePanelLayout = new QGridLayout(articlePanel);
-  articlePanelTextBrowser = new QTextBrowser(articlePanel);
+  articlePanelLeftPanel = new QWidget(articlePanel);
+  articlePanelLeftPanelLayout = new QGridLayout(articlePanelLeftPanel);
+  articlePanelTextBrowser = new QTextBrowser(articlePanelLeftPanel);
+  articlePanelTranslateTextBrowser = new QTextBrowser(articlePanelLeftPanel);
+  articlePanelRightPanel = new QWidget(articlePanel);
+  articlePanelRightPanelLayout = new QGridLayout(articlePanelRightPanel);
+  articlePanelStatisticsTextBrowser = new QTextBrowser(articlePanelRightPanel);
 
   // Typing panel
   typingPanel = new QWidget();
@@ -189,14 +195,23 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // Setup world sub type panel
   worldSubTypePanel->setLayout(worldSubTypePanelLayout);
   worldSubTypePanelLayout->addWidget(africaArticleTitlePanelButton);
+  africaArticleTitlePanelButton->setMaximumWidth(300);
+  africaArticleTitlePanelButton->setMinimumHeight(200);
 
   // Setup africa article panel
   articleTitlePanel->setLayout(articleTitlePanelLayout);
 
   // Setup article panel
   articlePanel->setLayout(articlePanelLayout);
-  // articlePanelLayout->setColumnMinimumWidth(0, 200);
-  articlePanelLayout->addWidget(articlePanelTextBrowser, 1, 0);
+  articlePanelLayout->setColumnStretch(0, 1);
+  articlePanelLayout->addWidget(articlePanelLeftPanel, 0, 0);
+  articlePanelLayout->addWidget(articlePanelRightPanel, 0, 1);
+  articlePanelLeftPanel->setLayout(articlePanelLeftPanelLayout);
+  articlePanelLeftPanelLayout->setRowStretch(0, 1);
+  articlePanelLeftPanelLayout->addWidget(articlePanelTextBrowser, 0, 0);
+  articlePanelLeftPanelLayout->addWidget(articlePanelTranslateTextBrowser, 1, 0);
+  articlePanelRightPanel->setLayout(articlePanelRightPanelLayout);
+  articlePanelRightPanelLayout->addWidget(articlePanelStatisticsTextBrowser);
 
   // Setup testing panel
   testingPanel->setStyleSheet(R"(
