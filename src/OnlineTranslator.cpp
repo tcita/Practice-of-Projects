@@ -40,6 +40,12 @@ std::string OnlineTranslator::translate(const std::string &input, const std::str
   std::cout << "Reply data in OnlineTranslator:\n"; //debug!!
   std::cout << replyData << "\n"; //debug!!
 
+  // Check if it is a valid Json
+  if(!nlohmann::json::accept<std::string>(std::move(replyData)))
+  {
+    std::cerr << "OnlineTranslator::translate() failed, the reply data is not valid Json.\n";
+    return "";
+  }
   // Parse json data by using nlohmann_json api
   auto jsonData = nlohmann::json::parse(replyData);
 

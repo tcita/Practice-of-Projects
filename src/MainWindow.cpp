@@ -12,6 +12,7 @@
 #include <QTranslator>
 #include <QRadioButton>
 #include <QCheckBox>
+#include <QTextDocumentFragment>
 
 MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   :translator(translator)
@@ -282,7 +283,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
 
 
-  // Connect action callback
+  // Menu
   QObject::connect(previousPanelAction, &QAction::triggered, [this]{this->switchToPreviousPanel();});
   QObject::connect(enUsAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::en_US);});
   QObject::connect(zhCnAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::zh_CN);});
@@ -293,24 +294,48 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   QObject::connect(translatePanelAction, &QAction::triggered, [this]{switchToPanel(translatePanel);});
   QObject::connect(aboutAction, &QAction::triggered, [this]{this->popUpAboutWindow();});
 
-  // Connect button callback
+  // aboutWindow
   QObject::connect(aboutWindowOkButton, &QPushButton::clicked, [this]{this->aboutWindow->hide();});
+
+  // mainWindow
   QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{switchToPanel(articleTypePanel);});
+  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{switchToPanel(typingPanel);});
+  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchToPanel(testingPanel);});
+  QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchToPanel(translatePanel);});
+
+  // articleTypeSelectPanel
   QObject::connect(worldSubTypePanelButton, &QPushButton::clicked, [this]{switchToPanel(worldSubTypePanel);});
-  QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler] {
-    switchToPanel(articleTitlePanel);
-    std::vector<std::string> articleTitles = crawler->fetchArticleTitles("africa");
-    setArticleTitles(articleTitles);
-  });
   QObject::connect(businessArticlePanelButton, &QPushButton::clicked, [this, crawler] {
     switchToPanel(articleTitlePanel);
     std::vector<std::string> articleTitles = crawler->fetchArticleTitles("business");
     setArticleTitles(articleTitles);
   });
-  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{switchToPanel(typingPanel);});
-  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchToPanel(testingPanel);});
+
+  // articlePanel
+  // From: https://doc.qt.io/qt-5/qtextbrowser.html#highlighted
+  connect(articlePanelTextBrowser, &QTextEdit::selectionChanged, [this]{
+    const QTextCursor &textCursor = articlePanelTextBrowser->textCursor();
+    if(!textCursor.hasSelection())
+    {
+      return;
+    }
+    std::cout << "articlePanelTextBrowser selectionChanged\n";
+    const std::string &translatedString = OnlineTranslator::translate(textCursor.selection().toPlainText().toStdString(), this->translator->language().toStdString());
+    articlePanelTranslateTextBrowser->setText(QString::fromStdString(translatedString));
+    // articlePanelTextBrowserLastSelectTime = std::chrono::steady_clock::now();
+  });
+
+  // worldSubTypePanel
+  QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler] {
+    switchToPanel(articleTitlePanel);
+    std::vector<std::string> articleTitles = crawler->fetchArticleTitles("africa");
+    setArticleTitles(articleTitles);
+  });
+
+  // testingPanel
   QObject::connect(testingInnerPanelSubmitButton, &QPushButton::clicked, [this]{switchToPanel(testingResultPanel);});
-  QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchToPanel(translatePanel);});
+
+  // translatePanel
   QObject::connect(translatePanelToDestButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToDest();});
   QObject::connect(translatePanelToSrcButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToSrc();});
 }
@@ -399,10 +424,9 @@ void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
     QPushButton *button = new QPushButton(articleTitlePanel);
     button->setText(QString::fromStdString(articleTitle));
     QObject::connect(button, &QPushButton::clicked, [this, button]{
-      setArticle("");
-      switchToPanel(articlePanel);
       std::string article = crawler->fetchArticle(button->text().toStdString());
       this->setArticle(article);
+      switchToPanel(articlePanel);
     });
     articleTitlePanelLayout->addWidget(button);
   }
@@ -412,6 +436,15 @@ void MainWindow::setArticle(const std::string &article)
 {
   std::cout << "void MainWindow::setArticle(const std::string &article)\n";
   articlePanelTextBrowser->setText(QString::fromStdString(article));
+  articlePanelTranslateTextBrowser->setText("");
+
+  std::string wordFrequencyString;
+  auto bannedWords = Solution::splitString(Solution::readFile("./config/bannedWords.txt"), '\n');
+  for(const auto &wordFrequency : Solution::wordFrequency(article, bannedWords))
+  {
+    wordFrequencyString += wordFrequency.first + ": " + std::to_string(wordFrequency.second) + "\n";
+  }
+  articlePanelStatisticsTextBrowser->setText(QString::fromStdString(wordFrequencyString));
 }
 
 void MainWindow::translatePanelTranslateToDest()
