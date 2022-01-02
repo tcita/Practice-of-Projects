@@ -141,6 +141,15 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/config ${CMAKE_BINARY_DIR}/config
 )
 
+# Copy JNI binary
+# foreach(JNI_LIBRARY ${JNI_LIBRARIES})
+#   message(${JNI_LIBRARY})
+#   add_custom_command(
+#     TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+#     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${JNI_LIBRARY} ${CMAKE_BINARY_DIR}
+#   )
+# endforeach()
+
 # Copy Qt binary # Problem: plugin binary didn't copied
 # From: https://riptutorial.com/cmake/example/29468/qt5-dll-copy-example
 # add_custom_command(
@@ -150,7 +159,6 @@ add_custom_command(
 #   COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Widgets> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
 #   COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Network> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
 # )
-
 
 # Copy Qt dll by windeployqt.cmake
 # From: https://stackoverflow.com/questions/60854495/qt5-cmake-include-all-libraries-into-executable/60856725#60856725

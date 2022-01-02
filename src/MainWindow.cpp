@@ -125,6 +125,18 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // Setup icon
   this->setWindowIcon(QIcon("assets/image/icon.png"));
 
+  // Setup global style sheet
+  this->setStyleSheet(R"(
+    QPushButton
+    {
+      font: bold 30px;
+    }
+    QTextEdit
+    {
+      font: 15px;
+    }
+  )");
+
   // Setup menu
   mainMenuBar->addAction(previousPanelAction);
   previousPanelAction->setEnabled(false);
@@ -153,14 +165,26 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // Setup main panel
   mainPanel->setLayout(mainPanelLayout);
   mainPanelLayout->addWidget(articleTypePanelButton, 0, 0);
+  articleTypePanelButton->setMaximumWidth(300);
+  articleTypePanelButton->setMinimumHeight(200);
   mainPanelLayout->addWidget(typingPanelButton, 0, 1);
+  typingPanelButton->setMaximumWidth(300);
+  typingPanelButton->setMinimumHeight(200);
   mainPanelLayout->addWidget(testingPanelButton, 1, 0);
+  testingPanelButton->setMaximumWidth(300);
+  testingPanelButton->setMinimumHeight(200);
   mainPanelLayout->addWidget(translatePanelButton, 1, 1);
+  translatePanelButton->setMaximumWidth(300);
+  translatePanelButton->setMinimumHeight(200);
 
   // Setup article type panel
   articleTypePanel->setLayout(articleTypePanelLayout);
   articleTypePanelLayout->addWidget(worldSubTypePanelButton, 0, 0);
+  worldSubTypePanelButton->setMaximumWidth(300);
+  worldSubTypePanelButton->setMinimumHeight(200);
   articleTypePanelLayout->addWidget(businessArticlePanelButton, 0, 1);
+  businessArticlePanelButton->setMaximumWidth(300);
+  businessArticlePanelButton->setMinimumHeight(200);
 
   // Setup world sub type panel
   worldSubTypePanel->setLayout(worldSubTypePanelLayout);
@@ -175,6 +199,12 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   articlePanelLayout->addWidget(articlePanelTextBrowser, 1, 0);
 
   // Setup testing panel
+  testingPanel->setStyleSheet(R"(
+    QPushButton
+    {
+      font: 12px;
+    }
+  )");
   testingPanel->setWidget(testingInnerPanel);
   testingPanel->setWidgetResizable(true);
   testingInnerPanel->setLayout(testingInnerPanelLayout);
@@ -221,6 +251,12 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
 
   // Setup translate panel
+  translatePanel->setStyleSheet(R"(
+    QPushButton
+    {
+      font: 15px;
+    }
+  )");
   translatePanelLayout->addWidget(translatePanelSrcGroupBox, 0, 0);
   translatePanelSrcGroupBoxLayout->addWidget(translatePanelSrcTextEdit);
   translatePanelLayout->addWidget(translatePanelMidWidget, 0, 1);
