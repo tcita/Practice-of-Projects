@@ -442,8 +442,9 @@ void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
   {
     QPushButton *button = new QPushButton(articleTitlePanel);
     button->setText(QString::fromStdString(articleTitle));
-    QObject::connect(button, &QPushButton::clicked, [this, button]{
+    QObject::connect(button, &QPushButton::clicked, [=]{
       std::string article = crawler->fetchArticle(button->text().toStdString());
+      std::cout << "Article title: " << button->text().toStdString() << "\n";
       this->setArticle(article);
       switchToPanel(articlePanel);
     });

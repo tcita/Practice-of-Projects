@@ -49,7 +49,7 @@ std::string Crawler::fetchArticle(const std::string &articleTitle)
   // std::string articleTitle("An American teacher held in Libya for 6 weeks is now back home in the United States");
   env->CallVoidMethod(javaCrawler, methodID_3, toJString(articleTitle));
   env->CallVoidMethod(javaCrawler, methodID_4);
-
+  
   std::string article = Solution::readFile(ARTICLE_FILE_PATH);
   return article;
 }
