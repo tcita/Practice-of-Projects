@@ -17,6 +17,7 @@ std::string OnlineTranslator::translate(const std::string &input, const std::str
   // From: https://stackoverflow.com/questions/8550147/how-to-use-google-translate-api-with-c
   // From: https://blog.csdn.net/panshiqu/article/details/104193607
   std::string clientType = std::string("client=") + std::string("gtx");
+  // std::string clientType = std::string("client=") + std::string("at");
   std::string sourceLanguageType = std::string("sl=") + srcLanguageType;
   std::string targetLanguageType = std::string("tl=") + destLanguageType;
   std::string queryText = std::string("q=") + input;

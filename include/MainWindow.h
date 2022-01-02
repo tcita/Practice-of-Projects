@@ -85,8 +85,7 @@ private:
   QGridLayout *articlePanelLeftPanelLayout;
   QTextBrowser *articlePanelTextBrowser;
   QTextBrowser *articlePanelTranslateTextBrowser;
-  std::string articlePanelTextBrowserLastSelectedText;
-  // std::chrono::steady_clock::time_point articlePanelTextBrowserLastSelectTime;
+  int articlePanelTextBrowserSelectRequestID;
   QWidget *articlePanelRightPanel;
   QGridLayout *articlePanelRightPanelLayout;
   QTextBrowser *articlePanelStatisticsTextBrowser;

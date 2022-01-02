@@ -4,6 +4,7 @@
 #include "ProjectInfo.h"
 #include "Solution.h"
 #include <iostream> //debug
+#include <thread>
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QLineEdit>
@@ -314,15 +315,33 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // articlePanel
   // From: https://doc.qt.io/qt-5/qtextbrowser.html#highlighted
   connect(articlePanelTextBrowser, &QTextEdit::selectionChanged, [this]{
-    const QTextCursor &textCursor = articlePanelTextBrowser->textCursor();
-    if(!textCursor.hasSelection())
+    if((!articlePanelTextBrowser->textCursor().hasSelection()))
     {
       return;
     }
+
     std::cout << "articlePanelTextBrowser selectionChanged\n";
-    const std::string &translatedString = OnlineTranslator::translate(textCursor.selection().toPlainText().toStdString(), this->translator->language().toStdString());
-    articlePanelTranslateTextBrowser->setText(QString::fromStdString(translatedString));
     // articlePanelTextBrowserLastSelectTime = std::chrono::steady_clock::now();
+
+    // Get translate after a period of time, too fast will be blacklisted by translate server
+    std::thread translateThread([=]{
+      // Use this id the check if the selection text is change
+      articlePanelTextBrowserSelectRequestID++;
+      int lastArticlePanelTextBrowserSelectRequestID = articlePanelTextBrowserSelectRequestID;
+      std::this_thread::sleep_until(std::chrono::steady_clock::now() + std::chrono::seconds(1));
+
+      // If the selection text is changed
+      if(articlePanelTextBrowserSelectRequestID == lastArticlePanelTextBrowserSelectRequestID)
+      {
+        std::cout << "Translate select text: " << articlePanelTextBrowser->textCursor().selection().toPlainText().toStdString();
+        const std::string &translatedString = OnlineTranslator::translate(articlePanelTextBrowser->textCursor().selection().toPlainText().toStdString(), this->translator->language().toStdString());
+
+        // From: https://stackoverflow.com/questions/63904176/qt-invokemethod-on-textedit-setpalette?rq=1
+        // From: https://doc.qt.io/qt-5/qmetaobject.html#inherits
+        QMetaObject::invokeMethod(articlePanelTranslateTextBrowser, "setText", Qt::QueuedConnection, Q_ARG(QString, QString::fromStdString(translatedString)));
+      }
+    });
+    translateThread.detach();
   });
 
   // worldSubTypePanel
