@@ -11,7 +11,7 @@
 #include <QMessageBox>
 #include <QTranslator>
 #include <QRadioButton>
-#include <QCheckbox>
+#include <QCheckBox>
 
 MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   :translator(translator)
