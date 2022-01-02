@@ -227,12 +227,13 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingInnerPanel->setLayout(testingInnerPanelLayout);
   testingInnerPanelLayout->setAlignment(Qt::AlignTop);
 
-  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}));
-  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}));
-  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}));
-  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}));
-  testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}));
-  testingInnerPanelLayout->addWidget(createMultipleChoiceQuestion("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}));
+  // testingInnerPanelLayout->addWidget(makeQuestionGroupBox())
+  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}));
+  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}));
+  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}));
+  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}));
+  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}));
+  // testingInnerPanelLayout->addWidget(createMultipleChoiceQuestion("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}));
   testingInnerPanelLayout->addWidget(testingInnerPanelSubmitButton);
 
   // Setup testing result panel
@@ -525,40 +526,78 @@ void MainWindow::switchToPreviousPanel()
   }
 }
 
-QGroupBox* MainWindow::createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)
+QGroupBox* MainWindow::makeQuestionGroupBox(const Question &question)
 {
-  QGroupBox *questionGroupBox = new QGroupBox();
-  QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
-
-  // Add question
-  questionGroupBox->setTitle(QString::fromStdString(question));
-
-  // Add candidate answer
-  for(auto candidateAnswer : candidateAnswers)
+  if(!question.isValidQuestion())
   {
-    QRadioButton *button = new QRadioButton(questionGroupBox);
-    button->setText(QString::fromStdString(candidateAnswer));
-    questionGroupBoxLayout->addWidget(button);
+    return nullptr;
   }
 
+  QGroupBox *questionGroupBox = new QGroupBox();
+  QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
+  if(question.isSingleChoiceQuestion())
+  {
+      // Add question
+      questionGroupBox->setTitle(QString::fromStdString(question.question));
+
+      // Add candidate answer
+      for(auto &candidateAnswer : question.candidateAnswers)
+      {
+        QRadioButton *button = new QRadioButton(questionGroupBox);
+        button->setText(QString::fromStdString(candidateAnswer));
+        questionGroupBoxLayout->addWidget(button);
+      }
+  }
+  else(question.isMultipleChoiceQuestion())
+  {
+      // Add question
+      questionGroupBox->setTitle(QString::fromStdString(question.question));
+
+      // Add candidate answer
+      for(auto &candidateAnswer : question.candidateAnswers)
+      {
+        QCheckBox *button = new QCheckBox(questionGroupBox);
+        button->setText(QString::fromStdString(candidateAnswer));
+        questionGroupBoxLayout->addWidget(button);
+      }
+  }
   return questionGroupBox;
 }
 
-QGroupBox* MainWindow::createMultipleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)
-{
-  QGroupBox *questionGroupBox = new QGroupBox();
-  QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
-
-  // Add question
-  questionGroupBox->setTitle(QString::fromStdString(question));
-
-  // Add candidate answer
-  for(auto candidateAnswer : candidateAnswers)
-  {
-    QCheckBox *button = new QCheckBox(questionGroupBox);
-    button->setText(QString::fromStdString(candidateAnswer));
-    questionGroupBoxLayout->addWidget(button);
-  }
-
-  return questionGroupBox;
-}
+// QGroupBox* MainWindow::createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)
+// {
+//   QGroupBox *questionGroupBox = new QGroupBox();
+//   QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
+//
+//   // Add question
+//   questionGroupBox->setTitle(QString::fromStdString(question));
+//
+//   // Add candidate answer
+//   for(auto candidateAnswer : candidateAnswers)
+//   {
+//     QRadioButton *button = new QRadioButton(questionGroupBox);
+//     button->setText(QString::fromStdString(candidateAnswer));
+//     questionGroupBoxLayout->addWidget(button);
+//   }
+//
+//   return questionGroupBox;
+// }
+//
+// QGroupBox* MainWindow::createMultipleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)
+// {
+//   QGroupBox *questionGroupBox = new QGroupBox();
+//   QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
+//
+//   // Add question
+//   questionGroupBox->setTitle(QString::fromStdString(question));
+//
+//   // Add candidate answer
+//   for(auto candidateAnswer : candidateAnswers)
+//   {
+//     QCheckBox *button = new QCheckBox(questionGroupBox);
+//     button->setText(QString::fromStdString(candidateAnswer));
+//     questionGroupBoxLayout->addWidget(button);
+//   }
+//
+//   return questionGroupBox;
+// }

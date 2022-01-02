@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "Crawler.h"
+#include "Question.h"
 #include <vector>
 #include <stack>
 #include <QMainWindow>
@@ -99,6 +100,7 @@ private:
 
   // Testing panel
   QScrollArea *testingPanel;
+  std::vector<Question> testingPanelQuestions;
   QWidget *testingInnerPanel;
   QVBoxLayout *testingInnerPanelLayout;
   QPushButton *testingInnerPanelSubmitButton;
@@ -151,9 +153,11 @@ private:
 
 private:
   //
-  QGroupBox* createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
-  //
-  QGroupBox* createMultipleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
+  static QGroupBox* makeQuestionGroupBox(const Question &question);
+  // //
+  // QGroupBox* createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
+  // //
+  // QGroupBox* createMultipleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
 };
 
 #endif
