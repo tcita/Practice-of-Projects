@@ -152,7 +152,7 @@ private:
   //
   void addRandomTypingPanelWords();
   //
-  void addTypingPanelWords(std::vector<std::string> words);
+  void addTypingPanelWords(const std::vector<std::string> &words);
   //
   bool addQuestionGroupBox(const Question &question);
   // //

@@ -304,6 +304,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{
     switchToPanel(typingPanel);
     addRandomTypingPanelWords();
+    typingInnerPanel->findChildren<QLineEdit*>()[0]->setFocus();
   });
   QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchToPanel(testingPanel);});
   QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchToPanel(translatePanel);});
@@ -586,10 +587,10 @@ void MainWindow::switchToPreviousPanel()
 
 void MainWindow::addRandomTypingPanelWords()
 {
-  addTypingPanelWords({"apple", "banana"});
+  addTypingPanelWords({"apple", "banana", "orange", "juice"});
 }
 
-void MainWindow::addTypingPanelWords(std::vector<std::string> &words)
+void MainWindow::addTypingPanelWords(const std::vector<std::string> &words)
 {
   for(const std::string &word : words)
   {
