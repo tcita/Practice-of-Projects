@@ -548,7 +548,7 @@ QGroupBox* MainWindow::makeQuestionGroupBox(const Question &question)
         questionGroupBoxLayout->addWidget(button);
       }
   }
-  else(question.isMultipleChoiceQuestion())
+  else if(question.isMultipleChoiceQuestion())
   {
       // Add question
       questionGroupBox->setTitle(QString::fromStdString(question.question));

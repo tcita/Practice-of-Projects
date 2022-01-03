@@ -51,6 +51,11 @@ find_package(
     LinguistTools
 )
 
+# Find thread package
+find_package(
+  Threads REQUIRED
+)
+
 ####################################################################################################
 # Build setting
 ####################################################################################################
@@ -112,6 +117,7 @@ target_link_libraries(
   PRIVATE Qt5::Widgets
   PRIVATE Qt5::Network
   PRIVATE ${JNI_LIBRARIES}
+  PRIVATE Threads::Threads
 )
 
 ####################################################################################################

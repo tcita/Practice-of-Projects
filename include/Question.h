@@ -11,9 +11,9 @@ struct Question
   Question(const std::string &question, const std::vector<std::string> &candidateAnswers, const std::vector<int> &answerIndex);
   Question(std::string &&question, std::vector<std::string> &&candidateAnswers, std::vector<int> &&answerIndex);
 
-  bool isValidQuestion();
-  bool isMultipleChoiceQuestion();
-  bool isSingleChoiceQuestion();
+  bool isValidQuestion() const;
+  bool isMultipleChoiceQuestion() const;
+  bool isSingleChoiceQuestion() const;
 };
 
 #endif
