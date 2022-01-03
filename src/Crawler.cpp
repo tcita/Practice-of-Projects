@@ -30,10 +30,19 @@ Crawler::Crawler()
   methodID_2 = env->GetMethodID(javaCrawlerClass, "setArticle_url_list","(Ljava/lang/String;)V");
   methodID_3 = env->GetMethodID(javaCrawlerClass, "setChosed_doc", "(Ljava/lang/String;)V");
   methodID_4 = env->GetMethodID(javaCrawlerClass, "crawl_article", "()V");
+  methodID_5 = env->GetMethodID(javaCrawlerClass, "clear", "()V");
 }
+
+// void Crawler::clear()
+// {
+//   env->CallVoidMethod(javaCrawler, methodID_5);
+// }
 
 std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleType)
 {
+  // Clear
+  env->CallVoidMethod(javaCrawler, methodID_5);
+
   const std::string articleTypeWithSlash = std::string("/") + articleType;
 
   env->CallVoidMethod(javaCrawler, methodID_1, toJString(articleTypeWithSlash));
@@ -49,7 +58,7 @@ std::string Crawler::fetchArticle(const std::string &articleTitle)
   // std::string articleTitle("An American teacher held in Libya for 6 weeks is now back home in the United States");
   env->CallVoidMethod(javaCrawler, methodID_3, toJString(articleTitle));
   env->CallVoidMethod(javaCrawler, methodID_4);
-  
+
   std::string article = Solution::readFile(ARTICLE_FILE_PATH);
   return article;
 }

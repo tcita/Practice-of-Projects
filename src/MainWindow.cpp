@@ -1,3 +1,4 @@
+
 #include "MainWindow.h"
 #include "OnlineTranslator.h"
 #include "LanguageTypes.h"
@@ -316,6 +317,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   QObject::connect(worldSubTypePanelButton, &QPushButton::clicked, [this]{switchToPanel(worldSubTypePanel);});
   QObject::connect(businessArticlePanelButton, &QPushButton::clicked, [this, crawler] {
     switchToPanel(articleTitlePanel);
+    // crawler->clear();
     std::vector<std::string> articleTitles = crawler->fetchArticleTitles("business");
     setArticleTitles(articleTitles);
   });
@@ -355,6 +357,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   // worldSubTypePanel
   QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler] {
     switchToPanel(articleTitlePanel);
+    // crawler->clear();
     std::vector<std::string> articleTitles = crawler->fetchArticleTitles("africa");
     setArticleTitles(articleTitles);
   });

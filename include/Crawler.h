@@ -17,10 +17,12 @@ private:
   jmethodID methodID_2;
   jmethodID methodID_3;
   jmethodID methodID_4;
+  jmethodID methodID_5;
 
 public:
   Crawler();
 
+  // void clear();
   std::vector<std::string> fetchArticleTitles(const std::string &articleType);
   std::string fetchArticle(const std::string &articleTitle);
   std::string getArticle(const std::string &articleType="");
