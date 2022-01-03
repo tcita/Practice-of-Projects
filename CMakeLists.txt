@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.21.3)
 
 # Set c++ standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Set project information
@@ -104,6 +104,7 @@ target_sources(
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Crawler.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/OnlineTranslator.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Solution.cpp
+  PRIVATE ${CMAKE_SOURCE_DIR}/src/Question.cpp
 )
 
 #

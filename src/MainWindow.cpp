@@ -227,16 +227,23 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingInnerPanel->setLayout(testingInnerPanelLayout);
   testingInnerPanelLayout->setAlignment(Qt::AlignTop);
 
-  // testingInnerPanelLayout->addWidget(makeQuestionGroupBox())
-  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}));
-  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}));
-  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}));
-  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}));
-  // testingInnerPanelLayout->addWidget(createSingleChoiceQuestion("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}));
-  // testingInnerPanelLayout->addWidget(createMultipleChoiceQuestion("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}));
+  addQuestionGroupBox(Question("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}, {1}));
+  addQuestionGroupBox(Question("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}, {0}));
+  addQuestionGroupBox(Question("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}, {1}));
+  addQuestionGroupBox(Question("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}, {1}));
+  addQuestionGroupBox(Question("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}, {0}));
+  addQuestionGroupBox(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
+  addQuestionGroupBox(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
+  addQuestionGroupBox(Question("Time flies like an arrow; fruit flies like a _____", {"banana", "orange", "stone", "apple"}, {0, 1, 3}));
   testingInnerPanelLayout->addWidget(testingInnerPanelSubmitButton);
 
   // Setup testing result panel
+  testingResultPanel->setStyleSheet(R"(
+    QLabel
+    {
+      font: 12px;
+    }
+  )");
   testingResultPanel->setWidget(testingResultInnerPanel);
   testingPanel->setWidgetResizable(true);
   testingResultInnerPanel->setLayout(testingResultInnerPanelLayout);
@@ -325,7 +332,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     // articlePanelTextBrowserLastSelectTime = std::chrono::steady_clock::now();
 
     // Get translate after a period of time, too fast will be blacklisted by translate server
-    std::thread translateThread([=]{
+    std::thread translateThread([=, this]{
       // Use this id the check if the selection text is change
       articlePanelTextBrowserSelectRequestID++;
       int lastArticlePanelTextBrowserSelectRequestID = articlePanelTextBrowserSelectRequestID;
@@ -353,7 +360,60 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   });
 
   // testingPanel
-  QObject::connect(testingInnerPanelSubmitButton, &QPushButton::clicked, [this]{switchToPanel(testingResultPanel);});
+  QObject::connect(testingInnerPanelSubmitButton, &QPushButton::clicked, [this]{
+    switchToPanel(testingResultPanel);
+
+    double finalScore = 0;
+
+    double scorePerQuestion = 100.0 / testingPanel->findChildren<QGroupBox*>().size();
+    const auto groupBoxes = testingPanel->findChildren<QGroupBox*>();
+    for(int groupBoxIndex = 0; groupBoxIndex < groupBoxes.size(); ++groupBoxIndex)
+    {
+      const auto groupBoxButtons = groupBoxes[groupBoxIndex]->findChildren<QAbstractButton*>();
+      if(testingPanelQuestions[groupBoxIndex].isSingleChoiceQuestion())
+      {
+        if(groupBoxButtons[(*testingPanelQuestions[groupBoxIndex].answerIndexes.begin())]->isChecked())
+        {
+          finalScore += scorePerQuestion;
+        }
+      }
+      else
+      {
+        for(int buttonIndex = 0; buttonIndex < groupBoxButtons.size(); ++buttonIndex)
+        {
+          // If there are nothing checked, no score
+          if(buttonIndex == 0)
+          {
+            bool nothingChecked = true;
+            for(int i = 0; i < groupBoxButtons.size(); ++i)
+            {
+              if(groupBoxButtons[i]->isChecked())
+              {
+                nothingChecked = false;
+              }
+            }
+            if(nothingChecked)
+            {
+              break;
+            }
+          }
+
+          double scorePerAnswer = scorePerQuestion / groupBoxButtons.size();
+          if(testingPanelQuestions[groupBoxIndex].answerIndexes.contains(buttonIndex) && groupBoxButtons[buttonIndex]->isChecked())
+          {
+            finalScore += scorePerAnswer;
+          }
+          else if(!testingPanelQuestions[groupBoxIndex].answerIndexes.contains(buttonIndex) && !groupBoxButtons[buttonIndex]->isChecked())
+          {
+            finalScore += scorePerAnswer;
+          }
+        }
+      }
+    }
+
+
+    std::cout << "finalScore: " << finalScore << "\n";
+  });
 
   // translatePanel
   QObject::connect(translatePanelToDestButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToDest();});
@@ -404,7 +464,7 @@ void MainWindow::retranslate()
   testingInnerPanelSubmitButton->setText(QPushButton::tr("Submit"));
 
   // Testing result panel
-  testingResultTitleLabel->setText(QPushButton::tr("Testing Result:"));
+  testingResultTitleLabel->setText(QLabel::tr("Testing Result:"));
 
   // Translate panel
   translatePanelSrcGroupBox->setTitle(QTextEdit::tr("Source language"));
@@ -443,7 +503,7 @@ void MainWindow::setArticleTitles(const std::vector<std::string> &articleTitles)
   {
     QPushButton *button = new QPushButton(articleTitlePanel);
     button->setText(QString::fromStdString(articleTitle));
-    QObject::connect(button, &QPushButton::clicked, [=]{
+    QObject::connect(button, &QPushButton::clicked, [=, this]{
       std::string article = crawler->fetchArticle(button->text().toStdString());
       std::cout << "Article title: " << button->text().toStdString() << "\n";
       this->setArticle(article);
@@ -526,12 +586,15 @@ void MainWindow::switchToPreviousPanel()
   }
 }
 
-QGroupBox* MainWindow::makeQuestionGroupBox(const Question &question)
+bool MainWindow::addQuestionGroupBox(const Question &question)
 {
   if(!question.isValidQuestion())
   {
-    return nullptr;
+    std::cerr << "Error on MainWindow::addQuestionGroupBox(const Question &question), not a valid question.";
+    return false;
   }
+
+  testingPanelQuestions.push_back(question);
 
   QGroupBox *questionGroupBox = new QGroupBox();
   QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
@@ -561,7 +624,9 @@ QGroupBox* MainWindow::makeQuestionGroupBox(const Question &question)
         questionGroupBoxLayout->addWidget(button);
       }
   }
-  return questionGroupBox;
+
+  testingInnerPanelLayout->addWidget(questionGroupBox);
+  return true;
 }
 
 // QGroupBox* MainWindow::createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)

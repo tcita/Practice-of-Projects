@@ -1,24 +1,24 @@
 #include "Question.h"
 
-Question::Question(const std::string &question, const std::vector<std::string> &candidateAnswers, const std::vector<int> &answerIndex)
+Question::Question(const std::string &question, const std::vector<std::string> &candidateAnswers, const std::set<int> &answerIndexes)
   :question(question)
   ,candidateAnswers(candidateAnswers)
-  ,answerIndex(answerIndex)
+  ,answerIndexes(answerIndexes)
 {
 
 }
 
-Question::Question(std::string &&question, std::vector<std::string> &&candidateAnswers, std::vector<int> &&answerIndex)
+Question::Question(std::string &&question, std::vector<std::string> &&candidateAnswers, std::set<int> &&answerIndexes)
   :question(std::move(question))
   ,candidateAnswers(std::move(candidateAnswers))
-  ,answerIndex(std::move(answerIndex))
+  ,answerIndexes(std::move(answerIndexes))
 {
 
 }
 
-bool Question::isValidQuestion()
+bool Question::isValidQuestion() const
 {
-  if((question.size() > 0) && (candidateAnswers.size() > 0) && (answerIndex.size() > 0))
+  if((question.size() > 0) && (candidateAnswers.size() > 0) && (answerIndexes.size() > 0))
   {
     return true;
   }
@@ -26,14 +26,14 @@ bool Question::isValidQuestion()
   return false;
 }
 
-bool Question::isSingleChoiceQuestion()
+bool Question::isSingleChoiceQuestion() const
 {
   if(!isValidQuestion())
   {
     return false;
   }
 
-  if(correctAnswerIndex.size() == 1)
+  if(answerIndexes.size() == 1)
   {
     return true;
   }
@@ -41,14 +41,14 @@ bool Question::isSingleChoiceQuestion()
   return false;
 }
 
-bool Question::isMultipleChoiceQuestion()
+bool Question::isMultipleChoiceQuestion() const
 {
   if(!isValidQuestion())
   {
     return false;
   }
 
-  if(correctAnswerIndex.size() > 1)
+  if(answerIndexes.size() > 1)
   {
     return true;
   }

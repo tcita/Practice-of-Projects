@@ -153,7 +153,7 @@ private:
 
 private:
   //
-  static QGroupBox* makeQuestionGroupBox(const Question &question);
+  bool addQuestionGroupBox(const Question &question);
   // //
   // QGroupBox* createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
   // //
