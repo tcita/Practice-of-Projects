@@ -86,11 +86,9 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   articlePanelStatisticsTextBrowser = new QTextBrowser(articlePanelRightPanel);
 
   // Typing panel
-  typingPanel = new QWidget();
-  typingPanelLayout = new QGridLayout(typingPanel);
-  // typingPanelStatusWidget = new QWidget(typingPanel);
-  typingPanelTypingWidget = new QWidget(typingPanel);
-  typingPanelTypingWidgetLayout = new QVBoxLayout(typingPanelTypingWidget);
+  typingPanel = new QScrollArea();
+  typingInnerPanel = new QWidget();
+  typingInnerPanelLayout = new QVBoxLayout();
 
   // Testing panel
   testingPanel = new QScrollArea();
@@ -255,26 +253,20 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingResultInnerPanelLayout->addWidget(new QTextBrowser());
 
   // Setup typing
-  typingPanel->setLayout(typingPanelLayout);
-  // typingPanelLayout->addWidget(typingPanelStatusWidget, 0, 0);
-  typingPanelLayout->addWidget(typingPanelTypingWidget, 0, 1);
-
-  // Setup typing panel status widget
-  // QGridLayout *typingPanelStatusWidgetLayout = new QGridLayout();
-
-  // Setup typing panel typing widget
-  typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world1")); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
-  typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world2")); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
-  typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world2")); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
-  typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world2")); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
-  typingPanelTypingWidgetLayout->addWidget(new QLabel("hello, world2")); //debug!!
-  typingPanelTypingWidgetLayout->addWidget(new QLineEdit());
-
-
+  typingPanel->setStyleSheet(R"(
+    QLabel
+    {
+      font: 20px;
+    }
+    QLineEdit
+    {
+      font: 20px;
+    }
+  )");
+  typingPanel->setWidget(typingInnerPanel);
+  typingPanel->setWidgetResizable(true);
+  typingInnerPanel->setLayout(typingInnerPanelLayout);
+  typingInnerPanelLayout->setAlignment(Qt::AlignTop);
 
   // Setup translate panel
   translatePanel->setStyleSheet(R"(
@@ -309,7 +301,24 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
   // mainWindow
   QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{switchToPanel(articleTypePanel);});
-  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{switchToPanel(typingPanel);});
+  QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{
+    switchToPanel(typingPanel);
+    for(const std::string &word : {"apple", "banana"})
+    {
+      QLabel *label = new QLabel(QString::fromStdString(word));
+      QLineEdit *lineEdit = new QLineEdit();
+      typingInnerPanelLayout->addWidget(label);
+      typingInnerPanelLayout->addWidget(lineEdit);
+      QObject::connect(lineEdit, &QLineEdit::textChanged, [=, this]{
+        auto lineEdits = typingInnerPanelLayout->findChildren<QLineEdit*>();
+        if(lineEdits.size() > lineEdits.indexOf(lineEdit))
+        {
+          std::cout << lineEdits.indexOf(lineEdit) << "\n";
+          // lineEdits[lineEdits.indexOf(lineEdit)+1]->setFocus();
+        }
+      });
+    }
+  });
   QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchToPanel(testingPanel);});
   QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchToPanel(translatePanel);});
 

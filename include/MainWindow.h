@@ -20,6 +20,7 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <QLabel>
+#include <QLineEdit>
 
 // The application main window
 class MainWindow : public QMainWindow
@@ -92,11 +93,9 @@ private:
   QTextBrowser *articlePanelStatisticsTextBrowser;
 
   // Typing panel
-  QWidget *typingPanel;
-  QGridLayout *typingPanelLayout;
-  // QWidget *typingPanelStatusWidget;
-  QWidget *typingPanelTypingWidget;
-  QVBoxLayout *typingPanelTypingWidgetLayout;
+  QScrollArea *typingPanel;
+  QWidget *typingInnerPanel;
+  QVBoxLayout *typingInnerPanelLayout;
 
   // Testing panel
   QScrollArea *testingPanel;
