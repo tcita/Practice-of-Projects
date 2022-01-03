@@ -306,15 +306,23 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     for(const std::string &word : {"apple", "banana"})
     {
       QLabel *label = new QLabel(QString::fromStdString(word));
-      QLineEdit *lineEdit = new QLineEdit();
+      QLineEdit *lineEdit = new QLineEdit(QString::fromStdString(word));
       typingInnerPanelLayout->addWidget(label);
       typingInnerPanelLayout->addWidget(lineEdit);
       QObject::connect(lineEdit, &QLineEdit::textChanged, [=, this]{
-        auto lineEdits = typingInnerPanelLayout->findChildren<QLineEdit*>();
+        auto lineEdits = typingInnerPanel->findChildren<QLineEdit*>();
+
         if(lineEdits.size() > lineEdits.indexOf(lineEdit))
         {
-          std::cout << lineEdits.indexOf(lineEdit) << "\n";
-          // lineEdits[lineEdits.indexOf(lineEdit)+1]->setFocus();
+          // std::cout << lineEdits.indexOf(lineEdit) << "\n";
+          QLineEdit *lineEdit = lineEdits[lineEdits.indexOf(lineEdit)];
+          QLineEdit *nextLineEdit = lineEdits[lineEdits.indexOf(lineEdit)+1];
+
+          nextLineEdit->setFocus(); //HERE
+        }
+        else
+        {
+          // Last enter
         }
       });
     }
