@@ -303,29 +303,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{switchToPanel(articleTypePanel);});
   QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{
     switchToPanel(typingPanel);
-    for(const std::string &word : {"apple", "banana"})
-    {
-      QLabel *label = new QLabel(QString::fromStdString(word));
-      QLineEdit *lineEdit = new QLineEdit(QString::fromStdString(word));
-      typingInnerPanelLayout->addWidget(label);
-      typingInnerPanelLayout->addWidget(lineEdit);
-      QObject::connect(lineEdit, &QLineEdit::textChanged, [=, this]{
-        auto lineEdits = typingInnerPanel->findChildren<QLineEdit*>();
-
-        if(lineEdits.size() > lineEdits.indexOf(lineEdit))
-        {
-          // std::cout << lineEdits.indexOf(lineEdit) << "\n";
-          QLineEdit *lineEdit = lineEdits[lineEdits.indexOf(lineEdit)];
-          QLineEdit *nextLineEdit = lineEdits[lineEdits.indexOf(lineEdit)+1];
-
-          nextLineEdit->setFocus(); //HERE
-        }
-        else
-        {
-          // Last enter
-        }
-      });
-    }
+    addRandomTypingPanelWords();
   });
   QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchToPanel(testingPanel);});
   QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchToPanel(translatePanel);});
@@ -603,6 +581,43 @@ void MainWindow::switchToPreviousPanel()
   {
     std::cout << "Disable previousPanelAction\n";
     previousPanelAction->setEnabled(false);
+  }
+}
+
+void MainWindow::addRandomTypingPanelWords()
+{
+  addTypingPanelWords({"apple", "banana"});
+}
+
+void MainWindow::addTypingPanelWords(std::vector<std::string> &words)
+{
+  for(const std::string &word : words)
+  {
+    QLabel *label = new QLabel(QString::fromStdString(word));
+    QLineEdit *lineEdit = new QLineEdit(QString::fromStdString(word));
+    typingInnerPanelLayout->addWidget(label);
+    typingInnerPanelLayout->addWidget(lineEdit);
+    QObject::connect(lineEdit, &QLineEdit::returnPressed, [=, this]{
+      auto labels = typingInnerPanel->findChildren<QLabel*>();
+      auto lineEdits = typingInnerPanel->findChildren<QLineEdit*>();
+      if(lineEdits.size() > lineEdits.indexOf(lineEdit)+1)
+      {
+        int lineEditIndex = lineEdits.indexOf(lineEdit);
+        if(labels[lineEditIndex]->text() == lineEdits[lineEditIndex]->text())
+        {
+          // Enter correct word, change to next line
+          lineEdits[lineEditIndex+1]->setFocus();
+        }
+        else
+        {
+          // Entered error word
+        }
+      }
+      else
+      {
+        // Last enter
+      }
+    });
   }
 }
 

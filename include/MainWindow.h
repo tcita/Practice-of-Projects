@@ -149,8 +149,10 @@ private:
   void switchToPanel(QWidget *panel);
   // Switch panel back accroding to the panel history
   void switchToPreviousPanel();
-
-private:
+  //
+  void addRandomTypingPanelWords();
+  //
+  void addTypingPanelWords(std::vector<std::string> words);
   //
   bool addQuestionGroupBox(const Question &question);
   // //
