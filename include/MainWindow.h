@@ -3,8 +3,10 @@
 
 #include "Crawler.h"
 #include "Question.h"
+
 #include <vector>
 #include <stack>
+
 #include <QMainWindow>
 #include <QTranslator>
 #include <QWidget>

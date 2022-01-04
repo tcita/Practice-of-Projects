@@ -4,8 +4,11 @@
 #include "LanguageTypes.h"
 #include "ProjectInfo.h"
 #include "Solution.h"
-#include <iostream> //debug
+
+#include <iostream>
 #include <thread>
+#include <random>
+
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QLineEdit>
@@ -596,6 +599,9 @@ void MainWindow::switchToPreviousPanel()
 
 void MainWindow::addRandomTypingPanelWords()
 {
+  // const std::vector<std::string> &articleTitles = crawler.fetchArticleTitles();
+  // int randomTitleId = ;//HERE
+  // const std::string &article = crawler.fetchArticle(articleTitles[])
   addTypingPanelWords({"apple", "banana", "orange", "juice"});
 }
 
@@ -604,9 +610,10 @@ void MainWindow::addTypingPanelWords(const std::vector<std::string> &words)
   for(const std::string &word : words)
   {
     QLabel *label = new QLabel(QString::fromStdString(word));
-    QLineEdit *lineEdit = new QLineEdit(QString::fromStdString(word));
+    QLineEdit *lineEdit = new QLineEdit();
     typingInnerPanelLayout->addWidget(label);
     typingInnerPanelLayout->addWidget(lineEdit);
+
     QObject::connect(lineEdit, &QLineEdit::returnPressed, [=, this]{
       auto labels = typingInnerPanel->findChildren<QLabel*>();
       auto lineEdits = typingInnerPanel->findChildren<QLineEdit*>();
@@ -618,14 +625,12 @@ void MainWindow::addTypingPanelWords(const std::vector<std::string> &words)
           // Enter correct word, change to next line
           lineEdits[lineEditIndex+1]->setFocus();
         }
-        else
-        {
-          // Entered error word
-        }
       }
       else
       {
         // Last enter
+        // std::cout << "last enter";
+        switchToPanel(mainPanel);
       }
     });
   }
