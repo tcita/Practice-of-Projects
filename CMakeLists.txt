@@ -105,6 +105,7 @@ target_sources(
   PRIVATE ${CMAKE_SOURCE_DIR}/src/OnlineTranslator.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Solution.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Question.cpp
+  PRIVATE ${CMAKE_SOURCE_DIR}/src/Strings.cpp
 )
 
 #

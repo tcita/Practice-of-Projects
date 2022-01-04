@@ -1,5 +1,6 @@
 #include "Crawler.h"
 #include "Solution.h"
+#include "Strings.h"
 
 #include <iostream>
 #include <cstdio>
@@ -49,7 +50,7 @@ std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleT
   env->CallVoidMethod(javaCrawler, methodID_1, toJString(articleTypeWithSlash));
   env->CallVoidMethod(javaCrawler, methodID_2, toJString(articleTypeWithSlash));
 
-  std::vector<std::string> articleTitles = Solution::splitString(Solution::readFile(ARTICLE_TITLE_FILE_PATH), '\n');
+  std::vector<std::string> articleTitles = Strings::splitString(Solution::readFile(ARTICLE_TITLE_FILE_PATH), '\n');
 
   return articleTitles;
 }

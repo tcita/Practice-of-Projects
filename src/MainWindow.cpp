@@ -4,6 +4,7 @@
 #include "LanguageTypes.h"
 #include "ProjectInfo.h"
 #include "Solution.h"
+#include "Strings.h"
 
 #include <iostream>
 #include <thread>
@@ -42,7 +43,21 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   helpMenu = new QMenu(mainMenuBar);
   aboutAction = new QAction(helpMenu);
 
-  // About dialog
+  // Translate window
+  translateWindow = new QWidget();
+  translateWindowLayout = new QGridLayout(translateWindow);
+  translateWindowSrcGroupBox = new QGroupBox();
+  translateWindowSrcGroupBoxLayout = new QVBoxLayout(translateWindowSrcGroupBox);
+  translateWindowSrcTextEdit = new QTextEdit();
+  translateWindowMidWidget = new QWidget();
+  translateWindowMidWidgetLayout = new QVBoxLayout(translateWindowMidWidget);
+  translateWindowToDestButton = new QPushButton(">>");
+  translateWindowToSrcButton = new QPushButton("<<");
+  translateWindowDestGroupBox = new QGroupBox();
+  translateWindowDestGroupBoxLayout = new QVBoxLayout(translateWindowDestGroupBox);
+  translateWindowDestTextEdit = new QTextEdit();
+
+  // About window
   aboutWindow = new QWidget();
   aboutWindowLayout = new QVBoxLayout(aboutWindow);
   aboutWindowInfoLabel1 = new QLabel(aboutWindow);
@@ -163,7 +178,24 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   mainMenuBar->addMenu(helpMenu);
   helpMenu->addAction(aboutAction);
 
-  // Setup about dialogl
+  // Setup translate window
+  translateWindow->setStyleSheet(R"(
+    QPushButton
+    {
+      font: 15px;
+    }
+  )");
+  translateWindow->setWindowIcon(this->windowIcon());
+  translateWindow->resize(800, 600);
+  translateWindowLayout->addWidget(translateWindowSrcGroupBox, 0, 0);
+  translateWindowSrcGroupBoxLayout->addWidget(translateWindowSrcTextEdit);
+  translateWindowLayout->addWidget(translateWindowMidWidget, 0, 1);
+  translateWindowMidWidgetLayout->addWidget(translateWindowToDestButton);
+  translateWindowMidWidgetLayout->addWidget(translateWindowToSrcButton);
+  translateWindowLayout->addWidget(translateWindowDestGroupBox, 0, 2);
+  translateWindowDestGroupBoxLayout->addWidget(translateWindowDestTextEdit);
+
+  // Setup about window
   aboutWindow->setWindowIcon(this->windowIcon());
   aboutWindow->resize(300, 150);
   aboutWindow->setLayout(aboutWindowLayout);
@@ -299,6 +331,10 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   QObject::connect(translatePanelAction, &QAction::triggered, [this]{switchToPanel(translatePanel);});
   QObject::connect(aboutAction, &QAction::triggered, [this]{this->popUpAboutWindow();});
 
+  // translateWindow
+  QObject::connect(translateWindowToSrcButton, &QPushButton::clicked, [this]{translateWindowTranslateToSrc();});
+  QObject::connect(translateWindowToDestButton, &QPushButton::clicked, [this]{translateWindowTranslateToDest();});
+
   // aboutWindow
   QObject::connect(aboutWindowOkButton, &QPushButton::clicked, [this]{this->aboutWindow->hide();});
 
@@ -431,6 +467,14 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   QObject::connect(translatePanelToSrcButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToSrc();});
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+  if(event->text() == "T")
+  {
+    translateWindow->show();
+  }
+}
+
 void MainWindow::retranslate()
 {
   // Main window
@@ -451,7 +495,11 @@ void MainWindow::retranslate()
   helpMenu->setTitle(QMenu::tr("Help"));
   aboutAction->setText(QMenu::tr("About"));
 
-  // About dialog
+  // Translate window
+  translateWindowSrcGroupBox->setTitle(QTextEdit::tr("Source language"));
+  translateWindowDestGroupBox->setTitle(QTextEdit::tr("Dest language"));
+
+  // About window
   aboutWindow->setWindowTitle(QDialog::tr("English Assistant"));
   aboutWindowInfoLabel1->setText(QDialog::tr("English Assistant") + " " + ProjectInfo::VERSION);
   aboutWindowInfoLabel2->setText(QDialog::tr("English translate & learning program"));
@@ -531,12 +579,32 @@ void MainWindow::setArticle(const std::string &article)
   articlePanelTranslateTextBrowser->setText("");
 
   std::string wordFrequencyString;
-  auto bannedWords = Solution::splitString(Solution::readFile("./config/bannedWords.txt"), '\n');
+  auto bannedWords = Strings::splitString(Solution::readFile("./config/bannedWords.txt"), '\n');
   for(const auto &wordFrequency : Solution::wordFrequency(article, bannedWords))
   {
     wordFrequencyString += wordFrequency.first + ": " + std::to_string(wordFrequency.second) + "\n";
   }
   articlePanelStatisticsTextBrowser->setText(QString::fromStdString(wordFrequencyString));
+}
+
+void MainWindow::translateWindowTranslateToDest()
+{
+  std::cout << "MainWindow::translateWindowTranslateToDest()\n";
+  const std::string &input = translateWindowSrcTextEdit->toPlainText().toStdString();
+  const std::string &destLanguageType = translator->language().toStdString();
+  const std::string &srcLanguageType = LanguageTypes::en_US;
+  const std::string &reply = OnlineTranslator::translate(input, destLanguageType, srcLanguageType);
+  translateWindowDestTextEdit->setText(QString::fromStdString(reply));
+}
+
+void MainWindow::translateWindowTranslateToSrc()
+{
+  std::cout << "MainWindow::translateWindowTranslateToSrc()\n";
+  const std::string &input = translateWindowDestTextEdit->toPlainText().toStdString();
+  const std::string &srcLanguageType = translator->language().toStdString();
+  const std::string &destLanguageType = LanguageTypes::en_US;
+  const std::string &reply = OnlineTranslator::translate(input, destLanguageType, srcLanguageType);
+  translateWindowSrcTextEdit->setText(QString::fromStdString(reply));
 }
 
 void MainWindow::translatePanelTranslateToDest()
@@ -599,10 +667,23 @@ void MainWindow::switchToPreviousPanel()
 
 void MainWindow::addRandomTypingPanelWords()
 {
-  // const std::vector<std::string> &articleTitles = crawler.fetchArticleTitles();
-  // int randomTitleId = ;//HERE
-  // const std::string &article = crawler.fetchArticle(articleTitles[])
-  addTypingPanelWords({"apple", "banana", "orange", "juice"});
+  const std::vector<std::string> &articleTitles = crawler->fetchArticleTitles("africa");
+
+  // Get random title index
+  // From: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/
+  std::random_device randomDevice;
+  std::mt19937 seedGenerator(randomDevice());
+  std::uniform_int_distribution<int> distribute(0, articleTitles.size());
+  int randomTitleIndex = distribute(seedGenerator);
+
+  const std::string &article = crawler->fetchArticle(articleTitles[randomTitleIndex]);
+  const std::vector<std::string> &bannedWords = Strings::splitString(Solution::readFile("./config/bannedWords.txt"), '\n');
+  std::vector<std::string> typingPanelWords;
+  for(const auto &wordFrequency : Solution::wordFrequency(article, bannedWords))
+  {
+    typingPanelWords.push_back(wordFrequency.first);
+  }
+  addTypingPanelWords(typingPanelWords);
 }
 
 void MainWindow::addTypingPanelWords(const std::vector<std::string> &words)
@@ -611,6 +692,7 @@ void MainWindow::addTypingPanelWords(const std::vector<std::string> &words)
   {
     QLabel *label = new QLabel(QString::fromStdString(word));
     QLineEdit *lineEdit = new QLineEdit();
+
     typingInnerPanelLayout->addWidget(label);
     typingInnerPanelLayout->addWidget(lineEdit);
 
@@ -623,6 +705,14 @@ void MainWindow::addTypingPanelWords(const std::vector<std::string> &words)
         if(labels[lineEditIndex]->text() == lineEdits[lineEditIndex]->text())
         {
           // Enter correct word, change to next line
+          // const QPoint point = lineEdits[lineEditIndex+1]->mapTo(testingInnerPanel, QPoint(0,0));
+          // std::cout << point.x() << ", " << point.y() << "\n";
+          // testingPanel->ensureWidgetVisible(lineEdits[lineEditIndex+1]);
+
+          // Ensure widget visible
+          // From: https://stackoverflow.com/questions/52450219/qscrollarea-ensurewidgetvisible-method-does-not-show-target-widget
+          // testingPanel->ensureWidgetVisible(lineEdits[lineEditIndex+1]);
+
           lineEdits[lineEditIndex+1]->setFocus();
         }
       }

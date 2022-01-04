@@ -23,6 +23,7 @@
 #include <QMessageBox>
 #include <QLabel>
 #include <QLineEdit>
+#include <QKeyEvent>
 
 // The application main window
 class MainWindow : public QMainWindow
@@ -50,6 +51,20 @@ private:
   QAction *translatePanelAction;
   QMenu *helpMenu;
   QAction *aboutAction;
+
+  // Translate window
+  QWidget *translateWindow;
+  QGridLayout *translateWindowLayout;
+  QGroupBox *translateWindowSrcGroupBox;
+  QVBoxLayout *translateWindowSrcGroupBoxLayout;
+  QTextEdit *translateWindowSrcTextEdit;
+  QWidget *translateWindowMidWidget;
+  QVBoxLayout *translateWindowMidWidgetLayout;
+  QPushButton *translateWindowToDestButton;
+  QPushButton *translateWindowToSrcButton;
+  QGroupBox *translateWindowDestGroupBox;
+  QVBoxLayout *translateWindowDestGroupBoxLayout;
+  QTextEdit *translateWindowDestTextEdit;
 
   // About window
   QWidget *aboutWindow;
@@ -132,6 +147,9 @@ private:
 public:
   MainWindow(QTranslator *translator, Crawler *crawler);
 
+protected:
+  virtual void keyPressEvent(QKeyEvent *event) override;
+
 private:
   // Translate all widgets
   void retranslate();
@@ -145,6 +163,10 @@ private:
   void translatePanelTranslateToDest();
   // Translate panel translate to source text edit
   void translatePanelTranslateToSrc();
+  // Translate window translate to destination text edit
+  void translateWindowTranslateToDest();
+  // Translate window translate to source text edit
+  void translateWindowTranslateToSrc();
   // Pop up the about window
   void popUpAboutWindow();
   // Switch central widget to given widget
