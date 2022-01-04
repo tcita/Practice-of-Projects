@@ -44,6 +44,8 @@ private:
   QAction *enUsAction;
   QAction *zhCnAction;
   QAction *zhTwAction;
+  QMenu *panelMenu;
+  QAction *translateWindowAction;
   QMenu *switchToMenu;
   QAction *mainPanelAction;
   QAction *articleTypePanelAction;

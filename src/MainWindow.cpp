@@ -35,7 +35,9 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   enUsAction = new QAction(languageMenu);
   zhCnAction = new QAction(languageMenu);
   zhTwAction = new QAction(languageMenu);
-  switchToMenu = new QMenu(mainMenuBar);
+  panelMenu = new QMenu(mainMenuBar);
+  translateWindowAction = new QAction(panelMenu);
+  switchToMenu = new QMenu(panelMenu);
   mainPanelAction = new QAction(switchToMenu);
   articleTypePanelAction = new QAction(switchToMenu);
   typingPanelAction = new QAction(switchToMenu);
@@ -170,7 +172,9 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   languageMenu->addAction(enUsAction);
   languageMenu->addAction(zhCnAction);
   languageMenu->addAction(zhTwAction);
-  mainMenuBar->addMenu(switchToMenu);
+  mainMenuBar->addMenu(panelMenu);
+  panelMenu->addAction(translateWindowAction);
+  panelMenu->addMenu(switchToMenu);
   switchToMenu->addAction(mainPanelAction);
   switchToMenu->addAction(articleTypePanelAction);
   switchToMenu->addAction(typingPanelAction);
@@ -283,7 +287,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingResultInnerPanel->setLayout(testingResultInnerPanelLayout);
   testingInnerPanelLayout->setAlignment(Qt::AlignTop);
 
-  testingResultInnerPanelLayout->addWidget(testingResultTitleLabel);
+  testingResultInnerPanelLayout->addWidget(testingResultTitleLabel); //HERE
   testingResultInnerPanelLayout->addWidget(new QPushButton());
   testingResultInnerPanelLayout->addWidget(new QTextBrowser());
 
@@ -318,14 +322,13 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   translatePanelLayout->addWidget(translatePanelDestGroupBox, 0, 2);
   translatePanelDestGroupBoxLayout->addWidget(translatePanelDestTextEdit);
 
-
-
   // Menu
   QObject::connect(previousPanelAction, &QAction::triggered, [this]{this->switchToPreviousPanel();});
   QObject::connect(enUsAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::en_US);});
   QObject::connect(zhCnAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::zh_CN);});
   QObject::connect(zhTwAction, &QAction::triggered, [this]{this->setLanguage(LanguageTypes::zh_TW);});
   QObject::connect(mainPanelAction, &QAction::triggered, [this]{switchToPanel(mainPanel);});
+  QObject::connect(translateWindowAction, &QAction::triggered, [this]{translateWindow->show();});
   QObject::connect(articleTypePanelAction, &QAction::triggered, [this]{switchToPanel(articleTypePanel);});
   QObject::connect(typingPanelAction, &QAction::triggered, [this]{switchToPanel(typingPanel);});
   QObject::connect(translatePanelAction, &QAction::triggered, [this]{switchToPanel(translatePanel);});
@@ -458,7 +461,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
       }
     }
 
-
+    //HERE
     std::cout << "finalScore: " << finalScore << "\n";
   });
 
@@ -487,6 +490,8 @@ void MainWindow::retranslate()
   enUsAction->setText(QAction::tr("English(US)"));
   zhCnAction->setText(QAction::tr("Chinese(China)"));
   zhTwAction->setText(QAction::tr("Chinese(Taiwan)"));
+  panelMenu->setTitle(QMenu::tr("Panel"));
+  translateWindowAction->setText(QAction::tr("Translate window"));
   switchToMenu->setTitle(QMenu::tr("Switch To"));
   mainPanelAction->setText(QAction::tr("Main Panel"));
   articleTypePanelAction->setText(QAction::tr("Article Type Select Panel"));
@@ -699,10 +704,10 @@ void MainWindow::addTypingPanelWords(const std::vector<std::string> &words)
     QObject::connect(lineEdit, &QLineEdit::returnPressed, [=, this]{
       auto labels = typingInnerPanel->findChildren<QLabel*>();
       auto lineEdits = typingInnerPanel->findChildren<QLineEdit*>();
-      if(lineEdits.size() > lineEdits.indexOf(lineEdit)+1)
+      int lineEditIndex = lineEdits.indexOf(lineEdit);
+      if(labels[lineEditIndex]->text() == lineEdits[lineEditIndex]->text())
       {
-        int lineEditIndex = lineEdits.indexOf(lineEdit);
-        if(labels[lineEditIndex]->text() == lineEdits[lineEditIndex]->text())
+        if(lineEdits.size() > lineEdits.indexOf(lineEdit)+1)
         {
           // Enter correct word, change to next line
           // const QPoint point = lineEdits[lineEditIndex+1]->mapTo(testingInnerPanel, QPoint(0,0));
@@ -715,12 +720,10 @@ void MainWindow::addTypingPanelWords(const std::vector<std::string> &words)
 
           lineEdits[lineEditIndex+1]->setFocus();
         }
-      }
-      else
-      {
-        // Last enter
-        // std::cout << "last enter";
-        switchToPanel(mainPanel);
+        else
+        {
+          switchToPanel(mainPanel);
+        }
       }
     });
   }
