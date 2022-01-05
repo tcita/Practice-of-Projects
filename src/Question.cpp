@@ -28,7 +28,7 @@ bool Question::isValid() const
 
 bool Question::isSingleChoiceQuestion() const
 {
-  if(!isValidQuestion())
+  if(!isValid())
   {
     return false;
   }
@@ -43,7 +43,7 @@ bool Question::isSingleChoiceQuestion() const
 
 bool Question::isMultipleChoiceQuestion() const
 {
-  if(!isValidQuestion())
+  if(!isValid())
   {
     return false;
   }
