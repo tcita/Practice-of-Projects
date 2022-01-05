@@ -24,7 +24,6 @@ std::vector<Question> Questions::makeQuestions(const std::string &article)
 
   std::vector<std::string> candidateQuestions = Strings::splitString(noReturnArticle, '.');
 
-
   // Get distribute
   // From: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/
   std::random_device randomDevice;
@@ -36,10 +35,17 @@ std::vector<Question> Questions::makeQuestions(const std::string &article)
   {
     for(const std::pair<std::string, int>  &wordFrequency : wordFrequencies)
     {
-      if(candidateQuestion.find(wordFrequency.first))
+      std::size_t wordIndex = candidateQuestion.find(wordFrequency.first);
+      if(wordIndex != std::string::npos)
       {
+        std::cout << wordIndex << "\n"; //debug
+
+        std::string modifiedQuestion = candidateQuestion;
+        modifiedQuestion.erase(wordIndex, wordFrequency.first.size());
+        modifiedQuestion.insert(wordIndex, "_____");
+
         Question question;
-        question.question = candidateQuestion;
+        question.question = modifiedQuestion;
         int answerIndex = answerDistribute(seedGenerator);
         question.answerIndexes.insert(answerIndex);
 
@@ -54,7 +60,7 @@ std::vector<Question> Questions::makeQuestions(const std::string &article)
           {
             // put in fake answer
             std::string fakeAnswer = wordFrequencies[wordFrequenciesDistribute(seedGenerator)].first;
-            while(fakeAnswer != wordFrequency.first)
+            while(fakeAnswer == wordFrequency.first)
             {
               fakeAnswer = wordFrequencies[wordFrequenciesDistribute(seedGenerator)].first;
             }

@@ -382,17 +382,21 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     }
 
     std::vector<Question> questions;
-    //HERE
-    // Questions::makeQuestions(crawler->fetchRandomArticle()); //debug!!
 
-    questions.push_back(Question("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}, {1}));
-    questions.push_back(Question("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}, {0}));
-    questions.push_back(Question("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}, {1}));
-    questions.push_back(Question("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}, {1}));
-    questions.push_back(Question("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}, {0}));
-    questions.push_back(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
-    questions.push_back(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
-    questions.push_back(Question("Time flies like an arrow; fruit flies like a _____", {"banana", "orange", "stone", "apple"}, {0, 1, 3}));
+    // questions = Questions::makeQuestions(crawler->fetchRandomArticle());
+    for(auto &question : Questions::makeQuestions(crawler->fetchRandomArticle()))
+    {
+      questions.push_back(question);
+    }
+
+    // questions.push_back(Question("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}, {1}));
+    // questions.push_back(Question("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}, {0}));
+    // questions.push_back(Question("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}, {1}));
+    // questions.push_back(Question("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}, {1}));
+    // questions.push_back(Question("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}, {0}));
+    // questions.push_back(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
+    // questions.push_back(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
+    // questions.push_back(Question("Time flies like an arrow; fruit flies like a _____", {"banana", "orange", "stone", "apple"}, {0, 1, 3}));
 
     for(const Question &question : questions)
     {
@@ -599,7 +603,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
               if(question.answerIndexes.contains(candidateAnswerIndex))
               {
                 // std::cout << candidateAnswerIndex  << "\n"; //debug!!
-                std::cout << button->text().toStdString() << "\n"; //debug!!
+                // std::cout << button->text().toStdString() << "\n"; //debug!!
                 button->setChecked(true);
                 // button->setCheckState(Qt::Checked);
               }
@@ -625,8 +629,9 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     testingPanelQuestions.clear();
     // Switch to main panel
     this->switchToPanel(mainPanel);
-    // Scroll to top
+    // Scroll to top left
     testingResultPanel->verticalScrollBar()->setValue(0);
+    testingResultPanel->horizontalScrollBar()->setValue(0);
   });
 
   // translatePanel
@@ -703,7 +708,7 @@ void MainWindow::retranslate()
 
 void MainWindow::setLanguage(const std::string &languageType)
 {
-  std::cout << "Current language is: " << translator->language().toStdString() << "\n"; //debug
+  // std::cout << "Current language is: " << translator->language().toStdString() << "\n"; //debug
 
   // Check if it is different with current language
   if(translator->language().toStdString() == languageType)
