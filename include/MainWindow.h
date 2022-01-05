@@ -130,6 +130,7 @@ private:
   QLabel *testingResultScoreTitleLabel;
   QLabel *testingResultScoreLabel;
   QLabel *testingResultReviewLabel;
+  QPushButton *testingResultOkButton;
   int testingResultScore;
   std::vector<std::set<int>> choosedAnswersIndexes;
 

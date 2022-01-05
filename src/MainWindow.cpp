@@ -123,6 +123,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingResultScoreTitleLabel = new QLabel();
   testingResultReviewLabel = new QLabel();
   testingResultScoreLabel = new QLabel();
+  testingResultOkButton = new QPushButton();
 
   // Translate panel
   translatePanel = new QWidget();
@@ -283,6 +284,10 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     {
       font: 20px;
     }
+    QPushButton
+    {
+      font: 12px;
+    }
   )");
   testingResultPanel->setWidget(testingResultInnerPanel);
   testingResultPanel->setWidgetResizable(true);
@@ -435,7 +440,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
         int questionAnswerIndex = (*testingPanelQuestions[groupBoxIndex].answerIndexes.begin());
         if(groupBoxButtons[questionAnswerIndex]->isChecked())
         {
-          std::cout << "questionAnswerIndex: " << questionAnswerIndex << "\n"; //debug!!
+          // std::cout << "questionAnswerIndex: " << questionAnswerIndex << "\n"; //debug!!
           choosedAnswersIndexes[groupBoxIndex].insert(questionAnswerIndex); // Record choosed answer, single choice question
           finalScore += scorePerQuestion;
         }
@@ -481,6 +486,8 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     {
       delete questionGroupBox;
     }
+    testingResultInnerPanelLayout->removeWidget(testingResultOkButton); //HERE
+    // QPushButton* okButton = testingResultInnerPanel->findChildren<QPushButton*>();
 
     //debug!!
     // for(auto choosedAnswerIndexes : choosedAnswersIndexes)
@@ -573,11 +580,16 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
         testingResultInnerPanelLayout->addWidget(questionGroupBox);
       }
     }
+    // Add back the ok button in the end
+    testingResultInnerPanelLayout->addWidget(testingResultOkButton);
 
     std::cout << "finalScore: " << finalScore << "\n";
     // testingResultScoreLabel->setText(QString::fromStdString(std::to_string(finalScore)));
     testingResultScoreLabel->setText(QString::number(finalScore));
   });
+
+  // testingResultPanel
+  QObject::connect(testingResultOkButton, &QPushButton::clicked, [this]{this->switchToPanel(mainPanel);});
 
   // translatePanel
   QObject::connect(translatePanelToDestButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToDest();});
@@ -644,6 +656,7 @@ void MainWindow::retranslate()
   // Testing result panel
   testingResultScoreTitleLabel->setText(QLabel::tr("Score: "));
   testingResultReviewLabel->setText(QLabel::tr("Error review: "));
+  testingResultOkButton->setText(QLabel::tr("OK"));
 
   // Translate panel
   translatePanelSrcGroupBox->setTitle(QTextEdit::tr("Source language"));
