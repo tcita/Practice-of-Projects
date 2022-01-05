@@ -733,7 +733,7 @@ void MainWindow::addTypingPanelWords(const std::vector<std::string> &words)
 
 bool MainWindow::addQuestionGroupBox(const Question &question)
 {
-  if(!question.isValidQuestion())
+  if(!question.isValid())
   {
     std::cerr << "Error on MainWindow::addQuestionGroupBox(const Question &question), not a valid question.";
     return false;
@@ -773,6 +773,49 @@ bool MainWindow::addQuestionGroupBox(const Question &question)
   testingInnerPanelLayout->addWidget(questionGroupBox);
   return true;
 }
+
+// bool MainWindow::addTestingResultGroupBox(const TestingResult &testingResult)
+// { //HERE
+//   if(!question.isValid())
+//   {
+//     std::cerr << "Error on MainWindow::addTestingResultGroupBox(const TestingResult &testingResult), not a valid testingResult.";
+//     return false;
+//   }
+//
+//   testingPanelQuestions.push_back(question);
+//
+//   QGroupBox *questionGroupBox = new QGroupBox();
+//   QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
+//   if(question.isSingleChoiceQuestion())
+//   {
+//       // Add question
+//       questionGroupBox->setTitle(QString::fromStdString(question.question));
+//
+//       // Add candidate answer
+//       for(auto &candidateAnswer : question.candidateAnswers)
+//       {
+//         QRadioButton *button = new QRadioButton(questionGroupBox);
+//         button->setText(QString::fromStdString(candidateAnswer));
+//         questionGroupBoxLayout->addWidget(button);
+//       }
+//   }
+//   else if(question.isMultipleChoiceQuestion())
+//   {
+//       // Add question
+//       questionGroupBox->setTitle(QString::fromStdString(question.question));
+//
+//       // Add candidate answer
+//       for(auto &candidateAnswer : question.candidateAnswers)
+//       {
+//         QCheckBox *button = new QCheckBox(questionGroupBox);
+//         button->setText(QString::fromStdString(candidateAnswer));
+//         questionGroupBoxLayout->addWidget(button);
+//       }
+//   }
+//
+//   testingInnerPanelLayout->addWidget(questionGroupBox);
+//   return true;
+// }
 
 // QGroupBox* MainWindow::createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers)
 // {

@@ -16,7 +16,7 @@ Question::Question(std::string &&question, std::vector<std::string> &&candidateA
 
 }
 
-bool Question::isValidQuestion() const
+bool Question::isValid() const
 {
   if((question.size() > 0) && (candidateAnswers.size() > 0) && (answerIndexes.size() > 0))
   {
