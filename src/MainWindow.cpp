@@ -19,6 +19,7 @@
 #include <QRadioButton>
 #include <QCheckBox>
 #include <QTextDocumentFragment>
+#include <QScrollBar>
 
 MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   :translator(translator)
@@ -268,14 +269,14 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingInnerPanel->setLayout(testingInnerPanelLayout);
   testingInnerPanelLayout->setAlignment(Qt::AlignTop);
 
-  addQuestionGroupBox(Question("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}, {1}));
-  addQuestionGroupBox(Question("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}, {0}));
-  addQuestionGroupBox(Question("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}, {1}));
-  addQuestionGroupBox(Question("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}, {1}));
-  addQuestionGroupBox(Question("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}, {0}));
-  addQuestionGroupBox(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
-  addQuestionGroupBox(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
-  addQuestionGroupBox(Question("Time flies like an arrow; fruit flies like a _____", {"banana", "orange", "stone", "apple"}, {0, 1, 3}));
+  // addQuestionGroupBox(Question("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}, {1}));
+  // addQuestionGroupBox(Question("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}, {0}));
+  // addQuestionGroupBox(Question("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}, {1}));
+  // addQuestionGroupBox(Question("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}, {1}));
+  // addQuestionGroupBox(Question("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}, {0}));
+  // addQuestionGroupBox(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
+  // addQuestionGroupBox(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
+  // addQuestionGroupBox(Question("Time flies like an arrow; fruit flies like a _____", {"banana", "orange", "stone", "apple"}, {0, 1, 3}));
   testingInnerPanelLayout->addWidget(testingInnerPanelSubmitButton);
 
   // Setup testing result panel
@@ -370,7 +371,34 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
     typingInnerPanel->findChildren<QLineEdit*>()[0]->setFocus();
   });
-  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{switchToPanel(testingPanel);});
+  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{
+    testingInnerPanelLayout->removeWidget(testingInnerPanelSubmitButton);
+
+    for(QGroupBox *questionGroupBox : testingInnerPanel->findChildren<QGroupBox*>())
+    {
+      delete questionGroupBox;
+    }
+
+    std::vector<Question> questions;
+
+    questions.push_back(Question("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}, {1}));
+    questions.push_back(Question("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}, {0}));
+    questions.push_back(Question("Time flies like _____ arrow; fruit flies like a banana", {"a", "an"}, {1}));
+    questions.push_back(Question("Time flies like an arrow; fruit _____ like a banana", {"fly", "flies"}, {1}));
+    questions.push_back(Question("Time flies like an arrow; fruit flies _____ a banana", {"like", "likes"}, {0}));
+    questions.push_back(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
+    questions.push_back(Question("Time flies like an arrow; fruit flies like _____ banana", {"a", "an", "am"}, {0}));
+    questions.push_back(Question("Time flies like an arrow; fruit flies like a _____", {"banana", "orange", "stone", "apple"}, {0, 1, 3}));
+
+    for(const Question &question : questions)
+    {
+      addQuestionGroupBox(question);
+    }
+
+    testingInnerPanelLayout->addWidget(testingInnerPanelSubmitButton);
+
+    switchToPanel(testingPanel);
+  });
   QObject::connect(translatePanelButton, &QPushButton::clicked, [this]{switchToPanel(translatePanel);});
 
   // articleTypeSelectPanel
@@ -481,12 +509,11 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     }
 
     // Clear testing result panel
-    QList<QGroupBox*> questionGroupBoxes = testingResultInnerPanel->findChildren<QGroupBox*>();
-    for(QGroupBox *questionGroupBox : questionGroupBoxes)
+    testingResultInnerPanelLayout->removeWidget(testingResultOkButton); //HERE
+    for(QGroupBox *questionGroupBox : testingResultInnerPanel->findChildren<QGroupBox*>())
     {
       delete questionGroupBox;
     }
-    testingResultInnerPanelLayout->removeWidget(testingResultOkButton); //HERE
     // QPushButton* okButton = testingResultInnerPanel->findChildren<QPushButton*>();
 
     //debug!!
@@ -589,7 +616,14 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   });
 
   // testingResultPanel
-  QObject::connect(testingResultOkButton, &QPushButton::clicked, [this]{this->switchToPanel(mainPanel);});
+  QObject::connect(testingResultOkButton, &QPushButton::clicked, [this]{
+    // Clear questions
+    testingPanelQuestions.clear();
+    // Switch to main panel
+    this->switchToPanel(mainPanel);
+    // Scroll to top
+    testingResultPanel->verticalScrollBar()->setValue(0);
+  });
 
   // translatePanel
   QObject::connect(translatePanelToDestButton, &QPushButton::clicked, [this]{this->translatePanelTranslateToDest();});
