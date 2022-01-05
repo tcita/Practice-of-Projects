@@ -106,6 +106,8 @@ target_sources(
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Solution.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Question.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Strings.cpp
+  PRIVATE ${CMAKE_SOURCE_DIR}/src/Questions.cpp
+  PRIVATE ${CMAKE_SOURCE_DIR}/src/Config.cpp
 )
 
 #

@@ -26,7 +26,7 @@ public:
   // void clear();
   std::vector<std::string> fetchArticleTitles(const std::string &articleType);
   std::string fetchArticle(const std::string &articleTitle);
-  std::string getArticle(const std::string &articleType="");
+  std::string fetchRandomArticle();
 
 private:
   jstring toJString(const std::string &string);

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdio>
 #include <memory>
+#include <random>
 
 Crawler::Crawler()
 {
@@ -63,6 +64,21 @@ std::string Crawler::fetchArticle(const std::string &articleTitle)
 
   std::string article = Solution::readFile(ARTICLE_FILE_PATH);
   return article;
+}
+
+std::string Crawler::fetchRandomArticle()
+{
+  const std::vector<std::string> &articleTitles = fetchArticleTitles("africa");
+
+  // Get distribute
+  // From: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/
+  std::random_device randomDevice;
+  std::mt19937 seedGenerator(randomDevice());
+  std::uniform_int_distribution<int> distribute(0, articleTitles.size());
+  int randomTitleIndex = distribute(seedGenerator);
+  const std::string& randomArticle = fetchArticle(articleTitles[randomTitleIndex]);
+
+  return randomArticle;
 }
 
 jstring Crawler::toJString(const std::string &string)

@@ -5,6 +5,8 @@
 #include "ProjectInfo.h"
 #include "Solution.h"
 #include "Strings.h"
+#include "Config.h"
+#include "Questions.h"
 
 #include <iostream>
 #include <thread>
@@ -371,7 +373,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
     typingInnerPanel->findChildren<QLineEdit*>()[0]->setFocus();
   });
-  QObject::connect(testingPanelButton, &QPushButton::clicked, [this]{
+  QObject::connect(testingPanelButton, &QPushButton::clicked, [this, crawler]{
     testingInnerPanelLayout->removeWidget(testingInnerPanelSubmitButton);
 
     for(QGroupBox *questionGroupBox : testingInnerPanel->findChildren<QGroupBox*>())
@@ -380,6 +382,8 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     }
 
     std::vector<Question> questions;
+    //HERE
+    // Questions::makeQuestions(crawler->fetchRandomArticle()); //debug!!
 
     questions.push_back(Question("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}, {1}));
     questions.push_back(Question("Time flies _____ an arrow; fruit flies like a banana", {"like", "likes"}, {0}));
@@ -509,7 +513,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     }
 
     // Clear testing result panel
-    testingResultInnerPanelLayout->removeWidget(testingResultOkButton); //HERE
+    testingResultInnerPanelLayout->removeWidget(testingResultOkButton);
     for(QGroupBox *questionGroupBox : testingResultInnerPanel->findChildren<QGroupBox*>())
     {
       delete questionGroupBox;
@@ -746,7 +750,7 @@ void MainWindow::setArticle(const std::string &article)
   articlePanelTranslateTextBrowser->setText("");
 
   std::string wordFrequencyString;
-  auto bannedWords = Strings::splitString(Solution::readFile("./config/bannedWords.txt"), '\n');
+  auto bannedWords = Config::getBannedWords();
   for(const auto &wordFrequency : Solution::wordFrequency(article, bannedWords))
   {
     wordFrequencyString += wordFrequency.first + ": " + std::to_string(wordFrequency.second) + "\n";
@@ -834,17 +838,8 @@ void MainWindow::switchToPreviousPanel()
 
 void MainWindow::addRandomTypingPanelWords()
 {
-  const std::vector<std::string> &articleTitles = crawler->fetchArticleTitles("africa");
-
-  // Get random title index
-  // From: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/
-  std::random_device randomDevice;
-  std::mt19937 seedGenerator(randomDevice());
-  std::uniform_int_distribution<int> distribute(0, articleTitles.size());
-  int randomTitleIndex = distribute(seedGenerator);
-
-  const std::string &article = crawler->fetchArticle(articleTitles[randomTitleIndex]);
-  const std::vector<std::string> &bannedWords = Strings::splitString(Solution::readFile("./config/bannedWords.txt"), '\n');
+  const std::string &article = crawler->fetchRandomArticle();
+  const std::vector<std::string> &bannedWords = Config::getBannedWords();
   std::vector<std::string> typingPanelWords;
   for(const auto &wordFrequency : Solution::wordFrequency(article, bannedWords))
   {
