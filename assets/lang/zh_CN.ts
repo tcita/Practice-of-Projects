@@ -26,7 +26,7 @@
     <message>
         <location filename="../../src/MainWindow.cpp" line="494"/>
         <source>Translate window</source>
-        <translation type="unfinished"></translation>
+        <translation>翻译窗口</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="496"/>
@@ -73,7 +73,7 @@
     <message>
         <location filename="../../src/MainWindow.cpp" line="531"/>
         <source>Testing Result:</source>
-        <translation type="unfinished">测验结果:</translation>
+        <translation>测验结果:</translation>
     </message>
 </context>
 <context>
@@ -99,7 +99,7 @@
     <message>
         <location filename="../../src/MainWindow.cpp" line="493"/>
         <source>Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>页面</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="495"/>

@@ -6,6 +6,7 @@
 
 #include <jni.h>
 
+// Use jni to call java crawler
 class Crawler {
 public:
   static constexpr const char *ARTICLE_TITLE_FILE_PATH = "./tmp/article_list.txt";

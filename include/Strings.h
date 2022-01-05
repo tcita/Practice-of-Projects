@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 
+// Helper function for std::string
 namespace Strings
 {
   // Split string by given char, return vector of string

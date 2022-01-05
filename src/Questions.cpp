@@ -11,7 +11,7 @@ std::vector<Question> Questions::makeQuestions(const std::string &article)
 {
   std::vector<Question> questions;
 
-  std::vector<std::pair<std::string,int>> wordFrequencies = Solution::wordFrequency(article, Config::getBannedWords());
+  std::vector<std::pair<std::string,int>> wordFrequencies = Solution::wordFrequency(article, Config::readBannedWords());
 
   // Remove return character from article
   // From: https://en.cppreference.com/w/cpp/algorithm/remove

@@ -150,7 +150,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
   // Setup language
   // translator->load(LanguageTypes::zh_TW);
-  this->setLanguage(LanguageTypes::zh_TW);
+  this->setLanguage(Config::readLanguageType());
 
   // Set central widget
   this->setCentralWidget(mainPanel);
@@ -716,6 +716,7 @@ void MainWindow::setLanguage(const std::string &languageType)
   std::string languageFilePath = std::string("assets/lang/") + languageType;
   translator->load(QString::fromStdString(languageFilePath));
   std::cout << "The language after change is: " << translator->language().toStdString() << "\n"; //debug
+  Config::writeLanguageType(languageType);
 
   this->retranslate();
 }
@@ -750,7 +751,7 @@ void MainWindow::setArticle(const std::string &article)
   articlePanelTranslateTextBrowser->setText("");
 
   std::string wordFrequencyString;
-  auto bannedWords = Config::getBannedWords();
+  auto bannedWords = Config::readBannedWords();
   for(const auto &wordFrequency : Solution::wordFrequency(article, bannedWords))
   {
     wordFrequencyString += wordFrequency.first + ": " + std::to_string(wordFrequency.second) + "\n";
@@ -839,7 +840,7 @@ void MainWindow::switchToPreviousPanel()
 void MainWindow::addRandomTypingPanelWords()
 {
   const std::string &article = crawler->fetchRandomArticle();
-  const std::vector<std::string> &bannedWords = Config::getBannedWords();
+  const std::vector<std::string> &bannedWords = Config::readBannedWords();
   std::vector<std::string> typingPanelWords;
   for(const auto &wordFrequency : Solution::wordFrequency(article, bannedWords))
   {

@@ -4,6 +4,7 @@
 #include<vector>
 #include<string>
 
+// Algorithm to count word appear frequency in the article
 namespace Solution {
   // Count the word appear frequency of the article, the given banned words will be ignored
   std::vector<std::pair<std::string,int>> wordFrequency(const std::string &article, const std::vector<std::string> &bannedWords);

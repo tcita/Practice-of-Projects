@@ -25,7 +25,7 @@
 #include <QLineEdit>
 #include <QKeyEvent>
 
-// The application main window
+// The application main window, open on start up
 class MainWindow : public QMainWindow
 {
 private:

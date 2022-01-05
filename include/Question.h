@@ -5,6 +5,7 @@
 #include <vector>
 #include <set>
 
+// Store  needed information for testing panel question
 struct Question
 {
   std::string question;
