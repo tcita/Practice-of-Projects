@@ -127,8 +127,9 @@ private:
   QScrollArea *testingResultPanel;
   QWidget *testingResultInnerPanel;
   QVBoxLayout *testingResultInnerPanelLayout;
-  QLabel *testingResultTitleLabel;
+  QLabel *testingResultScoreTitleLabel;
   QLabel *testingResultScoreLabel;
+  QLabel *testingResultReviewLabel;
   int testingResultScore;
   std::vector<std::set<int>> choosedAnswersIndexes;
 

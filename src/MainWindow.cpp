@@ -120,7 +120,8 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingResultPanel = new QScrollArea();
   testingResultInnerPanel = new QWidget();
   testingResultInnerPanelLayout = new QVBoxLayout();
-  testingResultTitleLabel = new QLabel();
+  testingResultScoreTitleLabel = new QLabel();
+  testingResultReviewLabel = new QLabel();
   testingResultScoreLabel = new QLabel();
 
   // Translate panel
@@ -288,8 +289,15 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingResultInnerPanel->setLayout(testingResultInnerPanelLayout);
   testingResultInnerPanelLayout->setAlignment(Qt::AlignTop);
 
-  testingResultInnerPanelLayout->addWidget(testingResultTitleLabel);
+  testingResultReviewLabel->setStyleSheet(R"(
+    QLabel
+    {
+      margin-top: 30px;
+    }
+  )");
+  testingResultInnerPanelLayout->addWidget(testingResultScoreTitleLabel);
   testingResultInnerPanelLayout->addWidget(testingResultScoreLabel);
+  testingResultInnerPanelLayout->addWidget(testingResultReviewLabel);
 
   // Setup typing
   typingPanel->setStyleSheet(R"(
@@ -516,11 +524,19 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
             questionGroupBox->setTitle(QString::fromStdString(question.question));
 
             // Add candidate answer
-            for(auto &candidateAnswer : question.candidateAnswers)
+            for(auto candidateAnswerIndex = 0; candidateAnswerIndex < question.candidateAnswers.size(); ++candidateAnswerIndex)
             {
               QRadioButton *button = new QRadioButton(questionGroupBox);
-              button->setText(QString::fromStdString(candidateAnswer));
+              button->setText(QString::fromStdString(question.candidateAnswers[candidateAnswerIndex]));
               questionGroupBoxLayout->addWidget(button);
+
+              if(question.answerIndexes.contains(candidateAnswerIndex))
+              {
+                // button->setCheckState(Qt::Checked);
+                button->setChecked(true);
+              }
+              // button->setCheckable(false);
+              button->setEnabled(false);
             }
         }
         else if(question.isMultipleChoiceQuestion())
@@ -529,11 +545,28 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
             questionGroupBox->setTitle(QString::fromStdString(question.question));
 
             // Add candidate answer
-            for(auto &candidateAnswer : question.candidateAnswers)
+            for(auto candidateAnswerIndex = 0; candidateAnswerIndex < question.candidateAnswers.size(); ++candidateAnswerIndex)
             {
               QCheckBox *button = new QCheckBox(questionGroupBox);
-              button->setText(QString::fromStdString(candidateAnswer));
+              button->setText(QString::fromStdString(question.candidateAnswers[candidateAnswerIndex]));
               questionGroupBoxLayout->addWidget(button);
+
+              //debug!!
+              // for(auto i : question.answerIndexes)
+              // {
+              //   std::cout << question.question << "\n";
+              //   std::cout << i << "\n";
+              // }
+              // std::cout << "==\n";
+              if(question.answerIndexes.contains(candidateAnswerIndex))
+              {
+                // std::cout << candidateAnswerIndex  << "\n"; //debug!!
+                std::cout << button->text().toStdString() << "\n"; //debug!!
+                button->setChecked(true);
+                // button->setCheckState(Qt::Checked);
+              }
+              // button->setCheckable(false);
+              button->setEnabled(false);
             }
         }
 
@@ -609,7 +642,8 @@ void MainWindow::retranslate()
   testingInnerPanelSubmitButton->setText(QPushButton::tr("Submit"));
 
   // Testing result panel
-  testingResultTitleLabel->setText(QLabel::tr("Score: "));
+  testingResultScoreTitleLabel->setText(QLabel::tr("Score: "));
+  testingResultReviewLabel->setText(QLabel::tr("Error review: "));
 
   // Translate panel
   translatePanelSrcGroupBox->setTitle(QTextEdit::tr("Source language"));
