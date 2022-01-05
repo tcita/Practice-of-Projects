@@ -128,6 +128,8 @@ private:
   QWidget *testingResultInnerPanel;
   QVBoxLayout *testingResultInnerPanelLayout;
   QLabel *testingResultTitleLabel;
+  QLabel *testingResultScoreLabel;
+  int testingResultScore;
 
   // Translate panel
   QWidget *translatePanel;

@@ -121,6 +121,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingResultInnerPanel = new QWidget();
   testingResultInnerPanelLayout = new QVBoxLayout();
   testingResultTitleLabel = new QLabel();
+  testingResultScoreLabel = new QLabel();
 
   // Translate panel
   translatePanel = new QWidget();
@@ -279,17 +280,16 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   testingResultPanel->setStyleSheet(R"(
     QLabel
     {
-      font: 12px;
+      font: 20px;
     }
   )");
   testingResultPanel->setWidget(testingResultInnerPanel);
-  testingPanel->setWidgetResizable(true);
+  testingResultPanel->setWidgetResizable(true);
   testingResultInnerPanel->setLayout(testingResultInnerPanelLayout);
-  testingInnerPanelLayout->setAlignment(Qt::AlignTop);
+  testingResultInnerPanelLayout->setAlignment(Qt::AlignTop);
 
-  testingResultInnerPanelLayout->addWidget(testingResultTitleLabel); //HERE
-  testingResultInnerPanelLayout->addWidget(new QPushButton());
-  testingResultInnerPanelLayout->addWidget(new QTextBrowser());
+  testingResultInnerPanelLayout->addWidget(testingResultTitleLabel);
+  testingResultInnerPanelLayout->addWidget(testingResultScoreLabel);
 
   // Setup typing
   typingPanel->setStyleSheet(R"(
@@ -463,6 +463,8 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
     //HERE
     std::cout << "finalScore: " << finalScore << "\n";
+    // testingResultScoreLabel->setText(QString::fromStdString(std::to_string(finalScore)));
+    testingResultScoreLabel->setText(QString::number(finalScore));
   });
 
   // translatePanel
