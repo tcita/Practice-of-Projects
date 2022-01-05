@@ -130,6 +130,7 @@ private:
   QLabel *testingResultTitleLabel;
   QLabel *testingResultScoreLabel;
   int testingResultScore;
+  std::vector<std::set<int>> choosedAnswersIndexes;
 
   // Translate panel
   QWidget *translatePanel;

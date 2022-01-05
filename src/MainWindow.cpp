@@ -419,26 +419,32 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     const auto groupBoxes = testingPanel->findChildren<QGroupBox*>();
     for(int groupBoxIndex = 0; groupBoxIndex < groupBoxes.size(); ++groupBoxIndex)
     {
+      choosedAnswersIndexes.push_back(std::set<int>());
       const auto groupBoxButtons = groupBoxes[groupBoxIndex]->findChildren<QAbstractButton*>();
       if(testingPanelQuestions[groupBoxIndex].isSingleChoiceQuestion())
       {
-        if(groupBoxButtons[(*testingPanelQuestions[groupBoxIndex].answerIndexes.begin())]->isChecked())
+        // Single choice question only have one answer
+        int questionAnswerIndex = (*testingPanelQuestions[groupBoxIndex].answerIndexes.begin());
+        if(groupBoxButtons[questionAnswerIndex]->isChecked())
         {
+          std::cout << "questionAnswerIndex: " << questionAnswerIndex << "\n"; //debug!!
+          choosedAnswersIndexes[groupBoxIndex].insert(questionAnswerIndex); // Record choosed answer, single choice question
           finalScore += scorePerQuestion;
         }
       }
       else
       {
-        for(int buttonIndex = 0; buttonIndex < groupBoxButtons.size(); ++buttonIndex)
+        for(auto buttonIndex = 0; buttonIndex < groupBoxButtons.size(); ++buttonIndex)
         {
           // If there are nothing checked, no score
           if(buttonIndex == 0)
           {
             bool nothingChecked = true;
-            for(int i = 0; i < groupBoxButtons.size(); ++i)
+            for(auto i = 0; i < groupBoxButtons.size(); ++i)
             {
               if(groupBoxButtons[i]->isChecked())
               {
+                choosedAnswersIndexes[groupBoxIndex].insert(i); // Record choosed answer, multiple choice question
                 nothingChecked = false;
               }
             }
@@ -461,7 +467,80 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
       }
     }
 
-    //HERE
+    // Clear testing result panel
+    QList<QGroupBox*> questionGroupBoxes = testingResultInnerPanel->findChildren<QGroupBox*>();
+    for(QGroupBox *questionGroupBox : questionGroupBoxes)
+    {
+      delete questionGroupBox;
+    }
+
+    //debug!!
+    // for(auto choosedAnswerIndexes : choosedAnswersIndexes)
+    // {
+    //   for(auto choosedAnswerIndex : choosedAnswerIndexes)
+    //   {
+    //     // std::cout << choosedAnswerIndexes.size() << "\n";
+    //     std::cout << choosedAnswerIndex << "\n";
+    //   }
+    //   std::cout << "\n";
+    // }
+
+    // Add questions to testing result panel
+    for(auto i = 0; i < testingPanelQuestions.size(); ++i)
+    {
+      bool currentQuestionAllCorrect = true; // Record if the question is all correct, only wrong question need to be appeared in testingResultPanel
+      if(testingPanelQuestions[i].answerIndexes.size() != choosedAnswersIndexes[i].size())
+      {
+        // std::cout << "Size not the same\n"; //debug!!
+        currentQuestionAllCorrect = false;
+      }
+      for(int choosedAnswerIndex : choosedAnswersIndexes[i])
+      {
+        if(!testingPanelQuestions[i].answerIndexes.contains(choosedAnswerIndex))
+        {
+          // std::cout << "Answer not correct in question " << i << ": " << choosedAnswerIndex << "\n"; //debug!!
+          currentQuestionAllCorrect = false;
+          break;
+        }
+      }
+
+      // If the current question not all correct, it should be list in the testing result panel
+      if(!currentQuestionAllCorrect)
+      {
+        Question &question = testingPanelQuestions[i];
+        QGroupBox *questionGroupBox = new QGroupBox();
+        QVBoxLayout *questionGroupBoxLayout = new QVBoxLayout(questionGroupBox);
+        if(question.isSingleChoiceQuestion())
+        {
+            // Add question
+            questionGroupBox->setTitle(QString::fromStdString(question.question));
+
+            // Add candidate answer
+            for(auto &candidateAnswer : question.candidateAnswers)
+            {
+              QRadioButton *button = new QRadioButton(questionGroupBox);
+              button->setText(QString::fromStdString(candidateAnswer));
+              questionGroupBoxLayout->addWidget(button);
+            }
+        }
+        else if(question.isMultipleChoiceQuestion())
+        {
+            // Add question
+            questionGroupBox->setTitle(QString::fromStdString(question.question));
+
+            // Add candidate answer
+            for(auto &candidateAnswer : question.candidateAnswers)
+            {
+              QCheckBox *button = new QCheckBox(questionGroupBox);
+              button->setText(QString::fromStdString(candidateAnswer));
+              questionGroupBoxLayout->addWidget(button);
+            }
+        }
+
+        testingResultInnerPanelLayout->addWidget(questionGroupBox);
+      }
+    }
+
     std::cout << "finalScore: " << finalScore << "\n";
     // testingResultScoreLabel->setText(QString::fromStdString(std::to_string(finalScore)));
     testingResultScoreLabel->setText(QString::number(finalScore));
@@ -530,7 +609,7 @@ void MainWindow::retranslate()
   testingInnerPanelSubmitButton->setText(QPushButton::tr("Submit"));
 
   // Testing result panel
-  testingResultTitleLabel->setText(QLabel::tr("Testing Result:"));
+  testingResultTitleLabel->setText(QLabel::tr("Score: "));
 
   // Translate panel
   translatePanelSrcGroupBox->setTitle(QTextEdit::tr("Source language"));
@@ -775,7 +854,7 @@ bool MainWindow::addQuestionGroupBox(const Question &question)
 }
 
 // bool MainWindow::addTestingResultGroupBox(const TestingResult &testingResult)
-// { //HERE
+// {
 //   if(!question.isValid())
 //   {
 //     std::cerr << "Error on MainWindow::addTestingResultGroupBox(const TestingResult &testingResult), not a valid testingResult.";
