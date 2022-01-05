@@ -35,12 +35,15 @@ std::vector<Question> Questions::makeQuestions(const std::string &article)
   {
     for(const std::pair<std::string, int>  &wordFrequency : wordFrequencies)
     {
-      std::size_t wordIndex = candidateQuestion.find(wordFrequency.first);
+      // std::cout << wordFrequency.first << "\n\n";
+      std::size_t wordIndex = candidateQuestion.find(std::string(" ") + wordFrequency.first + std::string(" "));
       if(wordIndex != std::string::npos)
       {
-        std::cout << wordIndex << "\n"; //debug
+        ++wordIndex;
+        std::cout << candidateQuestion << "\n" << wordFrequency.first << "\n";
+        // std::cout << wordIndex << "\n"; //debug
 
-        std::string modifiedQuestion = candidateQuestion;
+        std::string modifiedQuestion = candidateQuestion + ".";
         modifiedQuestion.erase(wordIndex, wordFrequency.first.size());
         modifiedQuestion.insert(wordIndex, "_____");
 

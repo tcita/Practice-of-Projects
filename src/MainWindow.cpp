@@ -382,7 +382,6 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     }
 
     std::vector<Question> questions;
-
     // questions = Questions::makeQuestions(crawler->fetchRandomArticle());
     for(auto &question : Questions::makeQuestions(crawler->fetchRandomArticle()))
     {
