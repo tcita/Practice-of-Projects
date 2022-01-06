@@ -458,9 +458,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
   });
 
   // testingPanel
-  QObject::connect(testingInnerPanelSubmitButton, &QPushButton::clicked, [this]{
-    switchToPanel(testingResultPanel);
-
+  QObject::connect(testingInnerPanelSubmitButton, &QPushButton::clicked, [this] {
     double finalScore = 0;
 
     double scorePerQuestion = 100.0 / testingPanel->findChildren<QGroupBox*>().size();
@@ -611,6 +609,18 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
             }
         }
 
+        //HERE
+        // std::string choosedAnswersString;
+        //
+        // for(int choosedAnswerIndex : choosedAnswersIndexes[i])
+        // {
+        //   choosedAnswersString += std::to_string(choosedAnswerIndex) + " "; //HERE
+        // }
+        // QLabel *choosedAnswersLabel = new QLabel(QString::fromStdString(choosedAnswersString));
+        //
+        // questionGroupBoxLayout->addWidget(choosedAnswersLabel);
+
+
         testingResultInnerPanelLayout->addWidget(questionGroupBox);
       }
     }
@@ -620,6 +630,13 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     std::cout << "finalScore: " << finalScore << "\n";
     // testingResultScoreLabel->setText(QString::fromStdString(std::to_string(finalScore)));
     testingResultScoreLabel->setText(QString::number(finalScore));
+
+    switchToPanel(testingResultPanel);
+
+    // Scroll to top left
+    testingResultPanel->verticalScrollBar()->setValue(0);
+    testingResultPanel->horizontalScrollBar()->setValue(0);
+
   });
 
   // testingResultPanel
