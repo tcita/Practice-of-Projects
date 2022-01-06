@@ -7,7 +7,7 @@ std::vector<std::string> Strings::splitString(const std::string &string, const c
   std::string temp;
   while(std::getline(stringStream, temp, c))
   {
-    if(temp != " ")
+    if(temp != " " && temp != "")
     {
       strings.push_back(temp);
     }

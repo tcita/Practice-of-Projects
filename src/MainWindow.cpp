@@ -385,7 +385,10 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     // questions = Questions::makeQuestions(crawler->fetchRandomArticle());
     for(auto &question : Questions::makeQuestions(crawler->fetchRandomArticle()))
     {
-      questions.push_back(question);
+      if(question.isValid())
+      {
+        questions.push_back(question);
+      }
     }
 
     // questions.push_back(Question("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}, {1}));
@@ -459,15 +462,21 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
 
   // testingPanel
   QObject::connect(testingInnerPanelSubmitButton, &QPushButton::clicked, [this] {
+    switchToPanel(testingResultPanel);
+
     double finalScore = 0;
 
     double scorePerQuestion = 100.0 / testingPanel->findChildren<QGroupBox*>().size();
     const auto groupBoxes = testingPanel->findChildren<QGroupBox*>();
+
+
+    // Init choosedAnswersIndexes, check what answer is choosed
+    choosedAnswersIndexes.clear();
     for(int groupBoxIndex = 0; groupBoxIndex < groupBoxes.size(); ++groupBoxIndex)
     {
       choosedAnswersIndexes.push_back(std::set<int>());
       const auto groupBoxButtons = groupBoxes[groupBoxIndex]->findChildren<QAbstractButton*>();
-      if(testingPanelQuestions[groupBoxIndex].isSingleChoiceQuestion())
+      if(testingPanelQuestions[groupBoxIndex].isSingleChoiceQuestion()) // Single choice question
       {
         // Single choice question only have one answer
         int questionAnswerIndex = (*testingPanelQuestions[groupBoxIndex].answerIndexes.begin());
@@ -478,7 +487,7 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
           finalScore += scorePerQuestion;
         }
       }
-      else
+      else //Multiple choice question
       {
         for(auto buttonIndex = 0; buttonIndex < groupBoxButtons.size(); ++buttonIndex)
         {
@@ -609,17 +618,29 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
             }
         }
 
-        //HERE
-        // std::string choosedAnswersString;
+        // //HERE
+        // std::string choosedAnswersString("Your Answer: ");
         //
-        // for(int choosedAnswerIndex : choosedAnswersIndexes[i])
+        // if(choosedAnswersIndexes[i].size() == 0)
         // {
-        //   choosedAnswersString += std::to_string(choosedAnswerIndex) + " "; //HERE
+        //   // choosedAnswersString += "None";
         // }
-        // QLabel *choosedAnswersLabel = new QLabel(QString::fromStdString(choosedAnswersString));
+        // else
+        // {
+        //   for(auto choosedAnswerIndex : choosedAnswersIndexes[i])
+        //   {
+        //     choosedAnswersString += testingPanelQuestions[i].candidateAnswers[choosedAnswerIndex];
+        //   }
+        // }
         //
+        // QLabel *choosedAnswersLabel = new QLabel(QString::fromStdString(choosedAnswersString));
+        // choosedAnswersLabel->setStyleSheet(R"(
+        //   QLabel
+        //   {
+        //     font: 12px;
+        //   }
+        // )");
         // questionGroupBoxLayout->addWidget(choosedAnswersLabel);
-
 
         testingResultInnerPanelLayout->addWidget(questionGroupBox);
       }
@@ -631,12 +652,9 @@ MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
     // testingResultScoreLabel->setText(QString::fromStdString(std::to_string(finalScore)));
     testingResultScoreLabel->setText(QString::number(finalScore));
 
-    switchToPanel(testingResultPanel);
-
-    // Scroll to top left
+    // scroll to top left
     testingResultPanel->verticalScrollBar()->setValue(0);
     testingResultPanel->horizontalScrollBar()->setValue(0);
-
   });
 
   // testingResultPanel
