@@ -2,8 +2,11 @@
 #define MAINWINDOW_H
 
 #include "Crawler.h"
+#include "Question.h"
+
 #include <vector>
 #include <stack>
+
 #include <QMainWindow>
 #include <QTranslator>
 #include <QWidget>
@@ -19,8 +22,10 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <QLabel>
+#include <QLineEdit>
+#include <QKeyEvent>
 
-// The application main window
+// The application main window, open on start up
 class MainWindow : public QMainWindow
 {
 private:
@@ -39,6 +44,8 @@ private:
   QAction *enUsAction;
   QAction *zhCnAction;
   QAction *zhTwAction;
+  QMenu *panelMenu;
+  QAction *translateWindowAction;
   QMenu *switchToMenu;
   QAction *mainPanelAction;
   QAction *articleTypePanelAction;
@@ -46,6 +53,20 @@ private:
   QAction *translatePanelAction;
   QMenu *helpMenu;
   QAction *aboutAction;
+
+  // Translate window
+  QWidget *translateWindow;
+  QGridLayout *translateWindowLayout;
+  QGroupBox *translateWindowSrcGroupBox;
+  QVBoxLayout *translateWindowSrcGroupBoxLayout;
+  QTextEdit *translateWindowSrcTextEdit;
+  QWidget *translateWindowMidWidget;
+  QVBoxLayout *translateWindowMidWidgetLayout;
+  QPushButton *translateWindowToDestButton;
+  QPushButton *translateWindowToSrcButton;
+  QGroupBox *translateWindowDestGroupBox;
+  QVBoxLayout *translateWindowDestGroupBoxLayout;
+  QTextEdit *translateWindowDestTextEdit;
 
   // About window
   QWidget *aboutWindow;
@@ -81,17 +102,23 @@ private:
   // Artical panel
   QWidget *articlePanel;
   QGridLayout *articlePanelLayout;
+  QWidget *articlePanelLeftPanel;
+  QGridLayout *articlePanelLeftPanelLayout;
   QTextBrowser *articlePanelTextBrowser;
+  QTextBrowser *articlePanelTranslateTextBrowser;
+  int articlePanelTextBrowserSelectRequestID;
+  QWidget *articlePanelRightPanel;
+  QGridLayout *articlePanelRightPanelLayout;
+  QTextBrowser *articlePanelStatisticsTextBrowser;
 
   // Typing panel
-  QWidget *typingPanel;
-  QGridLayout *typingPanelLayout;
-  // QWidget *typingPanelStatusWidget;
-  QWidget *typingPanelTypingWidget;
-  QVBoxLayout *typingPanelTypingWidgetLayout;
+  QScrollArea *typingPanel;
+  QWidget *typingInnerPanel;
+  QVBoxLayout *typingInnerPanelLayout;
 
   // Testing panel
   QScrollArea *testingPanel;
+  std::vector<Question> testingPanelQuestions;
   QWidget *testingInnerPanel;
   QVBoxLayout *testingInnerPanelLayout;
   QPushButton *testingInnerPanelSubmitButton;
@@ -100,7 +127,12 @@ private:
   QScrollArea *testingResultPanel;
   QWidget *testingResultInnerPanel;
   QVBoxLayout *testingResultInnerPanelLayout;
-  QLabel *testingResultTitleLabel;
+  QLabel *testingResultScoreTitleLabel;
+  QLabel *testingResultScoreLabel;
+  QLabel *testingResultReviewLabel;
+  QPushButton *testingResultOkButton;
+  int testingResultScore;
+  std::vector<std::set<int>> choosedAnswersIndexes;
 
   // Translate panel
   QWidget *translatePanel;
@@ -122,6 +154,9 @@ private:
 public:
   MainWindow(QTranslator *translator, Crawler *crawler);
 
+protected:
+  virtual void keyPressEvent(QKeyEvent *event) override;
+
 private:
   // Translate all widgets
   void retranslate();
@@ -135,18 +170,26 @@ private:
   void translatePanelTranslateToDest();
   // Translate panel translate to source text edit
   void translatePanelTranslateToSrc();
+  // Translate window translate to destination text edit
+  void translateWindowTranslateToDest();
+  // Translate window translate to source text edit
+  void translateWindowTranslateToSrc();
   // Pop up the about window
   void popUpAboutWindow();
   // Switch central widget to given widget
   void switchToPanel(QWidget *panel);
   // Switch panel back accroding to the panel history
   void switchToPreviousPanel();
-
-private:
   //
-  QGroupBox* createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
+  void addRandomTypingPanelWords();
   //
-  QGroupBox* createMultipleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
+  void addTypingPanelWords(const std::vector<std::string> &words);
+  //
+  bool addQuestionGroupBox(const Question &question);
+  // //
+  // QGroupBox* createSingleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
+  // //
+  // QGroupBox* createMultipleChoiceQuestion(const std::string &question, const std::vector<std::string> &candidateAnswers);
 };
 
 #endif

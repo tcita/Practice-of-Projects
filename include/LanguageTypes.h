@@ -1,6 +1,7 @@
 #ifndef LANGUAGETYPES_H
 #define LANGUAGETYPES_H
 
+// All supported anguage types
 namespace LanguageTypes
 {
   inline constexpr const char *en_US = "en_US";

@@ -1,8 +1,11 @@
 #include "Crawler.h"
 #include "Solution.h"
+#include "Strings.h"
+
 #include <iostream>
 #include <cstdio>
 #include <memory>
+#include <random>
 
 Crawler::Crawler()
 {
@@ -30,16 +33,25 @@ Crawler::Crawler()
   methodID_2 = env->GetMethodID(javaCrawlerClass, "setArticle_url_list","(Ljava/lang/String;)V");
   methodID_3 = env->GetMethodID(javaCrawlerClass, "setChosed_doc", "(Ljava/lang/String;)V");
   methodID_4 = env->GetMethodID(javaCrawlerClass, "crawl_article", "()V");
+  methodID_5 = env->GetMethodID(javaCrawlerClass, "clear", "()V");
 }
+
+// void Crawler::clear()
+// {
+//   env->CallVoidMethod(javaCrawler, methodID_5);
+// }
 
 std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleType)
 {
+  // Clear
+  env->CallVoidMethod(javaCrawler, methodID_5);
+
   const std::string articleTypeWithSlash = std::string("/") + articleType;
 
   env->CallVoidMethod(javaCrawler, methodID_1, toJString(articleTypeWithSlash));
   env->CallVoidMethod(javaCrawler, methodID_2, toJString(articleTypeWithSlash));
 
-  std::vector<std::string> articleTitles = Solution::splitString(Solution::readFile(ARTICLE_TITLE_FILE_PATH), '\n');
+  std::vector<std::string> articleTitles = Strings::splitString(Solution::readFile(ARTICLE_TITLE_FILE_PATH), '\n');
 
   return articleTitles;
 }
@@ -47,11 +59,26 @@ std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleT
 std::string Crawler::fetchArticle(const std::string &articleTitle)
 {
   // std::string articleTitle("An American teacher held in Libya for 6 weeks is now back home in the United States");
-  env->CallVoidMethod(javaCrawler, methodID_3, toJString(articleTitle));
-  env->CallVoidMethod(javaCrawler, methodID_4);
+  env->CallVoidMethod(javaCrawler, methodID_3, toJString(articleTitle)); // also print stuff
+  env->CallVoidMethod(javaCrawler, methodID_4); // also print stuff
 
   std::string article = Solution::readFile(ARTICLE_FILE_PATH);
   return article;
+}
+
+std::string Crawler::fetchRandomArticle()
+{
+  const std::vector<std::string> &articleTitles = fetchArticleTitles("africa");
+
+  // Get distribute
+  // From: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/
+  std::random_device randomDevice;
+  std::mt19937 seedGenerator(randomDevice());
+  std::uniform_int_distribution<int> distribute(0, articleTitles.size());
+  int randomTitleIndex = distribute(seedGenerator);
+  const std::string& randomArticle = fetchArticle(articleTitles[randomTitleIndex]);
+
+  return randomArticle;
 }
 
 jstring Crawler::toJString(const std::string &string)

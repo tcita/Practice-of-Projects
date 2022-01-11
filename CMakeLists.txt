@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.21.3)
 
 # Set c++ standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Set project information
@@ -49,6 +49,11 @@ find_package(
     Widgets
     Network
     LinguistTools
+)
+
+# Find thread package
+find_package(
+  Threads REQUIRED
 )
 
 ####################################################################################################
@@ -99,6 +104,10 @@ target_sources(
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Crawler.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/OnlineTranslator.cpp
   PRIVATE ${CMAKE_SOURCE_DIR}/src/Solution.cpp
+  PRIVATE ${CMAKE_SOURCE_DIR}/src/Question.cpp
+  PRIVATE ${CMAKE_SOURCE_DIR}/src/Strings.cpp
+  PRIVATE ${CMAKE_SOURCE_DIR}/src/Questions.cpp
+  PRIVATE ${CMAKE_SOURCE_DIR}/src/Config.cpp
 )
 
 #
@@ -112,6 +121,7 @@ target_link_libraries(
   PRIVATE Qt5::Widgets
   PRIVATE Qt5::Network
   PRIVATE ${JNI_LIBRARIES}
+  PRIVATE Threads::Threads
 )
 
 ####################################################################################################
@@ -141,6 +151,15 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/config ${CMAKE_BINARY_DIR}/config
 )
 
+# Copy JNI binary
+# foreach(JNI_LIBRARY ${JNI_LIBRARIES})
+#   message(${JNI_LIBRARY})
+#   add_custom_command(
+#     TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+#     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${JNI_LIBRARY} ${CMAKE_BINARY_DIR}
+#   )
+# endforeach()
+
 # Copy Qt binary # Problem: plugin binary didn't copied
 # From: https://riptutorial.com/cmake/example/29468/qt5-dll-copy-example
 # add_custom_command(
@@ -150,7 +169,6 @@ add_custom_command(
 #   COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Widgets> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
 #   COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt5::Network> $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
 # )
-
 
 # Copy Qt dll by windeployqt.cmake
 # From: https://stackoverflow.com/questions/60854495/qt5-cmake-include-all-libraries-into-executable/60856725#60856725

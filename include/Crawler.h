@@ -3,8 +3,10 @@
 
 #include <string>
 #include <vector>
+
 #include <jni.h>
 
+// Use jni to call java crawler
 class Crawler {
 public:
   static constexpr const char *ARTICLE_TITLE_FILE_PATH = "./tmp/article_list.txt";
@@ -17,13 +19,15 @@ private:
   jmethodID methodID_2;
   jmethodID methodID_3;
   jmethodID methodID_4;
+  jmethodID methodID_5;
 
 public:
   Crawler();
 
+  // void clear();
   std::vector<std::string> fetchArticleTitles(const std::string &articleType);
   std::string fetchArticle(const std::string &articleTitle);
-  std::string getArticle(const std::string &articleType="");
+  std::string fetchRandomArticle();
 
 private:
   jstring toJString(const std::string &string);

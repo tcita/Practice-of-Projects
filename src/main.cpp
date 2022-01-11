@@ -30,9 +30,6 @@ int main(int argc, char **argv)
   // Init app
   QApplication app(argc, argv);
   app.installTranslator(&translator);
-  
-  // Set language
-  translator.load(QString("assets/lang/") + QString(LanguageTypes::zh_TW));
 
   // Init main window
   MainWindow mainWindow(&translator, &crawler);
