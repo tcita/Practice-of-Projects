@@ -1,4 +1,4 @@
-## English assistant
+# English assistant
 
 An English learning app (64bit)
 
