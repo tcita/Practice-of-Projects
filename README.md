@@ -2,7 +2,7 @@
 
 An English learning app (64bit)
 
-Get specific article from [CNN](https://edition.cnn.com/)
+Get specific article from [CNN news](https://edition.cnn.com/)
 
 Provide an simple UI to assist learning English
 
