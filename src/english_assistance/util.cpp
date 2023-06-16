@@ -3,6 +3,7 @@
 #include <map>
 #include <algorithm>
 #include <fstream>
+#include <filesystem>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -72,24 +73,23 @@ namespace english_assistance {
             return vec;
         }
 
-        std::string readFile(const std::string &filePath) {
-            std::ifstream ifs(filePath);
-            if(!ifs.is_open())
-            {
-            std::cerr << "Error on util::readFile(const std::string &filePath)\nFile \"" << filePath << "\" not found!";
+        std::string readFile(const std::filesystem::path &path) {
+            std::ifstream ifs(path);
+            if(!ifs.is_open()) {
+                std::cerr << "Error on util::readFile(const std::filesystem::path &path)\nFile \"" << path << "\" not found!";
             }
             std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
             return content;
         }
 
-        void writeFile(const std::string &filePath, const std::string &content) {
+        void writeFile(const std::filesystem::path &path, const std::string &content) {
             // Create if file is not exist
-            std::ofstream fout;
-            fout.open(filePath);
+            std::ofstream ofs;
+            ofs.open(path);
 
-            fout << content;
+            ofs << content;
 
-            fout.close();
+            ofs.close();
         }
     }
 }

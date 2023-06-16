@@ -8,31 +8,35 @@
 
 namespace english_assistance {
     Crawler::Crawler() {
-        JavaVM *jvm;                    /* 宣告一個java machine */
-
         JavaVMOption options[1];    /*自定義JRE所要的參數，就是java -... -... xxx.java將-...字串加入options中 用*/
         options[0].optionString = (char*) "-Djava.class.path=.;./lib/crawler;./lib/jsoup/jsoup-1.14.3.jar";
 
         JavaVMInitArgs vm_args;
-        vm_args.version = JNI_VERSION_1_6;  /*使用的版本*/
+        vm_args.version = JNI_VERSION_1_6;
         vm_args.nOptions = 1;
         vm_args.options = options;
         vm_args.ignoreUnrecognized = JNI_FALSE;
 
-        jint res = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args); /*產生一個java machine*/
+        jint res = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args);
         // The java crawler class file
-        jclass javaCrawlerClass = env->FindClass("Scraper");  /*找Helloworld Class*/
+        jclass javaCrawlerClass = env->FindClass("Scraper");
         // Constructor of java crawler
         jmethodID constructor = env->GetMethodID(javaCrawlerClass, "<init>", "()V");
         // The instance of java crawler
         javaCrawler = env->NewObject(javaCrawlerClass, constructor);
 
-        // find getmethodid instruction
-        methodID_1 = env->GetMethodID(javaCrawlerClass, "setArticle_list", "(Ljava/lang/String;)V"); /*確定要執行的 function是甚麼 在這裡指的是HelloWorld裡的main 後面是main要傳的參數*/
+        // find defined methods
+        methodID_1 = env->GetMethodID(javaCrawlerClass, "setArticle_list", "(Ljava/lang/String;)V");
         methodID_2 = env->GetMethodID(javaCrawlerClass, "setArticle_url_list","(Ljava/lang/String;)V");
         methodID_3 = env->GetMethodID(javaCrawlerClass, "setChosed_doc", "(Ljava/lang/String;)V");
         methodID_4 = env->GetMethodID(javaCrawlerClass, "crawl_article", "()V");
         methodID_5 = env->GetMethodID(javaCrawlerClass, "clear", "()V");
+    }
+
+    Crawler::~Crawler() {
+        if(jvm) {
+            jvm->DestroyJavaVM();
+        }
     }
 
     std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleType) {

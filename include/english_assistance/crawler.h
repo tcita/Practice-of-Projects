@@ -13,6 +13,7 @@ namespace english_assistance {
         static constexpr const char *ARTICLE_FILE_PATH = "./tmp/crawed_content.txt";
 
     private:
+        JavaVM *jvm;
         JNIEnv *env;
         jobject javaCrawler;
         jmethodID methodID_1;
@@ -23,6 +24,7 @@ namespace english_assistance {
 
     public:
         Crawler();
+        ~Crawler();
         
         std::vector<std::string> fetchArticleTitles(const std::string &articleType);
         std::string fetchArticle(const std::string &articleTitle);
