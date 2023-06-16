@@ -25,7 +25,7 @@ pacman -S mingw-w64-ucrt-x86_64-cmake
 pacman -S mingw-w64-ucrt-x86_64-qt6-static
 ```
 
-- install [openjdk(>17.0.7)](https://adoptium.net/)
+- install [openjdk(>=17.0.7)](https://adoptium.net/)
 
   note: environment path for "bin" & "server" directory is needed
 
