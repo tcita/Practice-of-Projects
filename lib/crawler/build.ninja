@@ -4,6 +4,6 @@ javaFlags = -cp ../jsoup/jsoup-1.14.3.jar -encoding UTF-8
 rule compile
   command = $javac $javaFlags $in
 
-build Scraper.class: compile ./Scraper.java
+build Crawler.class: compile ./Crawler.java
 
-default Scraper.class
+default Crawler.class

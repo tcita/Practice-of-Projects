@@ -112,7 +112,7 @@ target_link_libraries(
 # Copy crawler to build directory
 add_custom_command(
     TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/lib/crawler/Scraper.class ${CMAKE_BINARY_DIR}/lib/crawler/Scraper.class
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/lib/crawler/Crawler.class ${CMAKE_BINARY_DIR}/lib/crawler/Crawler.class
 )
 
 # Copy assets to build directory

@@ -11,14 +11,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class Scraper {
+public class Crawler {
 	private List<String> article_list;		//可選文章title
 	private List<String> article_url_list;		//可選文章url
 	private String base_url = "https://edition.cnn.com";
 	private Document chosed_doc;		//被選中article's doc
-//	private Scraper scr = new Scraper();
 
-	public Scraper(){
+	public Crawler() {
 		article_list = new ArrayList<>();
 		article_url_list = new ArrayList<>();
 	}
