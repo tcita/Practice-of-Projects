@@ -84,15 +84,13 @@ target_include_directories(
 target_sources(
     ${CMAKE_PROJECT_NAME}
     PRIVATE ${QM_FILES}
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/main.cpp
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/MainWindow.cpp
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/Crawler.cpp
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/OnlineTranslator.cpp
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/Solution.cpp
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/Question.cpp
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/Strings.cpp
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/Questions.cpp
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/Config.cpp
+    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/config.cpp
+    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/crawler.cpp
+    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/main.cpp
+    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/translate.cpp
+    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/question.cpp
+    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/ui/main_window.cpp
+    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/util.cpp
 )
 
 #
