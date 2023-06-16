@@ -13,17 +13,18 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class Crawler {
-    private final String BASE_URL = "https://edition.cnn.com";
-    private final String ARTICLE_LIST_PATH = "tmp/article_list.txt";
+	private final String ARTICLE_LIST_PATH = "tmp/article_list.txt";
     private final String CRAWED_CONTENT_PATH = "tmp/crawed_content.txt";
-
-    private List<String> articleList;        //可選文章title
-    private List<String> articleUrlList;        //可選文章url
-    private Document chosenDoc;        //被選中article's doc
+	
+    private String baseUrl = "https://edition.cnn.com";
+    // choosable article title
+	private List<String> articleList = new ArrayList<>();
+	// choosable article url
+    private List<String> articleUrlList = new ArrayList<>();
+	// chosen article's doc
+    private Document chosenDoc;
 
     public Crawler() {
-        articleList = new ArrayList<>();
-        articleUrlList = new ArrayList<>();
     }
 	
     public void clear() {
@@ -37,7 +38,7 @@ public class Crawler {
 
     // may be print out list
     public void setArticleList(String category) throws IOException{
-        for(Element e : first_view(category)) {
+        for(Element e : firstView(category)) {
             articleList.add(e.text());
         }
 
@@ -51,8 +52,8 @@ public class Crawler {
 
         BufferedWriter bfw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f)));
 
-        for(String s:articleList) {
-            bfw.write(s+"\n");
+        for(String s : articleList) {
+            bfw.write(s + "\n");
         }
 
         bfw.close();
@@ -63,45 +64,44 @@ public class Crawler {
     }
 
     public void setArticle_url_list(String category) throws IOException {
-        for(Element e : first_view(category)) {
+        for(Element e : firstView(category)) {
             concatenate(e.attr("href"));
         }
     }
 
-    public String getBASE_URL() {
-        return BASE_URL;
+    public String getBaseUrl() {
+        return baseUrl;
     }
 
-    public void setBASE_URL(String category) {
-        BASE_URL += category;
+    public void setBaseUrl(String category) {
+        baseUrl += category;
     }
 
     public Document getChosenDoc() {
         return chosenDoc;
     }
 
-    public void setChosed_doc(String title) throws IOException {
-        chosenDoc = Jsoup.connect(find_article_url(title)).get();
+    public void setChosenDoc(String title) throws IOException {
+        chosenDoc = Jsoup.connect(findArticleUrl(title)).get();
     }
 
-    public void crawl_article() throws IOException{
+    public void crawlArticle() throws IOException{
+        List<ArrayList<String>> crawledContent = new ArrayList<>();
 
-        List<ArrayList<String>> crawled_content = new ArrayList<>();
-
-        crawled_content.add(new ArrayList<>());
-        crawled_content.get(0).add(getChosenDoc().select("h1.pg-headline").text());
+        crawledContent.add(new ArrayList<>());
+        crawledContent.get(0).add(getChosenDoc().select("h1.pg-headline").text());
 
         Elements e1 = chosenDoc.getElementsByClass("el__leafmedia el__leafmedia--sourced-paragraph");
 
-        crawled_content.add(new ArrayList<>());
-        crawled_content.get(1).add(e1.select("p").text());
+        crawledContent.add(new ArrayList<>());
+        crawledContent.get(1).add(e1.select("p").text());
 
-        crawled_content.add(new ArrayList<>());
+        crawledContent.add(new ArrayList<>());
         for(Element p:getChosenDoc().select("div.zn-body__paragraph")) {
-            crawled_content.get(2).add(p.text());
+            crawledContent.get(2).add(p.text());
         }
 
-        for(ArrayList<String> s: crawled_content) {
+        for(ArrayList<String> s: crawledContent) {
             for(String a : s) {
                 System.out.println(a);
             }
@@ -117,7 +117,7 @@ public class Crawler {
 
         BufferedWriter bfw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f)));
 
-        for(ArrayList<String> a : crawled_content) {
+        for(ArrayList<String> a : crawledContent) {
             for(String s:a) {
                 bfw.write(s+"\n");
             }
@@ -128,11 +128,11 @@ public class Crawler {
 
     // url後建doc then crawl article title
     public String addCategory(String category) {
-        return BASE_URL + category;
+        return baseUrl + category;
     }
 
     // first call
-    public Elements first_view(String category) throws IOException {
+    public Elements firstView(String category) throws IOException {
         Document doc = Jsoup.connect(addCategory(category)).get();
 
         Elements e1 = doc.getElementsByClass("column zn__column--idx-0");
@@ -142,10 +142,10 @@ public class Crawler {
     }
 
     public void concatenate(String aurl) {
-        articleUrlList.add(BASE_URL + aurl);
+        articleUrlList.add(baseUrl + aurl);
     }
 
-    public int choose_article(String title) {
+    public int chooseArticle(String title) {
         int index = 0;
         for(String s : articleList) {
             if(s.equals(title)) {
@@ -156,7 +156,7 @@ public class Crawler {
         return index;
     }
 
-    public String find_article_url(String title) {
-        return getArticleUrlList().get(choose_article(title));
+    public String findArticleUrl(String title) {
+        return getArticleUrlList().get(chooseArticle(title));
     }
 }
