@@ -12,30 +12,19 @@
 #include <vector>
 #include <string>
 
-int main(int argc, char **argv)
-{
-  // std::string article = Solution::readFile("./tmp/crawed_content.txt");
-  // std::vector<std::string> bannedWords = Solution::splitString(Solution::readFile("./config/bannedWords.txt"), '\n');
-  // for(auto wordCount : Solution::wordFrequency(article, bannedWords))
-  // {
-  //   std::cout << wordCount.first << " " << wordCount.second << "\n";
-  // }
+int main(int argc, char **argv) {
+    QTranslator translator;
+    Crawler crawler;
 
-  // Init translator
-  QTranslator translator;
+    // Init app
+    QApplication app(argc, argv);
+    app.installTranslator(&translator);
 
-  // Init crawler
-  Crawler crawler;
+    // Init main window
+    MainWindow mainWindow(&translator, &crawler);
+    mainWindow.resize(1200, 800);
+    mainWindow.show();
 
-  // Init app
-  QApplication app(argc, argv);
-  app.installTranslator(&translator);
-
-  // Init main window
-  MainWindow mainWindow(&translator, &crawler);
-  mainWindow.resize(1200, 800);
-  mainWindow.show();
-
-  // Run app
-  return app.exec();
+    // Run app
+    return app.exec();
 }

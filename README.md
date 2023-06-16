@@ -1,87 +1,44 @@
-# English assistant
+# about
 
-An English learning app (64bit)
+An English learning app
 
 Get specific article from [CNN news](https://edition.cnn.com/)
 
-Provide an simple UI to assist learning English
+Provide a simple gui to assist learning English
 
-## Build for Windows
+# setup building environment
 
-### 0. Install needed tools & set environment path
+- install [msys2](https://www.msys2.org/)
 
-- GCC (>9.3.0): https://www.mingw-w64.org/downloads/
+- add msys2 to environment path, or set it temporary via:
 
-- Ninja (1.10.0): https://ninja-build.org/
-
-- CMake (=3.21.3): https://cmake.org/
-
-- Qt (=5.15.2): https://www.qt.io
-
-- JDK (=11.0.2): https://jdk.java.net/archive/
-
-  Note: Environment path for "bin" & "server" directory is needed
-
-### 1. Create and go to build directory
-
-```cmd
-mkdir build
-cd build
+```
+set PATH=C:\msys64\ucrt64\bin;C:\msys64\usr\bin;%PATH%
 ```
 
-### 2. Generate build system files
+- install gcc, ninja, cmake, qt6-static
 
-`cmake .. -G "Ninja"`
-
-### 3. Build
-
-`cmake --build .`
-
-## Build for Linux (libjvm.so not working yet)
-
-### 0. Install needed tools
-
-```sh
-# install gcc
-sudo apt install g++
-
-# install ninja
-sudo apt install ninja
-
-# install cmake
-sudo apt install cmake
-
-# install Qt lib & tools
-sudo apt install qttools5-dev
-
-# install jdk & tools
-sudo apt install openjdk-11-jdk
+```
+pacman -S mingw-w64-ucrt-x86_64-gcc
+pacman -S mingw-w64-ucrt-x86_64-ninja
+pacman -S mingw-w64-ucrt-x86_64-cmake
+pacman -S mingw-w64-ucrt-x86_64-qt6-static
 ```
 
-### 1. Create and go to build directory
+- install [openjdk(>17.0.7)](https://adoptium.net/)
 
-```sh
-mkdir build
-cd build
+  note: environment path for "bin" & "server" directory is needed
+
+# build
+
+- configure the build
+
+```
+cmake -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release
 ```
 
-### 2. Generate build system files
+- build the project
 
-`cmake .. -G "Ninja"`
-
-### 3. Build
-
-`cmake --build .`
-
-
-## Library used
-
-- Google translate: https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en-US&dt=t&q=helloworld
-
-- nlohmann-json (embedded): https://github.com/nlohmann/json
-
-- openjdk: https://openjdk.java.net/
-
-- openssl: https://www.openssl.org/source/ ([DLL](https://slproweb.com/products/Win32OpenSSL.html))
-
-- Qt: https://www.qt.io/
+```
+cmake --build build
+```

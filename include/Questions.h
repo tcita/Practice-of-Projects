@@ -6,9 +6,8 @@
 #include <vector>
 
 // Helper functions for question
-namespace Questions
-{
-  std::vector<Question> makeQuestions(const std::string &article);
+namespace Questions {
+    std::vector<Question> makeQuestions(const std::string &article);
 };
 
 #endif

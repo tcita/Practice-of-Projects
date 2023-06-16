@@ -1,3 +1,4 @@
+.cache 
 build
 lib/crawler/.ninja_deps
 lib/crawler/.ninja_log
