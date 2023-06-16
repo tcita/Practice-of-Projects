@@ -26,10 +26,10 @@ namespace english_assistance {
         javaCrawler = env->NewObject(javaCrawlerClass, constructor);
 
         // find defined methods
-        methodID_1 = env->GetMethodID(javaCrawlerClass, "setArticle_list", "(Ljava/lang/String;)V");
-        methodID_2 = env->GetMethodID(javaCrawlerClass, "setArticle_url_list","(Ljava/lang/String;)V");
-        methodID_3 = env->GetMethodID(javaCrawlerClass, "setChosed_doc", "(Ljava/lang/String;)V");
-        methodID_4 = env->GetMethodID(javaCrawlerClass, "crawl_article", "()V");
+        methodID_1 = env->GetMethodID(javaCrawlerClass, "setArticleList", "(Ljava/lang/String;)V");
+        methodID_2 = env->GetMethodID(javaCrawlerClass, "setArticleUrlList","(Ljava/lang/String;)V");
+        methodID_3 = env->GetMethodID(javaCrawlerClass, "setChosenDoc", "(Ljava/lang/String;)V");
+        methodID_4 = env->GetMethodID(javaCrawlerClass, "crawlArticle", "()V");
         methodID_5 = env->GetMethodID(javaCrawlerClass, "clear", "()V");
     }
 
