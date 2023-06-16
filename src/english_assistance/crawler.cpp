@@ -40,7 +40,7 @@ namespace english_assistance {
     }
 
     std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleType) {
-        // Clear
+        // clear
         env->CallVoidMethod(javaCrawler, methodID_5);
 
         const std::string articleTypeWithSlash = std::string("/") + articleType;
