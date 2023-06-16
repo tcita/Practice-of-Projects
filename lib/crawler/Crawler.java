@@ -63,7 +63,7 @@ public class Crawler {
         return articleUrlList;
     }
 
-    public void setArticle_url_list(String category) throws IOException {
+    public void setArticleUrlList(String category) throws IOException {
         for(Element e : firstView(category)) {
             concatenate(e.attr("href"));
         }
