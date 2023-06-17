@@ -48,15 +48,17 @@ find_package(
 # Add executable
 add_executable(${CMAKE_PROJECT_NAME})
 
-if(WIN32)
-    # add app icon
-    add_custom_command(
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/resource.o
-        COMMAND windres resource.rc -o ${CMAKE_CURRENT_BINARY_DIR}/resource.o
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/resource.rc
-    )
-endif()
+    if(WIN32)
+        # add app icon
+        add_custom_command(
+            OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/resource.o
+            COMMAND windres resource.rc -o ${CMAKE_CURRENT_BINARY_DIR}/resource.o
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+            DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/resource.rc
+        )
+        
+        target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/resource.o)
+    endif()
 
 # Setup (.ts) files
 set(

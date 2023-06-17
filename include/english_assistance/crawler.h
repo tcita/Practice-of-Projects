@@ -17,11 +17,11 @@ namespace english_assistance {
         JavaVM *jvm;
         JNIEnv *env;
         jobject javaCrawler;
-        jmethodID methodId_1;
-        jmethodID methodId_2;
-        jmethodID methodId_3;
-        jmethodID methodId_4;
-        jmethodID methodId_5;
+        jmethodID methodId1;
+        jmethodID methodId2;
+        jmethodID methodId3;
+        jmethodID methodId4;
+        jmethodID methodId5;
 
     public:
         Crawler();

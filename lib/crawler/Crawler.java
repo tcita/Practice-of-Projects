@@ -23,9 +23,6 @@ public class Crawler {
     private List<String> articleUrlList = new ArrayList<>();
 	// chosen article's doc
     private Document chosenDoc;
-
-    public Crawler() {
-    }
 	
     public void clear() {
         articleList.clear();
