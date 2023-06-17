@@ -20,6 +20,7 @@
 #include "english_assistance/info.h"
 #include "english_assistance/config.h"
 #include "english_assistance/question.h"
+#include "english_assistance/xpm.h"
 
 namespace english_assistance {
     MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
@@ -154,7 +155,7 @@ namespace english_assistance {
         this->setCentralWidget(mainPanel);
 
         // Setup icon
-        this->setWindowIcon(QIcon("assets/images/icon.png"));
+        this->setWindowIcon(QIcon(QPixmap(xpm::APP_ICON)));
 
         // Setup global style sheet
         this->setStyleSheet(R"(

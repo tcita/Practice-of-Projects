@@ -10,7 +10,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 set(LINK_SEARCH_START_STATIC ON)
 
-
 if(WIN32)
 set(Qt6_DIR "C:/msys64/ucrt64/qt6-static/lib/cmake/Qt6")
     # set(CMAKE_FIND_LIBRARY_SUFFIXES ".a" ".dll.a" ".lib" ${CMAKE_FIND_LIBRARY_SUFFIXES})
@@ -103,6 +102,7 @@ target_sources(
     PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/question.cpp
     PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/ui/main_window.cpp
     PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/util.cpp
+    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/xpm.cpp
 )
 
 #
@@ -129,7 +129,6 @@ add_custom_command(
 # Copy assets to build directory
 add_custom_command(
     TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets/images ${CMAKE_BINARY_DIR}/assets/images
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/jsoup ${CMAKE_BINARY_DIR}/lib/jsoup
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/config ${CMAKE_BINARY_DIR}/config
 )
