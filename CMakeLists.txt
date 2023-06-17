@@ -9,12 +9,13 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS true)
 set(LINK_SEARCH_START_STATIC ON)
-# set(CMAKE_FIND_LIBRARY_SUFFIXES ".a" ".dll.a" ".lib" ${CMAKE_FIND_LIBRARY_SUFFIXES})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lmng")
+
 
 if(WIN32)
-    set(Qt6_DIR "C:/msys64/ucrt64/qt6-static/lib/cmake/Qt6")
+set(Qt6_DIR "C:/msys64/ucrt64/qt6-static/lib/cmake/Qt6")
+    # set(CMAKE_FIND_LIBRARY_SUFFIXES ".a" ".dll.a" ".lib" ${CMAKE_FIND_LIBRARY_SUFFIXES})
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
+    # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lmng")
 endif()
 
 ####################################################################################################
@@ -47,6 +48,16 @@ find_package(
 ####################################################################################################
 # Add executable
 add_executable(${CMAKE_PROJECT_NAME})
+
+if(WIN32)
+    # add app icon
+    add_custom_command(
+        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/resource.o
+        COMMAND windres resource.rc -o ${CMAKE_CURRENT_BINARY_DIR}/resource.o
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/resource.rc
+    )
+endif()
 
 # Setup (.ts) files
 set(
@@ -118,7 +129,7 @@ add_custom_command(
 # Copy assets to build directory
 add_custom_command(
     TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets/image ${CMAKE_BINARY_DIR}/assets/image
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/assets/images ${CMAKE_BINARY_DIR}/assets/images
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/lib/jsoup ${CMAKE_BINARY_DIR}/lib/jsoup
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/config ${CMAKE_BINARY_DIR}/config
 )

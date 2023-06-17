@@ -154,7 +154,7 @@ namespace english_assistance {
         this->setCentralWidget(mainPanel);
 
         // Setup icon
-        this->setWindowIcon(QIcon("assets/image/icon.png"));
+        this->setWindowIcon(QIcon("assets/images/icon.png"));
 
         // Setup global style sheet
         this->setStyleSheet(R"(
