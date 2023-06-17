@@ -1,14 +1,12 @@
-#include <iostream> //debug
-// #include <QtWidgets>
-#include <QDir>
-#include <QApplication>
-#include <QTranslator>
-#include "english_assistance/ui/main_window.h"
-#include <jni.h>
-#include "english_assistance/crawler.h"
-#include "english_assistance/util.h"
-#include <vector>
 #include <string>
+#include <vector>
+
+#include <jni.h>
+#include <QtWidgets>
+
+#include "english_assistance/crawler.h"
+#include "english_assistance/ui/main_window.h"
+#include "english_assistance/util.h"
 
 int main(int argc, char **argv) {
     QTranslator translator;

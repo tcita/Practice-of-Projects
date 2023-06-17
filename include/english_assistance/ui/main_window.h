@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
 #include <stack>
+#include <vector>
 
 #include <QtWidgets>
 

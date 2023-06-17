@@ -1,11 +1,11 @@
-#include <memory>
 #include <iostream>
+#include <memory>
 
+#include <nlohmann/json.hpp>
+#include <QCoreApplication>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QCoreApplication>
 #include <QEventLoop>
-#include <nlohmann/json.hpp>
 
 #include "english_assistance/translate.h"
 

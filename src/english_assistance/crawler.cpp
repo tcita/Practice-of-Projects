@@ -1,10 +1,10 @@
-#include "english_assistance/crawler.h"
-#include "english_assistance/util.h"
-
-#include <iostream>
 #include <cstdio>
+#include <iostream>
 #include <memory>
 #include <random>
+
+#include "english_assistance/crawler.h"
+#include "english_assistance/util.h"
 
 namespace english_assistance {
     Crawler::Crawler() {

@@ -1,25 +1,16 @@
 #include <iostream>
-#include <thread>
 #include <random>
+#include <thread>
 
-#include <QGridLayout>
-#include <QVBoxLayout>
-#include <QLineEdit>
-#include <QLabel>
-#include <QMessageBox>
-#include <QTranslator>
-#include <QRadioButton>
-#include <QCheckBox>
-#include <QTextDocumentFragment>
-#include <QScrollBar>
+#include <QtWidgets>
 
-#include "english_assistance/ui/main_window.h"
-#include "english_assistance/translate.h"
-#include "english_assistance/util.h"
-#include "english_assistance/lang.h"
-#include "english_assistance/info.h"
 #include "english_assistance/config.h"
+#include "english_assistance/info.h"
+#include "english_assistance/lang.h"
 #include "english_assistance/question.h"
+#include "english_assistance/translate.h"
+#include "english_assistance/ui/main_window.h"
+#include "english_assistance/util.h"
 #include "english_assistance/xpm.h"
 
 namespace english_assistance {

@@ -1,10 +1,10 @@
-#include <string>
-#include <random>
 #include <iostream>
+#include <random>
+#include <string>
 
+#include "english_assistance/config.h"
 #include "english_assistance/question.h"
 #include "english_assistance/util.h"
-#include "english_assistance/config.h"
 
 namespace english_assistance {
     namespace question {
