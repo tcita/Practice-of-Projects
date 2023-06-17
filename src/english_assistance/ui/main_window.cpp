@@ -696,7 +696,10 @@ namespace english_assistance {
 
         std::cout << "MainWindow::setLanguage(\"" << languageType << "\")\n";
         std::string languageFilePath = std::string("assets/lang/") + languageType;
-        translator->load(QString::fromStdString(languageFilePath));
+        if(!translator->load(QString::fromStdString(languageFilePath))) {
+            std::cerr << "Failed to load MainWindow::translatior" << std::endl;
+            return;
+        }
         std::cout << "The language after change is: " << translator->language().toStdString() << "\n"; //debug
         config::writeLanguageType(languageType);
 

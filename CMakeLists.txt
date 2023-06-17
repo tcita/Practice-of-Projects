@@ -1,25 +1,25 @@
 ####################################################################################################
 # Project setting
 ####################################################################################################
-# Set cmake standard
 cmake_minimum_required(VERSION 3.22.1)
 
-# Set c++ standard
+project(EnglishAssistant)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS true)
+set(LINK_SEARCH_START_STATIC ON)
+# set(CMAKE_FIND_LIBRARY_SUFFIXES ".a" ".dll.a" ".lib" ${CMAKE_FIND_LIBRARY_SUFFIXES})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lmng")
+
 if(WIN32)
     set(Qt6_DIR "C:/msys64/ucrt64/qt6-static/lib/cmake/Qt6")
 endif()
 
-# Set project information
-project(EnglishAssistant)
-
 ####################################################################################################
 # Find package
 ####################################################################################################
-# Add subdirectory nlohmann_json
-# From: https://github.com/nlohmann/json
 find_package(nlohmann_json REQUIRED)
 
 # Find JNI package
@@ -33,9 +33,10 @@ find_package(JNI REQUIRED)
 
 # Find Qt package
 find_package(
-    Qt5 REQUIRED
+    Qt6 REQUIRED
     COMPONENTS
         Core
+        Gui
         Widgets
         Network
         LinguistTools
@@ -65,7 +66,7 @@ set_source_files_properties(
 
 # If the (.ts) file is missing, automatically create a new one
 # Compile (.ts) files to (.qm) files (Qt linguist)
-qt5_create_translation(
+qt6_create_translation(
     QM_FILES
     ${CMAKE_SOURCE_DIR}
     ${TS_FILES}
@@ -98,11 +99,10 @@ target_sources(
 #
 target_link_libraries(
     ${CMAKE_PROJECT_NAME}
-    PRIVATE nlohmann_json
-    PRIVATE Qt5::Core
-    PRIVATE Qt5::Gui
-    PRIVATE Qt5::Widgets
-    PRIVATE Qt5::Network
+    PRIVATE Qt6::Gui
+    PRIVATE Qt6::Widgets
+    PRIVATE Qt6::Network
+    PRIVATE Qt6::Core
     PRIVATE ${JNI_LIBRARIES}
 )
 

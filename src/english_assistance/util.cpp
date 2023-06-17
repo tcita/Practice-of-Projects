@@ -76,7 +76,7 @@ namespace english_assistance {
         std::string readFile(const std::filesystem::path &path) {
             std::ifstream ifs(path);
             if(!ifs.is_open()) {
-                std::cerr << "Error on util::readFile(const std::filesystem::path &path)\nFile \"" << path << "\" not found!";
+                std::cerr << "Error on util::readFile(const std::filesystem::path &path)\nFile " << path << " not found!" << std::endl;
             }
             std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
             return content;

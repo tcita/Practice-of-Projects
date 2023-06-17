@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <filesystem>
 #include <vector>
 
 #include <jni.h>
@@ -9,18 +10,18 @@ namespace english_assistance {
     // Use jni to call java crawler
     class Crawler {
     public:
-        static constexpr const char *ARTICLE_TITLE_FILE_PATH = "./tmp/article_list.txt";
-        static constexpr const char *ARTICLE_FILE_PATH = "./tmp/crawed_content.txt";
+        const std::filesystem::path ARTICLE_TITLE_FILE_PATH = "tmp/article_list.txt";
+        const std::filesystem::path ARTICLE_FILE_PATH = "tmp/crawed_content.txt";
 
     private:
         JavaVM *jvm;
         JNIEnv *env;
         jobject javaCrawler;
-        jmethodID methodID_1;
-        jmethodID methodID_2;
-        jmethodID methodID_3;
-        jmethodID methodID_4;
-        jmethodID methodID_5;
+        jmethodID methodId_1;
+        jmethodID methodId_2;
+        jmethodID methodId_3;
+        jmethodID methodId_4;
+        jmethodID methodId_5;
 
     public:
         Crawler();

@@ -26,11 +26,11 @@ namespace english_assistance {
         javaCrawler = env->NewObject(javaCrawlerClass, constructor);
 
         // find defined methods
-        methodID_1 = env->GetMethodID(javaCrawlerClass, "setArticleList", "(Ljava/lang/String;)V");
-        methodID_2 = env->GetMethodID(javaCrawlerClass, "setArticleUrlList","(Ljava/lang/String;)V");
-        methodID_3 = env->GetMethodID(javaCrawlerClass, "setChosenDoc", "(Ljava/lang/String;)V");
-        methodID_4 = env->GetMethodID(javaCrawlerClass, "crawlArticle", "()V");
-        methodID_5 = env->GetMethodID(javaCrawlerClass, "clear", "()V");
+        methodId_1 = env->GetMethodID(javaCrawlerClass, "setArticleList", "(Ljava/lang/String;)V");
+        methodId_2 = env->GetMethodID(javaCrawlerClass, "setArticleUrlList","(Ljava/lang/String;)V");
+        methodId_3 = env->GetMethodID(javaCrawlerClass, "setChosenDoc", "(Ljava/lang/String;)V");
+        methodId_4 = env->GetMethodID(javaCrawlerClass, "crawlArticle", "()V");
+        methodId_5 = env->GetMethodID(javaCrawlerClass, "clear", "()V");
     }
 
     Crawler::~Crawler() {
@@ -41,12 +41,12 @@ namespace english_assistance {
 
     std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleType) {
         // clear
-        env->CallVoidMethod(javaCrawler, methodID_5);
+        env->CallVoidMethod(javaCrawler, methodId_5);
 
         const std::string articleTypeWithSlash = std::string("/") + articleType;
 
-        env->CallVoidMethod(javaCrawler, methodID_1, toJString(articleTypeWithSlash));
-        env->CallVoidMethod(javaCrawler, methodID_2, toJString(articleTypeWithSlash));
+        env->CallVoidMethod(javaCrawler, methodId_1, toJString(articleTypeWithSlash));
+        env->CallVoidMethod(javaCrawler, methodId_2, toJString(articleTypeWithSlash));
 
         std::vector<std::string> articleTitles = util::split(util::readFile(ARTICLE_TITLE_FILE_PATH), '\n');
 
@@ -55,8 +55,8 @@ namespace english_assistance {
 
     std::string Crawler::fetchArticle(const std::string &articleTitle) {
         // std::string articleTitle("An American teacher held in Libya for 6 weeks is now back home in the United States");
-        env->CallVoidMethod(javaCrawler, methodID_3, toJString(articleTitle)); // also print stuff
-        env->CallVoidMethod(javaCrawler, methodID_4); // also print stuff
+        env->CallVoidMethod(javaCrawler, methodId_3, toJString(articleTitle)); // also print stuff
+        env->CallVoidMethod(javaCrawler, methodId_4); // also print stuff
 
         std::string article = util::readFile(ARTICLE_FILE_PATH);
         return article;
