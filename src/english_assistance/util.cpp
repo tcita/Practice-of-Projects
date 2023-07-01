@@ -26,7 +26,7 @@ namespace english_assistance {
         }
         std::vector<std::pair<std::string, int>> wordFrequency(const std::string& article, const std::vector<std::string>& bannedWords) {
             //頻繁出現的衡量標準
-            const int count = 3;
+            // const int count = 3;
 
             //頻繁出現的單字
             // std::unordered_map<std::string, int> maxw;
