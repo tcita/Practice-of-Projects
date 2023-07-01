@@ -504,7 +504,7 @@ namespace english_assistance {
             // QPushButton* okButton = testingResultInnerPanel->findChildren<QPushButton*>();
 
             // Add questions to testing result panel
-            for(auto i = 0; i < testingPanelQuestions.size(); ++i) {
+            for(std::size_t i = 0; i < testingPanelQuestions.size(); ++i) {
                 bool currentQuestionAllCorrect = true; // Record if the question is all correct, only wrong question need to be appeared in testingResultPanel
                 if(testingPanelQuestions[i].answerIndexes.size() != choosedAnswersIndexes[i].size()) {
                     // std::cout << "Size not the same\n"; //debug!!
