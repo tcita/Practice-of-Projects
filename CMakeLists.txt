@@ -45,7 +45,6 @@ find_package(
 ####################################################################################################
 # Add executable
 add_executable(${CMAKE_PROJECT_NAME})
-
     if(WIN32)
 		if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
 			set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE true)
