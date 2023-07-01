@@ -528,7 +528,7 @@ namespace english_assistance {
                         questionGroupBox->setTitle(QString::fromStdString(question.question));
 
                         // Add candidate answer
-                        for(auto candidateAnswerIndex = 0; candidateAnswerIndex < question.candidateAnswers.size(); ++candidateAnswerIndex) {
+                        for(std::size_t candidateAnswerIndex = 0; candidateAnswerIndex < question.candidateAnswers.size(); ++candidateAnswerIndex) {
                             QRadioButton *button = new QRadioButton(questionGroupBox);
                             button->setText(QString::fromStdString(question.candidateAnswers[candidateAnswerIndex]));
                             questionGroupBoxLayout->addWidget(button);
