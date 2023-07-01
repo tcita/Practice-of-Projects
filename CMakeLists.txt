@@ -49,6 +49,10 @@ find_package(
 add_executable(${CMAKE_PROJECT_NAME})
 
     if(WIN32)
+		if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+			set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE true)
+		endif()
+		
         # add app icon
         add_custom_command(
             OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/resource.o
