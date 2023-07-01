@@ -6,15 +6,13 @@ cmake_minimum_required(VERSION 3.22.1)
 project(EnglishAssistant)
 
 set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD_REQUIRED true)
 set(CMAKE_EXPORT_COMPILE_COMMANDS true)
-set(LINK_SEARCH_START_STATIC ON)
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
 if(WIN32)
-set(Qt6_DIR "C:/msys64/ucrt64/qt6-static/lib/cmake/Qt6")
-    # set(CMAKE_FIND_LIBRARY_SUFFIXES ".a" ".dll.a" ".lib" ${CMAKE_FIND_LIBRARY_SUFFIXES})
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
-    # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lmng")
+    set(CMAKE_FIND_LIBRARY_SUFFIXES ".a" ${CMAKE_FIND_LIBRARY_SUFFIXES})
+    set(Qt5_DIR "C:/msys64/ucrt64/qt5-static/lib/cmake/Qt5")
 endif()
 
 ####################################################################################################
@@ -33,7 +31,7 @@ find_package(JNI REQUIRED)
 
 # Find Qt package
 find_package(
-    Qt6 REQUIRED
+    Qt5 REQUIRED
     COMPONENTS
         Core
         Gui
@@ -82,7 +80,7 @@ set_source_files_properties(
 
 # If the (.ts) file is missing, automatically create a new one
 # Compile (.ts) files to (.qm) files (Qt linguist)
-qt6_create_translation(
+qt5_create_translation(
     QM_FILES
     ${CMAKE_SOURCE_DIR}
     ${TS_FILES}
@@ -116,10 +114,10 @@ target_sources(
 #
 target_link_libraries(
     ${CMAKE_PROJECT_NAME}
-    PRIVATE Qt6::Gui
-    PRIVATE Qt6::Widgets
-    PRIVATE Qt6::Network
-    PRIVATE Qt6::Core
+    PRIVATE Qt5::Gui
+    PRIVATE Qt5::Widgets
+    PRIVATE Qt5::Network
+    PRIVATE Qt5::Core
     PRIVATE ${JNI_LIBRARIES}
 )
 

@@ -22,7 +22,7 @@ set PATH=C:\msys64\ucrt64\bin;C:\msys64\usr\bin;%PATH%
 pacman -S mingw-w64-ucrt-x86_64-gcc
 pacman -S mingw-w64-ucrt-x86_64-ninja
 pacman -S mingw-w64-ucrt-x86_64-cmake
-pacman -S mingw-w64-ucrt-x86_64-qt6-static
+pacman -S mingw-w64-ucrt-x86_64-qt5-static
 ```
 
 - install [openjdk(>=17.0.7)](https://adoptium.net/)
