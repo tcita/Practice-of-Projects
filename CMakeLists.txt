@@ -45,21 +45,22 @@ find_package(
 ####################################################################################################
 # Add executable
 add_executable(${CMAKE_PROJECT_NAME})
-    if(WIN32)
-		if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
-			set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE true)
-		endif()
-		
-        # add app icon
-        add_custom_command(
-            OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/resource.o
-            COMMAND windres resource.rc -o ${CMAKE_CURRENT_BINARY_DIR}/resource.o
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-            DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/resource.rc
-        )
-        
-        target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/resource.o)
+
+if(WIN32)
+    if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+        set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE true)
     endif()
+    
+    # add app icon
+    add_custom_command(
+        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/resource.o
+        COMMAND windres resource.rc -o ${CMAKE_CURRENT_BINARY_DIR}/resource.o
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/resource.rc
+    )
+    
+    target_sources(${CMAKE_PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/resource.o)
+endif()
 
 # Setup (.ts) files
 set(
