@@ -48,7 +48,7 @@ namespace english_assistance {
 
         // Get translated string
         std::string translatedString;
-        for(int i=0; i<jsonData[0].size(); ++i) {
+        for(std::size_t i = 0; i < jsonData[0].size(); ++i) {
             translatedString += jsonData[0][i][0];
         }
 
