@@ -8,6 +8,8 @@
 #include "english_assistance/ui/main_window.h"
 #include "english_assistance/util.h"
 
+using english_assistance::ui::main_window::MainWindow;
+
 int main(int argc, char **argv) {
     QTranslator translator;
     english_assistance::Crawler crawler;
@@ -17,7 +19,7 @@ int main(int argc, char **argv) {
     app.installTranslator(&translator);
 
     // Init main window
-    english_assistance::ui::MainWindow mainWindow(&translator, &crawler);
+    MainWindow mainWindow(&translator, &crawler);
     mainWindow.resize(1200, 800);
     mainWindow.show();
 
