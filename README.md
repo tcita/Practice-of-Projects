@@ -54,5 +54,6 @@ Run
 ---
 
 ```
-./build/EnglishAssistant
+cd build
+./EnglishAssistant
 ```
