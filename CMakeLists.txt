@@ -106,7 +106,7 @@ target_sources(
     PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/question.cpp
     PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/ui/main_window.cpp
     PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/util.cpp
-    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/xpm.cpp
+    PRIVATE ${CMAKE_SOURCE_DIR}/src/english_assistance/ui/xpm.cpp
 )
 
 #

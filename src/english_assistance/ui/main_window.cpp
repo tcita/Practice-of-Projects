@@ -11,7 +11,7 @@
 #include "english_assistance/translate.h"
 #include "english_assistance/ui/main_window.h"
 #include "english_assistance/util.h"
-#include "english_assistance/xpm.h"
+#include "english_assistance/ui/xpm.h"
 
 namespace english_assistance {
     MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
