@@ -1,4 +1,5 @@
-# about
+About
+-----
 
 An English learning app
 
@@ -6,7 +7,9 @@ Get specific article from [CNN news](https://edition.cnn.com/)
 
 Provide a simple gui to assist learning English
 
-# setup building environment
+
+Setup building environment
+--------------------------
 
 - install [msys2](https://www.msys2.org/)
 
@@ -30,7 +33,9 @@ pacman -S mingw-w64-ucrt-x86_64-qt5-static
 
   note: environment path for "bin" & "server" directory is needed
 
-# build
+
+Build
+-----
 
 - configure the build
 
@@ -42,4 +47,12 @@ cmake -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release
 
 ```
 cmake --build build
+```
+
+
+Run
+---
+
+```
+./build/EnglishAssistant
 ```
