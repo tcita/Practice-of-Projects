@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
     app.installTranslator(&translator);
 
     // Init main window
-    english_assistance::MainWindow mainWindow(&translator, &crawler);
+    english_assistance::ui::MainWindow mainWindow(&translator, &crawler);
     mainWindow.resize(1200, 800);
     mainWindow.show();
 
