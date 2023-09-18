@@ -374,9 +374,9 @@ namespace english_assistance {
                     std::vector<question::Question> questions;
                     // questions = Questions::makeQuestions(crawler->fetchRandomArticle());
                     for(auto &question : question::makeQuestions(crawler->fetchRandomArticle())) {
-                    if(question.isValid()) {
-                        questions.push_back(question);
-                    }
+                        if(question.isValid()) {
+                            questions.push_back(question);
+                        }
                     }
 
                     // questions.push_back(Question("Time _____ like an arrow; fruit flies like a banana", {"fly", "flies", "flied"}, {1}));
