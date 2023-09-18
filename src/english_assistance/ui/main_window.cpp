@@ -210,15 +210,23 @@ namespace english_assistance {
                 mainPanelLayout->addWidget(articleTypePanelButton, 0, 0);
                 articleTypePanelButton->setMaximumWidth(300);
                 articleTypePanelButton->setMinimumHeight(200);
+                articleTypePanelButton->setIcon(QIcon("assets/images/article.png"));
+                articleTypePanelButton->setIconSize({100, 100});
                 mainPanelLayout->addWidget(typingPanelButton, 0, 1);
                 typingPanelButton->setMaximumWidth(300);
                 typingPanelButton->setMinimumHeight(200);
+                typingPanelButton->setIcon(QIcon("assets/images/typing.png"));
+                typingPanelButton->setIconSize({100, 100});
                 mainPanelLayout->addWidget(testingPanelButton, 1, 0);
                 testingPanelButton->setMaximumWidth(300);
                 testingPanelButton->setMinimumHeight(200);
+                testingPanelButton->setIcon(QIcon("assets/images/testing.png"));
+                testingPanelButton->setIconSize({100, 100});
                 mainPanelLayout->addWidget(translatePanelButton, 1, 1);
                 translatePanelButton->setMaximumWidth(300);
                 translatePanelButton->setMinimumHeight(200);
+                translatePanelButton->setIcon(QIcon("assets/images/translate.png"));
+                translatePanelButton->setIconSize({100, 100});
 
                 // Setup article type panel
                 articleTypePanel->setLayout(articleTypePanelLayout);
