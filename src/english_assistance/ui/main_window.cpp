@@ -148,7 +148,7 @@ namespace english_assistance {
                 this->setCentralWidget(mainPanel);
 
                 // Setup icon
-                this->setWindowIcon(QIcon(QPixmap(xpm::APP_ICON)));
+                this->setWindowIcon(QIcon("assets/images/icon.ico"));
 
                 // Setup global style sheet
                 this->setStyleSheet(R"(
