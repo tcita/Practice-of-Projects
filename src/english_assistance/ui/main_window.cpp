@@ -356,13 +356,16 @@ namespace english_assistance {
 
                     // Clear panel
                     for(QWidget *widget : typingInnerPanel->findChildren<QWidget*>()) {
-                    delete widget;
+                        delete widget;
                     }
 
                     // Add labels and lineEdits
                     addRandomTypingPanelWords();
-
-                    typingInnerPanel->findChildren<QLineEdit*>()[0]->setFocus();
+                    
+                    auto firstChild = typingInnerPanel->findChildren<QLineEdit*>()[0];
+                    if(firstChild) {
+                        firstChild->setFocus();
+                    }
                 });
                 QObject::connect(testingPanelButton, &QPushButton::clicked, [this, crawler]{
                     testingInnerPanelLayout->removeWidget(testingInnerPanelSubmitButton);
@@ -807,6 +810,9 @@ namespace english_assistance {
 
             void MainWindow::addRandomTypingPanelWords() {
                 const std::string &article = crawler->fetchRandomArticle();
+                if(article.empty()) {
+                    return;
+                }
                 const std::vector<std::string> &bannedWords = config::readBannedWords();
                 std::vector<std::string> typingPanelWords;
                 for(const auto &wordFrequency : util::wordFrequency(article, bannedWords))
