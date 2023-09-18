@@ -1,7 +1,7 @@
 # project
 build
 
-# ninja build
+# ninja
 **/.ninja_log
 
 # clangd
