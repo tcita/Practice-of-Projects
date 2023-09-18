@@ -135,7 +135,10 @@ namespace english_assistance {
 
     std::string Crawler::fetchRandomArticle() {
         const std::vector<std::string> &articleTitles = fetchArticleTitles("africa");
-
+        if(articleTitles.empty()) {
+            return {};
+        }
+        
         // Get distribute
         // From: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/
         std::random_device randomDevice;
