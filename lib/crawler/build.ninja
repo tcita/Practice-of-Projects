@@ -1,9 +1,7 @@
 javac = javac
-javaFlags = -cp ../jsoup/jsoup-1.14.3.jar -encoding UTF-8
+java_classpath = ".;../jsoup/jsoup-1.14.3.jar"
 
 rule compile
-  command = $javac $javaFlags $in
+  command = $javac -cp $java_classpath $in
 
-build Crawler.class: compile ./Crawler.java
-
-default Crawler.class
+build Crawler.class: compile Crawler.java
