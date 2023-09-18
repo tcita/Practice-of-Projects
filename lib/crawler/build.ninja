@@ -1,5 +1,5 @@
 javac = javac
-java_classpath = ".;../jsoup/jsoup-1.14.3.jar"
+java_classpath = ".;lib/*"
 
 rule compile
   command = $javac -cp $java_classpath $in
