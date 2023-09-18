@@ -9,10 +9,11 @@
 #include "english_assistance/util.h"
 
 using english_assistance::ui::main_window::MainWindow;
+using english_assistance::crawler::Crawler;
 
 int main(int argc, char **argv) {
     QTranslator translator;
-    english_assistance::Crawler crawler;
+    Crawler crawler;
 
     // Init app
     QApplication app(argc, argv);
