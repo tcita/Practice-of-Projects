@@ -15,7 +15,7 @@
 namespace english_assistance {
     namespace ui {
         namespace main_window {
-            MainWindow::MainWindow(QTranslator *translator, Crawler *crawler)
+            MainWindow::MainWindow(QTranslator *translator, crawler::Crawler *crawler)
                 :translator(translator)
                 ,crawler(crawler) {
                 /******************************************************************************************

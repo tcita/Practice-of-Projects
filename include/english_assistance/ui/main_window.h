@@ -15,7 +15,7 @@ namespace english_assistance {
             class MainWindow : public QMainWindow {
             private:
                 QTranslator *translator;
-                Crawler *crawler;
+                crawler::Crawler *crawler;
 
                 // Menu
                 QMenuBar *mainMenuBar;
@@ -131,7 +131,7 @@ namespace english_assistance {
                 QTextEdit *translatePanelDestTextEdit;
                 
             public:
-                MainWindow(QTranslator *translator, Crawler *crawler);
+                MainWindow(QTranslator *translator, crawler::Crawler *crawler);
 
             protected:
                 virtual void keyPressEvent(QKeyEvent *event) override;

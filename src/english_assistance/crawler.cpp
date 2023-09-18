@@ -7,150 +7,152 @@
 #include "english_assistance/util.h"
 
 namespace english_assistance {
-    Crawler::Crawler() {
-        JavaVMOption options[1];    /*自定義JRE所要的參數，就是java -... -... xxx.java將-...字串加入options中 用*/
-        options[0].optionString = (char*) "-Djava.class.path=.;./lib/crawler;./lib/jsoup/jsoup-1.14.3.jar";
+    namespace crawler {
+        Crawler::Crawler() {
+            JavaVMOption options[1];    /*自定義JRE所要的參數，就是java -... -... xxx.java將-...字串加入options中 用*/
+            options[0].optionString = (char*) "-Djava.class.path=.;./lib/crawler;./lib/jsoup/jsoup-1.14.3.jar";
 
-        JavaVMInitArgs vm_args;
-        vm_args.version = JNI_VERSION_10;
-        vm_args.nOptions = 1;
-        vm_args.options = options;
-        vm_args.ignoreUnrecognized = JNI_FALSE;
+            JavaVMInitArgs vm_args;
+            vm_args.version = JNI_VERSION_10;
+            vm_args.nOptions = 1;
+            vm_args.options = options;
+            vm_args.ignoreUnrecognized = JNI_FALSE;
 
-        jint result = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args);
-        if(result != JNI_OK) {
-            std::cerr << "JNI_CreateJavaVM error: ";
-            switch(result) {
-                case JNI_ERR: {
-                    std::cerr << "unknown error" << std::endl;
-                    break;
+            jint result = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args);
+            if(result != JNI_OK) {
+                std::cerr << "JNI_CreateJavaVM error: ";
+                switch(result) {
+                    case JNI_ERR: {
+                        std::cerr << "unknown error" << std::endl;
+                        break;
+                    }
+                    case JNI_EDETACHED: {
+                        std::cerr << "thread detached from the VM" << std::endl;
+                        break;
+                    }
+                    case JNI_EVERSION: {
+                        std::cerr << "JNI version error" << std::endl;
+                        break;
+                    }
+                    case JNI_ENOMEM: {
+                        std::cerr << "not enough memory" << std::endl;
+                        break;
+                    }
+                    case JNI_EEXIST: {
+                        std::cerr << "VM already created" << std::endl;
+                        break;
+                    }
+                    case JNI_EINVAL: {
+                        std::cerr << "invalid arguments" << std::endl;
+                        break;
+                    }
+                    default: {
+                        std::cerr << "undefined error code: " << result << std::endl;
+                        break;
+                    }
                 }
-                case JNI_EDETACHED: {
-                    std::cerr << "thread detached from the VM" << std::endl;
-                    break;
-                }
-                case JNI_EVERSION: {
-                    std::cerr << "JNI version error" << std::endl;
-                    break;
-                }
-                case JNI_ENOMEM: {
-                    std::cerr << "not enough memory" << std::endl;
-                    break;
-                }
-                case JNI_EEXIST: {
-                    std::cerr << "VM already created" << std::endl;
-                    break;
-                }
-                case JNI_EINVAL: {
-                    std::cerr << "invalid arguments" << std::endl;
-                    break;
-                }
-                default: {
-                    std::cerr << "undefined error code: " << result << std::endl;
-                    break;
-                }
+                return;
             }
-            return;
+
+            // the java Crawler class
+            jclass javaCrawlerClass = env->FindClass("Crawler");
+            if(javaCrawlerClass == nullptr) {
+                std::cerr << "cannot find java class Crawler" << std::endl;
+                return;
+            }
+
+            // get constructor id of java crawler
+            jmethodID constructor = env->GetMethodID(javaCrawlerClass, "<init>", "()V");
+            if(constructor == nullptr) {
+                std::cerr << "cannot find constructor in java class Crawler" << std::endl;
+                return;
+            }
+
+            // new a java Crawler class
+            javaCrawler = env->NewObject(javaCrawlerClass, constructor);
+            if(javaCrawler == nullptr) {
+                std::cerr << "failed to new a java Crawler class" << std::endl;
+                return;
+            }
+
+            // find defined methods
+            methodId1 = env->GetMethodID(javaCrawlerClass, "setArticleList", "(Ljava/lang/String;)V");
+            if(methodId1 == nullptr) {
+                std::cerr << "failed to get methodId1" << std::endl;
+                return;
+            }
+            methodId2 = env->GetMethodID(javaCrawlerClass, "setArticleUrlList","(Ljava/lang/String;)V");
+            if(methodId2 == nullptr) {
+                std::cerr << "failed to get methodId2" << std::endl;
+                return;
+            }
+            methodId3 = env->GetMethodID(javaCrawlerClass, "setChosenDoc", "(Ljava/lang/String;)V");
+            if(methodId3 == nullptr) {
+                std::cerr << "failed to get methodId3" << std::endl;
+                return;
+            }
+            methodId4 = env->GetMethodID(javaCrawlerClass, "crawlArticle", "()V");
+            if(methodId4 == nullptr) {
+                std::cerr << "failed to get methodId4" << std::endl;
+                return;
+            }
+            methodId5 = env->GetMethodID(javaCrawlerClass, "clear", "()V");
+            if(methodId5 == nullptr) {
+                std::cerr << "failed to get methodId5" << std::endl;
+                return;
+            }
+
+            std::cout << "end of Crawler ctor" << std::endl; // debug!
         }
 
-        // the java Crawler class
-        jclass javaCrawlerClass = env->FindClass("Crawler");
-        if(javaCrawlerClass == nullptr) {
-            std::cerr << "cannot find java class Crawler" << std::endl;
-            return;
+        Crawler::~Crawler() {
+            if(jvm) {
+                jvm->DestroyJavaVM();
+            }
         }
 
-        // get constructor id of java crawler
-        jmethodID constructor = env->GetMethodID(javaCrawlerClass, "<init>", "()V");
-        if(constructor == nullptr) {
-            std::cerr << "cannot find constructor in java class Crawler" << std::endl;
-            return;
+        std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleType) {
+            // clear
+            env->CallVoidMethod(javaCrawler, methodId5);
+
+            const std::string articleTypeWithSlash = std::string("/") + articleType;
+
+            env->CallVoidMethod(javaCrawler, methodId1, toJString(articleTypeWithSlash));
+            env->CallVoidMethod(javaCrawler, methodId2, toJString(articleTypeWithSlash));
+
+            std::vector<std::string> articleTitles = util::split(util::readFile(ARTICLE_TITLE_FILE_PATH), '\n');
+
+            return articleTitles;
         }
 
-        // new a java Crawler class
-        javaCrawler = env->NewObject(javaCrawlerClass, constructor);
-        if(javaCrawler == nullptr) {
-            std::cerr << "failed to new a java Crawler class" << std::endl;
-            return;
+        std::string Crawler::fetchArticle(const std::string &articleTitle) {
+            // std::string articleTitle("An American teacher held in Libya for 6 weeks is now back home in the United States");
+            env->CallVoidMethod(javaCrawler, methodId3, toJString(articleTitle)); // also print stuff
+            env->CallVoidMethod(javaCrawler, methodId4); // also print stuff
+
+            std::string article = util::readFile(ARTICLE_FILE_PATH);
+            return article;
         }
 
-        // find defined methods
-        methodId1 = env->GetMethodID(javaCrawlerClass, "setArticleList", "(Ljava/lang/String;)V");
-        if(methodId1 == nullptr) {
-            std::cerr << "failed to get methodId1" << std::endl;
-            return;
-        }
-        methodId2 = env->GetMethodID(javaCrawlerClass, "setArticleUrlList","(Ljava/lang/String;)V");
-        if(methodId2 == nullptr) {
-            std::cerr << "failed to get methodId2" << std::endl;
-            return;
-        }
-        methodId3 = env->GetMethodID(javaCrawlerClass, "setChosenDoc", "(Ljava/lang/String;)V");
-        if(methodId3 == nullptr) {
-            std::cerr << "failed to get methodId3" << std::endl;
-            return;
-        }
-        methodId4 = env->GetMethodID(javaCrawlerClass, "crawlArticle", "()V");
-        if(methodId4 == nullptr) {
-            std::cerr << "failed to get methodId4" << std::endl;
-            return;
-        }
-        methodId5 = env->GetMethodID(javaCrawlerClass, "clear", "()V");
-        if(methodId5 == nullptr) {
-            std::cerr << "failed to get methodId5" << std::endl;
-            return;
+        std::string Crawler::fetchRandomArticle() {
+            const std::vector<std::string> &articleTitles = fetchArticleTitles("africa");
+            if(articleTitles.empty()) {
+                return {};
+            }
+            
+            // Get distribute
+            // From: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/
+            std::random_device randomDevice;
+            std::mt19937 seedGenerator(randomDevice());
+            std::uniform_int_distribution<int> distribute(0, articleTitles.size());
+            int randomTitleIndex = distribute(seedGenerator);
+            const std::string& randomArticle = fetchArticle(articleTitles[randomTitleIndex]);
+
+            return randomArticle;
         }
 
-        std::cout << "end of Crawler ctor" << std::endl; // debug!
-    }
-
-    Crawler::~Crawler() {
-        if(jvm) {
-            jvm->DestroyJavaVM();
+        jstring Crawler::toJString(const std::string &string) {
+            return env->NewStringUTF(string.c_str());
         }
-    }
-
-    std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleType) {
-        // clear
-        env->CallVoidMethod(javaCrawler, methodId5);
-
-        const std::string articleTypeWithSlash = std::string("/") + articleType;
-
-        env->CallVoidMethod(javaCrawler, methodId1, toJString(articleTypeWithSlash));
-        env->CallVoidMethod(javaCrawler, methodId2, toJString(articleTypeWithSlash));
-
-        std::vector<std::string> articleTitles = util::split(util::readFile(ARTICLE_TITLE_FILE_PATH), '\n');
-
-        return articleTitles;
-    }
-
-    std::string Crawler::fetchArticle(const std::string &articleTitle) {
-        // std::string articleTitle("An American teacher held in Libya for 6 weeks is now back home in the United States");
-        env->CallVoidMethod(javaCrawler, methodId3, toJString(articleTitle)); // also print stuff
-        env->CallVoidMethod(javaCrawler, methodId4); // also print stuff
-
-        std::string article = util::readFile(ARTICLE_FILE_PATH);
-        return article;
-    }
-
-    std::string Crawler::fetchRandomArticle() {
-        const std::vector<std::string> &articleTitles = fetchArticleTitles("africa");
-        if(articleTitles.empty()) {
-            return {};
-        }
-        
-        // Get distribute
-        // From: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/
-        std::random_device randomDevice;
-        std::mt19937 seedGenerator(randomDevice());
-        std::uniform_int_distribution<int> distribute(0, articleTitles.size());
-        int randomTitleIndex = distribute(seedGenerator);
-        const std::string& randomArticle = fetchArticle(articleTitles[randomTitleIndex]);
-
-        return randomArticle;
-    }
-
-    jstring Crawler::toJString(const std::string &string) {
-        return env->NewStringUTF(string.c_str());
     }
 }
