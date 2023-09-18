@@ -365,13 +365,12 @@ namespace english_assistance {
                     for(QWidget *widget : typingInnerPanel->findChildren<QWidget*>()) {
                         delete widget;
                     }
-
                     // Add labels and lineEdits
                     addRandomTypingPanelWords();
                     
-                    auto firstChild = typingInnerPanel->findChildren<QLineEdit*>()[0];
-                    if(firstChild) {
-                        firstChild->setFocus();
+                    auto children = typingInnerPanel->findChildren<QLineEdit*>();
+                    if(children.length() > 0) {
+                        children[0]->setFocus();
                     }
                 });
                 QObject::connect(testingPanelButton, &QPushButton::clicked, [this, crawler]{
