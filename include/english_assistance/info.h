@@ -4,6 +4,6 @@
 
 namespace english_assistance {
     namespace info {
-        constexpr std::string VERSION("v0.2.0");
+        inline static const std::string VERSION("v0.2.0");
     }
 }
