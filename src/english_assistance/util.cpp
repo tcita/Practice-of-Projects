@@ -13,6 +13,10 @@
 namespace english_assistance {
     namespace util {
         std::vector<std::string> split(const std::string &string, const char c) {
+            if(string.empty()) {
+                return {};
+            }
+
             std::istringstream stringStream = std::istringstream(string);
             std::vector<std::string> strings;
             std::string temp;

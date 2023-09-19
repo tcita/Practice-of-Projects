@@ -381,8 +381,12 @@ namespace english_assistance {
                     }
 
                     std::vector<question::Question> questions;
-                    // questions = Questions::makeQuestions(crawler->fetchRandomArticle());
-                    for(auto &question : question::makeQuestions(crawler->fetchRandomArticle())) {
+                    std::optional<std::string> randomArticle = crawler->fetchRandomArticle();
+                    if(!randomArticle) {
+                        return;
+                    }
+
+                    for(auto &question : question::makeQuestions(randomArticle.value())) {
                         if(question.isValid()) {
                             questions.push_back(question);
                         }
@@ -412,8 +416,12 @@ namespace english_assistance {
                 QObject::connect(businessArticlePanelButton, &QPushButton::clicked, [this, crawler] {
                     switchToPanel(articleTitlePanel);
                     // crawler->clear();
-                    std::vector<std::string> articleTitles = crawler->fetchArticleTitles("business");
-                    setArticleTitles(articleTitles);
+                    std::optional<std::vector<std::string>> articleTitles = crawler->fetchArticleTitles("business");
+                    if(!articleTitles) {
+                        return;
+                    }
+
+                    setArticleTitles(articleTitles.value());
                 });
 
                 // articlePanel
@@ -450,8 +458,12 @@ namespace english_assistance {
                 QObject::connect(africaArticleTitlePanelButton, &QPushButton::clicked, [this, crawler] {
                     switchToPanel(articleTitlePanel);
                     // crawler->clear();
-                    std::vector<std::string> articleTitles = crawler->fetchArticleTitles("africa");
-                    setArticleTitles(articleTitles);
+                    std::optional<std::vector<std::string>> articleTitles = crawler->fetchArticleTitles("africa");
+                    if(!articleTitles) {
+                        return;
+                    }
+
+                    setArticleTitles(articleTitles.value());
                 });
 
                 // testingPanel
@@ -720,9 +732,13 @@ namespace english_assistance {
                     QPushButton *button = new QPushButton(articleTitlePanel);
                     button->setText(QString::fromStdString(articleTitle));
                     QObject::connect(button, &QPushButton::clicked, [=, this]{
-                        std::string article = crawler->fetchArticle(button->text().toStdString());
+                        std::optional<std::string> article = crawler->fetchArticle(button->text().toStdString());
+                        if(!article) {
+                            return;
+                        }
+
                         std::cout << "Article title: " << button->text().toStdString() << "\n";
-                        this->setArticle(article);
+                        this->setArticle(article.value());
                         switchToPanel(articlePanel);
                     });
                     articleTitlePanelLayout->addWidget(button);
@@ -815,13 +831,14 @@ namespace english_assistance {
             }
 
             void MainWindow::addRandomTypingPanelWords() {
-                const std::string &article = crawler->fetchRandomArticle();
-                if(article.empty()) {
+                std::optional<std::string> randomArticle = crawler->fetchRandomArticle();
+                if(!randomArticle) {
                     return;
                 }
+
                 const std::vector<std::string> &bannedWords = config::readBannedWords();
                 std::vector<std::string> typingPanelWords;
-                for(const auto &wordFrequency : util::wordFrequency(article, bannedWords))
+                for(const auto &wordFrequency : util::wordFrequency(randomArticle.value(), bannedWords))
                 {
                     typingPanelWords.push_back(wordFrequency.first);
                 }

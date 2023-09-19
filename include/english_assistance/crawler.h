@@ -1,6 +1,7 @@
 #pragma once
 
 #include <filesystem>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -28,9 +29,9 @@ namespace english_assistance {
             Crawler();
             ~Crawler();
             
-            std::vector<std::string> fetchArticleTitles(const std::string &articleType);
-            std::string fetchArticle(const std::string &articleTitle);
-            std::string fetchRandomArticle();
+            std::optional<std::vector<std::string>> fetchArticleTitles(const std::string &articleType);
+            std::optional<std::string> fetchArticle(const std::string &articleTitle);
+            std::optional<std::string> fetchRandomArticle();
 
         private:
             jstring toJString(const std::string &string);

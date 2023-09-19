@@ -5,12 +5,13 @@
 
 #include "english_assistance/crawler.h"
 #include "english_assistance/util.h"
+#include "jni.h"
 
 namespace english_assistance {
     namespace crawler {
         Crawler::Crawler() {
             JavaVMOption options[1];    /*自定義JRE所要的參數，就是java -... -... xxx.java將-...字串加入options中 用*/
-            options[0].optionString = (char*) "-Djava.class.path=.;./lib/crawler;./lib/jsoup/jsoup-1.14.3.jar";
+            options[0].optionString = (char*) "-Djava.class.path=lib/crawler;lib/crawler/lib/jsoup-1.14.3.jar";
 
             JavaVMInitArgs vm_args;
             vm_args.version = JNI_VERSION_10;
@@ -111,7 +112,7 @@ namespace english_assistance {
             }
         }
 
-        std::vector<std::string> Crawler::fetchArticleTitles(const std::string &articleType) {
+        std::optional<std::vector<std::string>> Crawler::fetchArticleTitles(const std::string &articleType) {
             // clear
             env->CallVoidMethod(javaCrawler, methodId5);
 
@@ -125,28 +126,36 @@ namespace english_assistance {
             return articleTitles;
         }
 
-        std::string Crawler::fetchArticle(const std::string &articleTitle) {
-            // std::string articleTitle("An American teacher held in Libya for 6 weeks is now back home in the United States");
-            env->CallVoidMethod(javaCrawler, methodId3, toJString(articleTitle)); // also print stuff
-            env->CallVoidMethod(javaCrawler, methodId4); // also print stuff
+        std::optional<std::string> Crawler::fetchArticle(const std::string &articleTitle) {
+            env->CallVoidMethod(javaCrawler, methodId3, toJString(articleTitle));
+            env->CallVoidMethod(javaCrawler, methodId4);
 
             std::string article = util::readFile(ARTICLE_FILE_PATH);
             return article;
         }
 
-        std::string Crawler::fetchRandomArticle() {
-            const std::vector<std::string> &articleTitles = fetchArticleTitles("africa");
-            if(articleTitles.empty()) {
-                return {};
+        std::optional<std::string> Crawler::fetchRandomArticle() {
+            std::string randomArticleType = "africa"; // todo! add more possible titles
+            std::optional<std::vector<std::string>> articleTitles = fetchArticleTitles(randomArticleType);
+            if(!articleTitles) {
+                return std::nullopt;
+            }
+
+            if(articleTitles.value().empty()) {
+                return std::nullopt;
             }
             
             // Get distribute
             // From: https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution/
             std::random_device randomDevice;
             std::mt19937 seedGenerator(randomDevice());
-            std::uniform_int_distribution<int> distribute(0, articleTitles.size());
+            std::uniform_int_distribution<int> distribute(0, articleTitles.value().size());
             int randomTitleIndex = distribute(seedGenerator);
-            const std::string& randomArticle = fetchArticle(articleTitles[randomTitleIndex]);
+            std::optional<std::string> randomArticle = fetchArticle(articleTitles.value()[randomTitleIndex]);
+             
+            if(!randomArticle) {
+                return std::nullopt;
+            }
 
             return randomArticle;
         }
