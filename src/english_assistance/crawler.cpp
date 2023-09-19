@@ -10,14 +10,19 @@
 namespace english_assistance {
     namespace crawler {
         Crawler::Crawler() {
-            JavaVMOption options[1];    /*自定義JRE所要的參數，就是java -... -... xxx.java將-...字串加入options中 用*/
-            options[0].optionString = (char*) "-Djava.class.path=lib/crawler;lib/crawler/lib/jsoup-1.14.3.jar";
-
-            JavaVMInitArgs vm_args;
-            vm_args.version = JNI_VERSION_10;
-            vm_args.nOptions = 1;
-            vm_args.options = options;
-            vm_args.ignoreUnrecognized = JNI_FALSE;
+            char java_classpath[] = "-Djava.class.path=lib/crawler;lib/crawler/lib/jsoup-1.14.3.jar";
+            JavaVMOption options[1] = {
+                {
+                    .optionString = java_classpath,
+                    .extraInfo = nullptr,
+                }
+            };
+            JavaVMInitArgs vm_args = {
+                .version = JNI_VERSION_10,
+                .nOptions = 1,
+                .options = options,
+                .ignoreUnrecognized = JNI_FALSE,
+            };
 
             jint result = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args);
             if(result != JNI_OK) {
