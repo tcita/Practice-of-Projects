@@ -12,8 +12,8 @@ namespace english_assistance {
         // Use jni to call java crawler
         class Crawler {
         public:
-            const std::filesystem::path ARTICLE_TITLE_FILE_PATH = "tmp/article_list.txt";
-            const std::filesystem::path ARTICLE_FILE_PATH = "tmp/crawed_content.txt";
+            inline static const std::filesystem::path ARTICLE_TITLE_FILE_PATH = "tmp/article_list.txt";
+            inline static const std::filesystem::path ARTICLE_FILE_PATH = "tmp/crawed_content.txt";
 
         private:
             JavaVM *jvm;
