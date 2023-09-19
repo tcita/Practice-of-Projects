@@ -10,21 +10,21 @@
 namespace english_assistance {
     namespace crawler {
         Crawler::Crawler() {
-            char java_classpath[] = "-Djava.class.path=lib/crawler;lib/crawler/lib/jsoup-1.14.3.jar";
-            JavaVMOption options[1] = {
+            char javaClasspath[] = "-Djava.class.path=lib/crawler;lib/crawler/lib/jsoup-1.14.3.jar";
+            JavaVMOption jvmOptions[1] = {
                 {
-                    .optionString = java_classpath,
+                    .optionString = javaClasspath,
                     .extraInfo = nullptr,
                 }
             };
-            JavaVMInitArgs vm_args = {
+            JavaVMInitArgs jvmArgs = {
                 .version = JNI_VERSION_10,
-                .nOptions = std::size(options),
-                .options = options,
+                .nOptions = std::size(jvmOptions),
+                .options = jvmOptions,
                 .ignoreUnrecognized = JNI_FALSE,
             };
 
-            jint result = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args);
+            jint result = JNI_CreateJavaVM(&jvm, (void**)&env, &jvmArgs);
             if(result != JNI_OK) {
                 std::cerr << "JNI_CreateJavaVM error: ";
                 switch(result) {
