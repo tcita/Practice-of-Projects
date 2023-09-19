@@ -19,7 +19,7 @@ namespace english_assistance {
             };
             JavaVMInitArgs vm_args = {
                 .version = JNI_VERSION_10,
-                .nOptions = 1,
+                .nOptions = std::size(options),
                 .options = options,
                 .ignoreUnrecognized = JNI_FALSE,
             };
