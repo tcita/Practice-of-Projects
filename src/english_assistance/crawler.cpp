@@ -84,27 +84,27 @@ namespace english_assistance {
             // find defined methods
             setArticleListMethodId = env->GetMethodID(javaCrawlerClass, "setArticleList", "(Ljava/lang/String;)V");
             if(setArticleListMethodId == nullptr) {
-                std::cerr << "failed to get methodId1" << std::endl;
+                std::cerr << "failed to get methodId1" << std::endl; // debug!
                 return;
             }
             setArticleUrlListMethodId = env->GetMethodID(javaCrawlerClass, "setArticleUrlList","(Ljava/lang/String;)V");
             if(setArticleUrlListMethodId == nullptr) {
-                std::cerr << "failed to get methodId2" << std::endl;
+                std::cerr << "failed to get methodId2" << std::endl; // debug!
                 return;
             }
             setChosenDocMethodId = env->GetMethodID(javaCrawlerClass, "setChosenDoc", "(Ljava/lang/String;)V");
             if(setChosenDocMethodId == nullptr) {
-                std::cerr << "failed to get methodId3" << std::endl;
+                std::cerr << "failed to get methodId3" << std::endl; // debug!
                 return;
             }
             crawlArticleMethodId = env->GetMethodID(javaCrawlerClass, "crawlArticle", "()V");
             if(crawlArticleMethodId == nullptr) {
-                std::cerr << "failed to get methodId4" << std::endl;
+                std::cerr << "failed to get methodId4" << std::endl; // debug!
                 return;
             }
             clearMethodId = env->GetMethodID(javaCrawlerClass, "clear", "()V");
             if(clearMethodId == nullptr) {
-                std::cerr << "failed to get methodId5" << std::endl;
+                std::cerr << "failed to get methodId5" << std::endl; // debug!
                 return;
             }
 
