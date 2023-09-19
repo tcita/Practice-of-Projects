@@ -1,6 +1,3 @@
-#include <string>
-#include <vector>
-
 #include <jni.h>
 #include <QtWidgets>
 

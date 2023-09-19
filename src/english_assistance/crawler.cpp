@@ -1,6 +1,4 @@
-#include <cstdio>
 #include <iostream>
-#include <memory>
 #include <random>
 
 #include "english_assistance/crawler.h"
