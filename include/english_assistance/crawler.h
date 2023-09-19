@@ -19,11 +19,11 @@ namespace english_assistance {
             JavaVM *jvm;
             JNIEnv *env;
             jobject javaCrawler;
-            jmethodID methodId1;
-            jmethodID methodId2;
-            jmethodID methodId3;
-            jmethodID methodId4;
-            jmethodID methodId5;
+            jmethodID setArticleListMethodId;
+            jmethodID setArticleUrlListMethodId;
+            jmethodID setChosenDocMethodId;
+            jmethodID crawlArticleMethodId;
+            jmethodID clearMethodId;
 
         public:
             Crawler();

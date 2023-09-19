@@ -82,28 +82,28 @@ namespace english_assistance {
             }
 
             // find defined methods
-            methodId1 = env->GetMethodID(javaCrawlerClass, "setArticleList", "(Ljava/lang/String;)V");
-            if(methodId1 == nullptr) {
+            setArticleListMethodId = env->GetMethodID(javaCrawlerClass, "setArticleList", "(Ljava/lang/String;)V");
+            if(setArticleListMethodId == nullptr) {
                 std::cerr << "failed to get methodId1" << std::endl;
                 return;
             }
-            methodId2 = env->GetMethodID(javaCrawlerClass, "setArticleUrlList","(Ljava/lang/String;)V");
-            if(methodId2 == nullptr) {
+            setArticleUrlListMethodId = env->GetMethodID(javaCrawlerClass, "setArticleUrlList","(Ljava/lang/String;)V");
+            if(setArticleUrlListMethodId == nullptr) {
                 std::cerr << "failed to get methodId2" << std::endl;
                 return;
             }
-            methodId3 = env->GetMethodID(javaCrawlerClass, "setChosenDoc", "(Ljava/lang/String;)V");
-            if(methodId3 == nullptr) {
+            setChosenDocMethodId = env->GetMethodID(javaCrawlerClass, "setChosenDoc", "(Ljava/lang/String;)V");
+            if(setChosenDocMethodId == nullptr) {
                 std::cerr << "failed to get methodId3" << std::endl;
                 return;
             }
-            methodId4 = env->GetMethodID(javaCrawlerClass, "crawlArticle", "()V");
-            if(methodId4 == nullptr) {
+            crawlArticleMethodId = env->GetMethodID(javaCrawlerClass, "crawlArticle", "()V");
+            if(crawlArticleMethodId == nullptr) {
                 std::cerr << "failed to get methodId4" << std::endl;
                 return;
             }
-            methodId5 = env->GetMethodID(javaCrawlerClass, "clear", "()V");
-            if(methodId5 == nullptr) {
+            clearMethodId = env->GetMethodID(javaCrawlerClass, "clear", "()V");
+            if(clearMethodId == nullptr) {
                 std::cerr << "failed to get methodId5" << std::endl;
                 return;
             }
@@ -119,12 +119,12 @@ namespace english_assistance {
 
         std::optional<std::vector<std::string>> Crawler::fetchArticleTitles(const std::string &articleType) {
             // clear
-            env->CallVoidMethod(javaCrawler, methodId5);
+            env->CallVoidMethod(javaCrawler, clearMethodId);
 
             const std::string articleTypeWithSlash = std::string("/") + articleType;
 
-            env->CallVoidMethod(javaCrawler, methodId1, toJString(articleTypeWithSlash));
-            env->CallVoidMethod(javaCrawler, methodId2, toJString(articleTypeWithSlash));
+            env->CallVoidMethod(javaCrawler, setArticleListMethodId, toJString(articleTypeWithSlash));
+            env->CallVoidMethod(javaCrawler, setArticleUrlListMethodId, toJString(articleTypeWithSlash));
 
             std::vector<std::string> articleTitles = util::split(util::readFile(ARTICLE_TITLE_FILE_PATH), '\n');
 
@@ -132,8 +132,8 @@ namespace english_assistance {
         }
 
         std::optional<std::string> Crawler::fetchArticle(const std::string &articleTitle) {
-            env->CallVoidMethod(javaCrawler, methodId3, toJString(articleTitle));
-            env->CallVoidMethod(javaCrawler, methodId4);
+            env->CallVoidMethod(javaCrawler, setChosenDocMethodId, toJString(articleTitle));
+            env->CallVoidMethod(javaCrawler, crawlArticleMethodId);
 
             std::string article = util::readFile(ARTICLE_FILE_PATH);
             return article;
