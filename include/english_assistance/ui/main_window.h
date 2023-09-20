@@ -160,8 +160,6 @@ namespace english_assistance {
                 // Switch panel back accroding to the panel history
                 void switchToPreviousPanel();
                 //
-                void addRandomTypingPanelWords();
-                //
                 void addTypingPanelWords(const std::vector<std::string> &words);
                 //
                 bool addQuestionGroupBox(const question::Question &question);

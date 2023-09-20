@@ -358,15 +358,27 @@ namespace english_assistance {
 
                 // mainWindow
                 QObject::connect(articleTypePanelButton, &QPushButton::clicked, [this]{switchToPanel(articleTypePanel);});
-                QObject::connect(typingPanelButton, &QPushButton::clicked, [this]{
-                    switchToPanel(typingPanel);
-
+                QObject::connect(typingPanelButton, &QPushButton::clicked, [this, crawler]{
                     // Clear panel
                     for(QWidget *widget : typingInnerPanel->findChildren<QWidget*>()) {
                         delete widget;
                     }
+                    
                     // Add labels and lineEdits
-                    addRandomTypingPanelWords();
+                    std::optional<std::string> randomArticle = crawler->fetchRandomArticle();
+                    if(!randomArticle) {
+                        return;
+                    }
+
+                    const std::vector<std::string> &bannedWords = config::readBannedWords();
+                    std::vector<std::string> typingPanelWords;
+                    for(const auto &wordFrequency : util::wordFrequency(randomArticle.value(), bannedWords))
+                    {
+                        typingPanelWords.push_back(wordFrequency.first);
+                    }
+                    addTypingPanelWords(typingPanelWords);
+                        
+                    switchToPanel(typingPanel);
                     
                     auto children = typingInnerPanel->findChildren<QLineEdit*>();
                     if(children.length() > 0) {
@@ -828,21 +840,6 @@ namespace english_assistance {
                     std::cout << "Disable previousPanelAction\n";
                     previousPanelAction->setEnabled(false);
                 }
-            }
-
-            void MainWindow::addRandomTypingPanelWords() {
-                std::optional<std::string> randomArticle = crawler->fetchRandomArticle();
-                if(!randomArticle) {
-                    return;
-                }
-
-                const std::vector<std::string> &bannedWords = config::readBannedWords();
-                std::vector<std::string> typingPanelWords;
-                for(const auto &wordFrequency : util::wordFrequency(randomArticle.value(), bannedWords))
-                {
-                    typingPanelWords.push_back(wordFrequency.first);
-                }
-                addTypingPanelWords(typingPanelWords);
             }
 
             void MainWindow::addTypingPanelWords(const std::vector<std::string> &words) {
